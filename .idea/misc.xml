@@ -11,14 +11,16 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/circle.xml" value="0.176" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/circle_blue.xml" value="0.176" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/circle_white.xml" value="0.176" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_add.xml" value="0.1" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_baseline_camera_24_white.xml" value="0.1" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_camera_classification.xml" value="0.176" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/font/poppins.xml" value="0.215625" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_camera.xml" value="0.18645833333333334" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_main.xml" value="0.16077898550724637" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/bottom_sheet.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.17083333333333334" />
-        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_create.xml" value="0.15163934426229508" />
-        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_create.xml" value="0.2" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_login.xml" value="0.22" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_modal_bottom_sheet.xml" value="0.17708333333333334" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_onboarding_four.xml" value="0.18" />

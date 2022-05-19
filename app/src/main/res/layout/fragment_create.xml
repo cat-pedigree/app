@@ -47,7 +47,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/background_button"
         android:contentDescription="@string/camera"
-        app:tint="?attr/colorOnPrimary"
+        app:tint="@color/white"
         android:src="@drawable/ic_baseline_camera_alt_24"
         app:layout_constraintBottom_toBottomOf="@+id/iv_preview"
         app:layout_constraintEnd_toEndOf="@+id/iv_preview"
@@ -56,7 +56,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField"
+        android:id="@+id/post_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -79,6 +79,39 @@
             android:background="@drawable/background_border"/>
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        style="@style/heading3"
+        android:textColor="@color/neutral_80"
+        android:text="@string/no_location_selected"
+        app:layout_constraintStart_toStartOf="@+id/post_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/post_edit_text" />
+
+    <ImageButton
+        android:id="@+id/btn_delete_location"
+        android:layout_width="20dp"
+        android:visibility="gone"
+        android:layout_height="20dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_close_24"
+        android:contentDescription="@string/delete_location"
+        app:layout_constraintStart_toEndOf="@+id/tv_location"
+        app:layout_constraintTop_toTopOf="@+id/tv_location" />
+
+    <TextView
+        android:id="@+id/text_btn_location"
+        style="@style/heading3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/change"
+        android:textColor="@color/accent"
+        app:layout_constraintEnd_toEndOf="@+id/post_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/post_edit_text" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

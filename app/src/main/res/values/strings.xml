@@ -67,6 +67,9 @@
     <string name="failed_to_start_camera">Failed to start the camera</string>
     <string name="choose_image">Choose an image from</string>
     <string name="add_post">Add Post</string>
+    <string name="no_location_selected">No location selected</string>
+    <string name="delete_location">Delete location</string>
+    <string name="change">Change</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
