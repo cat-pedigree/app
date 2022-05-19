@@ -81,11 +81,11 @@ class CreateFragment : Fragment() {
             startCameraX()
             popupWindow.dismiss()
         }
-//
-//        popupBinding.btnGallery.setOnClickListener {
-//            startGallery()
-//            popupWindow.dismiss()
-//        }
+
+        popupBinding.btnGallery.setOnClickListener {
+            startGallery()
+            popupWindow.dismiss()
+        }
 
         binding.ivCamera.setOnClickListener { btn ->
             popupWindow.showAsDropDown(btn)

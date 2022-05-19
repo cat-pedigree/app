@@ -9,12 +9,16 @@ import com.catpedigree.capstone.catpedigreebase.injection.Injection
 import com.catpedigree.capstone.catpedigreebase.ui.auth.LoginViewModel
 import com.catpedigree.capstone.catpedigreebase.ui.auth.RegisterViewModel
 import com.catpedigree.capstone.catpedigreebase.ui.home.HomeViewModel
+import com.catpedigree.capstone.catpedigreebase.ui.onboarding.OnboardingViewModel
 
 class ViewModelFactory(private val userRepository: UserRepository, private val postRepository: PostRepository) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
+            modelClass.isAssignableFrom(OnboardingViewModel::class.java) -> {
+                OnboardingViewModel(userRepository) as T
+            }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(userRepository) as T
             }
