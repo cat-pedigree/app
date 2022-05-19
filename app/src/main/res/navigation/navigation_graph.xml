@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/splashScreenFragment">
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.splash.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_onboardingOne"
+            app:destination="@id/onboardingOne" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingOne"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.onboarding.OnboardingOne"
+        android:label="fragment_onboarding_one"
+        tools:layout="@layout/fragment_onboarding_one" >
+        <action
+            android:id="@+id/action_onboardingOne_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_onboardingOne_to_onboardingTwo2"
+            app:destination="@id/onboardingTwo" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingTwo"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.onboarding.OnboardingTwo"
+        android:label="fragment_onboarding_two"
+        tools:layout="@layout/fragment_onboarding_two" >
+        <action
+            android:id="@+id/action_onboardingTwo_to_onboardingThree"
+            app:destination="@id/onboardingThree" />
+        <action
+            android:id="@+id/action_onboardingTwo_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingThree"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.onboarding.OnboardingThree"
+        android:label="fragment_onboarding_three"
+        tools:layout="@layout/fragment_onboarding_three" >
+        <action
+            android:id="@+id/action_onboardingThree_to_onboardingFour"
+            app:destination="@id/onboardingFour" />
+        <action
+            android:id="@+id/action_onboardingThree_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingFour"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.onboarding.OnboardingFour"
+        android:label="fragment_onboarding_four"
+        tools:layout="@layout/fragment_onboarding_four" >
+        <action
+            android:id="@+id/action_onboardingFour_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.auth.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.home.HomeFragment"
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_homeFragment_to_createFragment"
+            app:destination="@id/createFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.post.CreateFragment"
+        android:label="fragment_create"
+        tools:layout="@layout/fragment_create" />
+</navigation>

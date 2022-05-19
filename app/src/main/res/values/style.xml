@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--    Title -->
+    <style name="title1">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineHeight">30dp</item>
+    </style>
+    <style name="title2">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineHeight">27dp</item>
+    </style>
+    <style name="title3">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineHeight">27dp</item>
+    </style>
+    <style name="title4">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineHeight">24dp</item>
+    </style>
+    <style name="title5">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineHeight">36dp</item>
+    </style>
+    <!--Heading-->
+    <style name="heading1">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineHeight">22dp</item>
+    </style>
+    <style name="heading2">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineHeight">21dp</item>
+    </style>
+    <style name="heading3">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineHeight">21dp</item>
+    </style>
+    <style name="heading4">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineHeight">18dp</item>
+    </style>
+    <style name="sub_headline1">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineHeight">21dp</item>
+    </style>
+    <style name="sub_headline2">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineHeight">18dp</item>
+    </style>
+    <style name="sub_headline3">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineHeight">18dp</item>
+    </style>
+    <style name="body1">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineHeight">21dp</item>
+    </style>
+    <style name="body2">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineHeight">18dp</item>
+    </style>
+    <style name="body3">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineHeight">18dp</item>
+    </style>
+</resources>

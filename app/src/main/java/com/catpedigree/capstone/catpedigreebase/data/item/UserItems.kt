@@ -1,0 +1,16 @@
+package com.catpedigree.capstone.catpedigreebase.data.item
+
+data class UserItems(
+    val id: Int? = null,
+    val name: String? = null,
+    val username: String? = null,
+    val phone_number: String? = null,
+    val email: String? = null,
+    val password: String? = null,
+    val bio: String? = null,
+    val lat: Double? = null,
+    val lon: Double? = null,
+    val profile_photo_path: String? = null,
+    val token: String? = null,
+    var isLoggedIn: Boolean? = null
+)

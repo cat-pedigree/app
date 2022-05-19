@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/menu_service"
+        android:enabled="true"
+        android:icon="@drawable/ic_service"
+        android:title="@string/service"/>
+    <item
+        android:id="@+id/menu_pedigree"
+        android:enabled="true"
+        android:icon="@drawable/ic_pedigree"
+        android:title="@string/pedigree"/>
+    <item
+        android:id="@+id/menu_more"
+        android:enabled="true"
+        android:icon="@drawable/ic_more"
+        android:title="@string/more"/>
+</menu>
