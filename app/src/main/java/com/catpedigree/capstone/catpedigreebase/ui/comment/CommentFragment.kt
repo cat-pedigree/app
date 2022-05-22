@@ -1,38 +1,40 @@
-package com.catpedigree.capstone.catpedigreebase.ui.home
+package com.catpedigree.capstone.catpedigreebase.ui.comment
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.catpedigree.capstone.catpedigreebase.R
+import com.catpedigree.capstone.catpedigreebase.adapter.CommentAdapter
 import com.catpedigree.capstone.catpedigreebase.adapter.LoadingStateAdapter
-import com.catpedigree.capstone.catpedigreebase.adapter.PostAdapter
 import com.catpedigree.capstone.catpedigreebase.data.item.UserItems
-import com.catpedigree.capstone.catpedigreebase.databinding.FragmentHomeBinding
+import com.catpedigree.capstone.catpedigreebase.databinding.FragmentCommentBinding
 import com.catpedigree.capstone.catpedigreebase.factory.ViewModelFactory
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 import com.catpedigree.capstone.catpedigreebase.utils.wrapEspressoIdlingResource
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment() {
+class CommentFragment : Fragment() {
 
-    private lateinit var _binding: FragmentHomeBinding
+    private lateinit var _binding: FragmentCommentBinding
     private val binding get() = _binding
+    private val args: CommentFragmentArgs by navArgs()
     private lateinit var user: UserItems
 
-    private lateinit var adapter: PostAdapter
-    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var adapter: CommentAdapter
 
-    private var isFromOtherScreen = false
-
-    private val viewModel: HomeViewModel by viewModels {
+    private val viewModel: CommentViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -40,7 +42,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentCommentBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -50,44 +52,28 @@ class HomeFragment : Fragment() {
         setupViewModel()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.top_app_bar, menu)
-    }
-
     private fun setupAction(){
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId){
-                R.id.addPost -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_createFragment)
-                    true
-                }
-                R.id.logout -> {
-                    viewModel.logout()
-                    true
-                }
-                else -> {
-                    false
-                    }
-                }
-            }
+        val post = args.post
+        val profilePhotoPath = "http://192.168.1.3/api-cat/public/storage/${post.profile_photo_path}"
 
-            adapter = PostAdapter().apply {
-                stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-                registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
-                    override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-                        if (positionStart == 0 && isFromOtherScreen.not()) {
-                        binding.rvPost.smoothScrollToPosition(0)
-                    }
-                }
-            })
+        binding.apply {
+            tvNamePost.text = post.name
+            tvPost.text = post.description
         }
 
-        val adapterWithLoading =
-            adapter.withLoadStateFooter(footer = LoadingStateAdapter { adapter.retry() })
-        layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        Glide.with(requireContext())
+            .load(profilePhotoPath)
+            .placeholder(R.drawable.ic_baseline_person_pin_24)
+            .into(binding.ivAvatarPost)
 
-        binding.rvPost.layoutManager = layoutManager
-        binding.rvPost.adapter = adapterWithLoading
+        binding.btnSend.setOnClickListener {
+            post.id?.let { data -> createComment(data) }
+        }
+
+        binding.rvComments.layoutManager = LinearLayoutManager(requireContext())
+        adapter = CommentAdapter()
+        binding.rvComments.adapter = adapter
+
         adapter.refresh()
 
         binding.swipeLayout.setOnRefreshListener {
@@ -110,31 +96,51 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
     }
 
     private fun setupViewModel(){
-        viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
+        val post = args.post
+        viewModel.userItem.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
             }
             this.user = userItems
         }
 
-        viewModel.posts.observe(viewLifecycleOwner) { posts ->
-            adapter.submitData(lifecycle, posts)
+        post.id?.let {
+            viewModel.comments(it).observe(viewLifecycleOwner) { comments ->
+                adapter.submitData(lifecycle, comments)
+            }
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { state ->
+            showLoading(state)
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
             ToastUtils.showToast(requireContext(), message)
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) { state ->
-            showLoading(state)
+        viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
+            if (isSuccess) {
+                findNavController().navigateUp()
+            }
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        (if (isLoading) View.VISIBLE else View.INVISIBLE).also { binding.progressBar.visibility = it }
+
+
+    private fun createComment(post_id: Int){
+        val userId = user.id
+        val description = binding.edtComment.text.toString().trim()
+
+            if (userId != null) {
+                viewModel.createComment(user.token ?: "", post_id, userId, description)
+            }
     }
 
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
+    }
 }

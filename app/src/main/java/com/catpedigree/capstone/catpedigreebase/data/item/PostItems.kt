@@ -1,9 +1,12 @@
 package com.catpedigree.capstone.catpedigreebase.data.item
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "post_items")
 data class PostItems(
 
@@ -37,4 +40,4 @@ data class PostItems(
 
     @field:SerializedName("comments_count")
     val comments_count: Int? = null
-)
+): Parcelable

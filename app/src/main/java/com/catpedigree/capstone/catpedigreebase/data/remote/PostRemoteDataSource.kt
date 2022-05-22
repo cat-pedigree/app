@@ -12,17 +12,11 @@ class PostRemoteDataSource(private val postInterface: PostInterface) {
 //    suspend fun getStoriesWithLocation(token: String, page: Int, size: Int) =
 //        storyInterface.getStories("Bearer $token", page, size, 1)
 //
-//    suspend fun postStories(
-//        token: String,
-//        file: MultipartBody.Part,
-//        description: RequestBody,
-//        lat: Double? = null,
-//        lon: Double? = null
-//    ) = storyInterface.postStory("Bearer $token", file, description, lat, lon)
-
-    suspend fun postLove(
+    suspend fun postCreate(
         token: String,
-        post_id: Int,
-        user_id: Int
-    ) = postInterface.postLove("Bearer $token", post_id, user_id)
+        photo: MultipartBody.Part,
+        description: RequestBody,
+        lat: Double? = null,
+        lon: Double? = null
+    ) = postInterface.postCreate("Bearer $token", photo, description, lat, lon)
 }

@@ -78,14 +78,40 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.ui.home.HomeFragment"
-        android:label="HomeFragment">
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_createFragment"
             app:destination="@id/createFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
     </fragment>
     <fragment
         android:id="@+id/createFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.ui.post.CreateFragment"
         android:label="fragment_create"
-        tools:layout="@layout/fragment_create" />
+        tools:layout="@layout/fragment_create" >
+        <action
+            android:id="@+id/action_createFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.maps.MapsFragment"
+        android:label="FragmentMaps"
+        tools:layout="@layout/fragment_maps">
+        <argument
+            android:name="action"
+            app:argType="integer"/>
+    </fragment>
+    <fragment
+        android:id="@+id/commentFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.comment.CommentFragment"
+        android:label="CommentFragment"
+        tools:layout="@layout/fragment_comment">
+        <argument
+            android:name="post"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.item.PostItems" />
+    </fragment>
 </navigation>

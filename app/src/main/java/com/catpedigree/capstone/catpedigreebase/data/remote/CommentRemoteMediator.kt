@@ -6,8 +6,8 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.catpedigree.capstone.catpedigreebase.data.database.CatDatabase
-import com.catpedigree.capstone.catpedigreebase.data.item.PostItems
-import com.catpedigree.capstone.catpedigreebase.data.item.RemoteItems
+import com.catpedigree.capstone.catpedigreebase.data.item.CommentItems
+import com.catpedigree.capstone.catpedigreebase.data.item.RemoteCommentItems
 import com.catpedigree.capstone.catpedigreebase.utils.wrapEspressoIdlingResource
 import retrofit2.HttpException
 import java.io.IOException
@@ -15,11 +15,12 @@ import java.io.IOException
 private const val INITIAL_PAGE_INDEX = 1
 
 @OptIn(ExperimentalPagingApi::class)
-class PostRemoteMediator(
+class CommentRemoteMediator(
     private val token: String,
-    private val postRemoteDataSource: PostRemoteDataSource,
+    private val post_id: Int,
+    private val commentRemoteDataSource: CommentRemoteDataSource,
     private val catDatabase: CatDatabase,
-) : RemoteMediator<Int, PostItems>() {
+) : RemoteMediator<Int, CommentItems>() {
 
     override suspend fun initialize(): InitializeAction {
         return InitializeAction.LAUNCH_INITIAL_REFRESH
@@ -27,7 +28,7 @@ class PostRemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, PostItems>,
+        state: PagingState<Int, CommentItems>,
     ): MediatorResult {
         wrapEspressoIdlingResource {
             val page = when (loadType) {
@@ -49,42 +50,39 @@ class PostRemoteMediator(
                 }
             }
 
-            val stories = mutableListOf<PostItems>()
+            val comments = mutableListOf<CommentItems>()
             try {
-                val responses = postRemoteDataSource.getPost(
+                val responses = commentRemoteDataSource.getComment(
                     token,
+                    post_id,
                     page,
                     state.config.pageSize
                 )
 
                 val endOfPaginationReached = responses.body()?.data.isNullOrEmpty()
                 responses.body()?.data?.forEach {
-                    stories.add(
-                        PostItems(
+                    comments.add(
+                        CommentItems(
                             id = it.id,
-                            name = it.user?.name,
-                            profile_photo_path = it.user?.profile_photo_path,
-                            photo = it.photo,
-                            description = it.description,
-                            created_at = it.created_at,
-                            loves_count = it.loves_count,
-                            comments_count = it.comments_count
+                            post_id = it.post_id,
+                            user_id = it.user_id,
+                            description = it.description
                         )
                     )
                 }
 
                 catDatabase.withTransaction {
                     if (loadType == LoadType.REFRESH) {
-                        catDatabase.remoteItemsDao().deleteRemoteKeys()
-                        catDatabase.postDao().deleteAllPosts()
+                        catDatabase.remoteCommentItemsDao().deleteRemoteKeys()
+                        catDatabase.commentDao().deleteAllComments()
                     }
                     val prevKey = if (page == 1) null else page - 1
                     val nextKey = if (endOfPaginationReached) null else page + 1
-                    val keys = stories.map {
-                        RemoteItems(id = it.id, prevKey = prevKey, nextKey = nextKey)
+                    val keys = comments.map {
+                        RemoteCommentItems(id = it.id, prevKey = prevKey, nextKey = nextKey)
                     }
-                    catDatabase.remoteItemsDao().insertAll(keys)
-                    catDatabase.postDao().insertStory(stories)
+                    catDatabase.remoteCommentItemsDao().insertAll(keys)
+                    catDatabase.commentDao().insertComment(comments)
                 }
                 return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
             } catch (e: IOException) {
@@ -95,22 +93,22 @@ class PostRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, PostItems>): RemoteItems? {
+    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, CommentItems>): RemoteCommentItems? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { data ->
-            catDatabase.remoteItemsDao().getRemoteKeysById(data.id)
+            catDatabase.remoteCommentItemsDao().getRemoteKeysById(data.id)
         }
     }
 
-    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, PostItems>): RemoteItems? {
+    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, CommentItems>): RemoteCommentItems? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let { data ->
-            catDatabase.remoteItemsDao().getRemoteKeysById(data.id)
+            catDatabase.remoteCommentItemsDao().getRemoteKeysById(data.id)
         }
     }
 
-    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, PostItems>): RemoteItems? {
+    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, CommentItems>): RemoteCommentItems? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
-                catDatabase.remoteItemsDao().getRemoteKeysById(id)
+                catDatabase.remoteCommentItemsDao().getRemoteKeysById(id)
             }
         }
     }

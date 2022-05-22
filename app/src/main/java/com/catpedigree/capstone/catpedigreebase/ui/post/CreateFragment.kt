@@ -6,6 +6,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +16,27 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.catpedigree.capstone.catpedigreebase.R
+import com.catpedigree.capstone.catpedigreebase.data.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentCreateBinding
 import com.catpedigree.capstone.catpedigreebase.databinding.ModalChooseImageBinding
+import com.catpedigree.capstone.catpedigreebase.factory.ViewModelFactory
 import com.catpedigree.capstone.catpedigreebase.ui.camera.CameraActivity
 import com.catpedigree.capstone.catpedigreebase.ui.main.MainActivity
+import com.catpedigree.capstone.catpedigreebase.ui.maps.MapsFragment
 import com.catpedigree.capstone.catpedigreebase.utils.CameraUtils
+import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
+import com.google.android.gms.maps.model.LatLng
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -30,6 +47,12 @@ class CreateFragment : Fragment() {
     private var _binding: FragmentCreateBinding? = null
     private val binding get() = _binding!!
     private var currentFile: File? = null
+    private var latLng: LatLng? = null
+    private lateinit var user: UserItems
+
+    private val viewModel: CreateViewModel by viewModels {
+        ViewModelFactory.getInstance(requireContext())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,17 +76,76 @@ class CreateFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         if (currentFile != null) binding.ivPreview.setImageURI(Uri.fromFile(currentFile))
-//        if (latLng != null) binding.tvLocation.text =
-//            getString(R.string.maps_lat_lon_format, latLng!!.latitude, latLng!!.longitude)
+        if (latLng != null) binding.tvLocation.text =
+            getString(R.string.maps_lat_lon_format, latLng!!.latitude, latLng!!.longitude)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
+        setupViewModel()
     }
 
     private fun setupAction(){
+        binding.uploadButton.setOnClickListener {
+            uploadFile()
+        }
+
+        binding.textBtnLocation.setOnClickListener {
+            findNavController().navigate(
+                CreateFragmentDirections.actionCreateFragmentToMapsFragment(
+                    MapsFragment.ACTION_PICK_LOCATION
+                )
+            )
+        }
+
+        binding.btnDeleteLocation.setOnClickListener {
+            if (latLng != null) {
+                latLng = null
+                binding.tvLocation.text = getString(R.string.no_location_selected)
+            }
+        }
+
+        setFragmentResultListener(MapsFragment.KEY_RESULT) { _, bundle ->
+            val location = bundle.getParcelable(MapsFragment.KEY_LAT_LONG) as LatLng?
+            if (location != null) {
+                binding.tvLocation.text =
+                    getString(R.string.maps_lat_lon_format, location.latitude, location.longitude)
+                latLng = location
+            }
+        }
+
+        binding.tvLocation.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(text: Editable?) {
+                binding.btnDeleteLocation.isGone = text.isNullOrEmpty() || latLng == null
+            }
+        })
+
         setupPopupMenu()
+    }
+
+    private fun setupViewModel() {
+        viewModel.userItem.observe(viewLifecycleOwner) { userItem ->
+            this.user = userItem
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { state ->
+            showLoading(state)
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            ToastUtils.showToast(requireContext(), message)
+        }
+
+        viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
+            if (isSuccess) {
+                findNavController().navigateUp()
+            }
+        }
     }
 
     private fun setupPopupMenu() {
@@ -89,6 +171,37 @@ class CreateFragment : Fragment() {
 
         binding.ivCamera.setOnClickListener { btn ->
             popupWindow.showAsDropDown(btn)
+        }
+    }
+
+    private fun uploadFile() {
+        val description = binding.postEditText.text.toString().trim()
+
+        if (description.isEmpty()) {
+            binding.postEditText.error = getString(R.string.description_required)
+            return
+        }
+
+        if (currentFile == null) {
+            ToastUtils.showToast(requireContext(), getString(R.string.select_a_picture))
+            return
+        }
+
+        if (currentFile != null) {
+            val file = CameraUtils.reduceFileImage(currentFile as File)
+
+            val desc = description.toRequestBody("text/plain".toMediaType())
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                "photo",
+                file.name,
+                requestImageFile
+            )
+
+            viewModel.uploadImage(user.token ?: "", imageMultipart, desc, latLng)
+
+        } else {
+            ToastUtils.showToast(requireContext(), getString(R.string.select_a_picture))
         }
     }
 
@@ -138,9 +251,12 @@ class CreateFragment : Fragment() {
         }
     }
 
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

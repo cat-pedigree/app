@@ -1,6 +1,7 @@
 package com.catpedigree.capstone.catpedigreebase.api.config
 
-import androidx.viewbinding.BuildConfig
+import com.catpedigree.capstone.catpedigreebase.BuildConfig
+import com.catpedigree.capstone.catpedigreebase.api.apiinterface.CommentInterface
 import com.catpedigree.capstone.catpedigreebase.api.apiinterface.PostInterface
 import com.catpedigree.capstone.catpedigreebase.api.apiinterface.UserInterface
 import okhttp3.OkHttpClient
@@ -9,6 +10,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
+
+    var BASE_URL = BuildConfig.BASE_API_URL
+
     private val loggingInterceptor = if (BuildConfig.DEBUG) {
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     } else {
@@ -21,7 +25,7 @@ object ApiConfig {
 
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("http://192.168.1.4/api-cat/public/api/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -33,5 +37,9 @@ object ApiConfig {
 
     fun getPostApi(): PostInterface {
         return retrofit.create(PostInterface::class.java)
+    }
+
+    fun getCommentApi(): CommentInterface{
+        return retrofit.create(CommentInterface::class.java)
     }
 }

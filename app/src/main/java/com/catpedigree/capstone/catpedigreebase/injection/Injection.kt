@@ -5,10 +5,12 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.catpedigree.capstone.catpedigreebase.api.config.ApiConfig
-import com.catpedigree.capstone.catpedigreebase.data.database.PostDatabase
+import com.catpedigree.capstone.catpedigreebase.data.database.CatDatabase
 import com.catpedigree.capstone.catpedigreebase.data.preferences.SharedPrefUserLogin
+import com.catpedigree.capstone.catpedigreebase.data.remote.CommentRemoteDataSource
 import com.catpedigree.capstone.catpedigreebase.data.remote.PostRemoteDataSource
 import com.catpedigree.capstone.catpedigreebase.data.remote.UserRemoteDataSource
+import com.catpedigree.capstone.catpedigreebase.data.repository.CommentRepository
 import com.catpedigree.capstone.catpedigreebase.data.repository.PostRepository
 import com.catpedigree.capstone.catpedigreebase.data.repository.UserRepository
 
@@ -24,7 +26,13 @@ object Injection {
     fun providePostRepository(context: Context): PostRepository {
         val postApiInterface = ApiConfig.getPostApi()
         val postRemoteDataSource = PostRemoteDataSource(postApiInterface)
-        return PostRepository(postRemoteDataSource, PostDatabase.getDatabase(context))
+        return PostRepository(postRemoteDataSource, CatDatabase.getDatabase(context))
+    }
+
+    fun provideCommentRepository(context: Context): CommentRepository{
+        val commentApiInterface = ApiConfig.getCommentApi()
+        val commentRemoteDataSource = CommentRemoteDataSource(commentApiInterface)
+        return CommentRepository(commentRemoteDataSource, CatDatabase.getDatabase(context))
     }
 
 }

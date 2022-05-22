@@ -26,59 +26,54 @@
 
     <ImageView
         android:id="@+id/iv_preview"
-        android:background="@drawable/background_border"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
+        android:background="@drawable/background_border"
+        android:contentDescription="@string/camera"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:srcCompat="@drawable/ic_baseline_placeholder_24"
-        android:contentDescription="@string/camera" />
+        app:srcCompat="@drawable/ic_baseline_placeholder_24" />
+
 
     <ImageButton
         android:id="@+id/iv_camera"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/background_button"
         android:contentDescription="@string/camera"
-        app:tint="@color/white"
         android:src="@drawable/ic_baseline_camera_alt_24"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_preview"
+        app:layout_constraintBottom_toTopOf="@+id/iv_preview"
         app:layout_constraintEnd_toEndOf="@+id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@+id/iv_preview" />
+        app:layout_constraintTop_toTopOf="@+id/iv_preview"
+        app:layout_constraintVertical_bias="1.0"
+        app:tint="@color/white" />
 
-
-
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:id="@+id/post_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
-
+        android:inputType="textMultiLine"
+        android:lines="6"
+        android:maxLines="8"
+        android:minLines="3"
+        android:gravity="top|start"
+        android:background="@drawable/background_border"
         android:hint="@string/add_post"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_camera">
+        app:layout_constraintTop_toBottomOf="@+id/iv_preview"
+        android:autofillHints="" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:lines="6"
-            android:maxLines="8"
-            android:minLines="3"
-            android:gravity="top|start"
-            android:background="@drawable/background_border"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tv_location"
@@ -112,6 +107,32 @@
         android:textColor="@color/accent"
         app:layout_constraintEnd_toEndOf="@+id/post_edit_text"
         app:layout_constraintTop_toBottomOf="@+id/post_edit_text" />
+
+    <Button
+        android:id="@+id/uploadButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/create_post"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <include layout="@layout/navigation_bottom"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
