@@ -1,8 +1,11 @@
 package com.catpedigree.capstone.catpedigreebase.ui.home
 
+import android.app.Application
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.catpedigree.capstone.catpedigreebase.data.database.CatDatabase
+import com.catpedigree.capstone.catpedigreebase.data.database.FavoriteDao
 import com.catpedigree.capstone.catpedigreebase.data.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.data.repository.PostRepository
 import com.catpedigree.capstone.catpedigreebase.data.repository.UserRepository
@@ -11,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val userRepository: UserRepository,
-    private val postRepository: PostRepository
+    private val postRepository: PostRepository,
 ) : ViewModel() {
 
     val userItems = userRepository.userItems.asLiveData()

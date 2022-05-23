@@ -8,11 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
-import com.catpedigree.capstone.catpedigreebase.BuildConfig
-import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostBinding
-import com.catpedigree.capstone.catpedigreebase.ui.home.HomeFragment
 import com.catpedigree.capstone.catpedigreebase.ui.home.HomeFragmentDirections
 
 class PostAdapter : PagingDataAdapter<PostItems, PostAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -34,28 +31,15 @@ class PostAdapter : PagingDataAdapter<PostItems, PostAdapter.ViewHolder>(DIFF_CA
         RecyclerView.ViewHolder(binding.root) {
         fun bind(post: PostItems) {
             val photo = "http://192.168.1.3/api-cat/public/storage/${post.photo}"
-            val profilePhotoPath = "http://192.168.1.3/api-cat/public/storage/${post.profile_photo_path}"
             Glide.with(binding.root)
                 .load(photo)
                 .signature(ObjectKey(photo))
                 .into(binding.ivPost)
 
-            Glide.with(binding.root)
-                .load(profilePhotoPath)
-                .signature(ObjectKey(profilePhotoPath))
-                .placeholder(R.drawable.ic_baseline_person_pin_24)
-                .into(binding.ivProfile)
-
             binding.apply {
-                val description = post.description
-                tvPost.text = description
-                tvProfile.text = post.name
-                tvCountLove.text = post.loves_count.toString()
-                tvCountComment.text = post.comments_count.toString()
-
                 root.setOnClickListener {
                     Navigation.findNavController(root).navigate(
-                        HomeFragmentDirections.actionHomeFragmentToCommentFragment(
+                        HomeFragmentDirections.actionHomeFragmentToPostDetail(
                             post
                         )
                     )

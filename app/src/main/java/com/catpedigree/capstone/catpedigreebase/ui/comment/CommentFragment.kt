@@ -54,17 +54,6 @@ class CommentFragment : Fragment() {
 
     private fun setupAction(){
         val post = args.post
-        val profilePhotoPath = "http://192.168.1.3/api-cat/public/storage/${post.profile_photo_path}"
-
-        binding.apply {
-            tvNamePost.text = post.name
-            tvPost.text = post.description
-        }
-
-        Glide.with(requireContext())
-            .load(profilePhotoPath)
-            .placeholder(R.drawable.ic_baseline_person_pin_24)
-            .into(binding.ivAvatarPost)
 
         binding.btnSend.setOnClickListener {
             post.id?.let { data -> createComment(data) }

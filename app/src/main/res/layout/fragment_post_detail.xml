@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_layout"
+    tools:context=".ui.home.HomeFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:keep="@layout/fragment_comment"
+        tools:context=".ui.comment.CommentFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:menu="@menu/top_app"
+                app:title="@string/post" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/card_views"
+            tools:keep="@layout/fragment_home">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/background_post_border"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:keep="@layout/item_post">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/iv_profile"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:contentDescription="@string/post_profile_image"
+                                    android:scaleType="centerCrop"
+                                    tools:ignore="ImageContrastCheck"
+                                    tools:srcCompat="@tools:sample/avatars" />
+
+                                <TextView
+                                    android:id="@+id/tv_profile"
+                                    style="@style/sub_headline2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="5dp"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="@string/post_profile_name"
+                                    android:textColor="@color/neutral_100" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/iv_post"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="400dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:contentDescription="@string/post"
+                                    android:scaleType="centerCrop"
+                                    tools:srcCompat="@tools:sample/avatars" />
+
+                                <TextView
+                                    android:id="@+id/tv_post"
+                                    style="@style/body1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="@string/post_description"
+                                    android:textColor="@color/neutral_100" />
+                            </LinearLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="15dp"
+                                android:orientation="horizontal">
+
+                                <ToggleButton
+                                    android:id="@+id/toggle_love"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:background="@drawable/love_toggle"
+                                    android:backgroundTintMode="src_in"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:textOff=""
+                                    android:textOn=""
+                                    card_view:layout_constraintBottom_toBottomOf="parent"
+                                    card_view:layout_constraintStart_toStartOf="parent"
+                                    card_view:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+                                <TextView
+                                    android:id="@+id/tv_count_love"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_weight="1"
+                                    android:text="@string/count_love"
+                                    card_view:layout_constraintBottom_toBottomOf="parent"
+                                    card_view:layout_constraintLeft_toRightOf="@id/toggle_love"
+                                    card_view:layout_constraintTop_toTopOf="parent" />
+
+
+                                <ImageView
+                                    android:id="@+id/iv_comment"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_weight="0"
+                                    android:contentDescription="@string/comment"
+                                    android:src="@drawable/ic_comment"
+                                    card_view:layout_constraintBottom_toBottomOf="parent"
+                                    card_view:layout_constraintLeft_toRightOf="@id/tv_count_love"
+                                    card_view:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/tv_count_comment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_weight="1"
+                                    android:text="@string/count_comment"
+                                    card_view:layout_constraintBottom_toBottomOf="parent"
+                                    card_view:layout_constraintLeft_toRightOf="@id/iv_comment"
+                                    card_view:layout_constraintTop_toTopOf="parent" />
+
+                                <ToggleButton
+                                    android:id="@+id/toggle_favorite"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:background="@drawable/favorite_toggle"
+                                    android:backgroundTintMode="src_in"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:textOff=""
+                                    android:textOn=""
+                                    card_view:layout_constraintBottom_toBottomOf="parent"
+                                    card_view:layout_constraintEnd_toEndOf="parent"
+                                    card_view:layout_constraintLeft_toRightOf="@id/tv_count_comment"
+                                    card_view:layout_constraintTop_toTopOf="parent"/>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/card_views" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_data"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

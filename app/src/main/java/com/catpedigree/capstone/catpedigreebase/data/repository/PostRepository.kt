@@ -27,35 +27,7 @@ class PostRepository(
                 catDatabase.postDao().getPosts()
             }).liveData
     }
-//
-//    suspend fun getStoriesWithLocation(token: String): List<StoryItems> {
-//        val stories = mutableListOf<StoryItems>()
-//        withContext(Dispatchers.IO) {
-//            try {
-//                val response = storyRemoteDataSource.getStoriesWithLocation(token, 1, 20)
-//                if (response.isSuccessful) {
-//                    response.body()?.listStory?.forEach {
-//                        stories.add(
-//                            StoryItems(
-//                                id = it.id,
-//                                name = it.name,
-//                                createdAt = it.createdAt,
-//                                imageUrl = it.photoUrl,
-//                                description = it.description,
-//                                lat = it.lat,
-//                                lon = it.lon
-//                            )
-//                        )
-//                    }
-//                }
-//            } catch (e: Throwable) {
-//                throw StoryError(e.message.toString())
-//            }
-//        }
-//
-//        return stories
-//    }
-//
+
     suspend fun postCreate(
     token: String,
     file: MultipartBody.Part,
@@ -75,6 +47,29 @@ class PostRepository(
                 } else {
                     postRemoteDataSource.postCreate(token, file, description)
                 }
+
+                if (!response.isSuccessful) {
+                    throw PostError(response.message())
+                }
+            } catch (e: Throwable) {
+                throw PostError(e.message.toString())
+            }
+        }
+    }
+
+    suspend fun loveCreate(
+        token: String,
+        post_id: Int,
+        user_id: Int,
+    ) {
+        withContext(Dispatchers.IO) {
+            try {
+                val response =
+                    postRemoteDataSource.loveCreate(
+                        token,
+                        post_id,
+                        user_id
+                    )
 
                 if (!response.isSuccessful) {
                     throw PostError(response.message())

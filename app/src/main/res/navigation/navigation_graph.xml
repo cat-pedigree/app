@@ -84,8 +84,8 @@
             android:id="@+id/action_homeFragment_to_createFragment"
             app:destination="@id/createFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_commentFragment"
-            app:destination="@id/commentFragment" />
+            android:id="@+id/action_homeFragment_to_postDetail"
+            app:destination="@id/postDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/createFragment"
@@ -113,5 +113,17 @@
         <argument
             android:name="post"
             app:argType="com.catpedigree.capstone.catpedigreebase.data.item.PostItems" />
+    </fragment>
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.ui.detail.PostDetailFragment"
+        android:label="PostDetailFragment"
+        tools:layout="@layout/fragment_post_detail">
+        <argument
+            android:name="post"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.item.PostItems" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
     </fragment>
 </navigation>

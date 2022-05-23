@@ -8,10 +8,7 @@ class PostRemoteDataSource(private val postInterface: PostInterface) {
 
     suspend fun getPost(token: String, page: Int, size: Int) =
         postInterface.getPost("Bearer $token", page, size)
-//
-//    suspend fun getStoriesWithLocation(token: String, page: Int, size: Int) =
-//        storyInterface.getStories("Bearer $token", page, size, 1)
-//
+
     suspend fun postCreate(
         token: String,
         photo: MultipartBody.Part,
@@ -19,4 +16,10 @@ class PostRemoteDataSource(private val postInterface: PostInterface) {
         lat: Double? = null,
         lon: Double? = null
     ) = postInterface.postCreate("Bearer $token", photo, description, lat, lon)
+
+    suspend fun loveCreate(
+        token: String,
+        post_id: Int,
+        user_id: Int
+    ) = postInterface.loveCreate("Bearer $token", post_id, user_id)
 }

@@ -1,5 +1,6 @@
 package com.catpedigree.capstone.catpedigreebase.factory
 
+import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +11,7 @@ import com.catpedigree.capstone.catpedigreebase.injection.Injection
 import com.catpedigree.capstone.catpedigreebase.ui.auth.LoginViewModel
 import com.catpedigree.capstone.catpedigreebase.ui.auth.RegisterViewModel
 import com.catpedigree.capstone.catpedigreebase.ui.comment.CommentViewModel
+import com.catpedigree.capstone.catpedigreebase.ui.detail.PostDetailViewModel
 import com.catpedigree.capstone.catpedigreebase.ui.home.HomeViewModel
 import com.catpedigree.capstone.catpedigreebase.ui.maps.MapsViewModel
 import com.catpedigree.capstone.catpedigreebase.ui.onboarding.OnboardingViewModel
@@ -41,6 +43,8 @@ class ViewModelFactory
                 CreateViewModel(userRepository, postRepository) as T
             }modelClass.isAssignableFrom(CommentViewModel::class.java) -> {
                 CommentViewModel(userRepository, commentRepository) as T
+            }modelClass.isAssignableFrom(PostDetailViewModel::class.java) -> {
+                PostDetailViewModel(userRepository,postRepository, application = Application()) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

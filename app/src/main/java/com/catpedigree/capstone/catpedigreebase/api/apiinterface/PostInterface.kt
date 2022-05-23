@@ -28,7 +28,7 @@ interface PostInterface {
 
     @FormUrlEncoded
     @POST("love/create")
-    suspend fun postLove(
+    suspend fun loveCreate(
         @Header("Authorization") token:String,
         @Field("post_id") post_id: Int,
         @Field("user_id") user_id: Int

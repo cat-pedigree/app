@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.catpedigree.capstone.catpedigreebase.R
@@ -18,6 +19,8 @@ import com.catpedigree.capstone.catpedigreebase.databinding.FragmentHomeBinding
 import com.catpedigree.capstone.catpedigreebase.factory.ViewModelFactory
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 import com.catpedigree.capstone.catpedigreebase.utils.wrapEspressoIdlingResource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -28,7 +31,7 @@ class HomeFragment : Fragment() {
     private lateinit var user: UserItems
 
     private lateinit var adapter: PostAdapter
-    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var layoutManager: GridLayoutManager
 
     private var isFromOtherScreen = false
 
@@ -84,7 +87,7 @@ class HomeFragment : Fragment() {
 
         val adapterWithLoading =
             adapter.withLoadStateFooter(footer = LoadingStateAdapter { adapter.retry() })
-        layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager = GridLayoutManager(requireContext(), 2)
 
         binding.rvPost.layoutManager = layoutManager
         binding.rvPost.adapter = adapterWithLoading
