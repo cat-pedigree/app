@@ -77,6 +77,15 @@
     <string name="maps_lat_lon_format" translatable="false">Lat: %1$.2f Lon: %2$.2f</string>
     <string name="avatar">Avatar</string>
     <string name="name">Name</string>
+    <string name="count_follower">50.5K</string>
+    <string name="follower">Follower</string>
+    <string name="desc_profilee">Lorem Ipsum is simply dummy text of the printing</string>
+    <string name="btn_edt_profile">Edit Profile</string>
+    <string name="my_cats">My Cats</string>
+    <string name="add_cat">Add Cat</string>
+    <string name="desc_avatar_profile">this is the avatar on profile</string>
+    <string name="desc_btn_fav_profile">This is the favorite button on the profile page</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="send">Send</string>
