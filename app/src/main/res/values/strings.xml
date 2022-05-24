@@ -85,6 +85,10 @@
     <string name="add_cat">Add Cat</string>
     <string name="desc_avatar_profile">this is the avatar on profile</string>
     <string name="desc_btn_fav_profile">This is the favorite button on the profile page</string>
+    <string name="btn_edt_photo_profile">Edit Photo Profile</string>
+    <string name="confirm">Confirm</string>
+    <string name="bio">Bio</string>
+    <style name="desc_avatar_edt_profile">this is the avatar in edit profile</style>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
