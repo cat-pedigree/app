@@ -44,7 +44,11 @@ class ViewModelFactory
             }modelClass.isAssignableFrom(CommentViewModel::class.java) -> {
                 CommentViewModel(userRepository, commentRepository) as T
             }modelClass.isAssignableFrom(PostDetailViewModel::class.java) -> {
-                PostDetailViewModel(userRepository,postRepository, application = Application()) as T
+                PostDetailViewModel(
+                    userRepository,
+                    postRepository,
+                    application = Application(),
+                ) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

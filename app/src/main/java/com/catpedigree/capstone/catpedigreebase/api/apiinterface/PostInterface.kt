@@ -1,6 +1,7 @@
 package com.catpedigree.capstone.catpedigreebase.api.apiinterface
 
 import com.catpedigree.capstone.catpedigreebase.data.response.LoveCreateResponse
+import com.catpedigree.capstone.catpedigreebase.data.response.LoveDeleteResponse
 import com.catpedigree.capstone.catpedigreebase.data.response.PostCreateResponse
 import com.catpedigree.capstone.catpedigreebase.data.response.PostResponse
 import okhttp3.MultipartBody
@@ -33,4 +34,11 @@ interface PostInterface {
         @Field("post_id") post_id: Int,
         @Field("user_id") user_id: Int
     ): Response<LoveCreateResponse>
+
+    @DELETE("love/delete")
+    suspend fun loveDelete(
+        @Header("Authorization") token: String,
+        @Query("post_id") post_id: Int,
+        @Query("user_id") user_id: Int
+    ): Response<LoveDeleteResponse>
 }

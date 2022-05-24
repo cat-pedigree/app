@@ -7,9 +7,11 @@ import com.catpedigree.capstone.catpedigreebase.data.database.FavoriteDao
 import com.catpedigree.capstone.catpedigreebase.data.database.LoveDao
 import com.catpedigree.capstone.catpedigreebase.data.item.FavoriteItems
 import com.catpedigree.capstone.catpedigreebase.data.item.LoveItems
+import com.catpedigree.capstone.catpedigreebase.data.remote.PostRemoteDataSource
 import com.catpedigree.capstone.catpedigreebase.data.repository.PostRepository
 import com.catpedigree.capstone.catpedigreebase.data.repository.UserRepository
 import com.catpedigree.capstone.catpedigreebase.utils.AuthError
+import com.catpedigree.capstone.catpedigreebase.utils.CommentError
 import com.catpedigree.capstone.catpedigreebase.utils.PostError
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.CoroutineScope
@@ -21,10 +23,11 @@ import okhttp3.RequestBody
 class PostDetailViewModel(
     private val userRepository: UserRepository,
     private val postRepository: PostRepository,
-    application: Application
+    application: Application,
 ) : AndroidViewModel(application) {
 
     val userItems = userRepository.userItems.asLiveData()
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
@@ -112,9 +115,28 @@ class PostDetailViewModel(
     suspend fun checkLove(id: Int) = loveDao?.checkLove(id)
 
 
-    fun removeFromLove(id: Int){
+    fun removeFromLove(post_id: Int, user_id: Int){
         CoroutineScope(Dispatchers.IO).launch {
-            loveDao?.removeFromLove(id)
+            loveDao?.removeFromLove(post_id,user_id)
+        }
+    }
+
+    fun loveDelete(
+        token: String,
+        post_id: Int,
+        user_id: Int,
+    ) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                postRepository.loveDelete(token, post_id, user_id)
+                _isSuccess.value = true
+            } catch (e: PostError) {
+                _errorMessage.value = e.message
+                _isSuccess.value = false
+            } finally {
+                _isLoading.value = false
+            }
         }
     }
 

@@ -22,4 +22,10 @@ class PostRemoteDataSource(private val postInterface: PostInterface) {
         post_id: Int,
         user_id: Int
     ) = postInterface.loveCreate("Bearer $token", post_id, user_id)
+
+    suspend fun loveDelete(
+        token: String,
+        post_id: Int,
+        user_id: Int
+    ) = postInterface.loveDelete("Bearer $token", post_id,user_id)
 }

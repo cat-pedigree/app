@@ -65,7 +65,7 @@ class PostDetailFragment : Fragment() {
 
         binding.apply {
             tvPost.text = post.description
-            tvProfile.text = post.name
+            tvProfile.text = post.id.toString()
             tvCountLove.text = post.loves_count.toString()
             tvCountComment.text = post.comments_count.toString()
 
@@ -171,10 +171,17 @@ class PostDetailFragment : Fragment() {
                             it2, it3
                         )
                     }
-                } }
+                }}
                 ToastUtils.showToast(requireContext(),"Successfully add like to post")
             }else{
-                post.id?.let { data -> viewModel.removeFromFavorite(data) }
+                user.id?.let { it1 -> post.id?.let { it2 -> viewModel.removeFromLove(it2, it1) } }
+                user.token?.let { it1 -> post.id?.let { it2 ->
+                    user.id?.let { it3 ->
+                        viewModel.loveDelete(it1,
+                            it2, it3
+                        )
+                    }
+                } }
                 ToastUtils.showToast(requireContext(),"Successfully remove post from favorite")
             }
             binding.toggleLove.isChecked = isCheck

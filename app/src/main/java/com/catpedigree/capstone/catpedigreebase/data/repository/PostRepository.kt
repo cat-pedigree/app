@@ -2,6 +2,7 @@ package com.catpedigree.capstone.catpedigreebase.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.paging.*
+import androidx.room.withTransaction
 import com.catpedigree.capstone.catpedigreebase.data.database.CatDatabase
 import com.catpedigree.capstone.catpedigreebase.data.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.data.remote.PostRemoteDataSource
@@ -66,6 +67,29 @@ class PostRepository(
             try {
                 val response =
                     postRemoteDataSource.loveCreate(
+                        token,
+                        post_id,
+                        user_id
+                    )
+
+                if (!response.isSuccessful) {
+                    throw PostError(response.message())
+                }
+            } catch (e: Throwable) {
+                throw PostError(e.message.toString())
+            }
+        }
+    }
+
+    suspend fun loveDelete(
+        token: String,
+        post_id: Int,
+        user_id: Int,
+    ) {
+        withContext(Dispatchers.IO) {
+            try {
+                val response =
+                    postRemoteDataSource.loveDelete(
                         token,
                         post_id,
                         user_id

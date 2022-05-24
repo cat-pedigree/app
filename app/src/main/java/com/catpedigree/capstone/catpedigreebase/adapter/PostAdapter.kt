@@ -34,9 +34,21 @@ class PostAdapter : PagingDataAdapter<PostItems, PostAdapter.ViewHolder>(DIFF_CA
             Glide.with(binding.root)
                 .load(photo)
                 .signature(ObjectKey(photo))
-                .into(binding.ivPost)
+                .into(binding.imgPoster)
 
             binding.apply {
+                tvItemName.text = post.name
+
+                val description = post.description
+                val length = description?.length
+
+                if (length != null) {
+                    if(length <= 100){
+                        tvItemDescription.text = description
+                    }else{
+                        tvItemDescription.text = description.subSequence(1,100)
+                    }
+                }
                 root.setOnClickListener {
                     Navigation.findNavController(root).navigate(
                         HomeFragmentDirections.actionHomeFragmentToPostDetail(

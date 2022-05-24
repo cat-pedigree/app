@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
     private lateinit var user: UserItems
 
     private lateinit var adapter: PostAdapter
-    private lateinit var layoutManager: GridLayoutManager
+    private lateinit var layoutManager: LinearLayoutManager
 
     private var isFromOtherScreen = false
 
@@ -87,7 +87,7 @@ class HomeFragment : Fragment() {
 
         val adapterWithLoading =
             adapter.withLoadStateFooter(footer = LoadingStateAdapter { adapter.retry() })
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false)
 
         binding.rvPost.layoutManager = layoutManager
         binding.rvPost.adapter = adapterWithLoading

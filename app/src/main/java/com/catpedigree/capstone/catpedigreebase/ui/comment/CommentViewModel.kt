@@ -3,6 +3,8 @@ package com.catpedigree.capstone.catpedigreebase.ui.comment
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.catpedigree.capstone.catpedigreebase.api.apiinterface.CommentInterface
+import com.catpedigree.capstone.catpedigreebase.api.config.ApiConfig
 import com.catpedigree.capstone.catpedigreebase.data.item.CommentItems
 import com.catpedigree.capstone.catpedigreebase.data.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.data.repository.CommentRepository
@@ -27,9 +29,6 @@ class CommentViewModel(userRepository: UserRepository, private val commentReposi
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
-
-//    val comments: LiveData<PagingData<CommentItems>> =
-//       comments(post_id)
 
     fun comments(post_id: Int) : LiveData<PagingData<CommentItems>>{
             val getComment : LiveData<PagingData<CommentItems>> =
