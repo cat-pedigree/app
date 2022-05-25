@@ -31,10 +31,10 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.camera.CameraActivity"
+            android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.camera.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

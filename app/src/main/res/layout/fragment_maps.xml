@@ -10,7 +10,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.maps.MapsFragment" />
+        tools:context=".presentation.ui.maps.MapsFragment" />
 
     <ImageView
         android:id="@+id/iv_map_marker"

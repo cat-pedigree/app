@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipe_layout"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".presentation.ui.home.HomeFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:keep="@layout/fragment_comment"
-        tools:context=".ui.comment.CommentFragment">
+        tools:context=".presentation.ui.comment.CommentFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"

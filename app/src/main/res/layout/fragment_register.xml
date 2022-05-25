@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.auth.RegisterFragment">
+        tools:context=".presentation.ui.auth.register.RegisterFragment">
 
         <TextView
             android:id="@+id/tv_title_register"

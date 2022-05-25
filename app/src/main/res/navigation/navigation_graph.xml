@@ -6,7 +6,7 @@
     app:startDestination="@id/splashScreenFragment">
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.splash.SplashScreenFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.splash.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingOne"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.onboarding.OnboardingOne"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingOne"
         android:label="fragment_onboarding_one"
         tools:layout="@layout/fragment_onboarding_one" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingTwo"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.onboarding.OnboardingTwo"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingTwo"
         android:label="fragment_onboarding_two"
         tools:layout="@layout/fragment_onboarding_two" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingThree"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.onboarding.OnboardingThree"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingThree"
         android:label="fragment_onboarding_three"
         tools:layout="@layout/fragment_onboarding_three" >
         <action
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingFour"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.onboarding.OnboardingFour"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingFour"
         android:label="fragment_onboarding_four"
         tools:layout="@layout/fragment_onboarding_four" >
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.auth.LoginFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -72,12 +72,12 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.auth.RegisterFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.home.HomeFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -89,7 +89,7 @@
     </fragment>
     <fragment
         android:id="@+id/createFragment"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.post.CreateFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.CreateFragment"
         android:label="fragment_create"
         tools:layout="@layout/fragment_create" >
         <action
@@ -98,7 +98,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.maps.MapsFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsFragment"
         android:label="FragmentMaps"
         tools:layout="@layout/fragment_maps">
         <argument
@@ -107,21 +107,21 @@
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.comment.CommentFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.comment.CommentFragment"
         android:label="CommentFragment"
         tools:layout="@layout/fragment_comment">
         <argument
             android:name="post"
-            app:argType="com.catpedigree.capstone.catpedigreebase.data.item.PostItems" />
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems" />
     </fragment>
     <fragment
         android:id="@+id/postDetailFragment"
-        android:name="com.catpedigree.capstone.catpedigreebase.ui.detail.PostDetailFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.post.detail.PostDetailFragment"
         android:label="PostDetailFragment"
         tools:layout="@layout/fragment_post_detail">
         <argument
             android:name="post"
-            app:argType="com.catpedigree.capstone.catpedigreebase.data.item.PostItems" />
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems" />
         <action
             android:id="@+id/action_postDetailFragment_to_commentFragment"
             app:destination="@id/commentFragment" />

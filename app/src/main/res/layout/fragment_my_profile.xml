@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/swipe_layout"
-    tools:context=".ui.my_profile.MyProfileFragment">
+    tools:context=".presentation.ui.my_profile.MyProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -121,26 +121,29 @@
 
         <Button
             android:id="@+id/btn_edt_profile"
-            android:layout_width="285dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/btn_edt_profile"
             android:textSize="16sp"
-            android:fontFamily="@font/poppins_bold"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_desc_profile" />
 
         <ImageButton
+            android:id="@+id/imageButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/background_bookmark"
-            android:src="@drawable/ic_bookmark"
-            android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
-            app:layout_constraintStart_toEndOf="@id/btn_edt_profile"
-            app:layout_constraintTop_toBottomOf="@id/tv_desc_profile"
-            android:contentDescription="@string/desc_btn_fav_profile" />
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_bookmark"
+            android:contentDescription="@string/desc_btn_fav_profile"
+            android:src="@drawable/ic_bookmark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_profile" />
 
         <TextView
             android:id="@+id/my_cats"
@@ -180,7 +183,7 @@
             app:layout_constraintTop_toBottomOf="@id/btn_add_cat"/>
 
 
-        <include layout="@layout/navigation_bottom"/>
+<!--        <include layout="@layout/navigation_bottom"/>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
