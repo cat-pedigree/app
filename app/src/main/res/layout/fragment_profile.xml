@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/swipe_layout"
-    tools:context=".presentation.ui.my_profile.MyProfileFragment">
+    tools:context=".presentation.ui.profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:keep="@layout/fragment_my_profile">
+        tools:keep="@layout/fragment_profile">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -25,13 +25,13 @@
                 style="@style/Widget.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:menu="@menu/top_app"
+                app:menu="@menu/top_app_bar"
                 app:title="@string/profile" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <TextView
-            android:id="@+id/detail_my_follower"
+            android:id="@+id/detail_follower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/count_follower"
@@ -51,11 +51,11 @@
             android:textColor="@color/neutral_80"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_my_follower" />
+            app:layout_constraintTop_toBottomOf="@id/detail_follower" />
 
 
         <ImageView
-            android:id="@+id/iv_my_profile"
+            android:id="@+id/iv_avatar_profile"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginTop="5dp"
@@ -66,7 +66,7 @@
             android:contentDescription="@string/desc_avatar_profile" />
 
         <TextView
-            android:id="@+id/tv_name_my_profile"
+            android:id="@+id/tv_name_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/name"
@@ -75,10 +75,10 @@
             android:layout_marginTop="6dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_my_profile" />
+            app:layout_constraintTop_toBottomOf="@id/iv_avatar_profile" />
 
         <TextView
-            android:id="@+id/tv_desc_my_profile"
+            android:id="@+id/tv_desc_profile"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="@string/desc_profilee"
@@ -88,10 +88,10 @@
             android:layout_marginTop="6dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_name_my_profile" />
+            app:layout_constraintTop_toBottomOf="@id/tv_name_profile" />
 
         <TextView
-            android:id="@+id/detail_my_following"
+            android:id="@+id/detail_following"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/count_follower"
@@ -111,32 +111,31 @@
             android:textColor="@color/neutral_80"
             android:layout_marginEnd="18dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_my_following" />
+            app:layout_constraintTop_toBottomOf="@id/detail_following" />
 
         <Button
-            android:id="@+id/btn_edt_profile"
-            android:layout_width="285dp"
+            android:id="@+id/btn_follow"
+            android:layout_width="160dp"
             android:layout_height="40dp"
-            android:text="@string/btn_edt_profile"
-            android:textSize="16sp"
-            android:fontFamily="@font/poppins_bold"
-            android:background="@color/accent"
+            android:text="@string/follow"
+            android:background="@drawable/background_button"
             android:layout_marginTop="15dp"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_desc_my_profile" />
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_profile" />
 
-        <ImageButton
-            android:id="@+id/iv_bookmark"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/background_bookmark"
-            android:src="@drawable/ic_bookmark"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="15dp"
-            app:layout_constraintStart_toEndOf="@id/btn_edt_profile"
-            app:layout_constraintTop_toBottomOf="@id/tv_desc_my_profile"
-            android:contentDescription="@string/desc_btn_fav_profile" />
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="52dp"
+            android:text="@string/message"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:strokeColor="@color/accent"
+            app:strokeWidth="2dp"
+            app:cornerRadius="15dp"
+            app:layout_constraintStart_toEndOf="@id/btn_follow"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_profile"/>
 
         <TextView
             android:id="@+id/my_cats"
@@ -148,7 +147,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginStart="13dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_edt_profile" />
+            app:layout_constraintTop_toBottomOf="@id/btn_follow" />
 
         <Button
             android:id="@+id/btn_add_cat"
@@ -173,7 +172,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_add_cat"/>
 
-<!--        <include layout="@layout/navigation_bottom"/>-->
+        <include layout="@layout/navigation_bottom"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
