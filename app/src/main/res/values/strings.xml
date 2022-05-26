@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Cat Pedigree</string>
+
+    <!-- TODO: String on OnBoarding -->
     <string name="title_onboarding_one">Classification</string>
     <string name="title_onboarding_two">Pedigree</string>
     <string name="title_onboarding_three">Social Media</string>
@@ -11,6 +13,8 @@
     <string name="btn_continue">Continue</string>
     <string name="btn_skip">Skip Introduction</string>
     <string name="btn_start">Start</string>
+
+    <!-- TODO: String on Login -->
     <string name="btn_login">Login</string>
     <string name="title_login">Login</string>
     <string name="desc_login">Please Enter details below to continue</string>
@@ -20,6 +24,19 @@
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="dont_account">Dont have an account?</string>
+    <string name="desc_content_img_login">this is the logo on the login section</string>
+
+    <!-- TODO: String on Register -->
+    <string name="register">Sign Up</string>
+    <string name="register_full_name">Full Name</string>
+    <string name="register_username">Username</string>
+    <string name="register_phone_number">Phone Number</string>
+    <string name="register_email">Email</string>
+    <string name="register_password">Password</string>
+    <string name="register_account">Already have an account?</string>
+    <string name="register_error">"Signup failed, try again!"</string>
+
+
     <string name="home">Home</string>
     <string name="add">Add</string>
     <string name="service">Service</string>
@@ -37,14 +54,8 @@
     <string name="post_profile_image">Post Image</string>
     <string name="post_profile_name">Post Profile Name</string>
     <string name="post_description">Post Description</string>
-    <string name="register">Sign Up</string>
-    <string name="register_account">Already have an account?</string>
-    <string name="register_full_name">Full Name</string>
-    <string name="register_username">Username</string>
-    <string name="register_phone_number">Phone Number</string>
-    <string name="register_email">Email</string>
-    <string name="register_password">Password</string>
-    <string name="register_error">"Signup failed, try again!"</string>
+
+
     <string name="name_required">"Enter Full Name"</string>
     <string name="username_required">Enter Username</string>
     <string name="phone_number_required">Enter Phone Number</string>
@@ -89,7 +100,33 @@
     <string name="btn_edt_photo_profile">Edit Photo Profile</string>
     <string name="confirm">Confirm</string>
     <string name="bio">Bio</string>
-    <style name="desc_avatar_edt_profile">this is the avatar in edit profile</style>
+    <string name="follow">Follow</string>
+    <string name="message">Message</string>
+
+    <!-- TODO: String on AddCat -->
+    <string name="cat_name">Cat Name</string>
+    <string name="breed">Breed</string>
+
+    <string-array name="item_breed">
+        <item>Persian</item>
+        <item>Angora</item>
+        <item>Ragdoll</item>
+        <item>Maine Coons</item>
+    </string-array>
+
+    <string name="gender">Gender</string>
+
+    <string-array name="item_gender">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+    <string name="color">Color</string>
+    <string name="weight">Weight</string>
+    <string name="age">Age</string>
+    <string name="story">Story</string>
+
+    <string name="desc_add_cat_photo">this is the button to add cat photo</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
