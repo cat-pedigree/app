@@ -1,31 +1,64 @@
 package com.catpedigree.capstone.catpedigreebase.data.local.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
+import androidx.lifecycle.map
 import androidx.paging.*
 import com.catpedigree.capstone.catpedigreebase.data.local.room.database.CatDatabase
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.PostRemoteDataSource
-import com.catpedigree.capstone.catpedigreebase.data.local.remote.mediator.PostRemoteMediator
+//import com.catpedigree.capstone.catpedigreebase.data.local.remote.mediator.PostRemoteMediator
+import com.catpedigree.capstone.catpedigreebase.data.local.room.dao.PostDao
+import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import java.lang.Exception
 
 class PostRepository(
     private val postRemoteDataSource: PostRemoteDataSource,
     private val catDatabase: CatDatabase
 ) {
 
-    @OptIn(ExperimentalPagingApi::class)
-    fun getPosts(token: String): LiveData<PagingData<PostItems>> {
-        return Pager(
-            config = PagingConfig(pageSize = 5),
-            remoteMediator = PostRemoteMediator(token, postRemoteDataSource, catDatabase),
-            pagingSourceFactory = {
-                catDatabase.postDao().getPosts()
-            }).liveData
+//    @OptIn(ExperimentalPagingApi::class)
+    fun getPosts(token: String): LiveData<Result<List<PostItems>>> = liveData {
+        emit(Result.Loading)
+        try{
+            val response = postRemoteDataSource.getPost(token)
+            val posts = response.body()?.data
+            val newPost = posts?.map { post ->
+                val isBookmarked = catDatabase.postDao().isPostsBookmarked(post.id!!)
+                PostItems(
+                    post.id,
+                    post.user?.name,
+                    post.user?.profile_photo_path,
+                    post.photo,
+                    post.title,
+                    post.description,
+                    post.created_at,
+                    post.lat,
+                    post.lon,
+                    post.loves_count,
+                    post.comments_count,
+                    isBookmarked
+                )
+            }
+            catDatabase.postDao().deleteAllPosts()
+            catDatabase.postDao().insertPost(newPost!!)
+        }catch (e: Exception){
+            emit(Result.Error(e.message.toString()))
+        }
+        val dataLocal: LiveData<Result<List<PostItems>>> = catDatabase.postDao().getPosts().map { Result.Success(it) }
+        emitSource(dataLocal)
+//        return Pager(
+//            config = PagingConfig(pageSize = 5),
+//            remoteMediator = PostRemoteMediator(token, postRemoteDataSource, catDatabase),
+//            pagingSourceFactory = {
+//                catDatabase.postDao().getPosts()
+//            }).liveData
     }
 
     suspend fun postCreate(
@@ -55,6 +88,11 @@ class PostRepository(
                 throw PostError(e.message.toString())
             }
         }
+    }
+
+    suspend fun setPostBookmark(post: PostItems, bookmarkState: Boolean){
+        post.isBookmarked = bookmarkState
+        catDatabase.postDao().updatePost(post)
     }
 
     suspend fun loveCreate(

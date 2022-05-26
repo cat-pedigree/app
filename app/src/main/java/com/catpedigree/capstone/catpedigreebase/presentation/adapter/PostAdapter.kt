@@ -1,18 +1,24 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
+import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeFragmentDirections
+import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
-class PostAdapter : PagingDataAdapter<PostItems, PostAdapter.ViewHolder>(DIFF_CALLBACK) {
+class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit) : ListAdapter<PostItems, PostAdapter.ViewHolder>(DIFF_CALLBACK) {
+
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
@@ -23,51 +29,79 @@ class PostAdapter : PagingDataAdapter<PostItems, PostAdapter.ViewHolder>(DIFF_CA
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val context = holder.binding.root.context
         val post = getItem(position)
-        post?.let { holder.bind(it) }
+        holder.bind(post)
+
+        val toggleFavorite = holder.binding.toggleFavorite
+
+        toggleFavorite.isChecked = post.isBookmarked
+
+            toggleFavorite.setOnClickListener {
+                if(post.isBookmarked){
+                    onFavoriteClick(post)
+                    ToastUtils.showToast(context,"Removed from favorites")
+                }else{
+                    onFavoriteClick(post)
+                    ToastUtils.showToast(context,"Added to favorites")
+                }
+
+            }
     }
 
-    inner class ViewHolder(private var binding: ItemPostBinding) :
+    class ViewHolder(val binding: ItemPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(post: PostItems) {
             val photo = "http://192.168.1.4/api-cat/public/storage/${post.photo}"
+            val profilePhotoPath = "http://192.168.1.4/api-cat/public/storage/${post.profile_photo_path}"
             Glide.with(binding.root)
                 .load(photo)
+                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                 .signature(ObjectKey(photo))
                 .into(binding.imgPoster)
 
+            Glide.with(binding.root)
+                .load(profilePhotoPath)
+                .signature(ObjectKey(profilePhotoPath))
+                .placeholder(R.drawable.ic_avatar)
+                .circleCrop()
+                .into(binding.imgProfile)
+
             binding.apply {
                 tvItemName.text = post.name
+                tvItemTitle.text = post.title
 
-                val description = post.description
-                val length = description?.length
 
-                if (length != null) {
-                    if(length <= 100){
-                        tvItemDescription.text = description
-                    }else{
-                        tvItemDescription.text = description.subSequence(1,100)
-                    }
-                }
-                root.setOnClickListener {
-                    Navigation.findNavController(root).navigate(
-                        HomeFragmentDirections.actionHomeFragmentToPostDetail(
+
+                tvItemDescription.text = post.description
+                ivComment.setOnClickListener {
+                    Navigation.findNavController(ivComment).navigate(
+                        HomeFragmentDirections.actionHomeFragmentToCommentFragment(
                             post
                         )
                     )
                 }
+
+//                root.setOnClickListener {
+//                    Navigation.findNavController(root).navigate(
+//                        HomeFragmentDirections.actionHomeFragmentToPostDetail(
+//                            post
+//                        )
+//                    )
+//                }
             }
         }
     }
 
     companion object {
-        val DIFF_CALLBACK =
+        val DIFF_CALLBACK : DiffUtil.ItemCallback<PostItems> =
             object : DiffUtil.ItemCallback<PostItems>() {
                 override fun areItemsTheSame(oldItem: PostItems, newItem: PostItems): Boolean =
-                    oldItem == newItem
+                    oldItem.title == newItem.title
 
+                @SuppressLint("DiffUtilEquals")
                 override fun areContentsTheSame(oldItem: PostItems, newItem: PostItems): Boolean =
-                    oldItem.id == newItem.id
+                    oldItem == newItem
             }
     }
 }

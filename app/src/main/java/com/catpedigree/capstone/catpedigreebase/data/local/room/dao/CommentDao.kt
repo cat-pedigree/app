@@ -1,5 +1,6 @@
 package com.catpedigree.capstone.catpedigreebase.data.local.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
@@ -14,7 +15,7 @@ interface CommentDao {
     suspend fun insertComment(comments: List<CommentItems>)
 
     @Query("SELECT * FROM comment_items WHERE post_id = :post_id")
-    fun getComments(post_id: Int?): PagingSource<Int, CommentItems>
+    fun getComments(post_id: Int?): LiveData<List<CommentItems>>
 
     @Query("DELETE FROM comment_items")
     suspend fun deleteAllComments()

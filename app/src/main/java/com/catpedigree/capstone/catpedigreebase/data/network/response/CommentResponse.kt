@@ -26,6 +26,15 @@ data class CommentData(
     @field:SerializedName("user_id")
     val user_id: Int? = null,
 
+    @field:SerializedName("user")
+    val user: UserPostData? = null,
+
     @field:SerializedName("description")
     val description: String? = null,
+
+    @field:SerializedName("name")
+    val name: String? = null,
+
+    @field:SerializedName("profile_photo_path")
+    val profile_photo_path: String? = null,
 )

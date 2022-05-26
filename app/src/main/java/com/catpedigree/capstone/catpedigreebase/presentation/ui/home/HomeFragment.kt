@@ -2,35 +2,24 @@ package com.catpedigree.capstone.catpedigreebase.presentation.ui.home
 
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.isVisible
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.catpedigree.capstone.catpedigreebase.R
-import com.catpedigree.capstone.catpedigreebase.presentation.adapter.LoadingStateAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PostAdapter
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentHomeBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
-import com.catpedigree.capstone.catpedigreebase.utils.resource.wrapEspressoIdlingResource
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import com.catpedigree.capstone.catpedigreebase.utils.Result
 
 class HomeFragment : Fragment() {
 
-    private lateinit var _binding: FragmentHomeBinding
-    private val binding get() = _binding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private lateinit var user: UserItems
-
-    private lateinit var adapter: PostAdapter
-    private lateinit var layoutManager: LinearLayoutManager
-
-    private var isFromOtherScreen = false
 
     private val viewModel: HomeViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
@@ -71,44 +60,42 @@ class HomeFragment : Fragment() {
                 }
             }
 
-            adapter = PostAdapter().apply {
-                stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-                registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
-                    override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-                        if (positionStart == 0 && isFromOtherScreen.not()) {
-                        binding.rvPost.smoothScrollToPosition(0)
-                    }
+            val postAdapter = PostAdapter{post->
+                if(post.isBookmarked){
+                    viewModel.deletePost(post)
+                }else{
+                    viewModel.savePost(post)
                 }
-            })
-        }
+            }
 
-        val adapterWithLoading =
-            adapter.withLoadStateFooter(footer = LoadingStateAdapter { adapter.retry() })
-            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false)
-
-        binding.rvPost.layoutManager = layoutManager
-        binding.rvPost.adapter = adapterWithLoading
-        adapter.refresh()
-
-        binding.swipeLayout.setOnRefreshListener {
-            adapter.refresh()
-            binding.swipeLayout.isRefreshing = false
-        }
-
-        wrapEspressoIdlingResource {
-            lifecycleScope.launch {
-                adapter.loadStateFlow.collect {
-                    binding.progressBar.isVisible = (it.refresh is LoadState.Loading)
-                    binding.tvNoData.isVisible = it.source.refresh is LoadState.NotLoading && it.append.endOfPaginationReached && adapter.itemCount < 1
-                    if (it.refresh is LoadState.Error) {
-                        ToastUtils.showToast(
-                            requireContext(),
-                            (it.refresh as LoadState.Error).error.localizedMessage?.toString()
-                                ?: getString(R.string.error_load)
-                        )
+        viewModel.getPosts().observe(viewLifecycleOwner) { result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is Result.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        val postData = result.data
+                        postAdapter.submitList(postData)
+                    }
+                    is Result.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(
+                            context,
+                            "Terjadi kesalahan" + result.error,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
+        }
+
+        binding.rvPost.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            isNestedScrollingEnabled = false
+            adapter = postAdapter
         }
     }
 
@@ -118,10 +105,6 @@ class HomeFragment : Fragment() {
                 findNavController().navigateUp()
             }
             this.user = userItems
-        }
-
-        viewModel.posts.observe(viewLifecycleOwner) { posts ->
-            adapter.submitData(lifecycle, posts)
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
@@ -137,4 +120,8 @@ class HomeFragment : Fragment() {
         (if (isLoading) View.VISIBLE else View.INVISIBLE).also { binding.progressBar.visibility = it }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

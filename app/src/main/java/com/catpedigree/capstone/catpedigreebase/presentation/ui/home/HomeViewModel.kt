@@ -21,12 +21,21 @@ class HomeViewModel(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    val posts: LiveData<PagingData<PostItems>> =
-        userItems.switchMap {
-            postRepository.getPosts(
-                it.token ?: ""
-            ).cachedIn(viewModelScope)
+    fun getPosts() = userItems.switchMap {
+        postRepository.getPosts(it.token ?: "")
+    }
+
+    fun savePost(post: PostItems){
+        viewModelScope.launch {
+            postRepository.setPostBookmark(post, true)
         }
+    }
+
+    fun deletePost(post: PostItems){
+        viewModelScope.launch {
+            postRepository.setPostBookmark(post, false)
+        }
+    }
 
     fun logout() {
         viewModelScope.launch {

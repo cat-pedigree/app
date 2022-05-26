@@ -25,4 +25,5 @@
     <color name="yellow">#F2B705</color>
     <color name="grey">#7F7F7F</color>
     <color name="grey_light">#BCBCBC</color>
+    <color name="placeholder">#6FB6B6B6</color>
 </resources>

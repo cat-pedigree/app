@@ -1,6 +1,7 @@
 package com.catpedigree.capstone.catpedigreebase.data.network.item
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -23,6 +24,9 @@ data class PostItems(
     @field:SerializedName("photo")
     val photo: String? = null,
 
+    @field:SerializedName("title")
+    val title: String? = null,
+
     @field:SerializedName("description")
     val description: String? = null,
 
@@ -39,5 +43,8 @@ data class PostItems(
     val loves_count: Int? = null,
 
     @field:SerializedName("comments_count")
-    val comments_count: Int? = null
+    val comments_count: Int? = null,
+
+    @field:ColumnInfo(name = "bookmarked")
+    var isBookmarked: Boolean
 ): Parcelable

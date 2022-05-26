@@ -4,24 +4,29 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.ObjectKey
+import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.CommentItems
+import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemCommentBinding
 
-class CommentAdapter : PagingDataAdapter<CommentItems, CommentAdapter.ViewHolder>(DIFF_CALLBACK) {
-    inner class ViewHolder(private var binding: ItemCommentBinding) :
+class CommentAdapter : ListAdapter<CommentItems, CommentAdapter.ViewHolder>(DIFF_CALLBACK) {
+    class ViewHolder(private var binding: ItemCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(comment: CommentItems) {
-//            val profilePhotoPath = "http://192.168.1.3/api-cat/public/storage/${comment.profile_photo_path}"
+            val profilePhotoPath = "http://192.168.1.3/api-cat/public/storage/${comment.profile_photo_path}"
 
-//            Glide.with(binding.root)
-//                .load(profilePhotoPath)
-//                .signature(ObjectKey(profilePhotoPath))
-//                .placeholder(R.drawable.ic_baseline_person_pin_24)
-//                .into(binding.ivAvatarComment)
+            Glide.with(binding.root)
+                .load(profilePhotoPath)
+                .placeholder(R.drawable.ic_avatar)
+                .signature(ObjectKey(profilePhotoPath))
+                .into(binding.ivAvatarComment)
 
             binding.apply {
-                tvNameComment.text = comment.id.toString()
+                tvNameComment.text = comment.name.toString()
                 tvComment.text = comment.description
             }
         }
@@ -38,17 +43,17 @@ class CommentAdapter : PagingDataAdapter<CommentItems, CommentAdapter.ViewHolder
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val comment = getItem(position)
-        comment?.let { holder.bind(it) }
+        holder.bind(comment)
     }
 
     companion object {
         val DIFF_CALLBACK =
             object : DiffUtil.ItemCallback<CommentItems>() {
                 override fun areItemsTheSame(oldItem: CommentItems, newItem: CommentItems): Boolean =
-                    oldItem == newItem
+                    oldItem.id == newItem.id
 
                 override fun areContentsTheSame(oldItem: CommentItems, newItem: CommentItems): Boolean =
-                    oldItem.id == newItem.id
+                    oldItem == newItem
             }
     }
 }

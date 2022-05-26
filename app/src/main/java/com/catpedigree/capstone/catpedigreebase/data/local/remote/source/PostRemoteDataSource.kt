@@ -6,8 +6,11 @@ import okhttp3.RequestBody
 
 class PostRemoteDataSource(private val postInterface: PostInterface) {
 
-    suspend fun getPost(token: String, page: Int, size: Int) =
-        postInterface.getPost("Bearer $token", page, size)
+//    suspend fun getPost(token: String, page: Int, size: Int) =
+//        postInterface.getPost("Bearer $token", page, size)
+
+    suspend fun getPost(token: String) =
+        postInterface.getPost("Bearer $token")
 
     suspend fun postCreate(
         token: String,

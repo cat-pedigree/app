@@ -11,7 +11,6 @@ import com.catpedigree.capstone.catpedigreebase.data.local.room.dao.*
     PostItems::class,
     CommentItems::class,
     RemoteItems::class,
-    RemoteCommentItems::class,
     FavoriteItems::class,
     LoveItems::class],
     version = 1,
@@ -20,7 +19,6 @@ abstract class CatDatabase : RoomDatabase() {
     abstract fun postDao(): PostDao
     abstract fun commentDao(): CommentDao
     abstract fun remoteItemsDao(): RemoteItemsDao
-    abstract fun remoteCommentItemsDao(): RemoteCommentItemsDao
     abstract fun favoriteDao(): FavoriteDao
     abstract fun loveDao(): LoveDao
 

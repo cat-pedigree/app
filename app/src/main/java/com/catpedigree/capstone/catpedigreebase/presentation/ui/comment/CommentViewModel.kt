@@ -22,16 +22,23 @@ class CommentViewModel(userRepository: UserRepository, private val commentReposi
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    fun comments(post_id: Int) : LiveData<PagingData<CommentItems>>{
-            val getComment : LiveData<PagingData<CommentItems>> =
-            userItem.switchMap {
-                commentRepository.getComments(
-                    it.token ?: "",
-                    post_id
-                ).cachedIn(viewModelScope)
-            }
-            return getComment
-        }
+//    fun comments(post_id: Int) : LiveData<PagingData<CommentItems>>{
+//            val getComment : LiveData<PagingData<CommentItems>> =
+//            userItem.switchMap {
+//                commentRepository.getComments(
+//                    it.token ?: "",
+//                    post_id
+//                ).cachedIn(viewModelScope)
+//            }
+//            return getComment
+//        }
+
+    fun comments(post_id: Int) = userItem.switchMap {
+        commentRepository.getComments(
+            it.token ?: "",
+            post_id
+        )
+    }
 
 
     fun createComment(

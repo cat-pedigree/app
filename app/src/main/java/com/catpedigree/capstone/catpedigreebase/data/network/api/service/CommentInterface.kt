@@ -19,7 +19,5 @@ interface CommentInterface {
     suspend fun getComment(
         @Header("Authorization") token: String,
         @Query("post_id") post_id: Int,
-        @Query("page") page: Int = 1,
-        @Query("size") size: Int = 10,
     ): Response<CommentResponse>
 }

@@ -1,26 +1,25 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.comment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.catpedigree.capstone.catpedigreebase.R
-import com.catpedigree.capstone.catpedigreebase.presentation.adapter.CommentAdapter
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentCommentBinding
+import com.catpedigree.capstone.catpedigreebase.presentation.adapter.CommentAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeFragmentDirections
+import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
-import com.catpedigree.capstone.catpedigreebase.utils.resource.wrapEspressoIdlingResource
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 class CommentFragment : Fragment() {
 
@@ -29,7 +28,6 @@ class CommentFragment : Fragment() {
     private val args: CommentFragmentArgs by navArgs()
     private lateinit var user: UserItems
 
-    private lateinit var adapter: CommentAdapter
 
     private val viewModel: CommentViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
@@ -49,55 +47,56 @@ class CommentFragment : Fragment() {
         setupViewModel()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setupAction(){
         val post = args.post
 
-        binding.btnSend.setOnClickListener {
-            post.id?.let { data -> createComment(data) }
-        }
+        val commentAdapter = CommentAdapter()
 
-        binding.rvComments.layoutManager = LinearLayoutManager(requireContext())
-        adapter = CommentAdapter()
-        binding.rvComments.adapter = adapter
-
-        adapter.refresh()
-
-        binding.swipeLayout.setOnRefreshListener {
-            adapter.refresh()
-            binding.swipeLayout.isRefreshing = false
-        }
-
-        wrapEspressoIdlingResource {
-            lifecycleScope.launch {
-                adapter.loadStateFlow.collect {
-                    binding.progressBar.isVisible = (it.refresh is LoadState.Loading)
-                    binding.tvNoData.isVisible = it.source.refresh is LoadState.NotLoading && it.append.endOfPaginationReached && adapter.itemCount < 1
-                    if (it.refresh is LoadState.Error) {
-                        ToastUtils.showToast(
-                            requireContext(),
-                            (it.refresh as LoadState.Error).error.localizedMessage?.toString()
-                                ?: getString(R.string.error_load)
-                        )
+        viewModel.comments(post.id!!).observe(viewLifecycleOwner){result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is Result.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        val commentData = result.data
+                        commentAdapter.submitList(commentData)
+                    }
+                    is Result.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(
+                            context,
+                            "Terjadi kesalahan" + result.error,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
         }
 
+        binding.rvComments.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            isNestedScrollingEnabled = false
+            adapter = commentAdapter
+        }
+
+//        binding.btnSend.setOnClickListener {
+//            createComment(post.id)
+//        }
+
     }
 
     private fun setupViewModel(){
         val post = args.post
+
         viewModel.userItem.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
             }
             this.user = userItems
-        }
-
-        post.id?.let {
-            viewModel.comments(it).observe(viewLifecycleOwner) { comments ->
-                adapter.submitData(lifecycle, comments)
-            }
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) { state ->
@@ -110,21 +109,23 @@ class CommentFragment : Fragment() {
 
         viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                findNavController().navigateUp()
+                ToastUtils.showToast(requireContext(), "Comment successfully added")
+//                findNavController().navigate(R.id.commentFragment)
+
             }
         }
     }
 
 
 
-    private fun createComment(post_id: Int){
-        val userId = user.id
-        val description = binding.edtComment.text.toString().trim()
-
-            if (userId != null) {
-                viewModel.createComment(user.token ?: "", post_id, userId, description)
-            }
-    }
+//    private fun createComment(post_id: Int){
+//        val userId = user.id
+//        val description = binding.edtComment.text.toString().trim()
+//
+//            if (userId != null) {
+//                viewModel.createComment(user.token ?: "", post_id, userId, description)
+//            }
+//    }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE

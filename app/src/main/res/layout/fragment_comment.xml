@@ -30,49 +30,50 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/divider_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/edt_comment" />
+<!--        <com.google.android.material.divider.MaterialDivider-->
+<!--            android:id="@+id/divider_bottom"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/edt_comment" />-->
+
+        <!--        <EditText-->
+<!--            android:id="@+id/edt_comment"-->
+<!--            android:background="@drawable/edit_text_no_border"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="textPersonName"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="@string/comment"-->
+<!--            android:textColor="@color/neutral_80"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/btn_send"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:autofillHints=""-->
+<!--            tools:ignore="LabelFor" />-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/btn_send"-->
+<!--            android:backgroundTint="@color/accent"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:src="@drawable/ic_baseline_send_24"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:contentDescription="@string/send" />-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_comments"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@id/divider_bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/item_comment" />
-
-        <EditText
-            android:id="@+id/edt_comment"
-            android:background="@drawable/edit_text_no_border"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:padding="10dp"
-            android:text="@string/comment"
-            android:textColor="@color/neutral_80"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_send"
-            app:layout_constraintStart_toStartOf="parent"
-            android:autofillHints=""
-            tools:ignore="LabelFor" />
-
-        <ImageButton
-            android:id="@+id/btn_send"
-            android:backgroundTint="@color/accent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_baseline_send_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/send" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -96,6 +97,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/add_comment"
+            android:text="@string/add_comment"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:icon="@drawable/ic_comment"
+            app:iconTint="@color/white"
+            app:backgroundTint="@color/accent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

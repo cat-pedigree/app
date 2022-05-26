@@ -13,8 +13,8 @@ interface PostInterface {
     @GET("post/all")
     suspend fun getPost(
         @Header("Authorization") token: String,
-        @Query("page") page: Int = 1,
-        @Query("size") size: Int = 10,
+//        @Query("page") page: Int = 1,
+//        @Query("size") size: Int = 10,
     ): Response<PostResponse>
 
     @Multipart

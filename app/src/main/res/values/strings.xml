@@ -30,7 +30,7 @@
     <string name="language">Language</string>
     <string name="about">About</string>
     <string name="logout">Logout</string>
-    <string name="more">More</string>
+    <string name="more">more</string>
     <string name="camera_classification">Camera Classification</string>
     <string name="greeting_name">Budi Setiawan</string>
     <string name="greeting_loc">Jakarta, Indonesia</string>
@@ -61,6 +61,7 @@
     <string name="count_love">9.8K</string>
     <string name="count_comment">100</string>
     <string name="comment">Comment</string>
+    <string name="add_comment">Add Comment</string>
     <string name="post">Post</string>
     <string name="camera">Camera</string>
     <string name="switch_camera">Switch</string>
@@ -93,4 +94,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="send">Send</string>
+    <string name="title">Title</string>
+    <string name="favorite">Favorite</string>
 </resources>

@@ -86,6 +86,9 @@
         <action
             android:id="@+id/action_homeFragment_to_postDetail"
             app:destination="@id/postDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
     </fragment>
     <fragment
         android:id="@+id/createFragment"
