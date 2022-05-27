@@ -11,8 +11,8 @@ import com.catpedigree.capstone.catpedigreebase.databinding.FragmentAddCatBindin
 
 class AddCatFragment : Fragment() {
 
-    private var _binding: FragmentAddCatBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var _binding: FragmentAddCatBinding
+    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

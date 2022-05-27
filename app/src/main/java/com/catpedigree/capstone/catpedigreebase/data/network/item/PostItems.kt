@@ -6,6 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import retrofit2.http.Field
 
 @Parcelize
 @Entity(tableName = "post_items")
@@ -14,6 +15,9 @@ data class PostItems(
     @PrimaryKey
     @field:SerializedName("id")
     val id: Int? = null,
+
+    @field:ColumnInfo(name = "user_id")
+    var user_id: Int? = null,
 
     @field:SerializedName("name")
     val name: String? = null,

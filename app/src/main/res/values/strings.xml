@@ -146,4 +146,23 @@
     <string name="preview">Preview</string>
     <string name="enter_title">Enter Title</string>
     <string name="title_required">Enter Title</string>
+    <string name="count_post">15</string>
+    <string name="count_following">100</string>
+    <string name="following">Following</string>
+
+    <!-- TODO: String on the services page -->
+    <string name="services">Services</string>
+    <string name="services_all_breed">All Breed</string>
+    <string name="services_desc">Lorem ipsum dolor sit amet</string>
+    <string name="services_veterinary">Veterinary</string>
+    <string name="services_desc_ic_breed">This is the breed icon on the services page</string>
+    <string name="services_desc_ic_veterinary">this is the veterinary icon on the services page</string>
+
+    <!-- TODO: String on the veterinary page -->
+    <string name="veterinary_appbar">Veterinary</string>
+    <string name="veterinary_name">Name Clinic</string>
+    <string name="veterinary_location">Location</string>
+    <string name="veterinary_desc_img">this is a photo on the veterinary page</string>
+    <string name="title_favorite">No Favorite Yet</string>
+    <string name="desc_favorite">Click the \'Actions\' button on any \npage to add a favorite</string>
 </resources>

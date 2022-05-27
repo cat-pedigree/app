@@ -1,6 +1,8 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.adapter
 
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
@@ -13,24 +15,23 @@ import com.bumptech.glide.signature.ObjectKey
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostBinding
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeFragmentDirections
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.favorite.FavoriteFragmentDirections
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail.PostDetailProfileFragmentDirections
 import com.google.android.material.snackbar.Snackbar
-import android.os.Handler
-import android.os.Looper
 
-class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val onLoveClick:(PostItems) -> Unit) : ListAdapter<PostItems, PostAdapter.ViewHolder>(DIFF_CALLBACK) {
+class PostProfileDetailAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val onLoveClick:(PostItems) -> Unit) : ListAdapter<PostItems, PostProfileDetailAdapter.ViewHolderProfileDetail>(DIFF_CALLBACK) {
 
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): ViewHolder {
+    ): ViewHolderProfileDetail {
         val binding =
             ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        return ViewHolderProfileDetail(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderProfileDetail, position: Int) {
         holder.binding.root.context
         val post = getItem(position)
         holder.bind(post)
@@ -44,22 +45,22 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val 
         toggleLove.isChecked = post.isLoved
 
         toggleFavorite.setOnClickListener {
-                if(post.isBookmarked){
-                    onFavoriteClick(post)
-                    Snackbar.make(holder.binding.toggleFavorite,"Removed from favorites",Snackbar.LENGTH_LONG).show()
-                }else{
-                    onFavoriteClick(post)
-                    Snackbar.make(holder.binding.toggleFavorite,"Added to favorites",Snackbar.LENGTH_LONG).show()
-                }
+            if(post.isBookmarked){
+                onFavoriteClick(post)
+                Snackbar.make(holder.binding.toggleFavorite,"Removed from favorites", Snackbar.LENGTH_LONG).show()
+            }else{
+                onFavoriteClick(post)
+                Snackbar.make(holder.binding.toggleFavorite,"Added to favorites", Snackbar.LENGTH_LONG).show()
+            }
         }
 
         toggleLove.setOnClickListener {
             if(post.isLoved){
                 onLoveClick(post)
-                Snackbar.make(holder.binding.toggleLoves,"Removed from liked",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(holder.binding.toggleLoves,"Removed from liked", Snackbar.LENGTH_LONG).show()
             }else{
                 onLoveClick(post)
-                Snackbar.make(holder.binding.toggleLoves,"Liked this post",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(holder.binding.toggleLoves,"Liked this post", Snackbar.LENGTH_LONG).show()
             }
         }
 
@@ -70,11 +71,11 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val 
                     if(post.isLoved){
                         onLoveClick(post)
                         toggleLove.isChecked = post.isLoved
-                        Snackbar.make(holder.binding.toggleLoves,"Removed from liked",Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(holder.binding.toggleLoves,"Removed from liked", Snackbar.LENGTH_LONG).show()
                     }else{
                         onLoveClick(post)
                         toggleLove.isChecked = post.isLoved
-                        Snackbar.make(holder.binding.toggleLoves,"Liked this post",Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(holder.binding.toggleLoves,"Liked this post", Snackbar.LENGTH_LONG).show()
                     }
                 }
                 tapTap = 0
@@ -82,7 +83,7 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val 
         }
     }
 
-    class ViewHolder(val binding: ItemPostBinding) :
+    class ViewHolderProfileDetail(val binding: ItemPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(post: PostItems) {
             val photo = "http://192.168.1.4/api-cat/public/storage/${post.photo}"
@@ -107,7 +108,7 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val 
 
                 ivComment.setOnClickListener {
                     Navigation.findNavController(ivComment).navigate(
-                        HomeFragmentDirections.actionHomeFragmentToCommentFragment(
+                        PostDetailProfileFragmentDirections.actionPostDetailProfileFragmentToCommentFragment(
                             post
                         )
                     )

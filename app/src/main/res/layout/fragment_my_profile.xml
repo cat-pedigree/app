@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/swipe_layout"
-    tools:context=".presentation.ui.my_profile.MyProfileFragment">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         tools:keep="@layout/fragment_my_profile">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -30,152 +25,195 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:id="@+id/detail_my_follower"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/count_follower"
-            style="@style/heading2"
-            android:textColor="@color/neutral_100"
-            android:layout_marginTop="34dp"
-            android:layout_marginStart="29dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
+
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:src="@tools:sample/avatars"
+        android:contentDescription="@string/avatar" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/title4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/name"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <TextView
+        android:id="@+id/tv_bio"
+        style="@style/body1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/bio"
+        android:textColor="@color/neutral_80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <Button
+        android:id="@+id/btn_edit_profile"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/accent"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/btn_edt_profile"
+        app:layout_constraintEnd_toStartOf="@+id/iv_favorite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_follower_count" />
+
+    <ImageButton
+        android:id="@+id/iv_favorite"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/background_bookmark"
+        android:contentDescription="@string/desc_btn_fav_profile"
+        android:src="@drawable/ic_bookmark"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_edit_profile"
+        app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/follower"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/follower"
-            style="@style/heading3"
-            android:textColor="@color/neutral_80"
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_my_follower" />
-
-
-        <ImageView
-            android:id="@+id/iv_my_profile"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/desc_avatar_profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-            tools:src="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/tv_name_my_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name"
-            style="@style/title4"
-            android:textColor="@color/neutral_100"
-            android:layout_marginTop="6dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_my_profile" />
-
-        <TextView
-            android:id="@+id/tv_desc_my_profile"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/desc_profilee"
-            style="@style/body2"
-            android:textColor="@color/neutral_80"
-            android:textAlignment="center"
-            android:layout_marginTop="6dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_name_my_profile" />
-
-        <TextView
-            android:id="@+id/detail_my_following"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/count_follower"
-            style="@style/heading2"
-            android:textColor="@color/neutral_100"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="27dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
-
-        <TextView
-            android:id="@+id/following"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/follower"
-            style="@style/heading3"
-            android:textColor="@color/neutral_80"
-            android:layout_marginEnd="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detail_my_following" />
-
-        <Button
-            android:id="@+id/btn_edt_profile"
+            android:id="@+id/tv_count_post"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/accent"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/btn_edt_profile"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/iv_bookmark"
+            android:layout_marginTop="8dp"
+            android:text="@string/post"
+            style="@style/body3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_desc_my_profile" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_avatar" />
 
-        <ImageButton
-            android:id="@+id/iv_bookmark"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/background_bookmark"
-            android:contentDescription="@string/desc_btn_fav_profile"
-            android:src="@drawable/ic_bookmark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_desc_my_profile" />
+    <TextView
+        android:id="@+id/tv_follower"
+        style="@style/body3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/follower"
+        app:layout_constraintEnd_toStartOf="@+id/tv_following"
+        app:layout_constraintStart_toEndOf="@id/tv_count_post"
+        app:layout_constraintTop_toTopOf="@+id/tv_count_post" />
 
         <TextView
-            android:id="@+id/my_cats"
+            android:id="@+id/tv_following"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/my_cats"
-            style="@style/heading2"
-            android:textColor="@color/neutral_100"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="13dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_edt_profile" />
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/following"
+            style="@style/body3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_avatar" />
+
+    <TextView
+        android:id="@+id/tv_post_count"
+        style="@style/heading1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/count_post"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_count_post" />
+
+    <TextView
+        android:id="@+id/tv_follower_count"
+        style="@style/heading1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/count_follower"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toStartOf="@+id/tv_following"
+        app:layout_constraintStart_toEndOf="@id/tv_count_post"
+        app:layout_constraintTop_toBottomOf="@+id/tv_follower" />
+
+    <TextView
+        android:id="@+id/tv_following_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/count_following"
+        style="@style/heading1"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_following" />
+
+    <TextView
+        android:id="@+id/my_cats"
+        style="@style/heading2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/my_cats"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_edit_profile" />
 
         <Button
             android:id="@+id/btn_add_cat"
             android:layout_width="45dp"
             android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/circle_blue"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="15dp"
-            app:layout_constraintTop_toBottomOf="@id/my_cats"
+            android:drawableTop="@drawable/ic_add"
             app:layout_constraintStart_toStartOf="parent"
-            android:drawableTop="@drawable/ic_add"/>
+            app:layout_constraintTop_toBottomOf="@id/my_cats" />
 
         <TextView
             android:id="@+id/tv_add_cat"
+            style="@style/sub_headline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:text="@string/add_cat"
-            style="@style/sub_headline2"
             android:textColor="@color/neutral_90"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_add_cat"/>
+            app:layout_constraintTop_toBottomOf="@id/btn_add_cat" />
 
-<!--        <include layout="@layout/navigation_bottom"/>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_post_profile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_add_cat" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--        <include layout="@layout/navigation_bottom"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

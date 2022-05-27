@@ -15,6 +15,10 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsViewMod
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.create.CreateCommentViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.CreatePostViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.favorite.FavoriteViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail.PostDetailProfileViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view.MyProfileViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.ProfileViewModel
 
 class ViewModelFactory
     (private val userRepository: UserRepository, private val postRepository: PostRepository,private val commentRepository: CommentRepository)
@@ -39,6 +43,14 @@ class ViewModelFactory
                 CreateCommentViewModel(userRepository, commentRepository) as T
             }modelClass.isAssignableFrom(CreatePostViewModel::class.java) -> {
                 CreatePostViewModel(userRepository, postRepository) as T
+            }modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(userRepository) as T
+            }modelClass.isAssignableFrom(MyProfileViewModel::class.java) -> {
+                MyProfileViewModel(userRepository, postRepository) as T
+            }modelClass.isAssignableFrom(PostDetailProfileViewModel::class.java) -> {
+                PostDetailProfileViewModel(userRepository, postRepository) as T
+            }modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
+                FavoriteViewModel(userRepository, postRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

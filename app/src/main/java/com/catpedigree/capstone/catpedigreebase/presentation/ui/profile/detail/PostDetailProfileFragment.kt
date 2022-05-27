@@ -1,27 +1,31 @@
-package com.catpedigree.capstone.catpedigreebase.presentation.ui.home
+package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail
 
 import android.os.Bundle
-import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
-import com.catpedigree.capstone.catpedigreebase.databinding.FragmentHomeBinding
+import com.catpedigree.capstone.catpedigreebase.databinding.FragmentPostDetailProfileBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PostAdapter
+import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PostProfileDetailAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeViewModel
 import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
-class HomeFragment : Fragment() {
+class PostDetailProfileFragment : Fragment() {
+    private lateinit var _binding: FragmentPostDetailProfileBinding
+    private val binding get() = _binding
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
     private lateinit var user: UserItems
 
-    private val viewModel: HomeViewModel by viewModels {
+    private val viewModel: PostDetailProfileViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -29,7 +33,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentPostDetailProfileBinding.inflate(layoutInflater,container,false)
         return binding.root
     }
 
@@ -39,49 +43,25 @@ class HomeFragment : Fragment() {
         setupViewModel()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.top_app_bar, menu)
-    }
-
     private fun setupAction(){
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId){
-                R.id.addPost -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
-                    true
-                }
-                R.id.profile -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_myProfileFragment)
-                    true
-                }
-                R.id.logout -> {
-                    viewModel.logout()
-                    true
-                }
-                else -> {
-                        false
-                    }
-                }
+        val postAdapterProfile = PostProfileDetailAdapter(onFavoriteClick = { post ->
+            if (post.isBookmarked) {
+                viewModel.deletePost(post)
+            } else {
+                viewModel.savePost(post)
             }
-
-            val postAdapter = PostAdapter(onFavoriteClick = { post ->
-                if (post.isBookmarked) {
-                    viewModel.deletePost(post)
-                } else {
-                    viewModel.savePost(post)
-                }
 //
-            }, onLoveClick = {post ->
-                if(post.isLoved){
-                    viewModel.deleteLovePost(post)
-                    viewModel.loveDelete(user.token ?: "",post.id!!, user.id!!)
-                }else{
-                    viewModel.createLovePost(post)
-                    viewModel.loveCreate(user.token ?: "",post.id!!, user.id!!)
-                }
-            })
+        }, onLoveClick = {post ->
+            if(post.isLoved){
+                viewModel.deleteLovePost(post)
+                viewModel.loveDelete(user.token ?: "",post.id!!, user.id!!)
+            }else{
+                viewModel.createLovePost(post)
+                viewModel.loveCreate(user.token ?: "",post.id!!, user.id!!)
+            }
+        })
 
-        viewModel.getPosts().observe(viewLifecycleOwner) { result ->
+        viewModel.getPostProfile().observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {
@@ -90,7 +70,7 @@ class HomeFragment : Fragment() {
                     is Result.Success -> {
                         binding.progressBar.visibility = View.GONE
                         val postData = result.data
-                        postAdapter.submitList(postData)
+                        postAdapterProfile.submitList(postData)
                     }
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
@@ -108,7 +88,7 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             isNestedScrollingEnabled = false
-            adapter = postAdapter
+            adapter = postAdapterProfile
         }
     }
 
@@ -133,8 +113,4 @@ class HomeFragment : Fragment() {
         (if (isLoading) View.VISIBLE else View.INVISIBLE).also { binding.progressBar.visibility = it }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 }

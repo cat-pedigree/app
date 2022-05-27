@@ -12,5 +12,6 @@ data class UserItems(
     val lon: Double? = null,
     val profile_photo_path: String? = null,
     val token: String? = null,
-    var isLoggedIn: Boolean? = null
+    var isLoggedIn: Boolean? = null,
+    val postsCount: Int? = null
 )

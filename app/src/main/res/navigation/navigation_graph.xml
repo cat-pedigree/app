@@ -86,6 +86,9 @@
         <action
             android:id="@+id/action_homeFragment_to_createPostFragment"
             app:destination="@id/createPostFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -113,4 +116,42 @@
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.CreatePostFragment"
         android:label="fragment_create_post"
         tools:layout="@layout/fragment_create_post" />
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view.MyProfileFragment"
+        android:label="MyProfileFragment" >
+        <action
+            android:id="@+id/action_myProfileFragment_to_postDetailProfileFragment"
+            app:destination="@id/postDetailProfileFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postDetailProfileFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail.PostDetailProfileFragment"
+        android:label="PostDetailProfileFragment" >
+        <action
+            android:id="@+id/action_postDetailProfileFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.post.favorite.FavoriteFragment"
+        android:label="FavoriteFragment" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_emptyFavoriteFragment"
+            app:destination="@id/emptyFavoriteFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emptyFavoriteFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.empty.EmptyFavoriteFragment"
+        android:label="EmptyFavoriteFragment" >
+        <action
+            android:id="@+id/action_emptyFavoriteFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

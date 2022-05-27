@@ -33,7 +33,8 @@ open class UserRepository(
                         lon = it.user?.lon,
                         profile_photo_path = it.user?.profile_photo_path,
                         token = it.token,
-                        isLoggedIn = true
+                        isLoggedIn = true,
+                        postsCount = it.user?.posts_count
                     )
                     prefs.updateUser(user)
                 }

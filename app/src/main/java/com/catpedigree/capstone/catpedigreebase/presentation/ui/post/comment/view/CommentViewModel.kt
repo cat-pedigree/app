@@ -3,8 +3,6 @@ package com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.vi
 import androidx.lifecycle.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.CommentRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
-import com.catpedigree.capstone.catpedigreebase.utils.error.CommentError
-import kotlinx.coroutines.launch
 
 class CommentViewModel(userRepository: UserRepository, private val commentRepository: CommentRepository) : ViewModel() {
 

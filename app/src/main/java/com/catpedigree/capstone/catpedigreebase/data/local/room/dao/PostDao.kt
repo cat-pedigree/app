@@ -13,8 +13,20 @@ interface PostDao {
     @Query("SELECT * FROM post_items ORDER BY created_at DESC")
     fun getPosts(): LiveData<List<PostItems>>
 
+    @Query("SELECT * FROM post_items WHERE user_id = :user_id ORDER BY created_at DESC")
+    fun getPostProfile(user_id: Int): LiveData<List<PostItems>>
+
+    @Query("SELECT * FROM post_items WHERE bookmarked = 1")
+    fun getPostFavorite():LiveData<List<PostItems>>
+
+    @Query("SELECT COUNT(*) FROM post_items WHERE bookmarked = 1")
+    fun getPostFavoriteCount(): LiveData<Int>
+
     @Query("DELETE FROM post_items")
     suspend fun deleteAllPosts()
+
+    @Query("DELETE FROM post_items WHERE user_id = :user_id")
+    suspend fun deleteAllPostsUser(user_id: Int)
 
     @Update
     suspend fun updatePost(post: PostItems)

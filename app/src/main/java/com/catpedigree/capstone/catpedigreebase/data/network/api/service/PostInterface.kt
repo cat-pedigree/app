@@ -15,6 +15,12 @@ interface PostInterface {
         @Header("Authorization") token: String,
     ): Response<PostResponse>
 
+    @GET("post/all")
+    suspend fun getPostProfile(
+        @Header("Authorization") token: String,
+        @Query("user_id") user_id: Int
+    ): Response<PostResponse>
+
     @Multipart
     @POST("post/create")
     suspend fun postCreate(

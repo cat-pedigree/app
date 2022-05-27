@@ -31,6 +31,7 @@ class PostRepository(
                 val isLoved = catDatabase.postDao().isPostsLoved(post.id)
                 PostItems(
                     post.id,
+                    post.user?.id,
                     post.user?.name,
                     post.user?.profile_photo_path,
                     post.photo,
@@ -56,6 +57,46 @@ class PostRepository(
 //            pagingSourceFactory = {
 //                catDatabase.postDao().getPosts()
 //            }).liveData
+    }
+
+    fun getPostsProfile(token: String, user_id: Int): LiveData<Result<List<PostItems>>> = liveData {
+        emit(Result.Loading)
+        try{
+            val response = postRemoteDataSource.getPostProfile(token,user_id)
+            val posts = response.body()?.data
+            val newPost = posts?.map { post ->
+                val isBookmarked = catDatabase.postDao().isPostsBookmarked(post.id!!)
+                val isLoved = catDatabase.postDao().isPostsLoved(post.id)
+                PostItems(
+                    post.id,
+                    post.user?.id,
+                    post.user?.name,
+                    post.user?.profile_photo_path,
+                    post.photo,
+                    post.title,
+                    post.description,
+                    post.created_at,
+                    post.loves_count,
+                    post.comments_count,
+                    isBookmarked,
+                    isLoved
+                )
+            }
+            catDatabase.postDao().deleteAllPostsUser(user_id)
+            catDatabase.postDao().insertPost(newPost!!)
+        }catch (e: Exception){
+            emit(Result.Error(e.message.toString()))
+        }
+        val dataLocal: LiveData<Result<List<PostItems>>> = catDatabase.postDao().getPostProfile(user_id).map { Result.Success(it) }
+        emitSource(dataLocal)
+    }
+
+    fun getPostFavorite(): LiveData<List<PostItems>>{
+        return catDatabase.postDao().getPostFavorite()
+    }
+
+    fun getPostFavoriteCount(): LiveData<Int> {
+        return catDatabase.postDao().getPostFavoriteCount()
     }
 
     suspend fun postCreate(
