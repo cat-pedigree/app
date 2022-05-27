@@ -61,22 +61,18 @@ class PostRepository(
     suspend fun postCreate(
     token: String,
     file: MultipartBody.Part,
+    title: String,
     description: RequestBody,
-    latLng: LatLng?
     ) {
         withContext(Dispatchers.IO) {
             try {
-                val response = if (latLng != null) {
+                val response =
                     postRemoteDataSource.postCreate(
                         token,
                         file,
+                        title,
                         description,
-                        latLng.latitude,
-                        latLng.longitude
                     )
-                } else {
-                    postRemoteDataSource.postCreate(token, file, description)
-                }
 
                 if (!response.isSuccessful) {
                     throw PostError(response.message())

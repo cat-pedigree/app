@@ -13,7 +13,7 @@ interface PostDao {
     @Query("SELECT * FROM post_items ORDER BY created_at DESC")
     fun getPosts(): LiveData<List<PostItems>>
 
-    @Query("DELETE FROM post_items WHERE bookmarked = 0")
+    @Query("DELETE FROM post_items")
     suspend fun deleteAllPosts()
 
     @Update

@@ -16,7 +16,7 @@ import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
-class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit) : ListAdapter<PostItems, PostAdapter.ViewHolder>(DIFF_CALLBACK) {
+class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val onLoveClick:(PostItems) -> Unit) : ListAdapter<PostItems, PostAdapter.ViewHolder>(DIFF_CALLBACK) {
 
 
     override fun onCreateViewHolder(
@@ -39,7 +39,7 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit) : ListAdapte
         toggleFavorite.isChecked = post.isBookmarked
         toggleLove.isChecked = post.isLoved
 
-            toggleFavorite.setOnClickListener {
+        toggleFavorite.setOnClickListener {
                 if(post.isBookmarked){
                     onFavoriteClick(post)
                     Snackbar.make(holder.binding.toggleFavorite,"Removed from favorites",Snackbar.LENGTH_LONG).show()
@@ -47,15 +47,15 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit) : ListAdapte
                     onFavoriteClick(post)
                     Snackbar.make(holder.binding.toggleFavorite,"Added to favorites",Snackbar.LENGTH_LONG).show()
                 }
-            }
+        }
 
         toggleLove.setOnClickListener {
             if(post.isLoved){
-                onFavoriteClick(post)
-                Snackbar.make(holder.binding.toggleFavorite,"Removed from liked",Snackbar.LENGTH_LONG).show()
+                onLoveClick(post)
+                Snackbar.make(holder.binding.toggleLoves,"Removed from liked",Snackbar.LENGTH_LONG).show()
             }else{
-                onFavoriteClick(post)
-                Snackbar.make(holder.binding.toggleFavorite,"Liked this post",Snackbar.LENGTH_LONG).show()
+                onLoveClick(post)
+                Snackbar.make(holder.binding.toggleLoves,"Liked this post",Snackbar.LENGTH_LONG).show()
             }
         }
     }
@@ -89,14 +89,6 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit) : ListAdapte
                         )
                     )
                 }
-
-//                root.setOnClickListener {
-//                    Navigation.findNavController(root).navigate(
-//                        HomeFragmentDirections.actionHomeFragmentToPostDetail(
-//                            post
-//                        )
-//                    )
-//                }
             }
         }
     }

@@ -13,8 +13,6 @@ interface PostInterface {
     @GET("post/all")
     suspend fun getPost(
         @Header("Authorization") token: String,
-//        @Query("page") page: Int = 1,
-//        @Query("size") size: Int = 10,
     ): Response<PostResponse>
 
     @Multipart
@@ -22,9 +20,8 @@ interface PostInterface {
     suspend fun postCreate(
         @Header("Authorization") token: String,
         @Part photo: MultipartBody.Part,
+        @Part("title") title: String,
         @Part("description") description: RequestBody,
-        @Part("lat") lat: Double? = null,
-        @Part("lon") lon: Double? = null
     ): Response<PostCreateResponse>
 
     @FormUrlEncoded
