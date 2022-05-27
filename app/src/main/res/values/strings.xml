@@ -142,4 +142,8 @@
     <string name="favorite">Favorite</string>
     <string name="info_comment">Please leave a positive comment</string>
     <string name="loves">Love</string>
+    <string name="what_do_you_think">What do you think?</string>
+    <string name="preview">Preview</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="title_required">Enter Title</string>
 </resources>
