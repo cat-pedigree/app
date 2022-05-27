@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.catpedigree.capstone.catpedigreebase.R
+import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PostAdapter
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentHomeBinding
@@ -47,7 +48,7 @@ class HomeFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.addPost -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_createFragment)
+                    findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
                     true
                 }
                 R.id.logout -> {
@@ -60,20 +61,22 @@ class HomeFragment : Fragment() {
                 }
             }
 
-            val postAdapter = PostAdapter{post->
-                if(post.isBookmarked){
+            val postAdapter = PostAdapter(onFavoriteClick = { post ->
+                if (post.isBookmarked) {
                     viewModel.deletePost(post)
-                }else{
+                } else {
                     viewModel.savePost(post)
                 }
+//
+            }, onLoveClick = {post ->
                 if(post.isLoved){
                     viewModel.deleteLovePost(post)
-                    viewModel.loveDelete(user.token!!,post.id!!, user.id!!)
+                    viewModel.loveDelete(user.token ?: "",post.id!!, user.id!!)
                 }else{
                     viewModel.createLovePost(post)
-                    viewModel.loveCreate(user.token!!,post.id!!, user.id!!)
+                    viewModel.loveCreate(user.token ?: "",post.id!!, user.id!!)
                 }
-            }
+            })
 
         viewModel.getPosts().observe(viewLifecycleOwner) { result ->
             if (result != null) {

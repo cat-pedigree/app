@@ -58,12 +58,12 @@
             android:id="@+id/iv_my_profile"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/desc_avatar_profile"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-            tools:src="@tools:sample/avatars"
-            android:contentDescription="@string/desc_avatar_profile" />
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_name_my_profile"
@@ -115,14 +115,15 @@
 
         <Button
             android:id="@+id/btn_edt_profile"
-            android:layout_width="285dp"
+            android:layout_width="0dp"
             android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/accent"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/btn_edt_profile"
             android:textSize="16sp"
-            android:fontFamily="@font/poppins_bold"
-            android:background="@color/accent"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/iv_bookmark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_desc_my_profile" />
 
@@ -130,13 +131,13 @@
             android:id="@+id/iv_bookmark"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/background_bookmark"
-            android:src="@drawable/ic_bookmark"
-            android:layout_marginStart="12dp"
             android:layout_marginTop="15dp"
-            app:layout_constraintStart_toEndOf="@id/btn_edt_profile"
-            app:layout_constraintTop_toBottomOf="@id/tv_desc_my_profile"
-            android:contentDescription="@string/desc_btn_fav_profile" />
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_bookmark"
+            android:contentDescription="@string/desc_btn_fav_profile"
+            android:src="@drawable/ic_bookmark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_my_profile" />
 
         <TextView
             android:id="@+id/my_cats"

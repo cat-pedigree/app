@@ -10,8 +10,5 @@ data class LoveDeleteResponse(
     val status: String? = null,
 
     @field:SerializedName("message")
-    val message: String? = null,
-
-    @field:SerializedName("data")
-    val data: String? = null
+    val message: String? = null
 )
