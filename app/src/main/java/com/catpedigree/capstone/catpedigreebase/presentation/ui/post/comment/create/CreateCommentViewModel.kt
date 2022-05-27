@@ -1,15 +1,12 @@
-package com.catpedigree.capstone.catpedigreebase.presentation.ui.comment
+package com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.create
 
 import androidx.lifecycle.*
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.catpedigree.capstone.catpedigreebase.data.network.item.CommentItems
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.CommentRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 import com.catpedigree.capstone.catpedigreebase.utils.error.CommentError
 import kotlinx.coroutines.launch
 
-class CommentViewModel(userRepository: UserRepository, private val commentRepository: CommentRepository) : ViewModel() {
+class CreateCommentViewModel(userRepository: UserRepository, private val commentRepository: CommentRepository) : ViewModel() {
 
     val userItem = userRepository.userItems.asLiveData()
 
@@ -21,25 +18,6 @@ class CommentViewModel(userRepository: UserRepository, private val commentReposi
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
-
-//    fun comments(post_id: Int) : LiveData<PagingData<CommentItems>>{
-//            val getComment : LiveData<PagingData<CommentItems>> =
-//            userItem.switchMap {
-//                commentRepository.getComments(
-//                    it.token ?: "",
-//                    post_id
-//                ).cachedIn(viewModelScope)
-//            }
-//            return getComment
-//        }
-
-    fun comments(post_id: Int) = userItem.switchMap {
-        commentRepository.getComments(
-            it.token ?: "",
-            post_id
-        )
-    }
-
 
     fun createComment(
         token: String,

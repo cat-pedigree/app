@@ -1,4 +1,4 @@
-package com.catpedigree.capstone.catpedigreebase.presentation.ui.comment
+package com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -12,12 +12,13 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.ObjectKey
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentCommentBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.adapter.CommentAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeFragmentDirections
 import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
@@ -47,7 +48,6 @@ class CommentFragment : Fragment() {
         setupViewModel()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun setupAction(){
         val post = args.post
 
@@ -83,15 +83,30 @@ class CommentFragment : Fragment() {
             adapter = commentAdapter
         }
 
-//        binding.btnSend.setOnClickListener {
-//            createComment(post.id)
-//        }
+        val profilePhotoPath = "http://192.168.1.4/api-cat/public/storage/${post.profile_photo_path}"
+
+        binding.apply {
+            tvItemName.text = post.name
+            tvPost.text = post.description
+            Glide.with(binding.root)
+                .load(profilePhotoPath)
+                .signature(ObjectKey(profilePhotoPath))
+                .placeholder(R.drawable.ic_avatar)
+                .circleCrop()
+                .into(imgProfile)
+        }
+
+        binding.btnAddComment.setOnClickListener {
+            Navigation.findNavController(binding.btnAddComment).navigate(
+                CommentFragmentDirections.actionCommentFragmentToCreateCommentFragment(
+                    post
+                )
+            )
+        }
 
     }
 
     private fun setupViewModel(){
-        val post = args.post
-
         viewModel.userItem.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -106,26 +121,7 @@ class CommentFragment : Fragment() {
         viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
             ToastUtils.showToast(requireContext(), message)
         }
-
-        viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
-            if (isSuccess) {
-                ToastUtils.showToast(requireContext(), "Comment successfully added")
-//                findNavController().navigate(R.id.commentFragment)
-
-            }
-        }
     }
-
-
-
-//    private fun createComment(post_id: Int){
-//        val userId = user.id
-//        val description = binding.edtComment.text.toString().trim()
-//
-//            if (userId != null) {
-//                viewModel.createComment(user.token ?: "", post_id, userId, description)
-//            }
-//    }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE

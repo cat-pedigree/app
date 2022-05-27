@@ -23,6 +23,7 @@ class CommentAdapter : ListAdapter<CommentItems, CommentAdapter.ViewHolder>(DIFF
                 .load(profilePhotoPath)
                 .placeholder(R.drawable.ic_avatar)
                 .signature(ObjectKey(profilePhotoPath))
+                .circleCrop()
                 .into(binding.ivAvatarComment)
 
             binding.apply {
