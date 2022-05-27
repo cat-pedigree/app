@@ -29,7 +29,6 @@ class CommentFragment : Fragment() {
     private val args: CommentFragmentArgs by navArgs()
     private lateinit var user: UserItems
 
-
     private val viewModel: CommentViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
