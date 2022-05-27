@@ -133,4 +133,6 @@
     <string name="send">Send</string>
     <string name="title">Title</string>
     <string name="favorite">Favorite</string>
+    <string name="info_comment">Please leave a positive comment</string>
+    <string name="loves">Love</string>
 </resources>
