@@ -97,47 +97,82 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="@string/post_description" />
 
+        <ImageView
+            android:id="@+id/toggle_loves_bg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.6"
+            android:contentDescription="@string/loves"
+            android:src="@drawable/circle_white"
+            app:layout_constraintEnd_toEndOf="@+id/img_poster"
+            app:layout_constraintTop_toTopOf="@+id/img_poster" />
 
         <ToggleButton
             android:id="@+id/toggle_loves"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:background="@drawable/love_toggle"
             android:backgroundTintMode="src_in"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:textOff=""
             android:textOn=""
-            app:layout_constraintBottom_toTopOf="@+id/toggle_favorite"
-            app:layout_constraintEnd_toEndOf="@+id/img_poster" />
+            app:layout_constraintBottom_toBottomOf="@+id/toggle_loves_bg"
+            app:layout_constraintEnd_toEndOf="@+id/toggle_loves_bg"
+            app:layout_constraintStart_toStartOf="@id/toggle_loves_bg"
+            app:layout_constraintTop_toTopOf="@id/toggle_loves_bg" />
+
+        <ImageView
+            android:id="@+id/toggle_favorite_bg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.6"
+            android:contentDescription="@string/favorite"
+            android:src="@drawable/circle_white"
+            app:layout_constraintEnd_toEndOf="@+id/img_poster"
+            app:layout_constraintTop_toBottomOf="@+id/toggle_loves_bg" />
 
         <ToggleButton
             android:id="@+id/toggle_favorite"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:background="@drawable/favorite_toggle"
             android:backgroundTintMode="src_in"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:textOff=""
             android:textOn=""
-            app:layout_constraintBottom_toTopOf="@+id/iv_comment"
-            app:layout_constraintEnd_toEndOf="@+id/img_poster" />
+            app:layout_constraintBottom_toBottomOf="@+id/toggle_favorite_bg"
+            app:layout_constraintEnd_toEndOf="@+id/toggle_loves_bg"
+            app:layout_constraintStart_toStartOf="@id/toggle_favorite_bg"
+            app:layout_constraintTop_toTopOf="@id/toggle_favorite_bg" />
+
+        <ImageView
+            android:id="@+id/toggle_comment_bg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.6"
+            android:contentDescription="@string/favorite"
+            android:src="@drawable/circle_white"
+            app:layout_constraintEnd_toEndOf="@+id/img_poster"
+            app:layout_constraintTop_toBottomOf="@+id/toggle_favorite_bg" />
 
         <ImageView
             android:id="@+id/iv_comment"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:contentDescription="@string/post_description"
             android:src="@drawable/ic_comment"
-            app:layout_constraintBottom_toBottomOf="@+id/img_poster"
-            app:layout_constraintEnd_toEndOf="@+id/img_poster" />
+            app:layout_constraintBottom_toBottomOf="@+id/toggle_comment_bg"
+            app:layout_constraintEnd_toEndOf="@+id/toggle_comment_bg"
+            app:layout_constraintStart_toStartOf="@id/toggle_comment_bg"
+            app:layout_constraintTop_toTopOf="@id/toggle_comment_bg" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
