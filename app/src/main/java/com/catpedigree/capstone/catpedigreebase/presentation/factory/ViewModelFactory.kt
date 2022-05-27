@@ -1,6 +1,5 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.factory
 
-import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +14,7 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeViewMod
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.create.CreateCommentViewModel
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.CreateViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.CreatePostViewModel
 
 class ViewModelFactory
     (private val userRepository: UserRepository, private val postRepository: PostRepository,private val commentRepository: CommentRepository)
@@ -26,25 +25,20 @@ class ViewModelFactory
         return when {
             modelClass.isAssignableFrom(OnboardingViewModel::class.java) -> {
                 OnboardingViewModel(userRepository) as T
-            }
-            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+            }modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(userRepository) as T
-            }
-            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+            }modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                 RegisterViewModel(userRepository) as T
-            }
-            modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
+            }modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
                 MapsViewModel(userRepository) as T
-            }
-            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+            }modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(userRepository, postRepository) as T
-            }
-            modelClass.isAssignableFrom(CreateViewModel::class.java) -> {
-                CreateViewModel(userRepository, postRepository) as T
             }modelClass.isAssignableFrom(CommentViewModel::class.java) -> {
                 CommentViewModel(userRepository, commentRepository) as T
             }modelClass.isAssignableFrom(CreateCommentViewModel::class.java) -> {
                 CreateCommentViewModel(userRepository, commentRepository) as T
+            }modelClass.isAssignableFrom(CreatePostViewModel::class.java) -> {
+                CreatePostViewModel(userRepository, postRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
