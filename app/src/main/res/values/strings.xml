@@ -135,11 +135,23 @@
     <string name="desc_cat_story">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
     <string name="album">Album</string>
 
+    <!-- TODO: String on the services page -->
+    <string name="services">Services</string>
+    <string name="services_all_breed">All Breed</string>
+    <string name="services_desc">Lorem ipsum dolor sit amet</string>
+    <string name="services_veterinary">Veterinary</string>
+    <string name="services_desc_ic_breed">This is the breed icon on the services page</string>
+    <string name="services_desc_ic_veterinary">this is the veterinary icon on the services page</string>
+
+    <!-- TODO: String on the veterinary page -->
+    <string name="veterinary_appbar">Veterinary</string>
+    <string name="veterinary_name">Name Clinic</string>
+    <string name="veterinary_location">Location</string>
+    <string name="veterinary_desc_img">this is a photo on the veterinary page</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="send">Send</string>
     <string name="title">Title</string>
     <string name="favorite">Favorite</string>
-    <string name="info_comment">Please leave a positive comment</string>
-    <string name="loves">Love</string>
 </resources>
