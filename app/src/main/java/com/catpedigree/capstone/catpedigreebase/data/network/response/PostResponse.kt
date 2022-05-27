@@ -32,12 +32,6 @@ data class PostData(
     @field:SerializedName("description")
     val description: String? = null,
 
-    @field:SerializedName("lat")
-    val lat: Double? = null,
-
-    @field:SerializedName("lon")
-    val lon: Double? = null,
-
     @field:SerializedName("loves_count")
     val loves_count: Int? = null,
 

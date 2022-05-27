@@ -14,7 +14,7 @@ import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeFragmentDirections
-import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
+import com.google.android.material.snackbar.Snackbar
 
 class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit) : ListAdapter<PostItems, PostAdapter.ViewHolder>(DIFF_CALLBACK) {
 
@@ -29,24 +29,35 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit) : ListAdapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val context = holder.binding.root.context
+        holder.binding.root.context
         val post = getItem(position)
         holder.bind(post)
 
         val toggleFavorite = holder.binding.toggleFavorite
+        val toggleLove = holder.binding.toggleLoves
 
         toggleFavorite.isChecked = post.isBookmarked
+        toggleLove.isChecked = post.isLoved
 
             toggleFavorite.setOnClickListener {
                 if(post.isBookmarked){
                     onFavoriteClick(post)
-                    ToastUtils.showToast(context,"Removed from favorites")
+                    Snackbar.make(holder.binding.toggleFavorite,"Removed from favorites",Snackbar.LENGTH_LONG).show()
                 }else{
                     onFavoriteClick(post)
-                    ToastUtils.showToast(context,"Added to favorites")
+                    Snackbar.make(holder.binding.toggleFavorite,"Added to favorites",Snackbar.LENGTH_LONG).show()
                 }
-
             }
+
+        toggleLove.setOnClickListener {
+            if(post.isLoved){
+                onFavoriteClick(post)
+                Snackbar.make(holder.binding.toggleFavorite,"Removed from liked",Snackbar.LENGTH_LONG).show()
+            }else{
+                onFavoriteClick(post)
+                Snackbar.make(holder.binding.toggleFavorite,"Liked this post",Snackbar.LENGTH_LONG).show()
+            }
+        }
     }
 
     class ViewHolder(val binding: ItemPostBinding) :
@@ -70,9 +81,6 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit) : ListAdapte
             binding.apply {
                 tvItemName.text = post.name
                 tvItemTitle.text = post.title
-
-
-
                 tvItemDescription.text = post.description
                 ivComment.setOnClickListener {
                     Navigation.findNavController(ivComment).navigate(

@@ -3,12 +3,9 @@ package com.catpedigree.capstone.catpedigreebase.data.local.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
-import androidx.paging.*
 import com.catpedigree.capstone.catpedigreebase.data.local.room.database.CatDatabase
-import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.PostRemoteDataSource
-//import com.catpedigree.capstone.catpedigreebase.data.local.remote.mediator.PostRemoteMediator
-import com.catpedigree.capstone.catpedigreebase.data.local.room.dao.PostDao
+import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
 import com.google.android.gms.maps.model.LatLng
@@ -31,6 +28,7 @@ class PostRepository(
             val posts = response.body()?.data
             val newPost = posts?.map { post ->
                 val isBookmarked = catDatabase.postDao().isPostsBookmarked(post.id!!)
+                val isLoved = catDatabase.postDao().isPostsLoved(post.id)
                 PostItems(
                     post.id,
                     post.user?.name,
@@ -39,11 +37,10 @@ class PostRepository(
                     post.title,
                     post.description,
                     post.created_at,
-                    post.lat,
-                    post.lon,
                     post.loves_count,
                     post.comments_count,
-                    isBookmarked
+                    isBookmarked,
+                    isLoved
                 )
             }
             catDatabase.postDao().deleteAllPosts()
@@ -92,6 +89,11 @@ class PostRepository(
 
     suspend fun setPostBookmark(post: PostItems, bookmarkState: Boolean){
         post.isBookmarked = bookmarkState
+        catDatabase.postDao().updatePost(post)
+    }
+
+    suspend fun setPostLove(post: PostItems, loveState: Boolean){
+        post.isLoved = loveState
         catDatabase.postDao().updatePost(post)
     }
 

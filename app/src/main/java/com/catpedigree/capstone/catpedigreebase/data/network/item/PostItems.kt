@@ -33,12 +33,6 @@ data class PostItems(
     @field:SerializedName("created_at")
     val created_at: String? = null,
 
-    @field:SerializedName("lat")
-    val lat: Double? = null,
-
-    @field:SerializedName("lon")
-    val lon: Double? = null,
-
     @field:SerializedName("loves_count")
     val loves_count: Int? = null,
 
@@ -46,5 +40,8 @@ data class PostItems(
     val comments_count: Int? = null,
 
     @field:ColumnInfo(name = "bookmarked")
-    var isBookmarked: Boolean
+    var isBookmarked: Boolean,
+
+    @field:ColumnInfo(name = "loved")
+    var isLoved: Boolean,
 ): Parcelable

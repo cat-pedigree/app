@@ -1,7 +1,6 @@
 package com.catpedigree.capstone.catpedigreebase.data.local.room.dao
 
 import androidx.lifecycle.LiveData
-import androidx.paging.PagingSource
 import androidx.room.*
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 
@@ -22,4 +21,7 @@ interface PostDao {
 
     @Query("SELECT EXISTS(SELECT * FROM post_items WHERE id = :id AND bookmarked = 1)")
     suspend fun isPostsBookmarked(id: Int): Boolean
+
+    @Query("SELECT EXISTS(SELECT * FROM post_items WHERE id = :id AND loved = 1)")
+    suspend fun isPostsLoved(id: Int): Boolean
 }
