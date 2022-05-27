@@ -66,6 +66,13 @@ class HomeFragment : Fragment() {
                 }else{
                     viewModel.savePost(post)
                 }
+                if(post.isLoved){
+                    viewModel.deleteLovePost(post)
+                    viewModel.loveDelete(user.token!!,post.id!!, user.id!!)
+                }else{
+                    viewModel.createLovePost(post)
+                    viewModel.loveCreate(user.token!!,post.id!!, user.id!!)
+                }
             }
 
         viewModel.getPosts().observe(viewLifecycleOwner) { result ->
