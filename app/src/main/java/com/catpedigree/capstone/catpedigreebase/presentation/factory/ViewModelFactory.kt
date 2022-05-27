@@ -10,11 +10,11 @@ import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserReposi
 import com.catpedigree.capstone.catpedigreebase.utils.injection.Injection
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.login.LoginViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.register.RegisterViewModel
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.comment.CommentViewModel
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.detail.PostDetailViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.view.CommentViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.create.CreateCommentViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.CreateViewModel
 
 class ViewModelFactory
@@ -43,12 +43,8 @@ class ViewModelFactory
                 CreateViewModel(userRepository, postRepository) as T
             }modelClass.isAssignableFrom(CommentViewModel::class.java) -> {
                 CommentViewModel(userRepository, commentRepository) as T
-            }modelClass.isAssignableFrom(PostDetailViewModel::class.java) -> {
-                PostDetailViewModel(
-                    userRepository,
-                    postRepository,
-                    application = Application(),
-                ) as T
+            }modelClass.isAssignableFrom(CreateCommentViewModel::class.java) -> {
+                CreateCommentViewModel(userRepository, commentRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
