@@ -125,8 +125,8 @@ open class UserRepository(
                 lat = null,
                 lon = null,
                 profile_photo_path = null,
-                postsCount = 0,
-                catsCount = 0
+                postsCount = null,
+                catsCount = null
             ))
         } catch (e: Throwable) {
             throw AuthError(e.message.toString())

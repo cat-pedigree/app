@@ -66,7 +66,7 @@ class MyProfileFragment : Fragment() {
             this.user = userItems
             val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${user.profile_photo_path}"
             binding.apply {
-                tvName.text = user.name
+                tvName.text = user.catsCount.toString()
                 tvBio.text = user.bio ?: "Bio"
                 tvPostCount.text = user.postsCount.toString()
                 topAppBar.title = user.username
