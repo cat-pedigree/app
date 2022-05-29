@@ -36,12 +36,12 @@
 
                 <ImageView
                     android:id="@+id/iv_avatar_comment"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:gravity="top|start"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars"
-                    android:contentDescription="@string/avatar" />
+                    android:contentDescription="@string/avatar"
+                    android:gravity="top|start"
+                    tools:srcCompat="@tools:sample/avatars" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
