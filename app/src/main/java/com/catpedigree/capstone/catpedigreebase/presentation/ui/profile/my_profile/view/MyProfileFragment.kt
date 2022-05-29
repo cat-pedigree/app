@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
+import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentMyProfileBinding
@@ -63,7 +64,7 @@ class MyProfileFragment : Fragment() {
                 findNavController().navigateUp()
             }
             this.user = userItems
-            val profilePhotoPath = "http://192.168.1.4/api-cat/public/storage/${user.profile_photo_path}"
+            val profilePhotoPath = "${BuildConfig.BASE_API_URL_PHOTO}${user.profile_photo_path}"
             binding.apply {
                 tvName.text = user.name
                 tvBio.text = user.bio ?: "Bio"

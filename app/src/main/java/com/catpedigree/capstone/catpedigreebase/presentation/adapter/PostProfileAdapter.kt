@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
+import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostProfileBinding
@@ -33,7 +34,7 @@ class PostProfileAdapter : ListAdapter<PostItems, PostProfileAdapter.ViewHolderP
     class ViewHolderProfile(val binding: ItemPostProfileBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(post: PostItems) {
-            val photo = "http://192.168.1.4/api-cat/public/storage/${post.photo}"
+            val photo = "${BuildConfig.BASE_API_URL_PHOTO}${post.photo}"
             binding.apply {
                 Glide.with(root)
                     .load(photo)

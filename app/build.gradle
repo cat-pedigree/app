@@ -8,8 +8,6 @@ plugins {
 }
 apply plugin: 'kotlin-android'
 
-
-
 android {
     compileSdk 32
 
@@ -26,11 +24,13 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "BASE_API_URL", "\"http://192.168.1.4/api-cat/public/api/\""
+            buildConfigField "String", "BASE_API_PHOTO", "\"http://192.168.1.4/api-cat/public/storage/\""
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_API_URL", "\"http://192.168.1.4/api-cat/public/api/\""
+            buildConfigField "String", "BASE_API_PHOTO", "\"http://192.168.1.4/api-cat/public/storage/\""
         }
     }
     compileOptions {
@@ -85,7 +85,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.guava:guava:29.0-android'
     implementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'

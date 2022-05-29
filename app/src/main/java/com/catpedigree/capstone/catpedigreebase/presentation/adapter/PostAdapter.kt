@@ -17,6 +17,7 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeFragmen
 import com.google.android.material.snackbar.Snackbar
 import android.os.Handler
 import android.os.Looper
+import com.catpedigree.capstone.catpedigreebase.BuildConfig
 
 class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val onLoveClick:(PostItems) -> Unit) : ListAdapter<PostItems, PostAdapter.ViewHolder>(DIFF_CALLBACK) {
 
@@ -47,20 +48,20 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val 
             toggleFavorite.setOnClickListener {
                 if(post.isBookmarked){
                     onFavoriteClick(post)
-                    Snackbar.make(toggleFavorite,"Removed from favorites",Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(toggleFavorite,R.string.remove_favorite,Snackbar.LENGTH_LONG).show()
                 }else{
                     onFavoriteClick(post)
-                    Snackbar.make(toggleFavorite,"Added to favorites",Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(toggleFavorite,R.string.add_favorite,Snackbar.LENGTH_LONG).show()
                 }
             }
 
             toggleLove.setOnClickListener {
                 if(post.isLoved){
                     onLoveClick(post)
-                    Snackbar.make(toggleLoves,"Removed from liked",Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(toggleLoves,R.string.remove_like,Snackbar.LENGTH_LONG).show()
                 }else{
                     onLoveClick(post)
-                    Snackbar.make(toggleLoves,"Liked this post",Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(toggleLoves,R.string.like_post,Snackbar.LENGTH_LONG).show()
                 }
             }
 
@@ -71,11 +72,11 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val 
                         if(post.isLoved){
                             onLoveClick(post)
                             toggleLove.isChecked = post.isLoved
-                            Snackbar.make(toggleLoves,"Removed from liked",Snackbar.LENGTH_LONG).show()
+                            Snackbar.make(toggleLoves,R.string.remove_like,Snackbar.LENGTH_LONG).show()
                         }else{
                             onLoveClick(post)
                             toggleLove.isChecked = post.isLoved
-                            Snackbar.make(toggleLoves,"Liked this post",Snackbar.LENGTH_LONG).show()
+                            Snackbar.make(toggleLoves,R.string.like_post,Snackbar.LENGTH_LONG).show()
                         }
                     }
                     tapTap = 0
@@ -87,8 +88,8 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val 
     class ViewHolder(val binding: ItemPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(post: PostItems) {
-            val photo = "http://192.168.1.4/api-cat/public/storage/${post.photo}"
-            val profilePhotoPath = "http://192.168.1.4/api-cat/public/storage/${post.profile_photo_path}"
+            val photo = "${BuildConfig.BASE_API_URL_PHOTO}${post.photo}"
+            val profilePhotoPath = "${BuildConfig.BASE_API_URL_PHOTO}${post.profile_photo_path}"
 
         binding.apply {
             Glide.with(root)

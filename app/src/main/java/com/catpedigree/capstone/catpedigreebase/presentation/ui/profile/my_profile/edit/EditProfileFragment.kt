@@ -19,6 +19,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
+import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentEditProfileBinding
@@ -122,7 +123,7 @@ class EditProfileFragment : Fragment() {
                 findNavController().navigateUp()
             }
             this.user = userItems
-            val profilePhotoPath = "http://192.168.1.4/api-cat/public/storage/${userItems.profile_photo_path}"
+            val profilePhotoPath = "${BuildConfig.BASE_API_URL_PHOTO}${userItems.profile_photo_path}"
             binding.apply {
                 nameEditText.editText?.setText(userItems.name)
                 usernameEditText.editText?.setText(userItems.username)
@@ -139,7 +140,7 @@ class EditProfileFragment : Fragment() {
 
         viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                Snackbar.make(binding.btnEditProfile, "Profile changed successfully", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding.btnEditProfile, R.string.profile_success, Snackbar.LENGTH_LONG).show()
                 findNavController().navigateUp()
             }
         }

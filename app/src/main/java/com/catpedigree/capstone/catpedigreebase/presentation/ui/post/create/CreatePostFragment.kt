@@ -18,6 +18,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
+import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentCreatePostBinding
@@ -80,7 +81,7 @@ class CreatePostFragment : Fragment() {
                 findNavController().navigateUp()
             }
             this.user = userItems
-            val profilePhotoPath = "http://192.168.1.4/api-cat/public/storage/${userItems.profile_photo_path}"
+            val profilePhotoPath = "${BuildConfig.BASE_API_URL_PHOTO}${userItems.profile_photo_path}"
             binding.apply {
                 tvName.text = userItems.name
                 Glide.with(binding.root)
