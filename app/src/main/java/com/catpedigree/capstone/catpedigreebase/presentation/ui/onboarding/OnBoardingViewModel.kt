@@ -5,7 +5,7 @@ import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserReposi
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
 import kotlinx.coroutines.launch
 
-class OnboardingViewModel(private val userRepository: UserRepository) : ViewModel() {
+class OnBoardingViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     var userItem = userRepository.userItems.asLiveData()
 

@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.catpedigree.capstone.catpedigreebase.R
-import com.catpedigree.capstone.catpedigreebase.databinding.FragmentOnboardingTwoBinding
+import com.catpedigree.capstone.catpedigreebase.databinding.FragmentOnboardingFourBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 
-class OnboardingTwo : Fragment() {
-    private var _binding: FragmentOnboardingTwoBinding? = null
-    private val binding get() = _binding!!
+class OnBoardingFour : Fragment() {
+    private lateinit var _binding: FragmentOnboardingFourBinding
+    private val binding get() = _binding
 
-    private val viewModel: OnboardingViewModel by viewModels {
+    private val viewModel: OnBoardingViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -23,7 +23,7 @@ class OnboardingTwo : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOnboardingTwoBinding.inflate(inflater,container,false)
+        _binding = FragmentOnboardingFourBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -34,18 +34,15 @@ class OnboardingTwo : Fragment() {
     }
 
     private fun setupAction(){
-        binding.btnContinue.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingTwo_to_onboardingThree)
-        }
-        binding.btnSkip.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingTwo_to_loginFragment)
+        binding.btnStart.setOnClickListener {
+            findNavController().navigate(R.id.action_onboardingFour_to_loginFragment)
         }
     }
 
     private fun setupViewModel(){
         viewModel.userItem.observe(viewLifecycleOwner) { userModel ->
             if (userModel?.isLoggedIn == true) {
-                findNavController().navigate(R.id.action_onboardingTwo_to_loginFragment)
+                findNavController().navigate(R.id.action_onboardingFour_to_loginFragment)
             }
         }
     }

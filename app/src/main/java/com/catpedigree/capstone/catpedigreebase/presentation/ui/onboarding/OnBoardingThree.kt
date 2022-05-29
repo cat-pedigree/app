@@ -11,11 +11,11 @@ import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentOnboardingThreeBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 
-class OnboardingThree : Fragment() {
-    private var _binding: FragmentOnboardingThreeBinding? = null
-    private val binding get() = _binding!!
+class OnBoardingThree : Fragment() {
+    private lateinit var _binding: FragmentOnboardingThreeBinding
+    private val binding get() = _binding
 
-    private val viewModel: OnboardingViewModel by viewModels {
+    private val viewModel: OnBoardingViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -34,11 +34,13 @@ class OnboardingThree : Fragment() {
     }
 
     private fun setupAction(){
-        binding.btnContinue.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingThree_to_onboardingFour)
-        }
-        binding.btnSkip.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingThree_to_loginFragment)
+        binding.apply {
+            btnContinue.setOnClickListener {
+                findNavController().navigate(R.id.action_onboardingThree_to_onboardingFour)
+            }
+            btnSkip.setOnClickListener {
+                findNavController().navigate(R.id.action_onboardingThree_to_loginFragment)
+            }
         }
     }
 

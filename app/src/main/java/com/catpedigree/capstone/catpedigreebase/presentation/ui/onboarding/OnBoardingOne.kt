@@ -11,12 +11,12 @@ import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentOnboardingOneBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 
-class OnboardingOne : Fragment() {
+class OnBoardingOne : Fragment() {
 
-    private var _binding: FragmentOnboardingOneBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var _binding: FragmentOnboardingOneBinding
+    private val binding get() = _binding
 
-    private val viewModel: OnboardingViewModel by viewModels {
+    private val viewModel: OnBoardingViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -35,11 +35,13 @@ class OnboardingOne : Fragment() {
     }
 
     private fun setupAction(){
-        binding.btnContinue.setOnClickListener{
-            findNavController().navigate(R.id.action_onboardingOne_to_onboardingTwo2)
-        }
-        binding.btnSkip.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingOne_to_loginFragment)
+        binding.apply {
+            btnContinue.setOnClickListener{
+                findNavController().navigate(R.id.action_onboardingOne_to_onboardingTwo2)
+            }
+            btnSkip.setOnClickListener {
+                findNavController().navigate(R.id.action_onboardingOne_to_loginFragment)
+            }
         }
     }
 
@@ -50,5 +52,4 @@ class OnboardingOne : Fragment() {
             }
         }
     }
-
 }
