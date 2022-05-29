@@ -51,7 +51,7 @@ class CommentFragment : Fragment() {
         val post = args.post
 
         val commentAdapter = CommentAdapter()
-        val profilePhotoPath = "${BuildConfig.BASE_API_URL_PHOTO}${post.profile_photo_path}"
+        val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${post.profile_photo_path}"
 
         binding.apply {
             viewModel.comments(post.id!!).observe(viewLifecycleOwner){result ->

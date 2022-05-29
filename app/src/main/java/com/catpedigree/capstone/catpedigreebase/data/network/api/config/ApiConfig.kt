@@ -1,6 +1,7 @@
 package com.catpedigree.capstone.catpedigreebase.data.network.api.config
 
 import com.catpedigree.capstone.catpedigreebase.BuildConfig
+import com.catpedigree.capstone.catpedigreebase.data.network.api.service.CatInterface
 import com.catpedigree.capstone.catpedigreebase.data.network.api.service.CommentInterface
 import com.catpedigree.capstone.catpedigreebase.data.network.api.service.PostInterface
 import com.catpedigree.capstone.catpedigreebase.data.network.api.service.UserInterface
@@ -8,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 object ApiConfig {
 
@@ -39,5 +41,9 @@ object ApiConfig {
 
     fun getCommentApi(): CommentInterface{
         return retrofit.create(CommentInterface::class.java)
+    }
+
+    fun getCatApi(): CatInterface{
+        return  retrofit.create(CatInterface::class.java)
     }
 }

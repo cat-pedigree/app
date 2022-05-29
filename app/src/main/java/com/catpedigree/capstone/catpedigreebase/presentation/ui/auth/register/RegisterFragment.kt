@@ -93,7 +93,7 @@ class RegisterFragment : Fragment() {
     private fun setupViewModel(){
         viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                ToastUtils.showToast(requireContext(), "Successfully signup, please continue to login.")
+                ToastUtils.showToast(requireContext(), getString(R.string.register_success))
                 findNavController().navigateUp()
             }
         }

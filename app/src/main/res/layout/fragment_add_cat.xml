@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.cat.AddCatFragment">
+    tools:context=".presentation.ui.cat.add.AddCatFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -24,59 +24,60 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ImageButton
-        android:id="@+id/ib_add_fhoto"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/circle"
-        android:src="@drawable/ic_baseline_camera_alt_24"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_baseline_camera_alt_24"
+        android:contentDescription="@string/desc_add_cat_photo"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/accent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-        android:contentDescription="@string/desc_add_cat_photo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cat_name"
+        android:id="@+id/edit_text_cat_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/cat_name"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ib_add_fhoto">
+        app:layout_constraintTop_toBottomOf="@id/iv_photo">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/heading3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/heading3"
             android:textColor="@color/neutral_90" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tl_breed"
+        android:id="@+id/auto_complete_text_breed"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/breed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cat_name">
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_cat_name">
 
         <AutoCompleteTextView
             android:id="@+id/breed"
+            style="@style/heading3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/heading3"
-            android:textColor="@color/neutral_90"
             android:inputType="none"
+            android:textColor="@color/neutral_90"
             tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,16 +85,16 @@
         android:id="@+id/ll_first"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tl_breed">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/auto_complete_text_breed">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tl_gender"
+            android:id="@+id/auto_complete_text_gender"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -101,12 +102,12 @@
 
             <AutoCompleteTextView
                 android:id="@+id/gender"
+                style="@style/heading3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/gender"
-                style="@style/heading3"
-                android:textColor="@color/neutral_90"
-                android:inputType="none"/>
+                android:inputType="none"
+                android:textColor="@color/neutral_90" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <View
@@ -114,7 +115,8 @@
             android:layout_height="0dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tl_color"
+            android:id="@+id/edit_text_color"
+            app:endIconMode="clear_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -122,10 +124,10 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/color"
+                style="@style/heading3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/color"
-                style="@style/heading3"
                 android:textColor="@color/neutral_90" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -134,27 +136,31 @@
         android:id="@+id/ll_second"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_first">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_first">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tl_weight"
+            android:id="@+id/edit_text_weight"
+            app:endIconMode="clear_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            app:suffixText="@string/kilogram"
+            app:suffixTextColor="@color/accent"
             android:layout_weight="1">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/weight"
+                style="@style/heading3"
+                android:inputType="numberDecimal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/weight"
-                style="@style/heading3"
                 android:textColor="@color/neutral_90" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -163,58 +169,75 @@
             android:layout_height="0dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tl_age"
+            android:id="@+id/edit_text_age"
+            app:endIconMode="clear_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
+            app:suffixText="@string/month"
+            app:suffixTextColor="@color/accent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/age"
+                style="@style/heading3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/age"
-                style="@style/heading3"
+                android:inputType="number"
                 android:textColor="@color/neutral_90" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tl_story"
+        android:id="@+id/edit_text_story"
+        app:endIconMode="clear_text"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/story"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_second">
+        app:layout_constraintTop_toBottomOf="@+id/ll_second">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/story"
+            style="@style/heading3"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            style="@style/heading3"
             android:gravity="top"
-            android:textColor="@color/neutral_90"/>
+            android:textColor="@color/neutral_90" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn_confirm"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/confirm"
-        android:background="@drawable/background_modal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tl_story" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="70dp"
+        android:contentDescription="@string/confirm"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/accent"
+        app:icon="@drawable/ic_baseline_save_24"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <include layout="@layout/navigation_bottom"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.catpedigree.capstone.catpedigreebase.presentation.ui.cat
+package com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

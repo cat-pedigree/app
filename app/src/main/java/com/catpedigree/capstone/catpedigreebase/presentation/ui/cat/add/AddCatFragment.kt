@@ -1,4 +1,4 @@
-package com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create
+package com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.add
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -6,47 +6,47 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-import com.bumptech.glide.signature.ObjectKey
-import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
-import com.catpedigree.capstone.catpedigreebase.databinding.FragmentCreatePostBinding
+import com.catpedigree.capstone.catpedigreebase.databinding.FragmentAddCatBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.camera.CameraCatActivity
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.main.MainActivity
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.camera.CameraActivity
 import com.catpedigree.capstone.catpedigreebase.utils.CameraUtils
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 import com.google.android.material.snackbar.Snackbar
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 
-class CreatePostFragment : Fragment() {
+class AddCatFragment : Fragment() {
 
-    private lateinit var _binding: FragmentCreatePostBinding
+    private lateinit var _binding: FragmentAddCatBinding
     private val binding get() = _binding
 
     private lateinit var user: UserItems
     private var currentFile: File? = null
 
-    private val viewModel: CreatePostViewModel by viewModels {
+    private var isGenderSelected:String? = null
+    private var isBreedSelected: String? = null
+
+    private val viewModel: AddCatViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -65,12 +65,30 @@ class CreatePostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCreatePostBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentAddCatBinding.inflate(inflater, container,false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val breed = resources.getStringArray(R.array.item_breed)
+        val adapterBreed = ArrayAdapter(requireContext(), R.layout.item_dropdown, breed)
+        binding.breed.setAdapter(adapterBreed)
+        binding.breed.setText(getString(R.string.choose_breed),false)
+
+        binding.breed.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
+            isBreedSelected = parent.getItemAtPosition(position).toString()
+        }
+
+        val gender = resources.getStringArray(R.array.item_gender)
+        val adapterGender = ArrayAdapter(requireContext(), R.layout.item_dropdown, gender)
+        binding.gender.setAdapter(adapterGender)
+        binding.gender.setText(getString(R.string.choose_gender),false)
+
+        binding.gender.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
+            isGenderSelected = parent.getItemAtPosition(position).toString()
+        }
+
         setupViewModel()
         setupAction()
     }
@@ -81,16 +99,6 @@ class CreatePostFragment : Fragment() {
                 findNavController().navigateUp()
             }
             this.user = userItems
-            val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${userItems.profile_photo_path}"
-            binding.apply {
-                tvName.text = userItems.name
-                Glide.with(binding.root)
-                    .load(profilePhotoPath)
-                    .signature(ObjectKey(profilePhotoPath))
-                    .placeholder(R.drawable.ic_avatar)
-                    .circleCrop()
-                    .into(ivAvatar)
-            }
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) { state ->
@@ -103,7 +111,7 @@ class CreatePostFragment : Fragment() {
 
         viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                Snackbar.make(binding.btnPost, R.string.post_success, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding.btnConfirm, R.string.cat_success, Snackbar.LENGTH_LONG).show()
                 findNavController().navigateUp()
             }
         }
@@ -111,62 +119,67 @@ class CreatePostFragment : Fragment() {
 
     private fun setupAction(){
         binding.apply {
-            btnPost.setOnClickListener {
-                uploadFile()
-            }
-
-            ivCamera.setOnClickListener {
+            ivPhoto.setOnClickListener {
                 startCameraX()
             }
-
-            tvCamera.setOnClickListener {
-                startCameraX()
-            }
-
-            ivGallery.setOnClickListener {
-                startGallery()
-            }
-
-            tvGallery.setOnClickListener {
-                startGallery()
+            btnConfirm.setOnClickListener { 
+                uploadCat()
             }
         }
     }
 
-    private fun uploadFile() {
+    private fun uploadCat() {
         binding.apply {
-            val title = titleEditText.editText?.text.toString().trim()
-            val description = postEditText.editText?.text.toString().trim()
-
+            val userId = user.id
+            val name = editTextCatName.editText?.text.toString().trim()
+            val gender = autoCompleteTextGender.editText?.text.toString().trim()
+            val color = editTextColor.editText?.text.toString().trim()
+            val weight = editTextWeight.editText?.text.toString().trim()
+            val age = editTextAge.editText?.text.toString().trim()
+            val story = editTextStory.editText?.text.toString().trim()
             when{
-                title.isEmpty() -> {
-                    Snackbar.make(titleEditText,R.string.title_required, Snackbar.LENGTH_LONG).show()
+                name.isEmpty() -> {
+                    Snackbar.make(editTextCatName,R.string.title_required, Snackbar.LENGTH_LONG).show()
                     return
                 }
-                title.length > 100 ->{
-                    Snackbar.make(postEditText,R.string.title_length, Snackbar.LENGTH_LONG).show()
+                gender.isEmpty() -> {
+                    Snackbar.make(autoCompleteTextBreed,R.string.color_required, Snackbar.LENGTH_LONG).show()
                     return
                 }
-                description.isEmpty() -> {
-                    Snackbar.make(postEditText,R.string.description_required, Snackbar.LENGTH_LONG).show()
+                color.isEmpty() -> {
+                    Snackbar.make(editTextColor,R.string.color_required, Snackbar.LENGTH_LONG).show()
+                    return
+                }
+                weight.isEmpty() -> {
+                    Snackbar.make(editTextWeight,R.string.weight_required, Snackbar.LENGTH_LONG).show()
+                    return
+                }
+                age.isEmpty() -> {
+                    Snackbar.make(editTextAge,R.string.age_required, Snackbar.LENGTH_LONG).show()
+                    return
+                }
+                story.isEmpty() -> {
+                    Snackbar.make(editTextStory,R.string.story_required, Snackbar.LENGTH_LONG).show()
                     return
                 }
                 currentFile == null -> {
-                    Snackbar.make(ivPreview,R.string.select_a_picture, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(ivPhoto,R.string.select_a_picture, Snackbar.LENGTH_LONG).show()
                     return
                 }
                 currentFile != null -> {
                     val file = CameraUtils.reduceFileImage(currentFile as File)
-                    val desc = description.toRequestBody("text/plain".toMediaType())
                     val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
                     val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                         "photo",
                         file.name,
                         requestImageFile
                     )
-                    viewModel.uploadPost(user.token ?: "", imageMultipart,title, desc)
-                }else -> {
-                Snackbar.make(ivPreview,getString(R.string.select_a_picture), Snackbar.LENGTH_LONG).show()
+                    if (userId != null) {
+                        viewModel.uploadCat(user.token ?: "", userId,name,isBreedSelected!!,isGenderSelected!!,color,weight.toDouble(),age.toInt(),story, imageMultipart)
+                    }
+                }
+            else -> {
+                    Snackbar.make(ivPhoto,getString(R.string.select_a_picture), Snackbar.LENGTH_LONG).show()
                 }
             }
         }
@@ -180,27 +193,8 @@ class CreatePostFragment : Fragment() {
     }
 
     private fun startCameraX() {
-        launcherIntentCameraX.launch(Intent(requireContext(), CameraActivity::class.java))
+        launcherIntentCameraX.launch(Intent(requireContext(), CameraCatActivity::class.java))
     }
-
-    private fun startGallery() {
-        val intent = Intent().apply {
-            action = Intent.ACTION_GET_CONTENT
-            type = "image/*"
-        }
-        launcherIntentGallery.launch(Intent.createChooser(intent, "Choose a picture!"))
-    }
-
-    private val launcherIntentGallery =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == AppCompatActivity.RESULT_OK) {
-                currentFile = CameraUtils.uriToFile(it.data?.data as Uri, requireContext())
-                binding.apply {
-                    ivPreview.visibility = View.VISIBLE
-                    ivPreview.setImageURI(Uri.fromFile(currentFile))
-                }
-            }
-        }
 
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -217,20 +211,17 @@ class CreatePostFragment : Fragment() {
 
             currentFile = myFile
 
-            binding.apply {
-                ivPreview.visibility = View.VISIBLE
-                ivPreview.setImageBitmap(result)
-            }
+            binding.ivPhoto.setImageBitmap(result)
+
         }else if(it.resultCode == AppCompatActivity.RESULT_OK){
             val photoFile = it.data?.getSerializableExtra("photoFile") as File
-            binding.apply {
-                ivPreview.visibility = View.VISIBLE
-                ivPreview.setImageURI(Uri.fromFile(photoFile))
-            }
+            currentFile = photoFile
+            binding.ivPhoto.setImageURI(Uri.fromFile(photoFile))
         }
     }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
     }
+
 }

@@ -88,8 +88,8 @@ class PostAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val 
     class ViewHolder(val binding: ItemPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(post: PostItems) {
-            val photo = "${BuildConfig.BASE_API_URL_PHOTO}${post.photo}"
-            val profilePhotoPath = "${BuildConfig.BASE_API_URL_PHOTO}${post.profile_photo_path}"
+            val photo = "${BuildConfig.BASE_API_PHOTO}${post.photo}"
+            val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${post.profile_photo_path}"
 
         binding.apply {
             Glide.with(root)

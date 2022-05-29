@@ -129,6 +129,9 @@
         <action
             android:id="@+id/action_myProfileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_addCatFragment"
+            app:destination="@id/addCatFragment" />
     </fragment>
     <fragment
         android:id="@+id/postDetailProfileFragment"
@@ -162,4 +165,9 @@
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.edit.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/addCatFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.add.AddCatFragment"
+        android:label="fragment_add_cat"
+        tools:layout="@layout/fragment_add_cat" />
 </navigation>

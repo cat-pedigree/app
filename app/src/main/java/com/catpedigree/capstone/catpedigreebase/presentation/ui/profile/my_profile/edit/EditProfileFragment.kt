@@ -123,7 +123,7 @@ class EditProfileFragment : Fragment() {
                 findNavController().navigateUp()
             }
             this.user = userItems
-            val profilePhotoPath = "${BuildConfig.BASE_API_URL_PHOTO}${userItems.profile_photo_path}"
+            val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${userItems.profile_photo_path}"
             binding.apply {
                 nameEditText.editText?.setText(userItems.name)
                 usernameEditText.editText?.setText(userItems.username)

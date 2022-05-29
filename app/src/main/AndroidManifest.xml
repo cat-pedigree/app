@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.catpedigree.capstone.catpedigreebase" >
+    package="com.catpedigree.capstone.catpedigreebase">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -24,7 +24,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CatPedigreeBase"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.camera.CameraCatActivity"
+            android:exported="false" />
         <activity
             android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.edit.camera.CameraProfileActivity"
             android:exported="false" />
@@ -38,7 +41,7 @@
             android:exported="false" />
         <activity
             android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.main.MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -35,13 +35,15 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_love.xml" value="0.1265" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_refresh_black.xml" value="0.164" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/love_toggle.xml" value="0.1265" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/photo.xml" value="0.11" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/rectangle_white.xml" value="0.122" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/font/poppins.xml" value="0.215625" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_camera.xml" value="0.2" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_camera_cat.xml" value="0.15625" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_camera_profile.xml" value="0.18645833333333334" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/bottom_sheet.xml" value="0.25" />
-        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_add_cat.xml" value="0.1539855072463768" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_add_cat.xml" value="0.22" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_add_cat_fragment.xml" value="0.18541666666666667" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_add_cat_post.xml" value="0.2" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.17083333333333334" />

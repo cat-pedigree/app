@@ -64,7 +64,7 @@ class MyProfileFragment : Fragment() {
                 findNavController().navigateUp()
             }
             this.user = userItems
-            val profilePhotoPath = "${BuildConfig.BASE_API_URL_PHOTO}${user.profile_photo_path}"
+            val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${user.profile_photo_path}"
             binding.apply {
                 tvName.text = user.name
                 tvBio.text = user.bio ?: "Bio"
@@ -76,7 +76,9 @@ class MyProfileFragment : Fragment() {
                     .placeholder(R.drawable.ic_avatar)
                     .circleCrop()
                     .into(ivAvatar)
-
+                btnAddCat.setOnClickListener {
+                    findNavController().navigate(R.id.action_myProfileFragment_to_addCatFragment)
+                }
             }
         }
 

@@ -3,12 +3,14 @@ package com.catpedigree.capstone.catpedigreebase.presentation.factory
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.CommentRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 import com.catpedigree.capstone.catpedigreebase.utils.injection.Injection
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.login.LoginViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.register.RegisterViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.add.AddCatViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.view.CommentViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsViewModel
@@ -22,7 +24,10 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profi
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.ProfileViewModel
 
 class ViewModelFactory
-    (private val userRepository: UserRepository, private val postRepository: PostRepository,private val commentRepository: CommentRepository)
+    (private val userRepository: UserRepository,
+     private val postRepository: PostRepository,
+     private val commentRepository: CommentRepository,
+    private val catRepository: CatRepository)
     : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
@@ -54,6 +59,8 @@ class ViewModelFactory
                 FavoriteViewModel(userRepository, postRepository) as T
             }modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> {
                 EditProfileViewModel(userRepository) as T
+            }modelClass.isAssignableFrom(AddCatViewModel::class.java) -> {
+                AddCatViewModel(userRepository, catRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
@@ -67,7 +74,8 @@ class ViewModelFactory
                 instance ?: ViewModelFactory(
                     Injection.provideUserRepository(context),
                     Injection.providePostRepository(context),
-                    Injection.provideCommentRepository(context))
+                    Injection.provideCommentRepository(context),
+                    Injection.provideCatRepository(context))
             }.also { instance = it }
     }
 }

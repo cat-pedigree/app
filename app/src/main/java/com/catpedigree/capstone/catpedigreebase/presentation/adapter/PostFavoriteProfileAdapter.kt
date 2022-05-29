@@ -34,7 +34,7 @@ class PostFavoriteProfileAdapter : ListAdapter<PostItems, PostFavoriteProfileAda
     class ViewHolderProfile(val binding: ItemPostProfileBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(post: PostItems) {
-            val photo = "${BuildConfig.BASE_API_URL_PHOTO}${post.photo}"
+            val photo = "${BuildConfig.BASE_API_PHOTO}${post.photo}"
             Glide.with(binding.root)
                 .load(photo)
                 .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))

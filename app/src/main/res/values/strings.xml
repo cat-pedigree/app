@@ -108,10 +108,73 @@
     <string name="breed">Breed</string>
 
     <string-array name="item_breed">
+        <item>Abyssinian</item>
+        <item>American Bobtail</item>
+        <item>American Curl</item>
+        <item>American Shorthair</item>
+        <item>American Wirehair</item>
+        <item>Applehead Siamese</item>
+        <item>Balinese</item>
+        <item>Bengal</item>
+        <item>Birman</item>
+        <item>Bombay</item>
+        <item>British Shorthair</item>
+        <item>Burmese</item>
+        <item>Burmilla</item>
+        <item>Calico</item>
+        <item>Canadian Hairless</item>
+        <item>Chartreux</item>
+        <item>Chausie</item>
+        <item>Chinchilla</item>
+        <item>Cornish Rex</item>
+        <item>Cymric</item>
+        <item>Devon Rex</item>
+        <item>Dilute Calico</item>
+        <item>Dilute Tortoiseshell</item>
+        <item>Domestic Long Hair</item>
+        <item>Domestic Medium Hair</item>
+        <item>Domestic Short Hair</item>
+        <item>Egyptian Mau</item>
+        <item>Exotic Shorthair</item>
+        <item>Extra-Toes Cat - Hemingway Polydactyl</item>
+        <item>Havana</item>
+        <item>Himalayan</item>
+        <item>Japanese Bobtail</item>
+        <item>Javanese</item>
+        <item>Korat</item>
+        <item>LaPerm</item>
+        <item>Maine Coon</item>
+        <item>Manx</item>
+        <item>Munchkin</item>
+        <item>Nebelung</item>
+        <item>Norwegian Forest Cat</item>
+        <item>Ocicat</item>
+        <item>Oriental Long Hair</item>
+        <item>Oriental Short Hair</item>
+        <item>Oriental Tabby</item>
         <item>Persian</item>
-        <item>Angora</item>
+        <item>Pixiebob</item>
+        <item>Ragamuffin</item>
         <item>Ragdoll</item>
-        <item>Maine Coons</item>
+        <item>Russian Blue</item>
+        <item>Scottish Fold</item>
+        <item>Selkirk Rex</item>
+        <item>Siamese</item>
+        <item>Siberian</item>
+        <item>Silver</item>
+        <item>Singapura</item>
+        <item>Snowshoe</item>
+        <item>Somali</item>
+        <item>Sphynx - Hairless Cat</item>
+        <item>Tabby</item>
+        <item>Tiger</item>
+        <item>Tonkinese</item>
+        <item>Torbie</item>
+        <item>Tortoiseshell</item>
+        <item>Turkish Angora</item>
+        <item>Turkish Van</item>
+        <item>Tuxedo</item>
+        <item>York Chocolate</item>
     </string-array>
 
     <string name="gender">Gender</string>
@@ -173,6 +236,23 @@
     <string name="result_error">There is an error</string>
     <string name="comment_success">Comment successfully added</string>
     <string name="post_success">Post successfully added</string>
+    <string name="cat_success">Cat successfully added</string>
+    <string name="remove_favorite">Removed from favorites</string>
+    <string name="add_favorite">Added to favorites</string>
+    <string name="remove_like">Removed from liked</string>
+    <string name="like_post">Liked this post</string>
+    <string name="register_success">Successfully signup, please continue to login.</string>
+    <string name="profile_success">Profile changed successfully</string>
+    <string name="save">Save</string>
+    <string name="kilogram">Kg</string>
+    <string name="month">Month</string>
+    <string name="gender_required">Enter Gender</string>
+    <string name="color_required">Enter Color</string>
+    <string name="weight_required">Enter Weight</string>
+    <string name="age_required">Enter Age</string>
+    <string name="story_required">Enter Story</string>
+    <string name="choose_gender">Choose Gender</string>
+    <string name="choose_breed">Choose Breed</string>
 
     <!-- TODO: String on the account page -->
     <string name="account_edit_mail">Edit Mail</string>
@@ -181,8 +261,8 @@
     <string name="account_desc_ic_email">this is the email icon on the account page</string>
     <string name="account_desc_ic_key">this is the key icon on the account page</string>
     <string name="account_desc_ic_delete">this is the icon to delete on the account page</string>
-    
-     <!-- TODO: String on the dating page -->
+
+    <!-- TODO: String on the dating page -->
     <string name="dating_cat_name">Cat Name</string>
     <string name="dating_cat_breed">Cat Breed</string>
     <string name="dating_cat_story">Cat Story</string>
@@ -194,5 +274,4 @@
     <string name="dating_desc">Your cat and mooca have liked each other </string>
     <string name="dating_description">Your cat and mooca have liked each other.</string>
     <string name="btn_message">Message Now</string>
-
 </resources>

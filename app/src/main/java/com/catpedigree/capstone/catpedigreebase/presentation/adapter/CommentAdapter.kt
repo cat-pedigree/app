@@ -16,7 +16,7 @@ class CommentAdapter : ListAdapter<CommentItems, CommentAdapter.ViewHolder>(DIFF
     class ViewHolder(private var binding: ItemCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(comment: CommentItems) {
-            val profilePhotoPath = "${BuildConfig.BASE_API_URL_PHOTO}${comment.profile_photo_path}"
+            val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${comment.profile_photo_path}"
 
             binding.apply {
                 Glide.with(root)
