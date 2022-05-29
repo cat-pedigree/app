@@ -1,6 +1,5 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.view
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,58 +50,56 @@ class CommentFragment : Fragment() {
         val post = args.post
 
         val commentAdapter = CommentAdapter()
-
-        viewModel.comments(post.id!!).observe(viewLifecycleOwner){result ->
-            if (result != null) {
-                when (result) {
-                    is Result.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
-                    is Result.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        val commentData = result.data
-                        commentAdapter.submitList(commentData)
-                    }
-                    is Result.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(
-                            context,
-                            "Terjadi kesalahan" + result.error,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            }
-        }
-
-        binding.rvComments.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-            isNestedScrollingEnabled = false
-            adapter = commentAdapter
-        }
-
         val profilePhotoPath = "http://192.168.1.4/api-cat/public/storage/${post.profile_photo_path}"
 
         binding.apply {
+            viewModel.comments(post.id!!).observe(viewLifecycleOwner){result ->
+                if (result != null) {
+                    when (result) {
+                        is Result.Loading -> {
+                            progressBar.visibility = View.VISIBLE
+                        }
+                        is Result.Success -> {
+                            progressBar.visibility = View.GONE
+                            val commentData = result.data
+                            commentAdapter.submitList(commentData)
+                        }
+                        is Result.Error -> {
+                            progressBar.visibility = View.GONE
+                            Toast.makeText(
+                                context,
+                                getString(R.string.result_error) + result.error,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
+
+            rvComments.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+                isNestedScrollingEnabled = false
+                adapter = commentAdapter
+            }
+
             tvItemName.text = post.name
             tvPost.text = post.description
-            Glide.with(binding.root)
+            Glide.with(root)
                 .load(profilePhotoPath)
                 .signature(ObjectKey(profilePhotoPath))
                 .placeholder(R.drawable.ic_avatar)
                 .circleCrop()
                 .into(imgProfile)
-        }
 
-        binding.btnAddComment.setOnClickListener {
-            Navigation.findNavController(binding.btnAddComment).navigate(
-                CommentFragmentDirections.actionCommentFragmentToCreateCommentFragment(
-                    post
+            btnAddComment.setOnClickListener {
+                Navigation.findNavController(btnAddComment).navigate(
+                    CommentFragmentDirections.actionCommentFragmentToCreateCommentFragment(
+                        post
+                    )
                 )
-            )
+            }
         }
-
     }
 
     private fun setupViewModel(){
