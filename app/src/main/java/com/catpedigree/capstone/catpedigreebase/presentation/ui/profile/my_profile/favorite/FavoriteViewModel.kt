@@ -1,4 +1,4 @@
-package com.catpedigree.capstone.catpedigreebase.presentation.ui.post.favorite
+package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.favorite
 
 import androidx.lifecycle.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
