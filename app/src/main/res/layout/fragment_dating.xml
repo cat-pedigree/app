@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swipe_layout"
+    tools:context=".presentation.ui.dating.DatingFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:keep="@layout/fragment_dating">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="298dp"
+            android:src="@drawable/img_preview"
+            tools:ignore="MissingConstraints"
+            android:contentDescription="@string/dating_desc_img" />
+
+        <LinearLayout
+            android:id="@+id/ll_first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="255dp"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:id="@+id/cv_first"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/background_services"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ib_cross"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_margin="18dp"
+                    android:src="@drawable/ic_cross"
+                    android:contentDescription="@string/dating_desc_ic_cross" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cv_second"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_marginStart="80dp"
+                android:background="@drawable/background_love_dating"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cv_first">
+
+                <ImageView
+                    android:id="@+id/ib_love"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="22dp"
+                    android:src="@drawable/ic_love_white"
+                    android:contentDescription="@string/dating_desc_ic_love" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_name_cat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dating_cat_name"
+            style="@style/title4"
+            android:textColor="@color/neutral_100"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_first"/>
+
+        <TextView
+            android:id="@+id/tv_cat_breed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dating_cat_breed"
+            style="@style/heading3"
+            android:textColor="@color/neutral_80"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_cat"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_cat_breed">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dating_cat_story"
+                style="@style/title4"
+                android:textColor="@color/neutral_100"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dating_desc_story"
+                style="@style/body2"
+                android:textColor="@color/neutral_80"/>
+
+        </LinearLayout>
+
+        <include layout="@layout/navigation_bottom"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
