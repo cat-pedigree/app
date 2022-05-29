@@ -1,4 +1,4 @@
-package com.catpedigree.capstone.catpedigreebase.presentation.ui.post.favorite
+package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.favorite
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
