@@ -22,8 +22,8 @@ import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentCreatePostBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.camera.CameraActivity
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.main.MainActivity
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.camera.CameraActivity
 import com.catpedigree.capstone.catpedigreebase.utils.CameraUtils
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 import com.google.android.material.snackbar.Snackbar
@@ -49,7 +49,7 @@ class CreatePostFragment : Fragment() {
         ViewModelFactory.getInstance(requireContext())
     }
 
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!checkAllPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -102,7 +102,7 @@ class CreatePostFragment : Fragment() {
 
         viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                Snackbar.make(binding.btnPost, "Post successfully added", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding.btnPost, R.string.post_success, Snackbar.LENGTH_LONG).show()
                 findNavController().navigateUp()
             }
         }
@@ -133,39 +133,41 @@ class CreatePostFragment : Fragment() {
     }
 
     private fun uploadFile() {
-        val title = binding.titleEditText.editText?.text.toString().trim()
-        val description = binding.postEditText.editText?.text.toString().trim()
+        binding.apply {
+            val title = titleEditText.editText?.text.toString().trim()
+            val description = postEditText.editText?.text.toString().trim()
 
-        if (title.isEmpty()) {
-            Snackbar.make(binding.postEditText,R.string.title_required, Snackbar.LENGTH_LONG).show()
-            return
-        }
-
-        if (description.isEmpty()) {
-            Snackbar.make(binding.postEditText,R.string.description_required, Snackbar.LENGTH_LONG).show()
-            return
-        }
-
-        if (currentFile == null) {
-            Snackbar.make(binding.ivPreview,R.string.select_a_picture, Snackbar.LENGTH_LONG).show()
-            return
-        }
-
-        if (currentFile != null) {
-            val file = CameraUtils.reduceFileImage(currentFile as File)
-
-            val desc = description.toRequestBody("text/plain".toMediaType())
-            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                "photo",
-                file.name,
-                requestImageFile
-            )
-
-            viewModel.uploadPost(user.token ?: "", imageMultipart,title, desc)
-
-        } else {
-            ToastUtils.showToast(requireContext(), getString(R.string.select_a_picture))
+            when{
+                title.isEmpty() -> {
+                    Snackbar.make(titleEditText,R.string.title_required, Snackbar.LENGTH_LONG).show()
+                    return
+                }
+                title.length > 100 ->{
+                    Snackbar.make(postEditText,R.string.title_length, Snackbar.LENGTH_LONG).show()
+                    return
+                }
+                description.isEmpty() -> {
+                    Snackbar.make(postEditText,R.string.description_required, Snackbar.LENGTH_LONG).show()
+                    return
+                }
+                currentFile == null -> {
+                    Snackbar.make(ivPreview,R.string.select_a_picture, Snackbar.LENGTH_LONG).show()
+                    return
+                }
+                currentFile != null -> {
+                    val file = CameraUtils.reduceFileImage(currentFile as File)
+                    val desc = description.toRequestBody("text/plain".toMediaType())
+                    val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                    val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "photo",
+                        file.name,
+                        requestImageFile
+                    )
+                    viewModel.uploadPost(user.token ?: "", imageMultipart,title, desc)
+                }else -> {
+                Snackbar.make(ivPreview,getString(R.string.select_a_picture), Snackbar.LENGTH_LONG).show()
+                }
+            }
         }
     }
 
@@ -192,8 +194,10 @@ class CreatePostFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == AppCompatActivity.RESULT_OK) {
                 currentFile = CameraUtils.uriToFile(it.data?.data as Uri, requireContext())
-                binding.ivPreview.visibility = View.VISIBLE
-                binding.ivPreview.setImageURI(Uri.fromFile(currentFile))
+                binding.apply {
+                    ivPreview.visibility = View.VISIBLE
+                    ivPreview.setImageURI(Uri.fromFile(currentFile))
+                }
             }
         }
 
@@ -212,8 +216,16 @@ class CreatePostFragment : Fragment() {
 
             currentFile = myFile
 
-            binding.ivPreview.visibility = View.VISIBLE
-            binding.ivPreview.setImageBitmap(result)
+            binding.apply {
+                ivPreview.visibility = View.VISIBLE
+                ivPreview.setImageBitmap(result)
+            }
+        }else if(it.resultCode == AppCompatActivity.RESULT_OK){
+            val photoFile = it.data?.getSerializableExtra("photoFile") as File
+            binding.apply {
+                ivPreview.visibility = View.VISIBLE
+                ivPreview.setImageURI(Uri.fromFile(photoFile))
+            }
         }
     }
 
