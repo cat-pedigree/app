@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingOne"
-        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingOne"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnBoardingOne"
         android:label="fragment_onboarding_one"
         tools:layout="@layout/fragment_onboarding_one" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingTwo"
-        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingTwo"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnBoardingTwo"
         android:label="fragment_onboarding_two"
         tools:layout="@layout/fragment_onboarding_two" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingThree"
-        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingThree"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnBoardingThree"
         android:label="fragment_onboarding_three"
         tools:layout="@layout/fragment_onboarding_three" >
         <action
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingFour"
-        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingFour"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnBoardingFour"
         android:label="fragment_onboarding_four"
         tools:layout="@layout/fragment_onboarding_four" >
         <action
@@ -126,6 +126,9 @@
         <action
             android:id="@+id/action_myProfileFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/postDetailProfileFragment"
@@ -137,7 +140,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.post.favorite.FavoriteFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.favorite.FavoriteFragment"
         android:label="FavoriteFragment" >
         <action
             android:id="@+id/action_favoriteFragment_to_emptyFavoriteFragment"
@@ -154,4 +157,9 @@
             android:id="@+id/action_emptyFavoriteFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.edit.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>
