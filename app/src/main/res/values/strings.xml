@@ -178,5 +178,18 @@
     <string name="account_edit_mail">Edit Mail</string>
     <string name="account_edit_password">Edit Password</string>
     <string name="account_delete_acc">Delete Account</string>
+    
+     <!-- TODO: String on the dating page -->
+    <string name="dating_cat_name">Cat Name</string>
+    <string name="dating_cat_breed">Cat Breed</string>
+    <string name="dating_cat_story">Cat Story</string>
+    <string name="dating_desc_story">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="dating_desc_img">This is the avatar on the dating page</string>
+    <string name="dating_desc_ic_cross">this is the cross icon on the dating page</string>
+    <string name="dating_desc_ic_love">this is the love icon on the dating page</string>
+    <string name="dating_title">It’s a Match!</string>
+    <string name="dating_desc">Your cat and mooca have liked each other </string>
+    <string name="dating_description">Your cat and mooca have liked each other.</string>
+    <string name="btn_message">Message Now</string>
 
 </resources>
