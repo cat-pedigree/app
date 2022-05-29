@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.ui.onboarding.OnboardingTwo">
+    tools:context=".presentation.ui.onboarding.OnBoardingTwo">
 
     <ImageView
         android:id="@+id/iv_onboarding"
@@ -50,12 +50,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="105dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/btn_continue"
+        app:layout_constraintBottom_toTopOf="@+id/btn_skip"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_skip"
@@ -63,12 +63,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/btn_skip"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_continue"
         app:strokeColor="@color/accent"
         app:strokeWidth="2dp" />
 

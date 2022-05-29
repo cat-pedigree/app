@@ -64,40 +64,66 @@
         app:layout_constraintStart_toEndOf="@+id/iv_avatar"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
-    <Button
-        android:id="@+id/btn_edit_profile"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
+    <ImageView
+        android:id="@+id/iv_post_count"
+        android:layout_width="115dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/accent"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/btn_edt_profile"
-        app:layout_constraintEnd_toStartOf="@+id/iv_favorite"
+        android:layout_marginTop="24dp"
+        android:alpha="0.6"
+        android:contentDescription="@string/count_post"
+        android:src="@drawable/rectangle_white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_follower_count" />
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
 
-    <ImageButton
-        android:id="@+id/iv_favorite"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/background_bookmark"
-        android:contentDescription="@string/desc_btn_fav_profile"
-        android:src="@drawable/ic_bookmark"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_edit_profile"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+        android:id="@+id/tv_post_count"
+        style="@style/heading1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/count_post"
+        android:textAlignment="center"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toEndOf="@+id/iv_post_count"
+        app:layout_constraintStart_toStartOf="@+id/iv_post_count"
+        app:layout_constraintTop_toTopOf="@+id/iv_post_count" />
 
-        <TextView
-            android:id="@+id/tv_count_post"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/post"
-            style="@style/body3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_avatar" />
+    <TextView
+        android:id="@+id/tv_count_post"
+        style="@style/body3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/post"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/iv_post_count"
+        app:layout_constraintStart_toStartOf="@+id/iv_post_count"
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_count" />
+
+    <ImageView
+        android:id="@+id/iv_follower_count"
+        android:layout_width="115dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:alpha="0.6"
+        android:contentDescription="@string/count_follower"
+        android:src="@drawable/rectangle_white"
+        app:layout_constraintStart_toEndOf="@+id/iv_post_count"
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
+
+    <TextView
+        android:id="@+id/tv_follower_count"
+        style="@style/heading1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/count_follower"
+        android:textAlignment="center"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toEndOf="@+id/iv_follower_count"
+        app:layout_constraintStart_toStartOf="@+id/iv_follower_count"
+        app:layout_constraintTop_toTopOf="@+id/iv_follower_count" />
 
     <TextView
         android:id="@+id/tv_follower"
@@ -105,53 +131,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/follower"
-        app:layout_constraintEnd_toStartOf="@+id/tv_following"
-        app:layout_constraintStart_toEndOf="@id/tv_count_post"
-        app:layout_constraintTop_toTopOf="@+id/tv_count_post" />
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/iv_follower_count"
+        app:layout_constraintStart_toStartOf="@+id/iv_follower_count"
+        app:layout_constraintTop_toBottomOf="@+id/tv_follower_count" />
 
-        <TextView
-            android:id="@+id/tv_following"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/following"
-            style="@style/body3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_avatar" />
 
-    <TextView
-        android:id="@+id/tv_post_count"
-        style="@style/heading1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/iv_following_count"
+        android:layout_width="115dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:text="@string/count_post"
-        android:textColor="@color/neutral_100"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_count_post" />
-
-    <TextView
-        android:id="@+id/tv_follower_count"
-        style="@style/heading1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/count_follower"
-        android:textColor="@color/neutral_100"
-        app:layout_constraintEnd_toStartOf="@+id/tv_following"
-        app:layout_constraintStart_toEndOf="@id/tv_count_post"
-        app:layout_constraintTop_toBottomOf="@+id/tv_follower" />
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:alpha="0.6"
+        android:contentDescription="@string/count_following"
+        android:src="@drawable/rectangle_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_follower_count"
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
 
     <TextView
         android:id="@+id/tv_following_count"
+        style="@style/heading1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/count_following"
+        android:textAlignment="center"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toEndOf="@+id/iv_following_count"
+        app:layout_constraintStart_toStartOf="@+id/iv_following_count"
+        app:layout_constraintTop_toTopOf="@+id/iv_following_count" />
+
+    <TextView
+        android:id="@+id/tv_following"
+        style="@style/body3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="@string/count_following"
-        style="@style/heading1"
-        android:textColor="@color/neutral_100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_following" />
+        android:text="@string/following"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/iv_following_count"
+        app:layout_constraintStart_toStartOf="@+id/iv_following_count"
+        app:layout_constraintTop_toBottomOf="@+id/tv_following_count" />
 
     <TextView
         android:id="@+id/my_cats"
@@ -165,7 +189,7 @@
         android:textColor="@color/neutral_100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_edit_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_follower_count" />
 
         <Button
             android:id="@+id/btn_add_cat"
@@ -190,18 +214,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_add_cat" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_post_profile"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_add_cat"
+        app:tabIndicatorColor="@color/accent"
+        app:tabMode="fixed"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_add_cat" />
+        app:layout_constraintTop_toBottomOf="@+id/tabs" />
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/rv_post_profile"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="55dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_add_cat"-->
+<!--        tools:listitem="@layout/item_post"/>-->
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -213,7 +258,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--        <include layout="@layout/navigation_bottom"/>-->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
+        android:contentDescription="@string/post"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/accent"
+        app:icon="@drawable/ic_baseline_edit_24"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+            <include layout="@layout/navigation_bottom"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

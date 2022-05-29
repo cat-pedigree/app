@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.my_profile.EditProfileFragment">
+    tools:context=".presentation.ui.profile.my_profile.edit.EditProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -25,27 +25,27 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
-        android:id="@+id/iv_edt_profile"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:id="@+id/iv_profile"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/desc_avatar_profile"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-        tools:src="@tools:sample/avatars"
-        android:contentDescription="@string/desc_avatar_profile" />
+        tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tv_edt_photo_profile"
+        android:id="@+id/btn_edit_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_edt_photo_profile"
         android:textColor="@color/accent"
-        style="@style/sub_headline2"
+        style="@style/heading2"
         android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_edt_profile" />
+        app:layout_constraintTop_toBottomOf="@id/iv_profile" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name_edit_text"
@@ -59,7 +59,7 @@
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_edt_photo_profile">
+        app:layout_constraintTop_toBottomOf="@id/btn_edit_profile">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -91,7 +91,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/desc_edit_text"
+        android:id="@+id/bio_edit_text"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -123,8 +123,18 @@
         android:background="@drawable/background_modal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/desc_edit_text" />
+        app:layout_constraintTop_toBottomOf="@id/bio_edit_text" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include layout="@layout/navigation_bottom"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
