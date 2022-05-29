@@ -37,7 +37,8 @@ open class UserRepository(
                         profile_photo_path = it.user?.profile_photo_path,
                         token = it.token,
                         isLoggedIn = true,
-                        postsCount = it.user?.posts_count
+                        postsCount = it.user?.posts_count,
+                        catsCount = it.user?.cats_count
                     )
                     prefs.updateUser(user)
                 }
@@ -124,7 +125,8 @@ open class UserRepository(
                 lat = null,
                 lon = null,
                 profile_photo_path = null,
-                postsCount = 0
+                postsCount = 0,
+                catsCount = 0
             ))
         } catch (e: Throwable) {
             throw AuthError(e.message.toString())

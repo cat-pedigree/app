@@ -54,4 +54,7 @@ data class UserData(
 
     @field: SerializedName("posts_count")
     val posts_count: Int? = null,
+
+    @field: SerializedName("cats_count")
+    val cats_count: Int? = null,
 )
