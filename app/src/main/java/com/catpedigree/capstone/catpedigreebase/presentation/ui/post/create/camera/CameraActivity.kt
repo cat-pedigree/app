@@ -1,12 +1,14 @@
-package com.catpedigree.capstone.catpedigreebase.presentation.ui.camera
+package com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.camera
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -34,6 +36,11 @@ class CameraActivity : AppCompatActivity() {
             else CameraSelector.DEFAULT_BACK_CAMERA
             startCamera()
         }
+
+        binding.cameraGallery.setOnClickListener {
+            startGallery()
+        }
+
     }
 
     public override fun onResume() {
@@ -99,6 +106,26 @@ class CameraActivity : AppCompatActivity() {
             }
         }, ContextCompat.getMainExecutor(this))
     }
+
+    private fun startGallery() {
+        val intent = Intent().apply {
+            action = Intent.ACTION_GET_CONTENT
+            type = "image/*"
+        }
+        launcherIntentGallery.launch(Intent.createChooser(intent, "Choose a picture!"))
+    }
+
+    private val launcherIntentGallery =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == RESULT_OK) {
+                val photoFile = CameraUtils.uriToFile(it.data?.data as Uri, this)
+                val intent = Intent().apply {
+                    putExtra("photoFile", photoFile)
+                }
+                setResult(RESULT_OK, intent)
+                finish()
+            }
+        }
 
 
     private fun hideSystemUI() {
