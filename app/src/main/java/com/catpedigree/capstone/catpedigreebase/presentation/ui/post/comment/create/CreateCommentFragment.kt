@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentCreateCommentBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
+import com.google.android.material.snackbar.Snackbar
 
 class CreateCommentFragment : Fragment() {
 
@@ -42,25 +44,26 @@ class CreateCommentFragment : Fragment() {
 
     private fun setupAction(){
         val post = args.post
-        binding.btnComment.setOnClickListener {
-            val userId = user.id
-            val postId = post.id
-            val description = binding.edtComment.editText?.text.toString().trim()
+        binding.apply {
+            btnComment.setOnClickListener {
+                val userId = user.id
+                val postId = post.id
+                val description = edtComment.editText?.text.toString().trim()
 
-            if (userId != null) {
-                if (postId != null) {
-                    when{
-                        description.isEmpty() ->{
-                            binding.edtComment.error = "Enter Comment"
-                        }
-                        else -> {
-                            viewModel.createComment(user.token ?: "", postId, userId, description)
+                if (userId != null) {
+                    if (postId != null) {
+                        when{
+                            description.isEmpty() ->{
+                                edtComment.error = getString(R.string.description_required)
+                            }
+                            else -> {
+                                viewModel.createComment(user.token ?: "", postId, userId, description)
+                            }
                         }
                     }
                 }
             }
         }
-
     }
 
     private fun setupViewModel(){
@@ -81,7 +84,7 @@ class CreateCommentFragment : Fragment() {
 
         viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                ToastUtils.showToast(requireContext(), "Comment successfully added")
+                Snackbar.make(binding.btnComment,R.string.comment_success, Snackbar.LENGTH_LONG).show()
                 findNavController().navigateUp()
             }
         }
