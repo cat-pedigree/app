@@ -52,6 +52,9 @@ data class UserData(
     @field:SerializedName("profile_photo_path")
     val profile_photo_path: String? = null,
 
+    @field:SerializedName("updated_at")
+    val updated_at: String? = null,
+
     @field: SerializedName("posts_count")
     val posts_count: Int? = null,
 )

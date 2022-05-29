@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.catpedigree.capstone.catpedigreebase.R
@@ -51,28 +52,42 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupAction(){
-        binding.tvSignup.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
-        }
-        binding.btnLogin.setOnClickListener {
-            val email = binding.emailEditText.editText?.text.toString()
-            val password = binding.passwordEditText.editText?.text.toString()
+        binding.apply {
+            tvSignup.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            }
 
-            when{
-                email.isEmpty() -> {
-                    binding.emailEditText.error = getString(R.string.email_required)
+            passwordEditText.editText?.doOnTextChanged { text, _, _, _ ->
+                when{
+                    text!!.length < 8 -> {
+                        passwordEditText.error = getString(R.string.password_required_length)
+                    }
+                    text.length >= 8 -> {
+                        passwordEditText.error = null
+                    }
                 }
-                !isValidEmail(email) -> {
-                    binding.emailEditText.error = getString(R.string.email_pattern)
-                }
-                password.isEmpty() -> {
-                    binding.passwordEditText.error = getString(R.string.password_required)
-                }
-                password.length < 6 -> {
-                    binding.passwordEditText.error = getString(R.string.password_required_length)
-                }
-                else -> {
-                    viewModel.login(email, password)
+            }
+
+            btnLogin.setOnClickListener {
+                val email = emailEditText.editText?.text.toString()
+                val password = passwordEditText.editText?.text.toString()
+
+                when{
+                    email.isEmpty() -> {
+                        binding.emailEditText.error = getString(R.string.email_required)
+                    }
+                    !isValidEmail(email) -> {
+                        binding.emailEditText.error = getString(R.string.email_pattern)
+                    }
+                    password.isEmpty() -> {
+                        binding.passwordEditText.error = getString(R.string.password_required)
+                    }
+                    password.length < 8 -> {
+                        binding.passwordEditText.error = getString(R.string.password_required_length)
+                    }
+                    else -> {
+                        viewModel.login(email, password)
+                    }
                 }
             }
         }

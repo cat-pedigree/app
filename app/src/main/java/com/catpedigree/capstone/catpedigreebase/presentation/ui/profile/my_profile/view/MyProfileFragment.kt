@@ -1,23 +1,24 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentMyProfileBinding
-import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PostProfileAdapter
+import com.catpedigree.capstone.catpedigreebase.presentation.adapter.SectionPagerAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
-import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MyProfileFragment : Fragment() {
 
@@ -34,6 +35,14 @@ class MyProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMyProfileBinding.inflate(layoutInflater,container,false)
+
+        val bundle = Bundle()
+        val sectionPagerAdapter = SectionPagerAdapter(requireActivity() as AppCompatActivity, bundle)
+        binding.viewPager.adapter = sectionPagerAdapter
+        TabLayoutMediator(binding.tabs, binding.viewPager){
+                tab, position ->
+                tab.icon = ContextCompat.getDrawable(requireActivity(), TAB_ICONS[position])
+        }.attach()
         return binding.root
     }
 
@@ -44,35 +53,8 @@ class MyProfileFragment : Fragment() {
     }
 
     private fun setupAction(){
-        val postProfileAdapter = PostProfileAdapter()
-        viewModel.getPostProfile().observe(viewLifecycleOwner) { result ->
-            if (result != null) {
-                when (result) {
-                    is Result.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
-                    is Result.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        val postData = result.data
-                        postProfileAdapter.submitList(postData)
-                    }
-                    is Result.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(
-                            context,
-                            "Terjadi kesalahan" + result.error,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            }
-        }
-
-        binding.rvPostProfile.apply {
-            layoutManager = GridLayoutManager(requireContext(),3)
-            setHasFixedSize(true)
-            isNestedScrollingEnabled = false
-            adapter = postProfileAdapter
+        binding.btnEditProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_myProfileFragment_to_editProfileFragment)
         }
     }
     private fun setupViewModel(){
@@ -81,7 +63,7 @@ class MyProfileFragment : Fragment() {
                 findNavController().navigateUp()
             }
             this.user = userItems
-            val profilePhotoPath = "http://192.168.1.4/api-cat/public/storage/${userItems.profile_photo_path}"
+            val profilePhotoPath = "http://192.168.1.4/api-cat/public/storage/${user.profile_photo_path}"
             binding.apply {
                 tvName.text = user.name
                 tvBio.text = user.bio ?: "Bio"
@@ -93,9 +75,7 @@ class MyProfileFragment : Fragment() {
                     .placeholder(R.drawable.ic_avatar)
                     .circleCrop()
                     .into(ivAvatar)
-                ivFavorite.setOnClickListener {
-                    findNavController().navigate(R.id.action_myProfileFragment_to_favoriteFragment)
-                }
+
             }
         }
 
@@ -110,5 +90,10 @@ class MyProfileFragment : Fragment() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
+    }
+
+    companion object {
+        @StringRes
+        private val TAB_ICONS = intArrayOf(R.drawable.ic_baseline_dashboard_24, R.drawable.ic_baseline_bookmark_black)
     }
 }

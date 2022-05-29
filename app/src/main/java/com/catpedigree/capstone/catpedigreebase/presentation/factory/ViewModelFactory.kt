@@ -12,11 +12,12 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.register.Re
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.view.CommentViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsViewModel
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnboardingViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnBoardingViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.create.CreateCommentViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.CreatePostViewModel
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.favorite.FavoriteViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.favorite.FavoriteViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail.PostDetailProfileViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.edit.EditProfileViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view.MyProfileViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.ProfileViewModel
 
@@ -27,8 +28,8 @@ class ViewModelFactory
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
-            modelClass.isAssignableFrom(OnboardingViewModel::class.java) -> {
-                OnboardingViewModel(userRepository) as T
+            modelClass.isAssignableFrom(OnBoardingViewModel::class.java) -> {
+                OnBoardingViewModel(userRepository) as T
             }modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(userRepository) as T
             }modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
@@ -51,6 +52,8 @@ class ViewModelFactory
                 PostDetailProfileViewModel(userRepository, postRepository) as T
             }modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
                 FavoriteViewModel(userRepository, postRepository) as T
+            }modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> {
+                EditProfileViewModel(userRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

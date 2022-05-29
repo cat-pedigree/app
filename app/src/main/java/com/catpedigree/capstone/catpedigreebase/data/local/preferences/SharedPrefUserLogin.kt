@@ -22,6 +22,7 @@ class SharedPrefUserLogin private constructor(private val dataStore: DataStore<P
                 lon = preferences[LON_KEY],
                 profile_photo_path = preferences[PROFILE_PHOTO_PATH_KEY],
                 isLoggedIn = preferences[STATE_KEY],
+                updated_at = preferences[UPDATED_AT],
                 postsCount = preferences[POSTS_COUNT]
             )
         }
@@ -40,6 +41,7 @@ class SharedPrefUserLogin private constructor(private val dataStore: DataStore<P
             user.lon?.let { preferences[LON_KEY] = it }
             user.profile_photo_path?.let { preferences[PROFILE_PHOTO_PATH_KEY] = it }
             user.isLoggedIn?.let { preferences[STATE_KEY] = it }
+            user.updated_at?.let { preferences[UPDATED_AT] = it }
             user.postsCount?.let { preferences[POSTS_COUNT] = it }
         }
     }
@@ -60,6 +62,7 @@ class SharedPrefUserLogin private constructor(private val dataStore: DataStore<P
         private val PROFILE_PHOTO_PATH_KEY = stringPreferencesKey("profile_photo_path")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val STATE_KEY = booleanPreferencesKey("state")
+        private val UPDATED_AT = stringPreferencesKey("updated_at")
         private val POSTS_COUNT = intPreferencesKey("posts_count")
 
         fun getInstance(dataStore: DataStore<Preferences>): SharedPrefUserLogin {

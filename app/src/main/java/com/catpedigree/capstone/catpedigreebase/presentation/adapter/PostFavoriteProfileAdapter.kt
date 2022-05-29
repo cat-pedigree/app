@@ -14,7 +14,7 @@ import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostProfileBinding
 
-class PostProfileAdapter : ListAdapter<PostItems, PostProfileAdapter.ViewHolderProfile>(DIFF_CALLBACK) {
+class PostFavoriteProfileAdapter : ListAdapter<PostItems, PostFavoriteProfileAdapter.ViewHolderProfile>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -34,16 +34,16 @@ class PostProfileAdapter : ListAdapter<PostItems, PostProfileAdapter.ViewHolderP
         RecyclerView.ViewHolder(binding.root) {
         fun bind(post: PostItems) {
             val photo = "http://192.168.1.4/api-cat/public/storage/${post.photo}"
-            binding.apply {
-                Glide.with(root)
-                    .load(photo)
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
-                    .signature(ObjectKey(photo))
-                    .into(imgPoster)
+            Glide.with(binding.root)
+                .load(photo)
+                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
+                .signature(ObjectKey(photo))
+                .into(binding.imgPoster)
 
-                    imgPoster.setOnClickListener {
-                        Navigation.findNavController(imgPoster).navigate(R.id.action_myProfileFragment_to_postDetailProfileFragment)
-                    }
+            binding.apply {
+                imgPoster.setOnClickListener {
+                    Navigation.findNavController(imgPoster).navigate(R.id.action_myProfileFragment_to_favoriteFragment)
+                }
             }
         }
     }

@@ -17,8 +17,8 @@ import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var _binding: FragmentHomeBinding
+    private val binding get() = _binding
     private lateinit var user: UserItems
 
     private val viewModel: HomeViewModel by viewModels {
@@ -35,6 +35,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupMenu()
         setupAction()
         setupViewModel()
     }
@@ -44,42 +45,21 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupAction(){
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId){
-                R.id.addPost -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
-                    true
-                }
-                R.id.profile -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_myProfileFragment)
-                    true
-                }
-                R.id.logout -> {
-                    viewModel.logout()
-                    true
-                }
-                else -> {
-                        false
-                    }
-                }
+        val postAdapter = PostAdapter(onFavoriteClick = { post ->
+            if (post.isBookmarked) {
+                viewModel.deletePost(post)
+            } else {
+                viewModel.savePost(post)
             }
-
-            val postAdapter = PostAdapter(onFavoriteClick = { post ->
-                if (post.isBookmarked) {
-                    viewModel.deletePost(post)
-                } else {
-                    viewModel.savePost(post)
-                }
-//
-            }, onLoveClick = {post ->
-                if(post.isLoved){
-                    viewModel.deleteLovePost(post)
-                    viewModel.loveDelete(user.token ?: "",post.id!!, user.id!!)
-                }else{
-                    viewModel.createLovePost(post)
-                    viewModel.loveCreate(user.token ?: "",post.id!!, user.id!!)
-                }
-            })
+        }, onLoveClick = {post ->
+            if(post.isLoved){
+                viewModel.deleteLovePost(post)
+                viewModel.loveDelete(user.token ?: "",post.id!!, user.id!!)
+            }else{
+                viewModel.createLovePost(post)
+                viewModel.loveCreate(user.token ?: "",post.id!!, user.id!!)
+            }
+        })
 
         viewModel.getPosts().observe(viewLifecycleOwner) { result ->
             if (result != null) {
@@ -96,7 +76,7 @@ class HomeFragment : Fragment() {
                         binding.progressBar.visibility = View.GONE
                         Toast.makeText(
                             context,
-                            "Terjadi kesalahan" + result.error,
+                            getString(R.string.result_error) + result.error,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -129,12 +109,29 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        (if (isLoading) View.VISIBLE else View.INVISIBLE).also { binding.progressBar.visibility = it }
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.addPost -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
+                    true
+                }
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_myProfileFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    private fun showLoading(isLoading: Boolean) {
+        (if (isLoading) View.VISIBLE else View.INVISIBLE).also { binding.progressBar.visibility = it }
     }
 }

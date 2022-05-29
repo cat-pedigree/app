@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.catpedigree.capstone.catpedigreebase.R
@@ -36,41 +37,56 @@ class RegisterFragment : Fragment() {
     }
 
     private fun setupAction(){
-        binding.btnRegister.setOnClickListener {
-            val name = binding.nameEditText.editText?.text.toString()
-            val username = binding.usernameEditText.editText?.text.toString()
-            val phoneNumber = binding.phoneNumberEditText.editText?.text.toString()
-            val email = binding.emailEditText.editText?.text.toString()
-            val password = binding.passwordEditText.editText?.text.toString()
-            when{
-                name.isEmpty() -> {
-                    binding.nameEditText.error = getString(R.string.name_required)
-                }
-                username.isEmpty() -> {
-                    binding.usernameEditText.error = getString(R.string.username_required)
-                }
-                phoneNumber.isEmpty() -> {
-                    binding.phoneNumberEditText.error = getString(R.string.phone_number_required)
-                }
-                email.isEmpty() -> {
-                    binding.emailEditText.error = getString(R.string.email_required)
-                }
-                !isValidEmail(email) -> {
-                    binding.emailEditText.error = getString(R.string.email_pattern)
-                }
-                password.isEmpty() -> {
-                    binding.passwordEditText.error = getString(R.string.password_required)
-                }
-                password.length < 6 -> {
-                    binding.passwordEditText.error = getString(R.string.password_required_length)
-                }
-                else -> {
-                    viewModel.register(name,username,phoneNumber,email,password)
+        binding.apply {
+            tvLogin.setOnClickListener {
+                findNavController().navigateUp()
+            }
+
+            passwordEditText.editText?.doOnTextChanged { text, _, _, _ ->
+                when{
+                    text!!.length < 8 -> {
+                        passwordEditText.error = getString(R.string.password_required_length)
+                    }
+                    text.length >= 8 -> {
+                        passwordEditText.error = null
+                    }
                 }
             }
-        }
-        binding.tvLogin.setOnClickListener {
-            findNavController().navigateUp()
+
+            binding.btnRegister.setOnClickListener {
+                val name = binding.nameEditText.editText?.text.toString()
+                val username = binding.usernameEditText.editText?.text.toString()
+                val phoneNumber = binding.phoneNumberEditText.editText?.text.toString()
+                val email = binding.emailEditText.editText?.text.toString()
+                val password = binding.passwordEditText.editText?.text.toString()
+
+                when{
+                    name.isEmpty() -> {
+                        nameEditText.error = getString(R.string.name_required)
+                    }
+                    username.isEmpty() -> {
+                        usernameEditText.error = getString(R.string.username_required)
+                    }
+                    phoneNumber.isEmpty() -> {
+                        phoneNumberEditText.error = getString(R.string.phone_number_required)
+                    }
+                    email.isEmpty() -> {
+                        emailEditText.error = getString(R.string.email_required)
+                    }
+                    isValidEmail(email) -> {
+                        emailEditText.error = getString(R.string.email_pattern)
+                    }
+                    password.isEmpty() -> {
+                        passwordEditText.error = getString(R.string.password_required)
+                    }
+                    password.length < 8 -> {
+                        passwordEditText.error = getString(R.string.password_required_length)
+                    }
+                    else -> {
+                        viewModel.register(name,username,phoneNumber,email,password)
+                    }
+                }
+            }
         }
     }
 
@@ -96,6 +112,6 @@ class RegisterFragment : Fragment() {
     }
 
     private fun isValidEmail(email: String): Boolean{
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        return !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }

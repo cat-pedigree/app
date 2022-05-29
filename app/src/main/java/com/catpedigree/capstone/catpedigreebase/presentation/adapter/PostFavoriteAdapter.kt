@@ -15,7 +15,7 @@ import com.bumptech.glide.signature.ObjectKey
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostBinding
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.favorite.FavoriteFragmentDirections
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.favorite.FavoriteFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
 class PostFavoriteAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val onLoveClick:(PostItems) -> Unit) : ListAdapter<PostItems, PostFavoriteAdapter.ViewHolderFavorite>(DIFF_CALLBACK) {
@@ -32,53 +32,55 @@ class PostFavoriteAdapter(private val onFavoriteClick: (PostItems) -> Unit, priv
 
     override fun onBindViewHolder(holder: ViewHolderFavorite, position: Int) {
         holder.binding.root.context
-        val post = getItem(position)
-        holder.bind(post)
+        holder.binding.apply {
+            val post = getItem(position)
+            holder.bind(post)
 
-        val toggleFavorite = holder.binding.toggleFavorite
-        val toggleLove = holder.binding.toggleLoves
-        val imgPoster = holder.binding.imgPoster
-        var tapTap = 0
+            val toggleFavorite = toggleFavorite
+            val toggleLove = toggleLoves
+            val imgPoster = imgPoster
+            var tapTap = 0
 
-        toggleFavorite.isChecked = post.isBookmarked
-        toggleLove.isChecked = post.isLoved
+            toggleFavorite.isChecked = post.isBookmarked
+            toggleLove.isChecked = post.isLoved
 
-        toggleFavorite.setOnClickListener {
-            if(post.isBookmarked){
-                onFavoriteClick(post)
-                Snackbar.make(holder.binding.toggleFavorite,"Removed from favorites", Snackbar.LENGTH_LONG).show()
-            }else{
-                onFavoriteClick(post)
-                Snackbar.make(holder.binding.toggleFavorite,"Added to favorites", Snackbar.LENGTH_LONG).show()
-            }
-        }
-
-        toggleLove.setOnClickListener {
-            if(post.isLoved){
-                onLoveClick(post)
-                Snackbar.make(holder.binding.toggleLoves,"Removed from liked", Snackbar.LENGTH_LONG).show()
-            }else{
-                onLoveClick(post)
-                Snackbar.make(holder.binding.toggleLoves,"Liked this post", Snackbar.LENGTH_LONG).show()
-            }
-        }
-
-        imgPoster.setOnClickListener {
-            tapTap++
-            Handler(Looper.getMainLooper()).postDelayed({
-                if(tapTap==2){
-                    if(post.isLoved){
-                        onLoveClick(post)
-                        toggleLove.isChecked = post.isLoved
-                        Snackbar.make(holder.binding.toggleLoves,"Removed from liked", Snackbar.LENGTH_LONG).show()
-                    }else{
-                        onLoveClick(post)
-                        toggleLove.isChecked = post.isLoved
-                        Snackbar.make(holder.binding.toggleLoves,"Liked this post", Snackbar.LENGTH_LONG).show()
-                    }
+            toggleFavorite.setOnClickListener {
+                if(post.isBookmarked){
+                    onFavoriteClick(post)
+                    Snackbar.make(toggleFavorite,"Removed from favorites", Snackbar.LENGTH_LONG).show()
+                }else{
+                    onFavoriteClick(post)
+                    Snackbar.make(toggleFavorite,"Added to favorites", Snackbar.LENGTH_LONG).show()
                 }
-                tapTap = 0
-            }, tapTapTimeOut)
+            }
+
+            toggleLove.setOnClickListener {
+                if(post.isLoved){
+                    onLoveClick(post)
+                    Snackbar.make(toggleLoves,"Removed from liked", Snackbar.LENGTH_LONG).show()
+                }else{
+                    onLoveClick(post)
+                    Snackbar.make(toggleLoves,"Liked this post", Snackbar.LENGTH_LONG).show()
+                }
+            }
+
+            imgPoster.setOnClickListener {
+                tapTap++
+                Handler(Looper.getMainLooper()).postDelayed({
+                    if(tapTap==2){
+                        if(post.isLoved){
+                            onLoveClick(post)
+                            toggleLove.isChecked = post.isLoved
+                            Snackbar.make(toggleLoves,"Removed from liked", Snackbar.LENGTH_LONG).show()
+                        }else{
+                            onLoveClick(post)
+                            toggleLove.isChecked = post.isLoved
+                            Snackbar.make(toggleLoves,"Liked this post", Snackbar.LENGTH_LONG).show()
+                        }
+                    }
+                    tapTap = 0
+                }, tapTapTimeOut)
+            }
         }
     }
 
@@ -87,31 +89,32 @@ class PostFavoriteAdapter(private val onFavoriteClick: (PostItems) -> Unit, priv
         fun bind(post: PostItems) {
             val photo = "http://192.168.1.4/api-cat/public/storage/${post.photo}"
             val profilePhotoPath = "http://192.168.1.4/api-cat/public/storage/${post.profile_photo_path}"
-            Glide.with(binding.root)
-                .load(photo)
-                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
-                .signature(ObjectKey(photo))
-                .into(binding.imgPoster)
-
-            Glide.with(binding.root)
-                .load(profilePhotoPath)
-                .signature(ObjectKey(profilePhotoPath))
-                .placeholder(R.drawable.ic_avatar)
-                .circleCrop()
-                .into(binding.imgProfile)
 
             binding.apply {
-                tvItemName.text = post.name
-                tvItemTitle.text = post.title
-                tvItemDescription.text = post.description
+                Glide.with(root)
+                    .load(photo)
+                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
+                    .signature(ObjectKey(photo))
+                    .into(imgPoster)
 
-                ivComment.setOnClickListener {
-                    Navigation.findNavController(ivComment).navigate(
-                        FavoriteFragmentDirections.actionFavoriteFragmentToCommentFragment(
-                            post
+                Glide.with(root)
+                    .load(profilePhotoPath)
+                    .signature(ObjectKey(profilePhotoPath))
+                    .placeholder(R.drawable.ic_avatar)
+                    .circleCrop()
+                    .into(imgProfile)
+
+                    tvItemName.text = post.name
+                    tvItemTitle.text = post.title
+                    tvItemDescription.text = post.description
+
+                    ivComment.setOnClickListener {
+                        Navigation.findNavController(ivComment).navigate(
+                            FavoriteFragmentDirections.actionFavoriteFragmentToCommentFragment(
+                                post
+                            )
                         )
-                    )
-                }
+                    }
             }
         }
     }

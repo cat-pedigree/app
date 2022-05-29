@@ -1,4 +1,4 @@
-package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail
+package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,22 +8,22 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
-import com.catpedigree.capstone.catpedigreebase.databinding.FragmentPostDetailProfileBinding
-import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PostProfileDetailAdapter
+import com.catpedigree.capstone.catpedigreebase.databinding.FragmentPostMyProfileBinding
+import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PostProfileAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
-class PostDetailProfileFragment : Fragment() {
-    private lateinit var _binding: FragmentPostDetailProfileBinding
-    private val binding get() = _binding
+class PostMyProfileFragment : Fragment() {
 
+    private lateinit var _binding: FragmentPostMyProfileBinding
+    private val binding get() = _binding
     private lateinit var user: UserItems
 
-    private val viewModel: PostDetailProfileViewModel by viewModels {
+    private val viewModel: MyProfileViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -31,7 +31,7 @@ class PostDetailProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPostDetailProfileBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentPostMyProfileBinding.inflate(layoutInflater,container,false)
         return binding.root
     }
 
@@ -42,23 +42,7 @@ class PostDetailProfileFragment : Fragment() {
     }
 
     private fun setupAction(){
-        val postAdapterProfile = PostProfileDetailAdapter(onFavoriteClick = { post ->
-            if (post.isBookmarked) {
-                viewModel.deletePost(post)
-            } else {
-                viewModel.savePost(post)
-            }
-//
-        }, onLoveClick = {post ->
-            if(post.isLoved){
-                viewModel.deleteLovePost(post)
-                viewModel.loveDelete(user.token ?: "",post.id!!, user.id!!)
-            }else{
-                viewModel.createLovePost(post)
-                viewModel.loveCreate(user.token ?: "",post.id!!, user.id!!)
-            }
-        })
-
+        val postProfileAdapter = PostProfileAdapter()
         viewModel.getPostProfile().observe(viewLifecycleOwner) { result ->
             if (result != null) {
                 when (result) {
@@ -68,7 +52,7 @@ class PostDetailProfileFragment : Fragment() {
                     is Result.Success -> {
                         binding.progressBar.visibility = View.GONE
                         val postData = result.data
-                        postAdapterProfile.submitList(postData)
+                        postProfileAdapter.submitList(postData)
                     }
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
@@ -82,14 +66,13 @@ class PostDetailProfileFragment : Fragment() {
             }
         }
 
-        binding.rvPost.apply {
-            layoutManager = LinearLayoutManager(requireContext())
+        binding.rvPostProfile.apply {
+            layoutManager = GridLayoutManager(requireContext(),3)
             setHasFixedSize(true)
             isNestedScrollingEnabled = false
-            adapter = postAdapterProfile
+            adapter = postProfileAdapter
         }
     }
-
     private fun setupViewModel(){
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
@@ -98,17 +81,16 @@ class PostDetailProfileFragment : Fragment() {
             this.user = userItems
         }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
-            ToastUtils.showToast(requireContext(), message)
-        }
-
         viewModel.isLoading.observe(viewLifecycleOwner) { state ->
             showLoading(state)
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            ToastUtils.showToast(requireContext(), message)
         }
     }
 
     private fun showLoading(isLoading: Boolean) {
-        (if (isLoading) View.VISIBLE else View.INVISIBLE).also { binding.progressBar.visibility = it }
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
     }
-
 }

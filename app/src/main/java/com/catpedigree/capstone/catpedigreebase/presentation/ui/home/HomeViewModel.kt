@@ -1,8 +1,6 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.home
 
 import androidx.lifecycle.*
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems

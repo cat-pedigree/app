@@ -2,15 +2,19 @@ package com.catpedigree.capstone.catpedigreebase.data.local.repository
 
 import android.content.Context
 import com.catpedigree.capstone.catpedigreebase.R
-import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.data.local.preferences.SharedPrefUserLogin
 import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.UserRemoteDataSource
+import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
+import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import okhttp3.MultipartBody
 
 open class UserRepository(
     private val context: Context,
     private val userRemote: UserRemoteDataSource,
-    private val prefs: SharedPrefUserLogin
+    private val prefs: SharedPrefUserLogin,
 ) {
 
     val userItems = prefs.getUser()
@@ -34,6 +38,7 @@ open class UserRepository(
                         profile_photo_path = it.user?.profile_photo_path,
                         token = it.token,
                         isLoggedIn = true,
+                        updated_at = it.user?.updated_at,
                         postsCount = it.user?.posts_count
                     )
                     prefs.updateUser(user)
@@ -56,6 +61,54 @@ open class UserRepository(
             }
         } catch (e: Throwable) {
             throw AuthError(e.message.toString())
+        }
+    }
+
+    suspend fun change(
+        token: String,
+        profile_photo_path: MultipartBody.Part,
+        slug: String
+    ) {
+        withContext(Dispatchers.IO) {
+            try {
+                val response =
+                    userRemote.change(
+                        token,
+                        profile_photo_path,
+                    )
+                prefs.updateUser(UserItems(profile_photo_path = slug))
+                if (!response.isSuccessful) {
+                    throw PostError(response.message())
+                }
+            } catch (e: Throwable) {
+                throw PostError(e.message.toString())
+            }
+        }
+    }
+
+    suspend fun profile(
+        token: String,
+        name: String,
+        username: String,
+        bio:String
+    ) {
+        withContext(Dispatchers.IO) {
+            try {
+                val response =
+                    userRemote.profile(
+                        token,
+                        name,
+                        username,
+                        bio
+                    )
+
+                prefs.updateUser(UserItems(name = name, username = username, bio = bio))
+                if (!response.isSuccessful) {
+                    throw PostError(response.message())
+                }
+            } catch (e: Throwable) {
+                throw PostError(e.message.toString())
+            }
         }
     }
 

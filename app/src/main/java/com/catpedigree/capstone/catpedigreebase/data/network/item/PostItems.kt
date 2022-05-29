@@ -6,7 +6,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import retrofit2.http.Field
 
 @Parcelize
 @Entity(tableName = "post_items")
