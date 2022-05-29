@@ -10,13 +10,13 @@ class CatRemoteDataSource(private val catInterface: CatInterface) {
     suspend fun catCreate(
         token: String,
         user_id: Int,
-        name: String,
-        breed: String,
-        gender: String,
-        color: String,
+        name: RequestBody,
+        breed: RequestBody,
+        gender: RequestBody,
+        color: RequestBody,
         weight:Double,
         age: Int,
-        story:String,
+        story:RequestBody,
         photo: MultipartBody.Part,
     ) = catInterface.catCreate("Bearer $token",user_id,name, breed, gender,color, weight, age, story, photo)
 }

@@ -6,6 +6,7 @@ import com.catpedigree.capstone.catpedigreebase.utils.error.CatError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class CatRepository(
     private val catRemoteDataSource: CatRemoteDataSource,
@@ -13,13 +14,13 @@ class CatRepository(
     suspend fun catCreate(
         token: String,
         user_id: Int,
-        name: String,
-        breed: String,
-        gender: String,
-        color: String,
+        name: RequestBody,
+        breed: RequestBody,
+        gender: RequestBody,
+        color: RequestBody,
         weight:Double,
         age: Int,
-        story:String,
+        story:RequestBody,
         photo: MultipartBody.Part,
     ) {
         withContext(Dispatchers.IO) {

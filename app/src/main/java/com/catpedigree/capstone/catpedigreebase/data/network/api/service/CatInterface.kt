@@ -15,13 +15,13 @@ interface CatInterface {
     suspend fun catCreate(
         @Header("Authorization") token: String,
         @Part("user_id") user_id: Int,
-        @Part("name") name: String,
-        @Part("breed") breed: String,
-        @Part("gender") gender: String,
-        @Part("color") color: String,
+        @Part("name") name: RequestBody,
+        @Part("breed") breed: RequestBody,
+        @Part("gender") gender: RequestBody,
+        @Part("color") color: RequestBody,
         @Part("weight") weight: Double,
         @Part("age") age: Int,
-        @Part("story") story: String,
+        @Part("story") story: RequestBody,
         @Part photo: MultipartBody.Part,
     ): Response<CatCreateResponse>
 }

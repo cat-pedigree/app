@@ -27,9 +27,11 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.main.MainActivit
 import com.catpedigree.capstone.catpedigreebase.utils.CameraUtils
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 import com.google.android.material.snackbar.Snackbar
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -131,12 +133,12 @@ class AddCatFragment : Fragment() {
     private fun uploadCat() {
         binding.apply {
             val userId = user.id
-            val name = editTextCatName.editText?.text.toString().trim()
-            val gender = autoCompleteTextGender.editText?.text.toString().trim()
-            val color = editTextColor.editText?.text.toString().trim()
-            val weight = editTextWeight.editText?.text.toString().trim()
-            val age = editTextAge.editText?.text.toString().trim()
-            val story = editTextStory.editText?.text.toString().trim()
+            val name = editTextCatName.editText?.text.toString()
+            val gender = autoCompleteTextGender.editText?.text.toString()
+            val color = editTextColor.editText?.text.toString()
+            val weight = editTextWeight.editText?.text.toString()
+            val age = editTextAge.editText?.text.toString()
+            val story = editTextStory.editText?.text.toString()
             when{
                 name.isEmpty() -> {
                     Snackbar.make(editTextCatName,R.string.title_required, Snackbar.LENGTH_LONG).show()
@@ -168,6 +170,11 @@ class AddCatFragment : Fragment() {
                 }
                 currentFile != null -> {
                     val file = CameraUtils.reduceFileImage(currentFile as File)
+                    val nameCat = name.toRequestBody("text/plain".toMediaType())
+                    val breedCat = isBreedSelected?.toRequestBody("text/plain".toMediaType())
+                    val genderCat = isGenderSelected?.toRequestBody("text/plain".toMediaType())
+                    val colorCat = color.toRequestBody("text/plain".toMediaType())
+                    val storyCat = story.toRequestBody("text/plain".toMediaType())
                     val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
                     val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                         "photo",
@@ -175,7 +182,7 @@ class AddCatFragment : Fragment() {
                         requestImageFile
                     )
                     if (userId != null) {
-                        viewModel.uploadCat(user.token ?: "", userId,name,isBreedSelected!!,isGenderSelected!!,color,weight.toDouble(),age.toInt(),story, imageMultipart)
+                        viewModel.uploadCat(user.token ?: "", userId,nameCat,breedCat!!,genderCat!!,colorCat,weight.toDouble(),age.toInt(),storyCat, imageMultipart)
                     }
                 }
             else -> {

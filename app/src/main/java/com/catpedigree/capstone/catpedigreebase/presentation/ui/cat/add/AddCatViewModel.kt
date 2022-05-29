@@ -26,13 +26,13 @@ class AddCatViewModel(userRepository: UserRepository, private val catRepository:
     fun uploadCat(
         token: String,
         user_id: Int,
-        name: String,
-        breed: String,
-        gender: String,
-        color: String,
+        name: RequestBody,
+        breed: RequestBody,
+        gender: RequestBody,
+        color: RequestBody,
         weight: Double,
         age: Int,
-        story:String,
+        story:RequestBody,
         photo: MultipartBody.Part,
     ) {
         viewModelScope.launch {
