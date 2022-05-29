@@ -31,14 +31,12 @@ open class UserRepository(
                         username = it.user?.username,
                         phone_number = it.user?.phone_number,
                         email = email,
-                        password = password,
                         bio = it.user?.bio,
                         lat = it.user?.lat,
                         lon = it.user?.lon,
                         profile_photo_path = it.user?.profile_photo_path,
                         token = it.token,
                         isLoggedIn = true,
-                        updated_at = it.user?.updated_at,
                         postsCount = it.user?.posts_count
                     )
                     prefs.updateUser(user)
@@ -114,7 +112,20 @@ open class UserRepository(
 
     suspend fun logout() {
         try {
-            prefs.updateUser(UserItems(token = null, isLoggedIn = false))
+            prefs.updateUser(UserItems(
+                token = null,
+                isLoggedIn = false,
+                id = null,
+                name = null,
+                username = null,
+                phone_number = null,
+                email = null,
+                bio = null,
+                lat = null,
+                lon = null,
+                profile_photo_path = null,
+                postsCount = 0
+            ))
         } catch (e: Throwable) {
             throw AuthError(e.message.toString())
         }
