@@ -37,7 +37,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_email"/>
+            android:src="@drawable/ic_email"
+            android:contentDescription="@string/account_desc_ic_email" />
 
         <TextView
             android:id="@+id/tv_edt_mail_acc"
@@ -63,7 +64,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_key_24"/>
+            android:src="@drawable/ic_baseline_key_24"
+            android:contentDescription="@string/account_desc_ic_key" />
 
         <TextView
             android:id="@+id/tv_edt_pass_acc"
@@ -89,7 +91,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_delete_outline"/>
+            android:src="@drawable/ic_delete_outline"
+            android:contentDescription="@string/account_desc_ic_delete" />
 
         <TextView
             android:id="@+id/tv_delete_acc"

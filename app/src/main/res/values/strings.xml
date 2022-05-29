@@ -178,6 +178,9 @@
     <string name="account_edit_mail">Edit Mail</string>
     <string name="account_edit_password">Edit Password</string>
     <string name="account_delete_acc">Delete Account</string>
+    <string name="account_desc_ic_email">this is the email icon on the account page</string>
+    <string name="account_desc_ic_key">this is the key icon on the account page</string>
+    <string name="account_desc_ic_delete">this is the icon to delete on the account page</string>
     
      <!-- TODO: String on the dating page -->
     <string name="dating_cat_name">Cat Name</string>
