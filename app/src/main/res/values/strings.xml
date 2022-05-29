@@ -64,7 +64,7 @@
     <string name="select_a_picture">"Please select a picture"</string>
     <string name="email_pattern">Enter Valid Email</string>
     <string name="password_required">Enter Password</string>
-    <string name="password_required_length">Password minimum 6 characters</string>
+    <string name="password_required_length">Password minimum 8 characters</string>
     <string name="error_login">"Login failed, wrong email and password!"</string>
     <string name="retry_text">Try Again</string>
     <string name="error_load">"Failed to load data"</string>
@@ -146,6 +146,8 @@
     <string name="preview">Preview</string>
     <string name="enter_title">Enter Title</string>
     <string name="title_required">Enter Title</string>
+    <string name="title_length">The maximum number of characters is 100</string>
+    <string name="bio_length">The maximum number of characters is 60</string>
     <string name="count_post">15</string>
     <string name="count_following">100</string>
     <string name="following">Following</string>
@@ -165,4 +167,10 @@
     <string name="veterinary_desc_img">this is a photo on the veterinary page</string>
     <string name="title_favorite">No Favorite Yet</string>
     <string name="desc_favorite">Click the \'Actions\' button on any \npage to add a favorite</string>
+    <string name="bio_required">Enter Bio</string>
+    <string name="text_validation_success">Success</string>
+    <string name="text_validation_error_empty_field">Empty Field</string>
+    <string name="result_error">There is an error</string>
+    <string name="comment_success">Comment successfully added</string>
+    <string name="post_success">Post successfully added</string>
 </resources>
