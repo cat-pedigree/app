@@ -36,11 +36,32 @@
     <string name="register_account">Already have an account?</string>
     <string name="register_error">"Signup failed, try again!"</string>
 
-
+    <!-- TODO: String on Home -->
     <string name="home">Home</string>
-    <string name="add">Add</string>
-    <string name="service">Service</string>
-    <string name="search">Search</string>
+    <string name="title">Title</string>
+    <string name="post_description">Post Description</string>
+    <string name="loves">Love</string>
+    <string name="favorite">Favorite</string>
+    <string name="comment">Comment</string>
+
+    <!-- TODO: String on Profile -->
+    <string name="count_post">15</string>
+    <string name="count_following">100</string>
+    <string name="following">Following</string>
+    <string name="desc_avatar_profile">this is the avatar on profile</string>
+    <string name="desc_btn_fav_profile">This is the favorite button on the profile page</string>
+    <string name="post">Post</string>
+    <string name="count_follower">50.5K</string>
+    <string name="follower">Follower</string>
+    <string name="desc_profilee">Lorem Ipsum is simply dummy text of the printing</string>
+    <string name="btn_edt_profile">Edit Profile</string>
+    <string name="my_cats">My Cats</string>
+    <string name="add_cat">Add Cat</string>
+    <string name="follow">Follow</string>
+    <string name="message">Message</string>
+    <string name="btn_edt_photo_profile">Edit Photo Profile</string>
+
+    <!-- TODO: String on General -->
     <string name="pedigree">Pedigree</string>
     <string name="profile">Profile</string>
     <string name="account">Account</string>
@@ -48,12 +69,16 @@
     <string name="about">About</string>
     <string name="logout">Logout</string>
     <string name="more">more</string>
+    <string name="add">Add</string>
+    <string name="service">Service</string>
+    <string name="search">Search</string>
+
     <string name="camera_classification">Camera Classification</string>
     <string name="greeting_name">Budi Setiawan</string>
     <string name="greeting_loc">Jakarta, Indonesia</string>
     <string name="post_profile_image">Post Image</string>
     <string name="post_profile_name">Post Profile Name</string>
-    <string name="post_description">Post Description</string>
+
 
 
     <string name="name_required">"Enter Full Name"</string>
@@ -71,9 +96,8 @@
     <string name="no_data">No data available</string>
     <string name="count_love">9.8K</string>
     <string name="count_comment">100</string>
-    <string name="comment">Comment</string>
     <string name="add_comment">Add Comment</string>
-    <string name="post">Post</string>
+
     <string name="camera">Camera</string>
     <string name="switch_camera">Switch</string>
     <string name="gallery">Gallery</string>
@@ -89,19 +113,9 @@
     <string name="maps_lat_lon_format" translatable="false">Lat: %1$.2f Lon: %2$.2f</string>
     <string name="avatar">Avatar</string>
     <string name="name">Name</string>
-    <string name="count_follower">50.5K</string>
-    <string name="follower">Follower</string>
-    <string name="desc_profilee">Lorem Ipsum is simply dummy text of the printing</string>
-    <string name="btn_edt_profile">Edit Profile</string>
-    <string name="my_cats">My Cats</string>
-    <string name="add_cat">Add Cat</string>
-    <string name="desc_avatar_profile">this is the avatar on profile</string>
-    <string name="desc_btn_fav_profile">This is the favorite button on the profile page</string>
-    <string name="btn_edt_photo_profile">Edit Photo Profile</string>
+
     <string name="confirm">Confirm</string>
     <string name="bio">Bio</string>
-    <string name="follow">Follow</string>
-    <string name="message">Message</string>
 
     <!-- TODO: String on AddCat -->
     <string name="cat_name">Cat Name</string>
@@ -188,7 +202,7 @@
     <string name="weight">Weight</string>
     <string name="age">Age</string>
     <string name="story">Story</string>
-
+    <string name="save">Save</string>
     <string name="desc_add_cat_photo">this is the button to add cat photo</string>
 
     <!-- TODO: String on CatProfile -->
@@ -201,19 +215,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="send">Send</string>
-    <string name="title">Title</string>
-    <string name="favorite">Favorite</string>
+
     <string name="info_comment">Please leave a positive comment</string>
-    <string name="loves">Love</string>
+
     <string name="what_do_you_think">What do you think?</string>
     <string name="preview">Preview</string>
     <string name="enter_title">Enter Title</string>
     <string name="title_required">Enter Title</string>
     <string name="title_length">The maximum number of characters is 100</string>
     <string name="bio_length">The maximum number of characters is 60</string>
-    <string name="count_post">15</string>
-    <string name="count_following">100</string>
-    <string name="following">Following</string>
+
 
     <!-- TODO: String on the services page -->
     <string name="services">Services</string>
@@ -243,7 +254,6 @@
     <string name="like_post">Liked this post</string>
     <string name="register_success">Successfully signup, please continue to login.</string>
     <string name="profile_success">Profile changed successfully</string>
-    <string name="save">Save</string>
     <string name="kilogram">Kg</string>
     <string name="month">Month</string>
     <string name="gender_required">Enter Gender</string>

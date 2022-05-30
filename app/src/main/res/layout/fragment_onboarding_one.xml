@@ -52,6 +52,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="16dp"
         android:text="@string/btn_continue"
+        android:background="@color/accent"
         app:layout_constraintBottom_toTopOf="@+id/btn_skip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -61,7 +62,7 @@
         android:id="@+id/btn_skip"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="32dp"
@@ -72,4 +73,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/accent"
         app:strokeWidth="2dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

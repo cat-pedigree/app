@@ -25,7 +25,6 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
     <ImageView
         android:id="@+id/iv_avatar"
         android:layout_width="80dp"
@@ -135,7 +134,6 @@
         app:layout_constraintEnd_toEndOf="@+id/iv_follower_count"
         app:layout_constraintStart_toStartOf="@+id/iv_follower_count"
         app:layout_constraintTop_toBottomOf="@+id/tv_follower_count" />
-
 
     <ImageView
         android:id="@+id/iv_following_count"

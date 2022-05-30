@@ -106,7 +106,7 @@
             android:id="@+id/following"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/follower"
+            android:text="@string/following"
             style="@style/heading3"
             android:textColor="@color/neutral_80"
             android:layout_marginEnd="18dp"
