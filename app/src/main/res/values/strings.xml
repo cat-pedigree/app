@@ -274,4 +274,6 @@
     <string name="dating_desc">Your cat and mooca have liked each other </string>
     <string name="dating_description">Your cat and mooca have liked each other.</string>
     <string name="btn_message">Message Now</string>
+    <string name="dating_desc_avatar_user">this is the user\'s cat avatar</string>
+    <string name="dating_desc_avatar_other_user">this is another user\'s cat avatar</string>
 </resources>
