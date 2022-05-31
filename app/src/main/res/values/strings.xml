@@ -11,7 +11,7 @@
     <string name="desc_onboarding_three">Connect and socialize with \nall cat owners in the world</string>
     <string name="desc_onboarding_four">Find the perfect match \nfor your beloved cat</string>
     <string name="btn_continue">Continue</string>
-    <string name="btn_skip">Skip Introduction</string>
+    <string name="btn_skip">Skip</string>
     <string name="btn_start">Start</string>
 
     <!-- TODO: String on Login -->
@@ -237,6 +237,7 @@
     <string name="comment_success">Comment successfully added</string>
     <string name="post_success">Post successfully added</string>
     <string name="cat_success">Cat successfully added</string>
+    <string name="cat_success_album">Cat Album successfully added</string>
     <string name="remove_favorite">Removed from favorites</string>
     <string name="add_favorite">Added to favorites</string>
     <string name="remove_like">Removed from liked</string>
@@ -274,4 +275,17 @@
     <string name="dating_desc">Your cat and mooca have liked each other </string>
     <string name="dating_description">Your cat and mooca have liked each other.</string>
     <string name="btn_message">Message Now</string>
+    <string name="btn_add_cat">Add Cat</string>
+    <string name="cat_month">Month</string>
+    <string name="cat_age">Age</string>
+    <string name="cat_color">Color</string>
+    <string name="color_name">Color</string>
+    <string name="cat_gender">Gender</string>
+    <string name="tab_story">Story</string>
+    <string name="tab_album">Album</string>
+    <string name="btn_follow">Follow</string>
+    <string name="btn_message_profile">Message</string>
+    <string name="search_hint">Enter Name User</string>
+    <string name="username">Username</string>
+    <string name="dating">Dating</string>
 </resources>
