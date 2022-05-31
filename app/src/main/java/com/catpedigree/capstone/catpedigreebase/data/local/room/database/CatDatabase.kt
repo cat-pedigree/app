@@ -9,13 +9,17 @@ import com.catpedigree.capstone.catpedigreebase.data.local.room.dao.*
 
 @Database(entities = [
     PostItems::class,
-    CommentItems::class],
+    CommentItems::class,
+    CatItems::class,
+    AlbumItems::class,
+    UserDataItems::class],
     version = 1,
     exportSchema = false)
 abstract class CatDatabase : RoomDatabase() {
     abstract fun postDao(): PostDao
     abstract fun commentDao(): CommentDao
-
+    abstract fun catDao(): CatDao
+    abstract fun userDao(): UserDao
 
     companion object {
         @Volatile
