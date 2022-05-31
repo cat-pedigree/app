@@ -89,6 +89,9 @@
         <action
             android:id="@+id/action_homeFragment_to_myProfileFragment"
             app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -132,6 +135,9 @@
         <action
             android:id="@+id/action_myProfileFragment_to_addCatFragment"
             app:destination="@id/addCatFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_catProfileFragment"
+            app:destination="@id/catProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/postDetailProfileFragment"
@@ -168,6 +174,50 @@
     <fragment
         android:id="@+id/addCatFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.add.AddCatFragment"
-        android:label="fragment_add_cat"
-        tools:layout="@layout/fragment_add_cat" />
+        android:label="AddCatFragment"
+        tools:layout="@layout/fragment_add_cat"/>
+    <fragment
+        android:id="@+id/catProfileFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.view.CatProfileFragment"
+        android:label="ProfileCatFragment"
+        tools:layout="@layout/fragment_cat_profile">
+        <argument
+            android:name="cat"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="user"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.UserDataItems" />
+        <action
+            android:id="@+id/action_profileFragment_to_catUserFragment"
+            app:destination="@id/catUserFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_postDetailUserFragment"
+            app:destination="@id/postDetailUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/catUserFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.CatUserFragment"
+        android:label="CatUserFragment"
+        tools:layout="@layout/fragment_cat_user">
+        <argument
+            android:name="cat"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems" />
+    </fragment>
+    <fragment
+        android:id="@+id/postDetailUserFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.PostDetailUserFragment"
+        android:label="PostDetailUserFragment">
+        <argument
+            android:name="post"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems" />
+        <action
+            android:id="@+id/action_postDetailUserFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
+    </fragment>
 </navigation>
