@@ -1,10 +1,17 @@
 package com.catpedigree.capstone.catpedigreebase.data.local.repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
+import androidx.lifecycle.map
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.local.preferences.SharedPrefUserLogin
 import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.UserRemoteDataSource
+import com.catpedigree.capstone.catpedigreebase.data.local.room.database.CatDatabase
+import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
+import com.catpedigree.capstone.catpedigreebase.data.network.item.UserDataItems
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
+import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
 import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
 import kotlinx.coroutines.Dispatchers
@@ -15,6 +22,7 @@ open class UserRepository(
     private val context: Context,
     private val userRemote: UserRemoteDataSource,
     private val prefs: SharedPrefUserLogin,
+    private val catDatabase: CatDatabase
 ) {
 
     val userItems = prefs.getUser()
@@ -61,6 +69,37 @@ open class UserRepository(
         } catch (e: Throwable) {
             throw AuthError(e.message.toString())
         }
+    }
+
+    fun search(token: String, name: String): LiveData<Result<List<UserDataItems>>> = liveData {
+        emit(Result.Loading)
+        try{
+            val response = userRemote.search(token, name)
+            val users = response.body()?.data
+            val newUser = users?.map {user ->
+                UserDataItems(
+                    user.id,
+                    user.name,
+                    user.username,
+                    user.bio,
+                    user.lat,
+                    user.lon,
+                    user.profile_photo_path,
+                    user.posts_count,
+                    user.cats_count
+                )
+            }
+            catDatabase.userDao().deleteAllUsers()
+            catDatabase.userDao().insertUser(newUser!!)
+        }catch (e: Exception){
+            emit(Result.Error(e.message.toString()))
+        }
+        val dataLocal: LiveData<Result<List<UserDataItems>>> = catDatabase.userDao().getSearch(name).map { Result.Success(it) }
+        emitSource(dataLocal)
+    }
+
+    fun getUser(id: Int): LiveData<List<UserDataItems>>{
+        return catDatabase.userDao().getUser(id)
     }
 
     suspend fun change(

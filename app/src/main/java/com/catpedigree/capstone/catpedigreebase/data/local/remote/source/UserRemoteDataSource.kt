@@ -10,6 +10,10 @@ class UserRemoteDataSource(private val userInterface: UserInterface) {
     suspend fun register(name: String, username: String, phone_number: String, email: String, password: String) =
         userInterface.register(name, username, phone_number, email, password)
 
+    suspend fun search(token: String, name: String) = userInterface.search("Bearer $token", name)
+
+    suspend fun getUser(token: String, id: Int) = userInterface.getUser("Bearer $token", id)
+
     suspend fun profile(
         token: String,
         name:String,
