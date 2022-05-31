@@ -7,7 +7,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:keep="@layout/fragment_my_profile">
 
-        <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,12 +104,12 @@
         android:id="@+id/iv_follower_count"
         android:layout_width="115dp"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:alpha="0.6"
         android:contentDescription="@string/count_follower"
         android:src="@drawable/rectangle_white"
-        app:layout_constraintStart_toEndOf="@+id/iv_post_count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
 
     <TextView
@@ -141,14 +141,12 @@
         android:id="@+id/iv_following_count"
         android:layout_width="115dp"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:alpha="0.6"
         android:contentDescription="@string/count_following"
         android:src="@drawable/rectangle_white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_follower_count"
         app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
 
     <TextView
@@ -191,16 +189,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_follower_count" />
 
-        <Button
-            android:id="@+id/btn_add_cat"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/circle_blue"
-            android:drawableTop="@drawable/ic_add"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/my_cats" />
+    <ImageButton
+        android:id="@+id/btn_add_cat"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/circle_blue"
+        android:contentDescription="@string/btn_add_cat"
+        android:src="@drawable/ic_add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_cats" />
 
         <TextView
             android:id="@+id/tv_add_cat"
@@ -234,20 +233,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs" />
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/rv_post_profile"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="24dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:layout_marginBottom="55dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tv_add_cat"-->
-<!--        tools:listitem="@layout/item_post"/>-->
-
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
@@ -274,5 +259,19 @@
 
             <include layout="@layout/navigation_bottom"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_cats"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tabs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_add_cat"
+        app:layout_constraintTop_toBottomOf="@+id/my_cats"
+        tools:listitem="@layout/item_cats" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
