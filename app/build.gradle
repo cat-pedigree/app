@@ -23,14 +23,14 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_API_URL", "\"http://192.168.1.4/api-cat/public/api/\""
-            buildConfigField "String", "BASE_API_PHOTO", "\"http://192.168.1.4/api-cat/public/storage/\""
+            buildConfigField "String", "BASE_API_URL", "\"http://192.168.1.5/api-cat/public/api/\""
+            buildConfigField "String", "BASE_API_PHOTO", "\"http://192.168.1.5/api-cat/public/storage/\""
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_API_URL", "\"http://192.168.1.4/api-cat/public/api/\""
-            buildConfigField "String", "BASE_API_PHOTO", "\"http://192.168.1.4/api-cat/public/storage/\""
+            buildConfigField "String", "BASE_API_URL", "\"http://192.168.1.5/api-cat/public/api/\""
+            buildConfigField "String", "BASE_API_PHOTO", "\"http://192.168.1.5/api-cat/public/storage/\""
         }
     }
     compileOptions {
