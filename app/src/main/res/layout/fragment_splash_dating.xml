@@ -40,7 +40,7 @@
         android:layout_marginStart="105dp"
         app:layout_constraintTop_toBottomOf="@id/tv_desc"
         tools:src="@tools:sample/avatars"
-        android:contentDescription="@string/dating_desc_avatar_user" />
+        android:contentDescription="@string/avatar" />
 
     <ImageView
         android:id="@+id/iv_second"
@@ -51,12 +51,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_desc"
         tools:src="@tools:sample/avatars"
-        android:contentDescription="@string/dating_desc_avatar_other_user" />
+        android:contentDescription="@string/avatar" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_services"
+        android:backgroundTint="@color/white"
         android:text="@string/btn_message"
         android:textColor="@color/black"
         android:layout_marginStart="20dp"

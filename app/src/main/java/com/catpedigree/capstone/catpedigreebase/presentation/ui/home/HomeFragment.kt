@@ -5,6 +5,8 @@ import android.view.*
 import android.widget.Toast
 import android.app.SearchManager
 import android.content.Context.SEARCH_SERVICE
+import android.content.Intent
+import android.provider.Settings
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -122,10 +124,6 @@ class HomeFragment : Fragment() {
                     findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
                     true
                 }
-                R.id.profile -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_myProfileFragment)
-                    true
-                }
                 R.id.search -> {
                     val searchManager = requireActivity().getSystemService(SEARCH_SERVICE) as SearchManager
                     val searchView = menuItem.actionView as SearchView
@@ -144,6 +142,18 @@ class HomeFragment : Fragment() {
                             return false
                         }
                     })
+                    true
+                }
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_myProfileFragment)
+                    true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
                     true
                 }
                 R.id.logout -> {

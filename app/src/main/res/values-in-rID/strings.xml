@@ -1,0 +1,291 @@
+<resources>
+    <string name="app_name">Cat Pedigree</string>
+
+    <!-- TODO: String on OnBoarding -->
+    <string name="title_onboarding_one">Classification</string>
+    <string name="title_onboarding_two">Pedigree</string>
+    <string name="title_onboarding_three">Social Media</string>
+    <string name="title_onboarding_four">Dating</string>
+    <string name="desc_onboarding_one">Identifikasi jenis kucing dengan mengambil foto, \naplikasi akan menganalisis jenis kucing</string>
+    <string name="desc_onboarding_two">Klasifikasi ras kucing dan analisis \nlaporan klasifikasi untuk analisis ras silang.</string>
+    <string name="desc_onboarding_three">Terhubung dan bersosialisasi dengan \nsemua pemilik kucing di dunia</string>
+    <string name="desc_onboarding_four">Temukan pasangan yang cocok \nuntuk kucing kesayangan Anda</string>
+    <string name="btn_continue">Lanjutkan</string>
+    <string name="btn_skip">Lewati</string>
+    <string name="btn_start">Mulai</string>
+
+    <!-- TODO: String on Login -->
+    <string name="btn_login">Masuk</string>
+    <string name="title_login">Masuk</string>
+    <string name="desc_login">Silakan Masukkan form detail di bawah ini untuk melanjutkan</string>
+    <string name="title_register">Daftar</string>
+    <string name="desc_register">Ayo buat akun baru</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Tidak ingat kata sandi?</string>
+    <string name="dont_account">Tidak punya akun?</string>
+    <string name="desc_content_img_login">ini adalah logo di bagian login</string>
+
+    <!-- TODO: String on Register -->
+    <string name="register">Daftar</string>
+    <string name="register_full_name">Nama Lengkap</string>
+    <string name="register_username">Username</string>
+    <string name="register_phone_number">Nomor Handphone</string>
+    <string name="register_email">Email</string>
+    <string name="register_password">Password</string>
+    <string name="register_account">Sudah memiliki akun?</string>
+    <string name="register_error">"Daftar gagal, coba lagi!"</string>
+
+
+    <string name="home">Home</string>
+    <string name="add">Add</string>
+    <string name="service">Service</string>
+    <string name="search">Search</string>
+    <string name="pedigree">Pedigree</string>
+    <string name="profile">Profil</string>
+    <string name="account">Akun</string>
+    <string name="language">Bahasa</string>
+    <string name="about">Tentang</string>
+    <string name="logout">Keluar</string>
+    <string name="more">more</string>
+    <string name="camera_classification">Camera Classification</string>
+    <string name="greeting_name">Budi Setiawan</string>
+    <string name="greeting_loc">Jakarta, Indonesia</string>
+    <string name="post_profile_image">Post Image</string>
+    <string name="post_profile_name">Post Profile Name</string>
+    <string name="post_description">Post Description</string>
+
+
+    <string name="name_required">"Masukkan Nama Lengkap"</string>
+    <string name="username_required">Masukkan Username</string>
+    <string name="phone_number_required">Masukkan Nomor Handphone</string>
+    <string name="email_required">Masukkan Email</string>
+    <string name="description_required">Masukkan Deskripsi</string>
+    <string name="select_a_picture">"Silakan pilih gambar"</string>
+    <string name="email_pattern">Masuk kan email yang benar</string>
+    <string name="password_required">Masukkan Kata Sandi</string>
+    <string name="password_required_length">Kata sandi minimal 8 karakter</string>
+    <string name="error_login">"Login gagal, email dan kata sandi salah!"</string>
+    <string name="retry_text">Coba Lagi</string>
+    <string name="error_load">"Gagal memuat data"</string>
+    <string name="no_data">Tidak ada data yang tersedia</string>
+    <string name="count_love">9.8K</string>
+    <string name="count_comment">100</string>
+    <string name="comment">Komentar</string>
+    <string name="add_comment">Tambahkan komentar</string>
+    <string name="post">Post</string>
+    <string name="camera">Kamera</string>
+    <string name="switch_camera">Switch</string>
+    <string name="gallery">Galeri</string>
+    <string name="failed_to_take_picture">Gagal mengambil gambar!</string>
+    <string name="failed_to_start_camera">Gagal memulai kamera</string>
+    <string name="choose_image">Pilih gambar dari</string>
+    <string name="add_post">Tambah Post</string>
+    <string name="no_location_selected">Tidak ada lokasi yang dipilih</string>
+    <string name="delete_location">Hapus lokasi</string>
+    <string name="change">Ubah</string>
+    <string name="maps_save">Konfirmasi</string>
+    <string name="create_post">Konfirmasi</string>
+    <string name="maps_lat_lon_format" translatable="false">Lat: %1$.2f Lon: %2$.2f</string>
+    <string name="avatar">Avatar</string>
+    <string name="name">Name</string>
+    <string name="count_follower">50.5K</string>
+    <string name="follower">Follower</string>
+    <string name="desc_profilee">Lorem Ipsum is simply dummy text of the printing</string>
+    <string name="btn_edt_profile">Ubah Profil</string>
+    <string name="my_cats">Kucing Saya</string>
+    <string name="add_cat">Tambah Kucing</string>
+    <string name="desc_avatar_profile">ini adalah avatar di profil</string>
+    <string name="desc_btn_fav_profile">Ini adalah tombol favorit di halaman profil</string>
+    <string name="btn_edt_photo_profile">Ubah Photo Profil</string>
+    <string name="confirm">Konfirmasi</string>
+    <string name="bio">Bio</string>
+    <string name="follow">Follow</string>
+    <string name="message">Pesan</string>
+
+    <!-- TODO: String on AddCat -->
+    <string name="cat_name">Nama Kucing</string>
+    <string name="breed">Ras</string>
+
+    <string-array name="item_breed">
+        <item>Abyssinian</item>
+        <item>American Bobtail</item>
+        <item>American Curl</item>
+        <item>American Shorthair</item>
+        <item>American Wirehair</item>
+        <item>Applehead Siamese</item>
+        <item>Balinese</item>
+        <item>Bengal</item>
+        <item>Birman</item>
+        <item>Bombay</item>
+        <item>British Shorthair</item>
+        <item>Burmese</item>
+        <item>Burmilla</item>
+        <item>Calico</item>
+        <item>Canadian Hairless</item>
+        <item>Chartreux</item>
+        <item>Chausie</item>
+        <item>Chinchilla</item>
+        <item>Cornish Rex</item>
+        <item>Cymric</item>
+        <item>Devon Rex</item>
+        <item>Dilute Calico</item>
+        <item>Dilute Tortoiseshell</item>
+        <item>Domestic Long Hair</item>
+        <item>Domestic Medium Hair</item>
+        <item>Domestic Short Hair</item>
+        <item>Egyptian Mau</item>
+        <item>Exotic Shorthair</item>
+        <item>Extra-Toes Cat - Hemingway Polydactyl</item>
+        <item>Havana</item>
+        <item>Himalayan</item>
+        <item>Japanese Bobtail</item>
+        <item>Javanese</item>
+        <item>Korat</item>
+        <item>LaPerm</item>
+        <item>Maine Coon</item>
+        <item>Manx</item>
+        <item>Munchkin</item>
+        <item>Nebelung</item>
+        <item>Norwegian Forest Cat</item>
+        <item>Ocicat</item>
+        <item>Oriental Long Hair</item>
+        <item>Oriental Short Hair</item>
+        <item>Oriental Tabby</item>
+        <item>Persian</item>
+        <item>Pixiebob</item>
+        <item>Ragamuffin</item>
+        <item>Ragdoll</item>
+        <item>Russian Blue</item>
+        <item>Scottish Fold</item>
+        <item>Selkirk Rex</item>
+        <item>Siamese</item>
+        <item>Siberian</item>
+        <item>Silver</item>
+        <item>Singapura</item>
+        <item>Snowshoe</item>
+        <item>Somali</item>
+        <item>Sphynx - Hairless Cat</item>
+        <item>Tabby</item>
+        <item>Tiger</item>
+        <item>Tonkinese</item>
+        <item>Torbie</item>
+        <item>Tortoiseshell</item>
+        <item>Turkish Angora</item>
+        <item>Turkish Van</item>
+        <item>Tuxedo</item>
+        <item>York Chocolate</item>
+    </string-array>
+
+    <string name="gender">Jenis Kelamin</string>
+
+    <string-array name="item_gender">
+        <item>Betina</item>
+        <item>Jantan</item>
+    </string-array>
+
+    <string name="color">Warna</string>
+    <string name="weight">Berat Badan</string>
+    <string name="age">Umur</string>
+    <string name="story">Cerita</string>
+
+    <string name="desc_add_cat_photo">this is the button to add cat photo</string>
+
+    <!-- TODO: String on CatProfile -->
+    <string name="cat_profile">Profil Kucing</string>
+    <string name="desc_avatar_profile_cat">this is the avatar in the cat\'s profile</string>
+    <string name="cat_story">Kisah Kucing</string>
+    <string name="desc_cat_story">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="album">Album</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send">Kirim</string>
+    <string name="title">Judul</string>
+    <string name="favorite">Favorit</string>
+    <string name="info_comment">Silakan tinggalkan komentar positif</string>
+    <string name="loves">Love</string>
+    <string name="what_do_you_think">Bagaimana menurutmu?</string>
+    <string name="preview">Pratinjau</string>
+    <string name="enter_title">Masukkan Judul</string>
+    <string name="title_required">Masukkan Judul</string>
+    <string name="title_length">Jumlah karakter maksimum adalah 100</string>
+    <string name="bio_length">Jumlah karakter maksimum adalah 60</string>
+    <string name="count_post">15</string>
+    <string name="count_following">100</string>
+    <string name="following">Following</string>
+
+    <!-- TODO: String on the services page -->
+    <string name="services">Services</string>
+    <string name="services_all_breed">All Breed</string>
+    <string name="services_desc">Lorem ipsum dolor sit amet</string>
+    <string name="services_veterinary">Dokter Hewan</string>
+    <string name="services_desc_ic_breed">This is the breed icon on the services page</string>
+    <string name="services_desc_ic_veterinary">this is the veterinary icon on the services page</string>
+
+    <!-- TODO: String on the veterinary page -->
+    <string name="veterinary_appbar">Dokter Hewan</string>
+    <string name="veterinary_name">Nama Klinik</string>
+    <string name="veterinary_location">Lokasi</string>
+    <string name="veterinary_desc_img">this is a photo on the veterinary page</string>
+    <string name="title_favorite">Belum ada Favorit</string>
+    <string name="desc_favorite">Click the \'Actions\' button on any \npage to add a favorite</string>
+    <string name="bio_required">Masukkan Bio</string>
+    <string name="text_validation_success">Sukses</string>
+    <string name="text_validation_error_empty_field">Empty Field</string>
+    <string name="result_error">Terjadi kesalahan</string>
+    <string name="comment_success">Komentar berhasil ditambahkan</string>
+    <string name="post_success">Postingan berhasil ditambahkan</string>
+    <string name="cat_success">Kucing berhasil ditambahkan</string>
+    <string name="cat_success_album">Album Kucing berhasil ditambahkan</string>
+    <string name="remove_favorite">Dihapus dari favorit</string>
+    <string name="add_favorite">Ditambahkan ke favorit</string>
+    <string name="remove_like">Dihapus dari suka</string>
+    <string name="like_post">Menyukai posting ini</string>
+    <string name="register_success">Berhasil mendaftar, silakan lanjutkan login.</string>
+    <string name="profile_success">Profil berhasil diubah</string>
+    <string name="save">Simpan</string>
+    <string name="kilogram">Kg</string>
+    <string name="month">Bulan</string>
+    <string name="gender_required">Masukkan Jenis Kelamin</string>
+    <string name="color_required">Masukkan Warna</string>
+    <string name="weight_required">Masukkan Berat Badan</string>
+    <string name="age_required">Masukkan Umur</string>
+    <string name="story_required">Masukkan Cerita</string>
+    <string name="choose_gender">Pilih Jenis Kelamin</string>
+    <string name="choose_breed">Pilih Ras</string>
+
+    <!-- TODO: String on the account page -->
+    <string name="account_edit_mail">Ubah email</string>
+    <string name="account_edit_password">Ubah Password</string>
+    <string name="account_delete_acc">Hapus Akun</string>
+    <string name="account_desc_ic_email">this is the email icon on the account page</string>
+    <string name="account_desc_ic_key">this is the key icon on the account page</string>
+    <string name="account_desc_ic_delete">this is the icon to delete on the account page</string>
+
+    <!-- TODO: String on the dating page -->
+    <string name="dating_cat_name">Nama Kucing</string>
+    <string name="dating_cat_breed">Ras Kucing</string>
+    <string name="dating_cat_story">Cerita Kucing</string>
+    <string name="dating_desc_story">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="dating_desc_img">This is the avatar on the dating page</string>
+    <string name="dating_desc_ic_cross">this is the cross icon on the dating page</string>
+    <string name="dating_desc_ic_love">this is the love icon on the dating page</string>
+    <string name="dating_title">It’s a Match!</string>
+    <string name="dating_desc">Your cat and mooca have liked each other </string>
+    <string name="dating_description">Your cat and mooca have liked each other.</string>
+    <string name="btn_message">Hubungi Sekarang</string>
+    <string name="btn_add_cat">Tambah Kucing</string>
+    <string name="cat_month">Bulan</string>
+    <string name="cat_age">Umur</string>
+    <string name="cat_color">Warna</string>
+    <string name="color_name">Warna</string>
+    <string name="cat_gender">Jenis Kelamin</string>
+    <string name="tab_story">Cerita</string>
+    <string name="tab_album">Album</string>
+    <string name="btn_follow">Follow</string>
+    <string name="btn_message_profile">Pesan</string>
+    <string name="search_hint">Masukkan Nama</string>
+    <string name="username">Username</string>
+    <string name="dating">Dating</string>
+</resources>
