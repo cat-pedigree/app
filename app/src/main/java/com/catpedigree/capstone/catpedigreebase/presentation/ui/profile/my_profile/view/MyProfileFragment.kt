@@ -4,20 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
 import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentMyProfileBinding
+import com.catpedigree.capstone.catpedigreebase.presentation.adapter.CatAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.adapter.SectionPagerAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
+import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -57,6 +61,40 @@ class MyProfileFragment : Fragment() {
         binding.btnEditProfile.setOnClickListener {
             findNavController().navigate(R.id.action_myProfileFragment_to_editProfileFragment)
         }
+
+        val catAdapter = CatAdapter()
+
+        binding.apply {
+            viewModel.getCat().observe(viewLifecycleOwner){result ->
+                if (result != null) {
+                    when (result) {
+                        is Result.Loading -> {
+                            progressBar.visibility = View.VISIBLE
+                        }
+                        is Result.Success -> {
+                            progressBar.visibility = View.GONE
+                            val catData = result.data
+                            catAdapter.submitList(catData)
+                        }
+                        is Result.Error -> {
+                            progressBar.visibility = View.GONE
+                            Toast.makeText(
+                                context,
+                                getString(R.string.result_error) + result.error,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
+
+            rvCats.apply {
+                layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+                setHasFixedSize(true)
+                isNestedScrollingEnabled = false
+                adapter = catAdapter
+            }
+        }
     }
     private fun setupViewModel(){
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
@@ -66,11 +104,11 @@ class MyProfileFragment : Fragment() {
             this.user = userItems
             val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${user.profile_photo_path}"
             binding.apply {
-                tvName.text = user.catsCount.toString()
+                tvName.text = user.name
                 tvBio.text = user.bio ?: "Bio"
                 tvPostCount.text = user.postsCount.toString()
                 topAppBar.title = user.username
-                Glide.with(binding.root)
+                Glide.with(root)
                     .load(profilePhotoPath)
                     .signature(ObjectKey(profilePhotoPath))
                     .placeholder(R.drawable.ic_avatar)

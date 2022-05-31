@@ -1,12 +1,15 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view
 
 import androidx.lifecycle.*
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 
 class MyProfileViewModel(
     userRepository: UserRepository,
-    private val postRepository: PostRepository) : ViewModel() {
+    private val postRepository: PostRepository,
+    private val catRepository: CatRepository
+) : ViewModel() {
 
     val userItems = userRepository.userItems.asLiveData()
 
@@ -18,6 +21,13 @@ class MyProfileViewModel(
 
     fun getPostProfile() = userItems.switchMap {
         postRepository.getPostsProfile(
+            it.token ?: "",
+            it.id!!
+        )
+    }
+
+    fun getCat() = userItems.switchMap {
+        catRepository.getCat(
             it.token ?: "",
             it.id!!
         )
