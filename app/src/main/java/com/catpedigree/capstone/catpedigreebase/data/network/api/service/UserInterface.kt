@@ -53,4 +53,18 @@ interface UserInterface {
         @Header("Authorization") token: String,
         @Query("name") name:String
     ): Response<UserResponse>
+
+    @FormUrlEncoded
+    @POST("user/email")
+    suspend fun changeEmail(
+        @Header("Authorization") token: String,
+        @Field("email") email:String,
+    ): Response<UserChangeResponse>
+
+    @FormUrlEncoded
+    @POST("user/password")
+    suspend fun changePassword(
+        @Header("Authorization") token: String,
+        @Field("password") password:String,
+    ): Response<UserChangeResponse>
 }

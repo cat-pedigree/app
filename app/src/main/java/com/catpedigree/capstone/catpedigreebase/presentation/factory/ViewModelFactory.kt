@@ -7,6 +7,7 @@ import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatReposit
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.CommentRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.account.AccountViewModel
 import com.catpedigree.capstone.catpedigreebase.utils.injection.Injection
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.login.LoginViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.register.RegisterViewModel
@@ -64,6 +65,8 @@ class ViewModelFactory
                 AddCatViewModel(userRepository, catRepository) as T
             }modelClass.isAssignableFrom(CatProfileViewModel::class.java) -> {
                 CatProfileViewModel(userRepository, catRepository) as T
+            }modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
+                AccountViewModel(userRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

@@ -64,6 +64,7 @@
     <string name="select_a_picture">"Please select a picture"</string>
     <string name="email_pattern">Enter Valid Email</string>
     <string name="password_required">Enter Password</string>
+    <string name="password_match">Passwords are not the same</string>
     <string name="password_required_length">Password minimum 8 characters</string>
     <string name="error_login">"Login failed, wrong email and password!"</string>
     <string name="retry_text">Try Again</string>
@@ -236,6 +237,8 @@
     <string name="result_error">There is an error</string>
     <string name="comment_success">Comment successfully added</string>
     <string name="post_success">Post successfully added</string>
+    <string name="email_success">Email successfully changed</string>
+    <string name="password_success">Password successfully changed</string>
     <string name="cat_success">Cat successfully added</string>
     <string name="cat_success_album">Cat Album successfully added</string>
     <string name="remove_favorite">Removed from favorites</string>
@@ -256,7 +259,7 @@
     <string name="choose_breed">Choose Breed</string>
 
     <!-- TODO: String on the account page -->
-    <string name="account_edit_mail">Edit Mail</string>
+    <string name="account_edit_mail">Edit Email</string>
     <string name="account_edit_password">Edit Password</string>
     <string name="account_delete_acc">Delete Account</string>
     <string name="account_desc_ic_email">this is the email icon on the account page</string>
@@ -288,4 +291,5 @@
     <string name="search_hint">Enter Name User</string>
     <string name="username">Username</string>
     <string name="dating">Dating</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>

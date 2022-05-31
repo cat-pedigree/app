@@ -124,6 +124,47 @@ open class UserRepository(
         }
     }
 
+    suspend fun changeEmail(
+        token: String,
+        email: String
+    ) {
+        withContext(Dispatchers.IO) {
+            try {
+                val response =
+                    userRemote.changeEmail(
+                        token,
+                        email,
+                    )
+                prefs.updateUser(UserItems(email = email))
+                if (!response.isSuccessful) {
+                    throw PostError(response.message())
+                }
+            } catch (e: Throwable) {
+                throw PostError(e.message.toString())
+            }
+        }
+    }
+
+    suspend fun changePassword(
+        token: String,
+        password: String
+    ) {
+        withContext(Dispatchers.IO) {
+            try {
+                val response =
+                    userRemote.changePassword(
+                        token,
+                        password,
+                    )
+                if (!response.isSuccessful) {
+                    throw PostError(response.message())
+                }
+            } catch (e: Throwable) {
+                throw PostError(e.message.toString())
+            }
+        }
+    }
+
     suspend fun profile(
         token: String,
         name: String,
@@ -163,7 +204,7 @@ open class UserRepository(
                 bio = null,
                 lat = null,
                 lon = null,
-                profile_photo_path = null,
+                profile_photo_path = "",
                 postsCount = null,
                 catsCount = null
             ))

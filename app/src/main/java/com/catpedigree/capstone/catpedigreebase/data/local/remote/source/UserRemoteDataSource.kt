@@ -26,4 +26,14 @@ class UserRemoteDataSource(private val userInterface: UserInterface) {
         token: String,
         profile_photo_path: MultipartBody.Part,
     ) = userInterface.change("Bearer $token",profile_photo_path)
+
+    suspend fun changeEmail(
+        token: String,
+        email: String
+    ) = userInterface.changeEmail("Bearer $token", email)
+
+    suspend fun changePassword(
+        token: String,
+        password: String
+    ) = userInterface.changePassword("Bearer $token", password)
 }

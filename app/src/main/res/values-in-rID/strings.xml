@@ -64,6 +64,7 @@
     <string name="select_a_picture">"Silakan pilih gambar"</string>
     <string name="email_pattern">Masuk kan email yang benar</string>
     <string name="password_required">Masukkan Kata Sandi</string>
+    <string name="password_match">Konfirmasi Password Tidak Cocok</string>
     <string name="password_required_length">Kata sandi minimal 8 karakter</string>
     <string name="error_login">"Login gagal, email dan kata sandi salah!"</string>
     <string name="retry_text">Coba Lagi</string>
@@ -236,6 +237,8 @@
     <string name="result_error">Terjadi kesalahan</string>
     <string name="comment_success">Komentar berhasil ditambahkan</string>
     <string name="post_success">Postingan berhasil ditambahkan</string>
+    <string name="email_success">Email berhasil diubah</string>
+    <string name="password_success">Password berhasil diubah</string>
     <string name="cat_success">Kucing berhasil ditambahkan</string>
     <string name="cat_success_album">Album Kucing berhasil ditambahkan</string>
     <string name="remove_favorite">Dihapus dari favorit</string>
@@ -288,4 +291,5 @@
     <string name="search_hint">Masukkan Nama</string>
     <string name="username">Username</string>
     <string name="dating">Dating</string>
+    <string name="confirm_password">Konfirmasi Password</string>
 </resources>

@@ -227,5 +227,22 @@
         android:id="@+id/accountFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.account.AccountFragment"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_emailBottomSheet"
+            app:destination="@id/emailBottomSheet" />
+        <action
+            android:id="@+id/action_accountFragment_to_passwordBottomSheet"
+            app:destination="@id/passwordBottomSheet" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailBottomSheet"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.account.EmailBottomSheet"
+        android:label="fragment_email_bottom_sheet"
+        tools:layout="@layout/fragment_email_bottom_sheet" />
+    <fragment
+        android:id="@+id/passwordBottomSheet"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.account.PasswordBottomSheet"
+        android:label="fragment_password_bottom_sheet"
+        tools:layout="@layout/fragment_password_bottom_sheet" />
 </navigation>
