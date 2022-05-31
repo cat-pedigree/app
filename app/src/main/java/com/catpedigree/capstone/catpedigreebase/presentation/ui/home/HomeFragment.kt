@@ -3,6 +3,9 @@ package com.catpedigree.capstone.catpedigreebase.presentation.ui.home
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import android.app.SearchManager
+import android.content.Context.SEARCH_SERVICE
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -11,6 +14,7 @@ import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentHomeBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PostAdapter
+import com.catpedigree.capstone.catpedigreebase.presentation.adapter.SearchAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
@@ -61,34 +65,36 @@ class HomeFragment : Fragment() {
             }
         })
 
-        viewModel.getPosts().observe(viewLifecycleOwner) { result ->
-            if (result != null) {
-                when (result) {
-                    is Result.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
-                    is Result.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        val postData = result.data
-                        postAdapter.submitList(postData)
-                    }
-                    is Result.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(
-                            context,
-                            getString(R.string.result_error) + result.error,
-                            Toast.LENGTH_SHORT
-                        ).show()
+        binding.apply {
+            viewModel.getPosts().observe(viewLifecycleOwner) { result ->
+                if (result != null) {
+                    when (result) {
+                        is Result.Loading -> {
+                            progressBar.visibility = View.VISIBLE
+                        }
+                        is Result.Success -> {
+                            progressBar.visibility = View.GONE
+                            val postData = result.data
+                            postAdapter.submitList(postData)
+                        }
+                        is Result.Error -> {
+                            progressBar.visibility = View.GONE
+                            Toast.makeText(
+                                context,
+                                getString(R.string.result_error) + result.error,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }
-        }
 
-        binding.rvPost.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-            isNestedScrollingEnabled = false
-            adapter = postAdapter
+            rvPost.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+                isNestedScrollingEnabled = false
+                adapter = postAdapter
+            }
         }
     }
 
@@ -120,6 +126,26 @@ class HomeFragment : Fragment() {
                     findNavController().navigate(R.id.action_homeFragment_to_myProfileFragment)
                     true
                 }
+                R.id.search -> {
+                    val searchManager = requireActivity().getSystemService(SEARCH_SERVICE) as SearchManager
+                    val searchView = menuItem.actionView as SearchView
+
+                    searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
+                    searchView.queryHint = resources.getString(R.string.search_hint)
+
+                    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                        override fun onQueryTextSubmit(query: String?): Boolean {
+                            setupSearch(query!!)
+                            searchView.clearFocus()
+                            return true
+                        }
+
+                        override fun onQueryTextChange(newText: String?): Boolean {
+                            return false
+                        }
+                    })
+                    true
+                }
                 R.id.logout -> {
                     viewModel.logout()
                     true
@@ -127,6 +153,42 @@ class HomeFragment : Fragment() {
                 else -> {
                     false
                 }
+            }
+        }
+    }
+
+    private fun setupSearch(name:String){
+        val searchAdapter = SearchAdapter()
+        binding.apply {
+            viewModel.search(name).observe(viewLifecycleOwner) { result ->
+                if (result != null) {
+                    when (result) {
+                        is Result.Loading -> {
+                            progressBar.visibility = View.VISIBLE
+                        }
+                        is Result.Success -> {
+                            progressBar.visibility = View.GONE
+                            rvPost.visibility = View.GONE
+                            rvUsers.visibility = View.VISIBLE
+                            val userData = result.data
+                            searchAdapter.submitList(userData)
+                        }
+                        is Result.Error -> {
+                            progressBar.visibility = View.GONE
+                            Toast.makeText(
+                                context,
+                                getString(R.string.result_error) + result.error,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
+            rvUsers.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+                isNestedScrollingEnabled = false
+                adapter = searchAdapter
             }
         }
     }

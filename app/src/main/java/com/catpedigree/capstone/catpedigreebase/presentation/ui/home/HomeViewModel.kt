@@ -28,6 +28,10 @@ class HomeViewModel(
         postRepository.getPosts(it.token ?: "")
     }
 
+    fun search(name: String) = userItems.switchMap {
+        userRepository.search(it.token ?:"", name)
+    }
+
     fun savePost(post: PostItems){
         viewModelScope.launch {
             postRepository.setPostBookmark(post, true)
