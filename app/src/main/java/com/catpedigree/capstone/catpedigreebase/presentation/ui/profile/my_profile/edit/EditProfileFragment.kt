@@ -168,8 +168,7 @@ class EditProfileFragment : Fragment() {
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        when (it.resultCode) {
-            MainActivity.CAMERA_X_RESULT -> {
+        if(it.resultCode == MainActivity.CAMERA_X_RESULT) {
                 val myFile = it.data?.getSerializableExtra("picture") as File
                 val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
                 val result =
@@ -182,12 +181,11 @@ class EditProfileFragment : Fragment() {
                 currentFile = myFile
 
                 binding.ivProfile.setImageBitmap(result)
-            }
-            AppCompatActivity.RESULT_OK -> {
+            }else if(it.resultCode == AppCompatActivity.RESULT_OK){
                 val photoFile = it.data?.getSerializableExtra("photoFile") as File
+                currentFile = photoFile
                 binding.ivProfile.setImageURI(Uri.fromFile(photoFile))
             }
-        }
         val file = CameraUtils.reduceFileImage(currentFile as File)
         val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
@@ -197,7 +195,7 @@ class EditProfileFragment : Fragment() {
         )
         val slug = "profile-photos/${file.nameWithoutExtension}.${file.extension}"
         viewModel.change(user.token ?: "", imageMultipart,slug)
-    }
+        }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
