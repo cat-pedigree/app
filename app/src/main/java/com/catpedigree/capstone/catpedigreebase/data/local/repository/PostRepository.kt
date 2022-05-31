@@ -28,9 +28,6 @@ class PostRepository(
                 val isLoved = catDatabase.postDao().isPostsLoved(post.id)
                 PostItems(
                     post.id,
-                    post.user?.id,
-                    post.user?.name,
-                    post.user?.profile_photo_path,
                     post.photo,
                     post.title,
                     post.description,
@@ -38,7 +35,10 @@ class PostRepository(
                     post.loves_count,
                     post.comments_count,
                     isBookmarked,
-                    isLoved
+                    isLoved,
+                    post.user?.id,
+                    post.user?.name,
+                    post.user?.profile_photo_path,
                 )
             }
             catDatabase.postDao().deleteAllPosts()
@@ -60,9 +60,6 @@ class PostRepository(
                 val isLoved = catDatabase.postDao().isPostsLoved(post.id)
                 PostItems(
                     post.id,
-                    post.user?.id,
-                    post.user?.name,
-                    post.user?.profile_photo_path,
                     post.photo,
                     post.title,
                     post.description,
@@ -70,7 +67,10 @@ class PostRepository(
                     post.loves_count,
                     post.comments_count,
                     isBookmarked,
-                    isLoved
+                    isLoved,
+                    post.user?.id,
+                    post.user?.name,
+                    post.user?.profile_photo_path,
                 )
             }
             catDatabase.postDao().deleteAllPostsUser(user_id)

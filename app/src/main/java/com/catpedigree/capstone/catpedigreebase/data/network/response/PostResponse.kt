@@ -52,6 +52,21 @@ data class UserPostData(
     @field:SerializedName("username")
     val username: String? = null,
 
+    @field:SerializedName("bio")
+    val bio: String? = null,
+
+    @field:SerializedName("lat")
+    val lat: Double? = null,
+
+    @field:SerializedName("lon")
+    val lon: Double? = null,
+
     @field:SerializedName("profile_photo_path")
     val profile_photo_path: String? = null,
+
+    @field: SerializedName("posts_count")
+    val posts_count: Int? = null,
+
+    @field: SerializedName("cats_count")
+    val cats_count: Int? = null,
 )

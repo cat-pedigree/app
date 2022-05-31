@@ -15,15 +15,6 @@ data class PostItems(
     @field:SerializedName("id")
     val id: Int? = null,
 
-    @field:ColumnInfo(name = "user_id")
-    var user_id: Int? = null,
-
-    @field:SerializedName("name")
-    val name: String? = null,
-
-    @field:SerializedName("profile_photo_path")
-    val profile_photo_path: String? = null,
-
     @field:SerializedName("photo")
     val photo: String? = null,
 
@@ -47,4 +38,13 @@ data class PostItems(
 
     @field:ColumnInfo(name = "loved")
     var isLoved: Boolean,
+
+    @field:ColumnInfo(name = "user_id")
+    var user_id: Int? = null,
+
+    @field:SerializedName("name")
+    val name: String? = null,
+
+    @field:SerializedName("profile_photo_path")
+    val profile_photo_path: String? = null,
 ): Parcelable
