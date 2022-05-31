@@ -22,7 +22,7 @@ object Injection {
     fun provideUserRepository(context: Context): UserRepository {
         val userApiInterface = ApiConfig.getUserApi()
         val userRemoteDataSource = UserRemoteDataSource(userApiInterface)
-        return UserRepository(context, userRemoteDataSource, SharedPrefUserLogin.getInstance(context.dataStore))
+        return UserRepository(context, userRemoteDataSource, SharedPrefUserLogin.getInstance(context.dataStore), CatDatabase.getDatabase(context))
     }
 
     fun providePostRepository(context: Context): PostRepository {
@@ -40,7 +40,7 @@ object Injection {
     fun provideCatRepository(context: Context): CatRepository{
         val catApiInterface = ApiConfig.getCatApi()
         val catRemoteDataSource = CatRemoteDataSource(catApiInterface)
-        return CatRepository(catRemoteDataSource)
+        return CatRepository(catRemoteDataSource, CatDatabase.getDatabase(context))
     }
 
 }
