@@ -51,8 +51,7 @@
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_info_comment"
-        >
+        app:layout_constraintTop_toBottomOf="@id/tv_info_comment">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

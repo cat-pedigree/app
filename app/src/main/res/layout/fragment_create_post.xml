@@ -24,8 +24,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
