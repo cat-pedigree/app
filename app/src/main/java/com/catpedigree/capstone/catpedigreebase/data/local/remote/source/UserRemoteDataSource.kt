@@ -36,4 +36,9 @@ class UserRemoteDataSource(private val userInterface: UserInterface) {
         token: String,
         password: String
     ) = userInterface.changePassword("Bearer $token", password)
+
+    suspend fun userDelete(
+        token: String,
+        id: Int
+    ) = userInterface.userDelete("Bearer $token", id)
 }

@@ -238,6 +238,7 @@
     <string name="comment_success">Comment successfully added</string>
     <string name="post_success">Post successfully added</string>
     <string name="email_success">Email successfully changed</string>
+    <string name="account_success">Account Deleted Successfully</string>
     <string name="password_success">Password successfully changed</string>
     <string name="cat_success">Cat successfully added</string>
     <string name="cat_success_album">Cat Album successfully added</string>
@@ -262,6 +263,9 @@
     <string name="account_edit_mail">Edit Email</string>
     <string name="account_edit_password">Edit Password</string>
     <string name="account_delete_acc">Delete Account</string>
+    <string name="account_delete">Delete</string>
+    <string name="account_delete_cancel">Cancel</string>
+    <string name="account_delete_confirmation">Are you sure you want to delete the account? You can\'t restore the account</string>
     <string name="account_desc_ic_email">this is the email icon on the account page</string>
     <string name="account_desc_ic_key">this is the key icon on the account page</string>
     <string name="account_desc_ic_delete">this is the icon to delete on the account page</string>

@@ -8,7 +8,6 @@ import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.local.preferences.SharedPrefUserLogin
 import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.UserRemoteDataSource
 import com.catpedigree.capstone.catpedigreebase.data.local.room.database.CatDatabase
-import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserDataItems
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.utils.Result
@@ -156,6 +155,27 @@ open class UserRepository(
                         token,
                         password,
                     )
+                if (!response.isSuccessful) {
+                    throw PostError(response.message())
+                }
+            } catch (e: Throwable) {
+                throw PostError(e.message.toString())
+            }
+        }
+    }
+
+    suspend fun userDelete(
+        token: String,
+        id: Int
+    ) {
+        withContext(Dispatchers.IO) {
+            try {
+                val response =
+                    userRemote.userDelete(
+                        token,
+                        id
+                    )
+
                 if (!response.isSuccessful) {
                     throw PostError(response.message())
                 }

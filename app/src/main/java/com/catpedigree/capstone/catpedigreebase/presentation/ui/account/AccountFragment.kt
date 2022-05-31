@@ -11,6 +11,9 @@ import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentAccountBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
+import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 
 
 class AccountFragment : Fragment() {
@@ -45,6 +48,20 @@ class AccountFragment : Fragment() {
             menu2.setOnClickListener {
                 findNavController().navigate(R.id.action_accountFragment_to_passwordBottomSheet)
             }
+            menu3.setOnClickListener {
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(resources.getString(R.string.account_delete_acc))
+                    .setMessage(resources.getString(R.string.account_delete_confirmation))
+                    .setIcon(R.drawable.ic_baseline_delete)
+                    .setNeutralButton(resources.getString(R.string.account_delete_cancel)) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .setPositiveButton(resources.getString(R.string.account_delete)) { dialog, _ ->
+                        viewModel.userDelete(user.token ?:"", user.id!!)
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
         }
     }
 
@@ -55,5 +72,25 @@ class AccountFragment : Fragment() {
             }
             this.user = userItems
         }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { state ->
+            showLoading(state)
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            ToastUtils.showToast(requireContext(), message)
+        }
+
+        viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
+            if (isSuccess) {
+                Snackbar.make(binding.root, R.string.account_success, Snackbar.LENGTH_LONG)
+                    .show()
+                viewModel.logout()
+            }
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        (if (isLoading) View.VISIBLE else View.GONE).also { binding.progressBar.visibility = it }
     }
 }

@@ -49,6 +49,7 @@ class ProfileFragment : Fragment() {
 
     private fun setupAction(){
         val catProfileAdapter = CatProfileAdapter()
+        val postProfileAdapter = PostProfileUserAdapter()
         val user = args.user
         val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${user.profile_photo_path}"
         binding.apply {
@@ -62,8 +63,7 @@ class ProfileFragment : Fragment() {
             tvBio.text = user.bio
             tvPostCount.text = user.postsCount.toString()
             topAppBar.title = user.username
-        }
-        binding.apply {
+
             viewModel.getCat(user.id!!).observe(viewLifecycleOwner){result ->
                 if (result != null) {
                     when (result) {
@@ -92,36 +92,34 @@ class ProfileFragment : Fragment() {
                 isNestedScrollingEnabled = false
                 adapter = catProfileAdapter
             }
-        }
-        val postProfileAdapter = PostProfileUserAdapter()
-        viewModel.getPostProfile(user.id!!).observe(viewLifecycleOwner) { result ->
-            if (result != null) {
-                when (result) {
-                    is Result.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
-                    is Result.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        val postData = result.data
-                        postProfileAdapter.submitList(postData)
-                    }
-                    is Result.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(
-                            context,
-                            getString(R.string.result_error) + result.error,
-                            Toast.LENGTH_SHORT
-                        ).show()
+            viewModel.getPostProfile(user.id).observe(viewLifecycleOwner) { result ->
+                if (result != null) {
+                    when (result) {
+                        is Result.Loading -> {
+                            progressBar.visibility = View.VISIBLE
+                        }
+                        is Result.Success -> {
+                            progressBar.visibility = View.GONE
+                            val postData = result.data
+                            postProfileAdapter.submitList(postData)
+                        }
+                        is Result.Error -> {
+                            progressBar.visibility = View.GONE
+                            Toast.makeText(
+                                context,
+                                getString(R.string.result_error) + result.error,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }
-        }
-
-        binding.rvPostProfile.apply {
-            layoutManager = GridLayoutManager(requireContext(),3)
-            setHasFixedSize(true)
-            isNestedScrollingEnabled = false
-            adapter = postProfileAdapter
+            rvPostProfile.apply {
+                layoutManager = GridLayoutManager(requireContext(),3)
+                setHasFixedSize(true)
+                isNestedScrollingEnabled = false
+                adapter = postProfileAdapter
+            }
         }
     }
 

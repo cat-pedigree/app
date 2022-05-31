@@ -73,10 +73,8 @@ class EmailBottomSheet : Fragment() {
         viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
                 Snackbar.make(binding.btnConfirm, R.string.email_success, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.logout){
-                        viewModel.logout()
-                    }
                     .show()
+                viewModel.logout()
             }
         }
     }

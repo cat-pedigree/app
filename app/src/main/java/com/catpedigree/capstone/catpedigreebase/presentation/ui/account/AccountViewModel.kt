@@ -57,6 +57,24 @@ class AccountViewModel(private val userRepository: UserRepository) : ViewModel()
         }
     }
 
+    fun userDelete(
+        token: String,
+        id: Int
+    ) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                userRepository.userDelete(token, id)
+                _isSuccess.value = true
+            } catch (e: PostError) {
+                _errorMessage.value = e.message
+                _isSuccess.value = false
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
     fun logout() {
         viewModelScope.launch {
             _isLoading.value = true
