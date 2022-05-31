@@ -11,6 +11,7 @@ import com.catpedigree.capstone.catpedigreebase.utils.injection.Injection
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.login.LoginViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.register.RegisterViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.add.AddCatViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.view.CatProfileViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.view.CommentViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsViewModel
@@ -50,9 +51,9 @@ class ViewModelFactory
             }modelClass.isAssignableFrom(CreatePostViewModel::class.java) -> {
                 CreatePostViewModel(userRepository, postRepository) as T
             }modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
-                ProfileViewModel(userRepository) as T
+                ProfileViewModel(userRepository, catRepository, postRepository) as T
             }modelClass.isAssignableFrom(MyProfileViewModel::class.java) -> {
-                MyProfileViewModel(userRepository, postRepository) as T
+                MyProfileViewModel(userRepository, postRepository,catRepository) as T
             }modelClass.isAssignableFrom(PostDetailProfileViewModel::class.java) -> {
                 PostDetailProfileViewModel(userRepository, postRepository) as T
             }modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
@@ -61,6 +62,8 @@ class ViewModelFactory
                 EditProfileViewModel(userRepository) as T
             }modelClass.isAssignableFrom(AddCatViewModel::class.java) -> {
                 AddCatViewModel(userRepository, catRepository) as T
+            }modelClass.isAssignableFrom(CatProfileViewModel::class.java) -> {
+                CatProfileViewModel(userRepository, catRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
