@@ -44,6 +44,7 @@ class HomeFragment : Fragment() {
         setupMenu()
         setupAction()
         setupViewModel()
+        setupNavigation()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -200,6 +201,18 @@ class HomeFragment : Fragment() {
                 isNestedScrollingEnabled = false
                 adapter = searchAdapter
             }
+        }
+    }
+
+    private fun setupNavigation(){
+        binding.bottomNavigationView.setOnItemSelectedListener {item ->
+            when(item.itemId){
+                R.id.menu_service -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
+                    return@setOnItemSelectedListener false
+                }
+            }
+            return@setOnItemSelectedListener false
         }
     }
 
