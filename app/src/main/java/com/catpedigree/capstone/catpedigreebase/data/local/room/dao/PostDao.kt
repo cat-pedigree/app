@@ -17,7 +17,7 @@ interface PostDao {
     fun getPostProfile(user_id: Int): LiveData<List<PostItems>>
 
     @Query("SELECT * FROM post_items WHERE bookmarked = 1")
-    fun getPostFavorite():LiveData<List<PostItems>>
+    fun getPostFavorite(): LiveData<List<PostItems>>
 
     @Query("SELECT COUNT(*) FROM post_items WHERE bookmarked = 1")
     fun getPostFavoriteCount(): LiveData<Int>

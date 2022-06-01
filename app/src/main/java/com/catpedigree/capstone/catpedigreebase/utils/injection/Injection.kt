@@ -16,7 +16,12 @@ object Injection {
     fun provideUserRepository(context: Context): UserRepository {
         val userApiInterface = ApiConfig.getUserApi()
         val userRemoteDataSource = UserRemoteDataSource(userApiInterface)
-        return UserRepository(context, userRemoteDataSource, SharedPrefUserLogin.getInstance(context.dataStore), CatDatabase.getDatabase(context))
+        return UserRepository(
+            context,
+            userRemoteDataSource,
+            SharedPrefUserLogin.getInstance(context.dataStore),
+            CatDatabase.getDatabase(context)
+        )
     }
 
     fun providePostRepository(context: Context): PostRepository {
@@ -25,19 +30,19 @@ object Injection {
         return PostRepository(postRemoteDataSource, CatDatabase.getDatabase(context))
     }
 
-    fun provideCommentRepository(context: Context): CommentRepository{
+    fun provideCommentRepository(context: Context): CommentRepository {
         val commentApiInterface = ApiConfig.getCommentApi()
         val commentRemoteDataSource = CommentRemoteDataSource(commentApiInterface)
         return CommentRepository(commentRemoteDataSource, CatDatabase.getDatabase(context))
     }
 
-    fun provideCatRepository(context: Context): CatRepository{
+    fun provideCatRepository(context: Context): CatRepository {
         val catApiInterface = ApiConfig.getCatApi()
         val catRemoteDataSource = CatRemoteDataSource(catApiInterface)
         return CatRepository(catRemoteDataSource, CatDatabase.getDatabase(context))
     }
 
-    fun provideVeterinaryRepository(context: Context): VeterinaryRepository{
+    fun provideVeterinaryRepository(context: Context): VeterinaryRepository {
         val veterinaryApiInterface = ApiConfig.getVeterinary()
         val veterinaryRemoteDataSource = VeterinaryRemoteDataSource(veterinaryApiInterface)
         return VeterinaryRepository(veterinaryRemoteDataSource, CatDatabase.getDatabase(context))

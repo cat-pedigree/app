@@ -21,4 +21,4 @@ data class AlbumItems(
 
     @field:SerializedName("photo")
     val photo: String? = null
-): Parcelable
+) : Parcelable

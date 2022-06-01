@@ -31,12 +31,12 @@ class CatAdapter : ListAdapter<CatItems, CatAdapter.ViewHolder>(DIFF_CALLBACK) {
                 tvNameCat.text = cat.name.toString()
 
                 ivPhotoCat.setOnClickListener {
-                Navigation.findNavController(ivPhotoCat).navigate(
-                    MyProfileFragmentDirections.actionMyProfileFragmentToCatProfileFragment(
-                        cat
+                    Navigation.findNavController(ivPhotoCat).navigate(
+                        MyProfileFragmentDirections.actionMyProfileFragmentToCatProfileFragment(
+                            cat
+                        )
                     )
-                )
-            }
+                }
             }
         }
     }

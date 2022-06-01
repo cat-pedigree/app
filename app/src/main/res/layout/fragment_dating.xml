@@ -2,9 +2,9 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/swipe_layout"
     tools:context=".presentation.ui.dating.DatingFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,18 +16,18 @@
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
             android:layout_height="298dp"
+            android:contentDescription="@string/dating_desc_img"
             android:src="@drawable/img_preview"
-            tools:ignore="MissingConstraints"
-            android:contentDescription="@string/dating_desc_img" />
+            tools:ignore="MissingConstraints" />
 
         <LinearLayout
             android:id="@+id/ll_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="255dp"
-            tools:ignore="MissingConstraints">
+            tools:layout_editor_absoluteY="255dp">
 
             <LinearLayout
                 android:id="@+id/cv_first"
@@ -44,8 +44,8 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_margin="18dp"
-                    android:src="@drawable/ic_cross"
-                    android:contentDescription="@string/dating_desc_ic_cross" />
+                    android:contentDescription="@string/dating_desc_ic_cross"
+                    android:src="@drawable/ic_cross" />
 
             </LinearLayout>
 
@@ -63,8 +63,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="22dp"
-                    android:src="@drawable/ic_love_white"
-                    android:contentDescription="@string/dating_desc_ic_love" />
+                    android:contentDescription="@string/dating_desc_ic_love"
+                    android:src="@drawable/ic_love_white" />
 
             </LinearLayout>
 
@@ -72,55 +72,55 @@
 
         <TextView
             android:id="@+id/tv_name_cat"
+            style="@style/title4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dating_cat_name"
-            style="@style/title4"
-            android:textColor="@color/neutral_100"
             android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
+            android:text="@string/dating_cat_name"
+            android:textColor="@color/neutral_100"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ll_first"/>
+            app:layout_constraintTop_toBottomOf="@id/ll_first" />
 
         <TextView
             android:id="@+id/tv_cat_breed"
+            style="@style/heading3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dating_cat_breed"
-            style="@style/heading3"
-            android:textColor="@color/neutral_80"
             android:layout_marginStart="12dp"
+            android:text="@string/dating_cat_breed"
+            android:textColor="@color/neutral_80"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_name_cat"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_name_cat" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="10dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_cat_breed">
 
             <TextView
+                style="@style/title4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dating_cat_story"
-                style="@style/title4"
-                android:textColor="@color/neutral_100"/>
+                android:textColor="@color/neutral_100" />
 
             <TextView
+                style="@style/body2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dating_desc_story"
-                style="@style/body2"
-                android:textColor="@color/neutral_80"/>
+                android:textColor="@color/neutral_80" />
 
         </LinearLayout>
 
-        <include layout="@layout/navigation_bottom"/>
+        <include layout="@layout/navigation_bottom" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

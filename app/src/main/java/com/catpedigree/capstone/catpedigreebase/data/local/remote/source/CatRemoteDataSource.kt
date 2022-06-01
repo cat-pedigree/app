@@ -13,11 +13,22 @@ class CatRemoteDataSource(private val catInterface: CatInterface) {
         breed: RequestBody,
         gender: RequestBody,
         color: RequestBody,
-        weight:Double,
+        weight: Double,
         age: Int,
-        story:RequestBody,
+        story: RequestBody,
         photo: MultipartBody.Part,
-    ) = catInterface.catCreate("Bearer $token",user_id,name, breed, gender,color, weight, age, story, photo)
+    ) = catInterface.catCreate(
+        "Bearer $token",
+        user_id,
+        name,
+        breed,
+        gender,
+        color,
+        weight,
+        age,
+        story,
+        photo
+    )
 
     suspend fun getCat(
         token: String,
@@ -29,11 +40,11 @@ class CatRemoteDataSource(private val catInterface: CatInterface) {
         user_id: Int,
         cat_id: Int,
         photo: MultipartBody.Part
-    ) = catInterface.catCreateAlbum("Bearer $token", user_id, cat_id,photo)
+    ) = catInterface.catCreateAlbum("Bearer $token", user_id, cat_id, photo)
 
     suspend fun getAlbum(
         token: String,
         user_id: Int,
         cat_id: Int
-    ) = catInterface.getCatAlbum("Bearer $token",user_id, cat_id)
+    ) = catInterface.getCatAlbum("Bearer $token", user_id, cat_id)
 }

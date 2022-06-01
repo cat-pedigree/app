@@ -31,7 +31,7 @@ class PostMyProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPostMyProfileBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentPostMyProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -41,7 +41,7 @@ class PostMyProfileFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val postProfileAdapter = PostProfileAdapter()
         viewModel.getPostProfile().observe(viewLifecycleOwner) { result ->
             if (result != null) {
@@ -67,13 +67,14 @@ class PostMyProfileFragment : Fragment() {
         }
 
         binding.rvPostProfile.apply {
-            layoutManager = GridLayoutManager(requireContext(),3)
+            layoutManager = GridLayoutManager(requireContext(), 3)
             setHasFixedSize(true)
             isNestedScrollingEnabled = false
             adapter = postProfileAdapter
         }
     }
-    private fun setupViewModel(){
+
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()

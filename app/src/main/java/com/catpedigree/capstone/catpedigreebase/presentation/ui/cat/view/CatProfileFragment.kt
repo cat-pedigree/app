@@ -41,6 +41,7 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 
 class CatProfileFragment : Fragment() {
+
     private lateinit var _binding: FragmentCatProfileBinding
     private val binding get() = _binding
 
@@ -68,7 +69,7 @@ class CatProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCatProfileBinding.inflate(layoutInflater, container,false)
+        _binding = FragmentCatProfileBinding.inflate(layoutInflater, container, false)
 
         return binding.root
     }
@@ -79,7 +80,7 @@ class CatProfileFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val cat = args.cat
         val albumAdapter = AlbumAdapter()
         val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${cat.photo}"
@@ -101,7 +102,7 @@ class CatProfileFragment : Fragment() {
                 startCameraX()
             }
 
-            viewModel.getAlbum(cat.id!!).observe(viewLifecycleOwner){result ->
+            viewModel.getAlbum(cat.id!!).observe(viewLifecycleOwner) { result ->
                 if (result != null) {
                     when (result) {
                         is Result.Loading -> {
@@ -125,7 +126,7 @@ class CatProfileFragment : Fragment() {
             }
 
             rvAlbum.apply {
-                layoutManager = GridLayoutManager(requireContext(),3)
+                layoutManager = GridLayoutManager(requireContext(), 3)
                 setHasFixedSize(true)
                 isNestedScrollingEnabled = false
                 adapter = albumAdapter
@@ -134,7 +135,7 @@ class CatProfileFragment : Fragment() {
 
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItem.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -152,7 +153,8 @@ class CatProfileFragment : Fragment() {
 
         viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                Snackbar.make(binding.btnAddAlbum, R.string.cat_success_album, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding.btnAddAlbum, R.string.cat_success_album, Snackbar.LENGTH_LONG)
+                    .show()
             }
         }
     }
@@ -186,7 +188,7 @@ class CatProfileFragment : Fragment() {
 
 //            binding.ivPhoto.setImageBitmap(result)
 
-        }else if(it.resultCode == AppCompatActivity.RESULT_OK){
+        } else if (it.resultCode == AppCompatActivity.RESULT_OK) {
             val photoFile = it.data?.getSerializableExtra("photoFile") as File
             currentFile = photoFile
 //            binding.ivPhoto.setImageURI(Uri.fromFile(photoFile))
@@ -198,7 +200,7 @@ class CatProfileFragment : Fragment() {
             file.nameWithoutExtension,
             requestImageFile
         )
-        viewModel.createAlbum(user.token ?: "",user.id!!,cat.id!!,imageMultipart)
+        viewModel.createAlbum(user.token ?: "", user.id!!, cat.id!!, imageMultipart)
     }
 
     private fun showLoading(isLoading: Boolean) {

@@ -27,4 +27,4 @@ data class CommentItems(
 
     @field:SerializedName("profile_photo_path")
     val profile_photo_path: String? = null,
-): Parcelable
+) : Parcelable

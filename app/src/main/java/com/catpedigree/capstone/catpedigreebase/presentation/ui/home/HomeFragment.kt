@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -51,20 +51,20 @@ class HomeFragment : Fragment() {
         inflater.inflate(R.menu.top_app_bar, menu)
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val postAdapter = PostAdapter(onFavoriteClick = { post ->
             if (post.isBookmarked) {
                 viewModel.deletePost(post)
             } else {
                 viewModel.savePost(post)
             }
-        }, onLoveClick = {post ->
-            if(post.isLoved){
+        }, onLoveClick = { post ->
+            if (post.isLoved) {
                 viewModel.deleteLovePost(post)
-                viewModel.loveDelete(user.token ?: "",post.id!!, user.id!!)
-            }else{
+                viewModel.loveDelete(user.token ?: "", post.id!!, user.id!!)
+            } else {
                 viewModel.createLovePost(post)
-                viewModel.loveCreate(user.token ?: "",post.id!!, user.id!!)
+                viewModel.loveCreate(user.token ?: "", post.id!!, user.id!!)
             }
         })
 
@@ -101,7 +101,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -118,21 +118,22 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupMenu(){
+    private fun setupMenu() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId){
+            when (menuItem.itemId) {
                 R.id.addPost -> {
                     findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
                     true
                 }
                 R.id.search -> {
-                    val searchManager = requireActivity().getSystemService(SEARCH_SERVICE) as SearchManager
+                    val searchManager =
+                        requireActivity().getSystemService(SEARCH_SERVICE) as SearchManager
                     val searchView = menuItem.actionView as SearchView
 
                     searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
                     searchView.queryHint = resources.getString(R.string.search_hint)
 
-                    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                         override fun onQueryTextSubmit(query: String?): Boolean {
                             setupSearch(query!!)
                             searchView.clearFocus()
@@ -168,7 +169,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupSearch(name:String){
+    private fun setupSearch(name: String) {
         val searchAdapter = SearchAdapter()
         binding.apply {
             viewModel.search(name).observe(viewLifecycleOwner) { result ->
@@ -204,9 +205,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupNavigation(){
-        binding.bottomNavigationView.setOnItemSelectedListener {item ->
-            when(item.itemId){
+    private fun setupNavigation() {
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
                 R.id.menu_service -> {
                     findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
                     return@setOnItemSelectedListener false
@@ -217,6 +218,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        (if (isLoading) View.VISIBLE else View.INVISIBLE).also { binding.progressBar.visibility = it }
+        (if (isLoading) View.VISIBLE else View.INVISIBLE).also {
+            binding.progressBar.visibility = it
+        }
     }
 }

@@ -9,7 +9,7 @@ interface CommentInterface {
     @FormUrlEncoded
     @POST("comment/create")
     suspend fun postComment(
-        @Header("Authorization") token:String,
+        @Header("Authorization") token: String,
         @Field("post_id") post_id: Int,
         @Field("user_id") user_id: Int,
         @Field("description") description: String

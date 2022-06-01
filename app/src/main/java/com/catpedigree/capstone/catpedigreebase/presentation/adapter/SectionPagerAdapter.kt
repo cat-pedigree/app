@@ -7,13 +7,14 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view.FavoriteMyProfileFragment
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view.PostMyProfileFragment
 
-class SectionPagerAdapter internal constructor(activity: AppCompatActivity, bundle: Bundle): FragmentStateAdapter(activity){
+class SectionPagerAdapter internal constructor(activity: AppCompatActivity, bundle: Bundle) :
+    FragmentStateAdapter(activity) {
 
     private var fragmentBundle: Bundle = bundle
 
     override fun createFragment(position: Int): Fragment {
         var fragment: Fragment? = null
-        when(position){
+        when (position) {
             0 -> fragment = PostMyProfileFragment()
             1 -> fragment = FavoriteMyProfileFragment()
         }

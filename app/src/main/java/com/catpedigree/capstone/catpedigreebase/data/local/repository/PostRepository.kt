@@ -20,7 +20,7 @@ class PostRepository(
 
     fun getPosts(token: String): LiveData<Result<List<PostItems>>> = liveData {
         emit(Result.Loading)
-        try{
+        try {
             val response = postRemoteDataSource.getPost(token)
             val posts = response.body()?.data
             val newPost = posts?.map { post ->
@@ -43,17 +43,18 @@ class PostRepository(
             }
             catDatabase.postDao().deleteAllPosts()
             catDatabase.postDao().insertPost(newPost!!)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }
-        val dataLocal: LiveData<Result<List<PostItems>>> = catDatabase.postDao().getPosts().map { Result.Success(it) }
+        val dataLocal: LiveData<Result<List<PostItems>>> =
+            catDatabase.postDao().getPosts().map { Result.Success(it) }
         emitSource(dataLocal)
     }
 
     fun getPostsProfile(token: String, user_id: Int): LiveData<Result<List<PostItems>>> = liveData {
         emit(Result.Loading)
-        try{
-            val response = postRemoteDataSource.getPostProfile(token,user_id)
+        try {
+            val response = postRemoteDataSource.getPostProfile(token, user_id)
             val posts = response.body()?.data
             val newPost = posts?.map { post ->
                 val isBookmarked = catDatabase.postDao().isPostsBookmarked(post.id!!)
@@ -75,14 +76,15 @@ class PostRepository(
             }
             catDatabase.postDao().deleteAllPostsUser(user_id)
             catDatabase.postDao().insertPost(newPost!!)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }
-        val dataLocal: LiveData<Result<List<PostItems>>> = catDatabase.postDao().getPostProfile(user_id).map { Result.Success(it) }
+        val dataLocal: LiveData<Result<List<PostItems>>> =
+            catDatabase.postDao().getPostProfile(user_id).map { Result.Success(it) }
         emitSource(dataLocal)
     }
 
-    fun getPostFavorite(): LiveData<List<PostItems>>{
+    fun getPostFavorite(): LiveData<List<PostItems>> {
         return catDatabase.postDao().getPostFavorite()
     }
 
@@ -91,10 +93,10 @@ class PostRepository(
     }
 
     suspend fun postCreate(
-    token: String,
-    file: MultipartBody.Part,
-    title: String,
-    description: RequestBody,
+        token: String,
+        file: MultipartBody.Part,
+        title: String,
+        description: RequestBody,
     ) {
         withContext(Dispatchers.IO) {
             try {
@@ -115,12 +117,12 @@ class PostRepository(
         }
     }
 
-    suspend fun setPostBookmark(post: PostItems, bookmarkState: Boolean){
+    suspend fun setPostBookmark(post: PostItems, bookmarkState: Boolean) {
         post.isBookmarked = bookmarkState
         catDatabase.postDao().updatePost(post)
     }
 
-    suspend fun setPostLove(post: PostItems, loveState: Boolean){
+    suspend fun setPostLove(post: PostItems, loveState: Boolean) {
         post.isLoved = loveState
         catDatabase.postDao().updatePost(post)
     }

@@ -24,6 +24,7 @@ import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
 class ProfileFragment : Fragment() {
+
     private lateinit var _binding: FragmentProfileBinding
     private val binding get() = _binding
     private val args: ProfileFragmentArgs by navArgs()
@@ -37,7 +38,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProfileBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -47,7 +48,7 @@ class ProfileFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val catProfileAdapter = CatProfileAdapter()
         val postProfileAdapter = PostProfileUserAdapter()
         val user = args.user
@@ -64,7 +65,7 @@ class ProfileFragment : Fragment() {
             tvPostCount.text = user.postsCount.toString()
             topAppBar.title = user.username
 
-            viewModel.getCat(user.id!!).observe(viewLifecycleOwner){result ->
+            viewModel.getCat(user.id!!).observe(viewLifecycleOwner) { result ->
                 if (result != null) {
                     when (result) {
                         is Result.Loading -> {
@@ -87,7 +88,8 @@ class ProfileFragment : Fragment() {
                 }
             }
             rvCats.apply {
-                layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 setHasFixedSize(true)
                 isNestedScrollingEnabled = false
                 adapter = catProfileAdapter
@@ -115,7 +117,7 @@ class ProfileFragment : Fragment() {
                 }
             }
             rvPostProfile.apply {
-                layoutManager = GridLayoutManager(requireContext(),3)
+                layoutManager = GridLayoutManager(requireContext(), 3)
                 setHasFixedSize(true)
                 isNestedScrollingEnabled = false
                 adapter = postProfileAdapter
@@ -123,7 +125,7 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()

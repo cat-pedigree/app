@@ -59,10 +59,16 @@ class SearchAdapter : ListAdapter<UserDataItems, SearchAdapter.ViewHolder>(DIFF_
     companion object {
         val DIFF_CALLBACK =
             object : DiffUtil.ItemCallback<UserDataItems>() {
-                override fun areItemsTheSame(oldItem: UserDataItems, newItem: UserDataItems): Boolean =
+                override fun areItemsTheSame(
+                    oldItem: UserDataItems,
+                    newItem: UserDataItems
+                ): Boolean =
                     oldItem.id == newItem.id
 
-                override fun areContentsTheSame(oldItem: UserDataItems, newItem: UserDataItems): Boolean =
+                override fun areContentsTheSame(
+                    oldItem: UserDataItems,
+                    newItem: UserDataItems
+                ): Boolean =
                     oldItem == newItem
             }
     }

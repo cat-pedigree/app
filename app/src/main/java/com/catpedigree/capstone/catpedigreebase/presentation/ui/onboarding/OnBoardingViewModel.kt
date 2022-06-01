@@ -12,6 +12,7 @@ class OnBoardingViewModel(private val userRepository: UserRepository) : ViewMode
     private val _isLoading = MutableLiveData<Boolean>()
 
     private val _errorMessage = MutableLiveData<String>()
+
     val errorMessage: LiveData<String> = _errorMessage
 
     fun login(email: String, password: String) {

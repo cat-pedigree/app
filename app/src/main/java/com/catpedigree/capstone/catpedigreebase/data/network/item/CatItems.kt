@@ -39,5 +39,5 @@ data class CatItems(
 
     @field:SerializedName("photo")
     val photo: String? = null
-): Parcelable
+) : Parcelable
 

@@ -10,7 +10,8 @@ import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
-class AddCatViewModel(userRepository: UserRepository, private val catRepository: CatRepository) : ViewModel() {
+class AddCatViewModel(userRepository: UserRepository, private val catRepository: CatRepository) :
+    ViewModel() {
 
     val userItems = userRepository.userItems.asLiveData()
 
@@ -32,13 +33,24 @@ class AddCatViewModel(userRepository: UserRepository, private val catRepository:
         color: RequestBody,
         weight: Double,
         age: Int,
-        story:RequestBody,
+        story: RequestBody,
         photo: MultipartBody.Part,
     ) {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                catRepository.catCreate(token, user_id,name, breed, gender, color, weight, age, story, photo)
+                catRepository.catCreate(
+                    token,
+                    user_id,
+                    name,
+                    breed,
+                    gender,
+                    color,
+                    weight,
+                    age,
+                    story,
+                    photo
+                )
                 _isSuccess.value = true
             } catch (e: PostError) {
                 _errorMessage.value = e.message

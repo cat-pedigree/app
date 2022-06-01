@@ -2,7 +2,7 @@ package com.catpedigree.capstone.catpedigreebase.data.network.response
 
 import com.google.gson.annotations.SerializedName
 
-data class  CommentResponse(
+data class CommentResponse(
     @field:SerializedName("code")
     val code: Int? = null,
 

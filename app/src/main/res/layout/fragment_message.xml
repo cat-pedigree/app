@@ -2,15 +2,15 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/swipe_layout">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:keep="@layout/fragment_message"
-        tools:context=".presentation.ui.message.MessageFragment">
+        tools:context=".presentation.ui.message.MessageFragment"
+        tools:keep="@layout/fragment_message">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -49,9 +49,10 @@
 
         <EditText
             android:id="@+id/edt_message"
-            android:background="@drawable/edit_text_no_border"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:background="@drawable/edit_text_no_border"
             android:ems="10"
             android:inputType="textPersonName"
             android:padding="10dp"
@@ -60,19 +61,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_send"
             app:layout_constraintStart_toStartOf="parent"
-            android:autofillHints=""
             tools:ignore="LabelFor" />
 
         <ImageButton
             android:id="@+id/btn_send"
-            android:backgroundTint="@color/accent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/accent"
+            android:contentDescription="@string/send"
             android:src="@drawable/ic_baseline_send_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/send" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ProgressBar
             android:id="@+id/progress_bar"

@@ -20,8 +20,10 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail.P
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.PostDetailUserFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
-class PostUserDetailAdapter(private val onFavoriteClick: (PostItems) -> Unit, private val onLoveClick:(PostItems) -> Unit) : ListAdapter<PostItems, PostUserDetailAdapter.ViewHolderProfileDetail>(DIFF_CALLBACK) {
-
+class PostUserDetailAdapter(
+    private val onFavoriteClick: (PostItems) -> Unit,
+    private val onLoveClick: (PostItems) -> Unit
+) : ListAdapter<PostItems, PostUserDetailAdapter.ViewHolderProfileDetail>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -47,20 +49,22 @@ class PostUserDetailAdapter(private val onFavoriteClick: (PostItems) -> Unit, pr
             toggleLove.isChecked = post.isLoved
 
             toggleFavorite.setOnClickListener {
-                if(post.isBookmarked){
+                if (post.isBookmarked) {
                     onFavoriteClick(post)
-                    Snackbar.make(toggleFavorite, R.string.remove_favorite, Snackbar.LENGTH_LONG).show()
-                }else{
+                    Snackbar.make(toggleFavorite, R.string.remove_favorite, Snackbar.LENGTH_LONG)
+                        .show()
+                } else {
                     onFavoriteClick(post)
-                    Snackbar.make(toggleFavorite, R.string.add_favorite, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(toggleFavorite, R.string.add_favorite, Snackbar.LENGTH_LONG)
+                        .show()
                 }
             }
 
             toggleLove.setOnClickListener {
-                if(post.isLoved){
+                if (post.isLoved) {
                     onLoveClick(post)
                     Snackbar.make(toggleLoves, R.string.remove_like, Snackbar.LENGTH_LONG).show()
-                }else{
+                } else {
                     onLoveClick(post)
                     Snackbar.make(toggleLoves, R.string.like_post, Snackbar.LENGTH_LONG).show()
                 }
@@ -69,15 +73,17 @@ class PostUserDetailAdapter(private val onFavoriteClick: (PostItems) -> Unit, pr
             imgPoster.setOnClickListener {
                 tapTap++
                 Handler(Looper.getMainLooper()).postDelayed({
-                    if(tapTap==2){
-                        if(post.isLoved){
+                    if (tapTap == 2) {
+                        if (post.isLoved) {
                             onLoveClick(post)
                             toggleLove.isChecked = post.isLoved
-                            Snackbar.make(toggleLoves, R.string.remove_like, Snackbar.LENGTH_LONG).show()
-                        }else{
+                            Snackbar.make(toggleLoves, R.string.remove_like, Snackbar.LENGTH_LONG)
+                                .show()
+                        } else {
                             onLoveClick(post)
                             toggleLove.isChecked = post.isLoved
-                            Snackbar.make(toggleLoves, R.string.like_post, Snackbar.LENGTH_LONG).show()
+                            Snackbar.make(toggleLoves, R.string.like_post, Snackbar.LENGTH_LONG)
+                                .show()
                         }
                     }
                     tapTap = 0
@@ -94,7 +100,10 @@ class PostUserDetailAdapter(private val onFavoriteClick: (PostItems) -> Unit, pr
             binding.apply {
                 Glide.with(root)
                     .load(photo)
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
                     .signature(ObjectKey(photo))
                     .into(imgPoster)
 
@@ -121,7 +130,7 @@ class PostUserDetailAdapter(private val onFavoriteClick: (PostItems) -> Unit, pr
     }
 
     companion object {
-        val DIFF_CALLBACK : DiffUtil.ItemCallback<PostItems> =
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<PostItems> =
             object : DiffUtil.ItemCallback<PostItems>() {
                 override fun areItemsTheSame(oldItem: PostItems, newItem: PostItems): Boolean =
                     oldItem.title == newItem.title

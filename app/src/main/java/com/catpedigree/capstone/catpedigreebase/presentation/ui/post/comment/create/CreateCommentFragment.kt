@@ -20,19 +20,18 @@ class CreateCommentFragment : Fragment() {
     private lateinit var _binding: FragmentCreateCommentBinding
     private val binding get() = _binding
 
-    private val args:CreateCommentFragmentArgs by navArgs()
+    private val args: CreateCommentFragmentArgs by navArgs()
     private lateinit var user: UserItems
 
     private val viewModel: CreateCommentViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCreateCommentBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentCreateCommentBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -42,7 +41,7 @@ class CreateCommentFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val post = args.post
         binding.apply {
             btnComment.setOnClickListener {
@@ -52,12 +51,17 @@ class CreateCommentFragment : Fragment() {
 
                 if (userId != null) {
                     if (postId != null) {
-                        when{
-                            description.isEmpty() ->{
+                        when {
+                            description.isEmpty() -> {
                                 edtComment.error = getString(R.string.description_required)
                             }
                             else -> {
-                                viewModel.createComment(user.token ?: "", postId, userId, description)
+                                viewModel.createComment(
+                                    user.token ?: "",
+                                    postId,
+                                    userId,
+                                    description
+                                )
                             }
                         }
                     }
@@ -66,7 +70,7 @@ class CreateCommentFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItem.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -84,7 +88,8 @@ class CreateCommentFragment : Fragment() {
 
         viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                Snackbar.make(binding.btnComment,R.string.comment_success, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding.btnComment, R.string.comment_success, Snackbar.LENGTH_LONG)
+                    .show()
                 findNavController().navigateUp()
             }
         }

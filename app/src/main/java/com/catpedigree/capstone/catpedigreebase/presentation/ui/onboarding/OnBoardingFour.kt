@@ -12,6 +12,7 @@ import com.catpedigree.capstone.catpedigreebase.databinding.FragmentOnboardingFo
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 
 class OnBoardingFour : Fragment() {
+
     private lateinit var _binding: FragmentOnboardingFourBinding
     private val binding get() = _binding
 
@@ -23,7 +24,7 @@ class OnBoardingFour : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOnboardingFourBinding.inflate(inflater,container,false)
+        _binding = FragmentOnboardingFourBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,13 +34,13 @@ class OnBoardingFour : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.btnStart.setOnClickListener {
             findNavController().navigate(R.id.action_onboardingFour_to_loginFragment)
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItem.observe(viewLifecycleOwner) { userModel ->
             if (userModel?.isLoggedIn == true) {
                 findNavController().navigate(R.id.action_onboardingFour_to_loginFragment)

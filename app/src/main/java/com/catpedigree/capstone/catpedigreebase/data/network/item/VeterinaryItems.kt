@@ -27,4 +27,4 @@ data class VeterinaryItems(
 
     @field:SerializedName("lon")
     val lon: Double? = null,
-): Parcelable
+) : Parcelable

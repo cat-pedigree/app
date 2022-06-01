@@ -10,9 +10,9 @@
         android:id="@+id/iv_result"
         android:layout_width="match_parent"
         android:layout_height="457dp"
+        android:contentDescription="@string/desc_result_pedigree"
         android:src="@drawable/preview2"
-        tools:ignore="MissingConstraints"
-        android:contentDescription="@string/desc_result_pedigree" />
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:id="@+id/ll_result"
@@ -25,8 +25,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="409dp"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="409dp">
 
         <TextView
             android:id="@+id/tv_result"
@@ -50,16 +50,16 @@
     </LinearLayout>
 
     <TextView
+        style="@style/caption1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/desc"
-        style="@style/caption1"
-        android:textColor="@color/neutral_80"
         android:layout_marginTop="55dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/desc"
+        android:textColor="@color/neutral_80"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_result"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_result" />
 
-    <include layout="@layout/navigation_bottom"/>
+    <include layout="@layout/navigation_bottom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

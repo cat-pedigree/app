@@ -22,7 +22,7 @@ class SplashScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSplashScreenBinding.inflate(inflater,container,false)
+        _binding = FragmentSplashScreenBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -31,13 +31,13 @@ class SplashScreenFragment : Fragment() {
         handler()
     }
 
-    private fun handler(){
+    private fun handler() {
         Handler(Looper.getMainLooper()).postDelayed({
             findNavController().navigate(R.id.action_splashScreenFragment_to_onboardingOne)
         }, SPLASH_TIME_OUT)
     }
 
-    companion object{
+    companion object {
         private const val SPLASH_TIME_OUT = 3000L
     }
 }

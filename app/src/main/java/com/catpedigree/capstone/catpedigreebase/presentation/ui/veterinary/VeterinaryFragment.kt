@@ -18,6 +18,7 @@ import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
 class VeterinaryFragment : Fragment() {
+
     private lateinit var _binding: FragmentVeterinaryBinding
     private val binding get() = _binding
     private lateinit var user: UserItems
@@ -30,7 +31,7 @@ class VeterinaryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentVeterinaryBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentVeterinaryBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -40,11 +41,11 @@ class VeterinaryFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val veterinaryAdapter = VeterinaryAdapter(requireContext())
 
         binding.apply {
-            viewModel.getVeterinary().observe(viewLifecycleOwner){result ->
+            viewModel.getVeterinary().observe(viewLifecycleOwner) { result ->
                 if (result != null) {
                     when (result) {
                         is Result.Loading -> {
@@ -76,7 +77,7 @@ class VeterinaryFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItem.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()

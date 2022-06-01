@@ -30,4 +30,4 @@ data class UserDataItems(
 
     @field:SerializedName("catsCount")
     val catsCount: Int? = null,
-): Parcelable
+) : Parcelable

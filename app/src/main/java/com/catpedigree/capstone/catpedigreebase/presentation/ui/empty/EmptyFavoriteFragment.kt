@@ -18,7 +18,7 @@ class EmptyFavoriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentEmptyFavoriteBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentEmptyFavoriteBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -27,7 +27,7 @@ class EmptyFavoriteFragment : Fragment() {
         setupAction()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.btnHome.setOnClickListener {
             findNavController().navigate(R.id.action_emptyFavoriteFragment_to_homeFragment)
         }

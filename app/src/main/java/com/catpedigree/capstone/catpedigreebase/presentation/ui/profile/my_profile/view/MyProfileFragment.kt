@@ -39,14 +39,14 @@ class MyProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMyProfileBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentMyProfileBinding.inflate(layoutInflater, container, false)
 
         val bundle = Bundle()
-        val sectionPagerAdapter = SectionPagerAdapter(requireActivity() as AppCompatActivity, bundle)
+        val sectionPagerAdapter =
+            SectionPagerAdapter(requireActivity() as AppCompatActivity, bundle)
         binding.viewPager.adapter = sectionPagerAdapter
-        TabLayoutMediator(binding.tabs, binding.viewPager){
-                tab, position ->
-                tab.icon = ContextCompat.getDrawable(requireActivity(), TAB_ICONS[position])
+        TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
+            tab.icon = ContextCompat.getDrawable(requireActivity(), TAB_ICONS[position])
         }.attach()
         return binding.root
     }
@@ -57,7 +57,7 @@ class MyProfileFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.btnEditProfile.setOnClickListener {
             findNavController().navigate(R.id.action_myProfileFragment_to_editProfileFragment)
         }
@@ -65,7 +65,7 @@ class MyProfileFragment : Fragment() {
         val catAdapter = CatAdapter()
 
         binding.apply {
-            viewModel.getCat().observe(viewLifecycleOwner){result ->
+            viewModel.getCat().observe(viewLifecycleOwner) { result ->
                 if (result != null) {
                     when (result) {
                         is Result.Loading -> {
@@ -89,14 +89,16 @@ class MyProfileFragment : Fragment() {
             }
 
             rvCats.apply {
-                layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 setHasFixedSize(true)
                 isNestedScrollingEnabled = false
                 adapter = catAdapter
             }
         }
     }
-    private fun setupViewModel(){
+
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -135,6 +137,7 @@ class MyProfileFragment : Fragment() {
 
     companion object {
         @StringRes
-        private val TAB_ICONS = intArrayOf(R.drawable.ic_baseline_dashboard_24, R.drawable.ic_baseline_bookmark_black)
+        private val TAB_ICONS =
+            intArrayOf(R.drawable.ic_baseline_dashboard_24, R.drawable.ic_baseline_bookmark_black)
     }
 }

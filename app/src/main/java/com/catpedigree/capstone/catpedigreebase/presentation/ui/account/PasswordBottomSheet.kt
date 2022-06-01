@@ -29,7 +29,7 @@ class PasswordBottomSheet : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPasswordBottomSheetBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentPasswordBottomSheetBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -39,11 +39,11 @@ class PasswordBottomSheet : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.apply {
 
             edtPassword.editText?.doOnTextChanged { text, _, _, _ ->
-                when{
+                when {
                     text!!.length < 8 -> {
                         edtPassword.error = getString(R.string.password_required_length)
                     }
@@ -54,7 +54,7 @@ class PasswordBottomSheet : Fragment() {
             }
 
             edtConfirmPassword.editText?.doOnTextChanged { text, _, _, _ ->
-                when{
+                when {
                     text!!.length < 8 -> {
                         edtConfirmPassword.error = getString(R.string.password_required_length)
                     }
@@ -67,7 +67,7 @@ class PasswordBottomSheet : Fragment() {
             btnConfirm.setOnClickListener {
                 val password = edtPassword.editText?.text.toString().trim()
                 val confirmPassword = edtConfirmPassword.editText?.text.toString().trim()
-                when{
+                when {
                     password.isEmpty() -> {
                         edtPassword.error = getString(R.string.password_required)
                     }
@@ -82,7 +82,8 @@ class PasswordBottomSheet : Fragment() {
                     }
                     password != confirmPassword -> {
                         edtPassword.error = getString(R.string.password_match)
-                    }else -> {
+                    }
+                    else -> {
                         viewModel.changePassword(user.token ?: "", password)
                     }
                 }
@@ -90,7 +91,7 @@ class PasswordBottomSheet : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()

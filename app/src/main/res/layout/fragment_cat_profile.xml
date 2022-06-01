@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:keep="@layout/fragment_cat_profile"
-        tools:context=".presentation.ui.cat.view.CatProfileFragment">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.cat.view.CatProfileFragment"
+    tools:keep="@layout/fragment_cat_profile">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -38,218 +37,217 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         tools:src="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/tv_cat_name"
-            style="@style/title4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/cat_name"
-            android:textColor="@color/neutral_100"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_profile_cat" />
+    <TextView
+        android:id="@+id/tv_cat_name"
+        style="@style/title4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/cat_name"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile_cat" />
 
-        <TextView
-            android:id="@+id/tv_breed"
-            style="@style/heading3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/breed"
-            android:textColor="@color/neutral_80"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_cat_name" />
+    <TextView
+        android:id="@+id/tv_breed"
+        style="@style/heading3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/breed"
+        android:textColor="@color/neutral_80"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cat_name" />
 
-        <ImageView
-            android:id="@+id/iv_month"
-            android:layout_width="115dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:alpha="0.6"
-            android:contentDescription="@string/cat_month"
-            android:src="@drawable/rectangle_white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_breed" />
+    <ImageView
+        android:id="@+id/iv_month"
+        android:layout_width="115dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:alpha="0.6"
+        android:contentDescription="@string/cat_month"
+        android:src="@drawable/rectangle_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_breed" />
 
-        <TextView
-            android:id="@+id/tv_month"
-            style="@style/heading1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/cat_month"
-            android:textAlignment="center"
-            android:textColor="@color/neutral_100"
-            app:layout_constraintEnd_toEndOf="@+id/iv_month"
-            app:layout_constraintStart_toStartOf="@+id/iv_month"
-            app:layout_constraintTop_toTopOf="@+id/iv_month" />
+    <TextView
+        android:id="@+id/tv_month"
+        style="@style/heading1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/cat_month"
+        android:textAlignment="center"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toEndOf="@+id/iv_month"
+        app:layout_constraintStart_toStartOf="@+id/iv_month"
+        app:layout_constraintTop_toTopOf="@+id/iv_month" />
 
-        <TextView
-            android:id="@+id/tv_age"
-            style="@style/body3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cat_age"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/iv_month"
-            app:layout_constraintStart_toStartOf="@+id/iv_month"
-            app:layout_constraintTop_toBottomOf="@+id/tv_month" />
+    <TextView
+        android:id="@+id/tv_age"
+        style="@style/body3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_age"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/iv_month"
+        app:layout_constraintStart_toStartOf="@+id/iv_month"
+        app:layout_constraintTop_toBottomOf="@+id/tv_month" />
 
-        <ImageView
-            android:id="@+id/iv_color"
-            android:layout_width="115dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:alpha="0.6"
-            android:contentDescription="@string/cat_color"
-            android:src="@drawable/rectangle_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_breed" />
+    <ImageView
+        android:id="@+id/iv_color"
+        android:layout_width="115dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:alpha="0.6"
+        android:contentDescription="@string/cat_color"
+        android:src="@drawable/rectangle_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_breed" />
 
-        <TextView
-            android:id="@+id/tv_color_name"
-            style="@style/heading1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/color_name"
-            android:textAlignment="center"
-            android:textColor="@color/neutral_100"
-            app:layout_constraintEnd_toEndOf="@+id/iv_color"
-            app:layout_constraintStart_toStartOf="@+id/iv_color"
-            app:layout_constraintTop_toTopOf="@+id/iv_color" />
+    <TextView
+        android:id="@+id/tv_color_name"
+        style="@style/heading1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/color_name"
+        android:textAlignment="center"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toEndOf="@+id/iv_color"
+        app:layout_constraintStart_toStartOf="@+id/iv_color"
+        app:layout_constraintTop_toTopOf="@+id/iv_color" />
 
-        <TextView
-            android:id="@+id/tv_color"
-            style="@style/body3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/follower"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/iv_color"
-            app:layout_constraintStart_toStartOf="@+id/iv_color"
-            app:layout_constraintTop_toBottomOf="@+id/tv_color_name" />
+    <TextView
+        android:id="@+id/tv_color"
+        style="@style/body3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/follower"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/iv_color"
+        app:layout_constraintStart_toStartOf="@+id/iv_color"
+        app:layout_constraintTop_toBottomOf="@+id/tv_color_name" />
 
+    <ImageView
+        android:id="@+id/iv_gender"
+        android:layout_width="115dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:alpha="0.6"
+        android:contentDescription="@string/cat_gender"
+        android:src="@drawable/rectangle_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_breed" />
 
-        <ImageView
-            android:id="@+id/iv_gender"
-            android:layout_width="115dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:alpha="0.6"
-            android:contentDescription="@string/cat_gender"
-            android:src="@drawable/rectangle_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_breed" />
+    <TextView
+        android:id="@+id/tv_gender_name"
+        style="@style/heading1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/cat_gender"
+        android:textAlignment="center"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toEndOf="@+id/iv_gender"
+        app:layout_constraintStart_toStartOf="@+id/iv_gender"
+        app:layout_constraintTop_toTopOf="@+id/iv_gender" />
 
-        <TextView
-            android:id="@+id/tv_gender_name"
-            style="@style/heading1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/cat_gender"
-            android:textAlignment="center"
-            android:textColor="@color/neutral_100"
-            app:layout_constraintEnd_toEndOf="@+id/iv_gender"
-            app:layout_constraintStart_toStartOf="@+id/iv_gender"
-            app:layout_constraintTop_toTopOf="@+id/iv_gender" />
+    <TextView
+        android:id="@+id/tv_gender"
+        style="@style/body3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/cat_gender"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/iv_gender"
+        app:layout_constraintStart_toStartOf="@+id/iv_gender"
+        app:layout_constraintTop_toBottomOf="@+id/tv_gender_name" />
 
-        <TextView
-            android:id="@+id/tv_gender"
-            style="@style/body3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="@string/cat_gender"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/iv_gender"
-            app:layout_constraintStart_toStartOf="@+id/iv_gender"
-            app:layout_constraintTop_toBottomOf="@+id/tv_gender_name" />
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_add_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/post"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/accent"
+        app:icon="@drawable/ic_add"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/btn_add_album"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
-            android:contentDescription="@string/post"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/accent"
-            app:icon="@drawable/ic_add"
-            app:iconTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_story"
+        style="@style/title4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/cat_story"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_month" />
 
-        <TextView
-            android:id="@+id/tv_story"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/cat_story"
-            style="@style/title4"
-            android:textColor="@color/neutral_100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_month" />
+    <TextView
+        android:id="@+id/tv_story_cat"
+        style="@style/body2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/cat_story"
+        android:textColor="@color/neutral_80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_story" />
 
-        <TextView
-            android:id="@+id/tv_story_cat"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/cat_story"
-            android:textColor="@color/neutral_80"
-            style="@style/body2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_story" />
+    <TextView
+        android:id="@+id/tv_album"
+        style="@style/title4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/album"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_story_cat" />
 
-        <TextView
-            android:id="@+id/tv_album"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/album"
-            style="@style/title4"
-            android:textColor="@color/neutral_100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_story_cat" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_album"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_album"
+        tools:listitem="@layout/item_album" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_album"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_album"
-            tools:listitem="@layout/item_album" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

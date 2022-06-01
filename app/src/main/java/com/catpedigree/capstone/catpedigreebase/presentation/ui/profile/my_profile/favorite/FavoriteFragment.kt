@@ -16,6 +16,7 @@ import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFa
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
 class FavoriteFragment : Fragment() {
+
     private lateinit var _binding: FragmentFavoriteBinding
     private val binding get() = _binding
 
@@ -29,7 +30,7 @@ class FavoriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFavoriteBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -39,32 +40,32 @@ class FavoriteFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val postAdapterFavorite = PostFavoriteAdapter(onFavoriteClick = { post ->
             if (post.isBookmarked) {
                 viewModel.deletePost(post)
-                viewModel.getPostFavoriteCount().observe(viewLifecycleOwner){
-                    if(it == 0){
+                viewModel.getPostFavoriteCount().observe(viewLifecycleOwner) {
+                    if (it == 0) {
                         findNavController().navigate(R.id.action_favoriteFragment_to_emptyFavoriteFragment)
                     }
                 }
             } else {
                 viewModel.savePost(post)
             }
-        }, onLoveClick = {post ->
-            if(post.isLoved){
+        }, onLoveClick = { post ->
+            if (post.isLoved) {
                 viewModel.deleteLovePost(post)
-                viewModel.loveDelete(user.token ?: "",post.id!!, user.id!!)
-            }else{
+                viewModel.loveDelete(user.token ?: "", post.id!!, user.id!!)
+            } else {
                 viewModel.createLovePost(post)
-                viewModel.loveCreate(user.token ?: "",post.id!!, user.id!!)
+                viewModel.loveCreate(user.token ?: "", post.id!!, user.id!!)
             }
         })
 
         viewModel.getPostFavorite().observe(viewLifecycleOwner) { postFavorite ->
             showLoading(false)
             postAdapterFavorite.submitList(postFavorite)
-            if(postAdapterFavorite.itemCount == 0){
+            if (postAdapterFavorite.itemCount == 0) {
                 findNavController().navigate(R.id.action_favoriteFragment_to_emptyFavoriteFragment)
             }
         }
@@ -77,7 +78,7 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -95,6 +96,8 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        (if (isLoading) View.VISIBLE else View.INVISIBLE).also { binding.progressBar.visibility = it }
+        (if (isLoading) View.VISIBLE else View.INVISIBLE).also {
+            binding.progressBar.visibility = it
+        }
     }
 }

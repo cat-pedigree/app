@@ -15,6 +15,7 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.veterinary.Veter
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
 class ServicesFragment : Fragment() {
+
     private lateinit var _binding: FragmentServicesBinding
     private val binding get() = _binding
     private lateinit var user: UserItems
@@ -27,7 +28,7 @@ class ServicesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentServicesBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentServicesBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -38,7 +39,7 @@ class ServicesFragment : Fragment() {
         setupNavigation()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
 
         binding.apply {
             menuVeterinary.setOnClickListener {
@@ -47,7 +48,7 @@ class ServicesFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItem.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -64,9 +65,9 @@ class ServicesFragment : Fragment() {
         }
     }
 
-    private fun setupNavigation(){
-        binding.bottomNavigationView.setOnItemSelectedListener {item ->
-            when(item.itemId){
+    private fun setupNavigation() {
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
                 R.id.menu_home -> {
                     findNavController().navigate(R.id.action_servicesFragment_to_homeFragment)
                     return@setOnItemSelectedListener false

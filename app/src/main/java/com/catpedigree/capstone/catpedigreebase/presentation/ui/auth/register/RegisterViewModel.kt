@@ -18,7 +18,13 @@ class RegisterViewModel(private val userRepository: UserRepository) : ViewModel(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    fun register(name: String, username: String, phone_number: String, email: String, password: String) {
+    fun register(
+        name: String,
+        username: String,
+        phone_number: String,
+        email: String,
+        password: String
+    ) {
         viewModelScope.launch {
             _isLoading.value = true
             try {

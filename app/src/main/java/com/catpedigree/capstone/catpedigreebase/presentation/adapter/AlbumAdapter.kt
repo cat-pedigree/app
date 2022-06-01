@@ -37,7 +37,10 @@ class AlbumAdapter : ListAdapter<AlbumItems, AlbumAdapter.ViewHolderAlbum>(DIFF_
             binding.apply {
                 Glide.with(root)
                     .load(photo)
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
                     .signature(ObjectKey(photo))
                     .into(imgAlbum)
 
@@ -49,7 +52,7 @@ class AlbumAdapter : ListAdapter<AlbumItems, AlbumAdapter.ViewHolderAlbum>(DIFF_
     }
 
     companion object {
-        val DIFF_CALLBACK : DiffUtil.ItemCallback<AlbumItems> =
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<AlbumItems> =
             object : DiffUtil.ItemCallback<AlbumItems>() {
                 override fun areItemsTheSame(oldItem: AlbumItems, newItem: AlbumItems): Boolean =
                     oldItem.id == newItem.id

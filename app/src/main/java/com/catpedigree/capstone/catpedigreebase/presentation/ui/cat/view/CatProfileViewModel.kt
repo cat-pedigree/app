@@ -7,7 +7,10 @@ import com.catpedigree.capstone.catpedigreebase.utils.error.CatError
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 
-class CatProfileViewModel(userRepository: UserRepository, private val catRepository: CatRepository) : ViewModel() {
+class CatProfileViewModel(
+    userRepository: UserRepository,
+    private val catRepository: CatRepository
+) : ViewModel() {
 
     val userItem = userRepository.userItems.asLiveData()
 

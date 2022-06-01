@@ -17,7 +17,8 @@ import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostProfileBindi
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail.PostDetailProfileFragmentDirections
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.ProfileFragmentDirections
 
-class PostProfileUserAdapter : ListAdapter<PostItems, PostProfileUserAdapter.ViewHolderProfile>(DIFF_CALLBACK) {
+class PostProfileUserAdapter :
+    ListAdapter<PostItems, PostProfileUserAdapter.ViewHolderProfile>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -40,11 +41,12 @@ class PostProfileUserAdapter : ListAdapter<PostItems, PostProfileUserAdapter.Vie
             binding.apply {
                 Glide.with(root)
                     .load(photo)
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
                     .signature(ObjectKey(photo))
                     .into(imgPoster)
-
-
 
 //                imgPoster.setOnClickListener {
 //                    Navigation.findNavController(imgPoster).navigate(R.id.action_myProfileFragment_to_postDetailProfileFragment)
@@ -62,7 +64,7 @@ class PostProfileUserAdapter : ListAdapter<PostItems, PostProfileUserAdapter.Vie
     }
 
     companion object {
-        val DIFF_CALLBACK : DiffUtil.ItemCallback<PostItems> =
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<PostItems> =
             object : DiffUtil.ItemCallback<PostItems>() {
                 override fun areItemsTheSame(oldItem: PostItems, newItem: PostItems): Boolean =
                     oldItem.title == newItem.title

@@ -22,6 +22,7 @@ import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
 class PostDetailUserFragment : Fragment() {
+
     private lateinit var _binding: FragmentPostDetailUserBinding
     private val binding get() = _binding
 
@@ -36,7 +37,7 @@ class PostDetailUserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPostDetailUserBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentPostDetailUserBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -46,7 +47,7 @@ class PostDetailUserFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val post = args.post
         val postAdapterProfile = PostUserDetailAdapter(onFavoriteClick = { posts ->
             if (posts.isBookmarked) {
@@ -55,13 +56,13 @@ class PostDetailUserFragment : Fragment() {
                 viewModel.savePost(posts)
             }
 //
-        }, onLoveClick = {posts ->
-            if(posts.isLoved){
+        }, onLoveClick = { posts ->
+            if (posts.isLoved) {
                 viewModel.deleteLovePost(posts)
-                viewModel.loveDelete(user.token ?: "",posts.id!!, user.id!!)
-            }else{
+                viewModel.loveDelete(user.token ?: "", posts.id!!, user.id!!)
+            } else {
                 viewModel.createLovePost(posts)
-                viewModel.loveCreate(user.token ?: "",posts.id!!, user.id!!)
+                viewModel.loveCreate(user.token ?: "", posts.id!!, user.id!!)
             }
         })
 
@@ -96,7 +97,7 @@ class PostDetailUserFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -114,6 +115,8 @@ class PostDetailUserFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        (if (isLoading) View.VISIBLE else View.INVISIBLE).also { binding.progressBar.visibility = it }
+        (if (isLoading) View.VISIBLE else View.INVISIBLE).also {
+            binding.progressBar.visibility = it
+        }
     }
 }

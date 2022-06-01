@@ -26,7 +26,7 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRegisterBinding.inflate(inflater,container,false)
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,14 +36,14 @@ class RegisterFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.apply {
             tvLogin.setOnClickListener {
                 findNavController().navigateUp()
             }
 
             passwordEditText.editText?.doOnTextChanged { text, _, _, _ ->
-                when{
+                when {
                     text!!.length < 8 -> {
                         passwordEditText.error = getString(R.string.password_required_length)
                     }
@@ -60,7 +60,7 @@ class RegisterFragment : Fragment() {
                 val email = binding.emailEditText.editText?.text.toString()
                 val password = binding.passwordEditText.editText?.text.toString()
 
-                when{
+                when {
                     name.isEmpty() -> {
                         nameEditText.error = getString(R.string.name_required)
                     }
@@ -83,14 +83,14 @@ class RegisterFragment : Fragment() {
                         passwordEditText.error = getString(R.string.password_required_length)
                     }
                     else -> {
-                        viewModel.register(name,username,phoneNumber,email,password)
+                        viewModel.register(name, username, phoneNumber, email, password)
                     }
                 }
             }
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
                 ToastUtils.showToast(requireContext(), getString(R.string.register_success))
@@ -111,7 +111,7 @@ class RegisterFragment : Fragment() {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
     }
 
-    private fun isValidEmail(email: String): Boolean{
+    private fun isValidEmail(email: String): Boolean {
         return !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }

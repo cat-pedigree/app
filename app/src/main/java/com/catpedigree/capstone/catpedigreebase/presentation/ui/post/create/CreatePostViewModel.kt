@@ -8,7 +8,10 @@ import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
-class CreatePostViewModel(userRepository: UserRepository, private val postRepository: PostRepository) : ViewModel() {
+class CreatePostViewModel(
+    userRepository: UserRepository,
+    private val postRepository: PostRepository
+) : ViewModel() {
 
     val userItems = userRepository.userItems.asLiveData()
 
@@ -24,7 +27,7 @@ class CreatePostViewModel(userRepository: UserRepository, private val postReposi
     fun uploadPost(
         token: String,
         photo: MultipartBody.Part,
-        title : String,
+        title: String,
         description: RequestBody,
     ) {
         viewModelScope.launch {

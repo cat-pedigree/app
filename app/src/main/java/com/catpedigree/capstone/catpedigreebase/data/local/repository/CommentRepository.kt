@@ -18,8 +18,8 @@ class CommentRepository(
 
     fun getComments(token: String, post_id: Int): LiveData<Result<List<CommentItems>>> = liveData {
         emit(Result.Loading)
-        try{
-            val response = commentRemoteDataSource.getComment(token,post_id)
+        try {
+            val response = commentRemoteDataSource.getComment(token, post_id)
             val comments = response.body()?.data
             val newComment = comments?.map { comment ->
                 CommentItems(
@@ -33,10 +33,11 @@ class CommentRepository(
             }
             catDatabase.commentDao().deleteAllComments()
             catDatabase.commentDao().insertComment(newComment!!)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }
-        val dataLocal: LiveData<Result<List<CommentItems>>> = catDatabase.commentDao().getComments(post_id).map { Result.Success(it) }
+        val dataLocal: LiveData<Result<List<CommentItems>>> =
+            catDatabase.commentDao().getComments(post_id).map { Result.Success(it) }
         emitSource(dataLocal)
     }
 

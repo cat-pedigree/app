@@ -9,38 +9,38 @@
 
     <TextView
         android:id="@+id/tv_title"
+        style="@style/title5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dating_title"
-        style="@style/title5"
         android:textColor="@color/primary"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_desc"
+        style="@style/heading3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dating_description"
-        style="@style/heading3"
-        android:textColor="@color/primary"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/dating_description"
+        android:textColor="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <ImageView
         android:id="@+id/iv_first"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="23dp"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="105dp"
+        android:layout_marginTop="23dp"
+        android:contentDescription="@string/avatar"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_desc"
-        tools:src="@tools:sample/avatars"
-        android:contentDescription="@string/avatar" />
+        tools:src="@tools:sample/avatars" />
 
     <ImageView
         android:id="@+id/iv_second"
@@ -48,20 +48,20 @@
         android:layout_height="50dp"
         android:layout_marginTop="23dp"
         android:layout_marginEnd="105dp"
+        android:contentDescription="@string/avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_desc"
-        tools:src="@tools:sample/avatars"
-        android:contentDescription="@string/avatar" />
+        tools:src="@tools:sample/avatars" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:text="@string/btn_message"
-        android:textColor="@color/black"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="36dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:backgroundTint="@color/white"
+        android:text="@string/btn_message"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

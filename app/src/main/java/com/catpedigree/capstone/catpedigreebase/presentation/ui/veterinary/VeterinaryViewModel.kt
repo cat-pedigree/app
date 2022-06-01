@@ -5,7 +5,10 @@ import com.catpedigree.capstone.catpedigreebase.data.local.repository.CommentRep
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.VeterinaryRepository
 
-class VeterinaryViewModel(userRepository: UserRepository, private val veterinaryRepository: VeterinaryRepository) : ViewModel() {
+class VeterinaryViewModel(
+    userRepository: UserRepository,
+    private val veterinaryRepository: VeterinaryRepository
+) : ViewModel() {
 
     val userItem = userRepository.userItems.asLiveData()
 

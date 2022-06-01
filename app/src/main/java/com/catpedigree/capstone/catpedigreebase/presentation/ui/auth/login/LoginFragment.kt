@@ -25,7 +25,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginBinding.inflate(inflater,container,false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -35,7 +35,7 @@ class LoginFragment : Fragment() {
         setupAction()
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItem.observe(viewLifecycleOwner) { userModel ->
             if (userModel?.isLoggedIn == true) {
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
@@ -51,14 +51,14 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.apply {
             tvSignup.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }
 
             passwordEditText.editText?.doOnTextChanged { text, _, _, _ ->
-                when{
+                when {
                     text!!.length < 8 -> {
                         passwordEditText.error = getString(R.string.password_required_length)
                     }
@@ -72,7 +72,7 @@ class LoginFragment : Fragment() {
                 val email = emailEditText.editText?.text.toString()
                 val password = passwordEditText.editText?.text.toString()
 
-                when{
+                when {
                     email.isEmpty() -> {
                         binding.emailEditText.error = getString(R.string.email_required)
                     }
@@ -83,7 +83,8 @@ class LoginFragment : Fragment() {
                         binding.passwordEditText.error = getString(R.string.password_required)
                     }
                     password.length < 8 -> {
-                        binding.passwordEditText.error = getString(R.string.password_required_length)
+                        binding.passwordEditText.error =
+                            getString(R.string.password_required_length)
                     }
                     else -> {
                         viewModel.login(email, password)
@@ -97,7 +98,7 @@ class LoginFragment : Fragment() {
         (if (isLoading) View.VISIBLE else View.GONE).also { binding.progressBar.visibility = it }
     }
 
-    private fun isValidEmail(email: String): Boolean{
+    private fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }

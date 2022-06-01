@@ -41,6 +41,6 @@ interface CatInterface {
     suspend fun getCatAlbum(
         @Header("Authorization") token: String,
         @Query("user_id") user_id: Int,
-        @Query("cat_id") cat_id:Int
+        @Query("cat_id") cat_id: Int
     ): Response<AlbumResponse>
 }

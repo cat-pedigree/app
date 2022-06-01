@@ -26,8 +26,8 @@ class CommentAdapter : ListAdapter<CommentItems, CommentAdapter.ViewHolder>(DIFF
                     .circleCrop()
                     .into(ivAvatarComment)
 
-                    tvNameComment.text = comment.name.toString()
-                    tvComment.text = comment.description
+                tvNameComment.text = comment.name.toString()
+                tvComment.text = comment.description
             }
         }
     }
@@ -49,10 +49,16 @@ class CommentAdapter : ListAdapter<CommentItems, CommentAdapter.ViewHolder>(DIFF
     companion object {
         val DIFF_CALLBACK =
             object : DiffUtil.ItemCallback<CommentItems>() {
-                override fun areItemsTheSame(oldItem: CommentItems, newItem: CommentItems): Boolean =
+                override fun areItemsTheSame(
+                    oldItem: CommentItems,
+                    newItem: CommentItems
+                ): Boolean =
                     oldItem.id == newItem.id
 
-                override fun areContentsTheSame(oldItem: CommentItems, newItem: CommentItems): Boolean =
+                override fun areContentsTheSame(
+                    oldItem: CommentItems,
+                    newItem: CommentItems
+                ): Boolean =
                     oldItem == newItem
             }
     }

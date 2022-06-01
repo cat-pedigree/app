@@ -37,7 +37,7 @@ class CommentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCommentBinding.inflate(inflater,container,false)
+        _binding = FragmentCommentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -47,14 +47,14 @@ class CommentFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val post = args.post
 
         val commentAdapter = CommentAdapter()
         val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${post.profile_photo_path}"
 
         binding.apply {
-            viewModel.comments(post.id!!).observe(viewLifecycleOwner){result ->
+            viewModel.comments(post.id!!).observe(viewLifecycleOwner) { result ->
                 if (result != null) {
                     when (result) {
                         is Result.Loading -> {
@@ -103,7 +103,7 @@ class CommentFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItem.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()

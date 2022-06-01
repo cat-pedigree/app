@@ -27,7 +27,7 @@ class EmailBottomSheet : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentEmailBottomSheetBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentEmailBottomSheetBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -37,24 +37,27 @@ class EmailBottomSheet : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.apply {
             btnConfirm.setOnClickListener {
                 val email = edtEmail.editText?.text.toString().trim()
-                when{
+                when {
                     email.isEmpty() -> {
-                        Snackbar.make(btnConfirm, R.string.email_required, Snackbar.LENGTH_LONG).show()
-                    }!isValidEmail(email) -> {
+                        Snackbar.make(btnConfirm, R.string.email_required, Snackbar.LENGTH_LONG)
+                            .show()
+                    }
+                    !isValidEmail(email) -> {
                         binding.edtEmail.error = getString(R.string.email_pattern)
-                    }else -> {
-                        viewModel.changeEmail(user.token?:"", email)
+                    }
+                    else -> {
+                        viewModel.changeEmail(user.token ?: "", email)
                     }
                 }
             }
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -83,7 +86,7 @@ class EmailBottomSheet : Fragment() {
         (if (isLoading) View.VISIBLE else View.GONE).also { binding.progressBar.visibility = it }
     }
 
-    private fun isValidEmail(email: String): Boolean{
+    private fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }
