@@ -7,14 +7,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.catpedigree.capstone.catpedigreebase.data.network.api.config.ApiConfig
 import com.catpedigree.capstone.catpedigreebase.data.local.room.database.CatDatabase
 import com.catpedigree.capstone.catpedigreebase.data.local.preferences.SharedPrefUserLogin
-import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.CatRemoteDataSource
-import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.CommentRemoteDataSource
-import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.PostRemoteDataSource
-import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.UserRemoteDataSource
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.CommentRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
+import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.*
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.*
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
@@ -41,6 +35,12 @@ object Injection {
         val catApiInterface = ApiConfig.getCatApi()
         val catRemoteDataSource = CatRemoteDataSource(catApiInterface)
         return CatRepository(catRemoteDataSource, CatDatabase.getDatabase(context))
+    }
+
+    fun provideVeterinaryRepository(context: Context): VeterinaryRepository{
+        val veterinaryApiInterface = ApiConfig.getVeterinary()
+        val veterinaryRemoteDataSource = VeterinaryRemoteDataSource(veterinaryApiInterface)
+        return VeterinaryRepository(veterinaryRemoteDataSource, CatDatabase.getDatabase(context))
     }
 
 }
