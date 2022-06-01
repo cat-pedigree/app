@@ -3,10 +3,7 @@ package com.catpedigree.capstone.catpedigreebase.presentation.factory
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.CommentRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.*
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.account.AccountViewModel
 import com.catpedigree.capstone.catpedigreebase.utils.injection.Injection
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.login.LoginViewModel
@@ -24,12 +21,15 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail.P
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.edit.EditProfileViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view.MyProfileViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.ProfileViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.services.ServicesViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.veterinary.VeterinaryViewModel
 
 class ViewModelFactory
     (private val userRepository: UserRepository,
      private val postRepository: PostRepository,
      private val commentRepository: CommentRepository,
-    private val catRepository: CatRepository)
+    private val catRepository: CatRepository,
+    private val veterinaryRepository: VeterinaryRepository)
     : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
@@ -67,6 +67,10 @@ class ViewModelFactory
                 CatProfileViewModel(userRepository, catRepository) as T
             }modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
                 AccountViewModel(userRepository) as T
+            }modelClass.isAssignableFrom(VeterinaryViewModel::class.java) -> {
+                VeterinaryViewModel(userRepository, veterinaryRepository) as T
+            }modelClass.isAssignableFrom(ServicesViewModel::class.java) -> {
+                ServicesViewModel(userRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
@@ -81,7 +85,8 @@ class ViewModelFactory
                     Injection.provideUserRepository(context),
                     Injection.providePostRepository(context),
                     Injection.provideCommentRepository(context),
-                    Injection.provideCatRepository(context))
+                    Injection.provideCatRepository(context),
+                    Injection.provideVeterinaryRepository(context))
             }.also { instance = it }
     }
 }
