@@ -298,4 +298,16 @@
     <string name="username">Username</string>
     <string name="dating">Dating</string>
     <string name="confirm_password">Konfirmasi Password</string>
+
+    <!-- TODO: String on the pedigree -->
+    <string name="your_cat">Kucingmu</string>
+    <string name="choose">Pilih Pasangan Anda</string>
+    <string name="desc_img_your_cat">Ini adalah avatar kucingmu</string>
+    <string name="desc_result_pedigree">Ini foto dari silsilah</string>
+    <string name="pedigree_result">Hasil :</string>
+    <string name="pedigree_desc_result">Silsilah dari Abyssinian Cat dan Bobtail Cat Breed akan menghasilkan American Curl Cat Breed.</string>
+    <string name="desc">Hasil tidak 100% akurat. Ini berdasarkan prediksi</string>
+    <string name="filter">Saring</string>
+    <string name="desc_icon_filter">Ini adalah icon filter</string>
+
 </resources>

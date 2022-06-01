@@ -298,4 +298,16 @@
     <string name="username">Username</string>
     <string name="dating">Dating</string>
     <string name="confirm_password">Confirm Password</string>
+
+    <!-- TODO: String on the pedigree -->
+    <string name="your_cat">Your Cat</string>
+    <string name="choose">Choose Your Mate</string>
+    <string name="desc_img_your_cat">This is your cat avatar</string>
+    <string name="desc_result_pedigree">This is a photo from pedigree</string>
+    <string name="pedigree_result">Result :</string>
+    <string name="pedigree_desc_result">The pedigree of the Abyssinian Cat and Bobtail Cat Breed will produce American Curl Cat Breed.</string>
+    <string name="desc">Results are not 100% accurate. This is based on prediction</string>
+    <string name="filter">Filter</string>
+    <string name="desc_icon_filter">This is the filter icon</string>
+
 </resources>
