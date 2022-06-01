@@ -50,10 +50,10 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_camera_album.xml" value="0.15625" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_camera_cat.xml" value="0.15625" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_camera_profile.xml" value="0.18645833333333334" />
-        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_main.xml" value="0.13" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/bottom_sheet.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_about.xml" value="0.17346014492753623" />
-        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_account.xml" value="0.33" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_account.xml" value="0.2" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_add_cat.xml" value="0.22" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_add_cat_fragment.xml" value="0.18541666666666667" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_add_cat_post.xml" value="0.2" />
@@ -99,7 +99,7 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_post.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_post_profile.xml" value="0.18541666666666667" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_user.xml" value="0.25" />
-        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_veterinary.xml" value="0.25" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_veterinary.xml" value="0.18645833333333334" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/modal_bottom_sheet.xml" value="0.22" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/modal_choose_image.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/navigation_bottom.xml" value="0.22" />
@@ -108,14 +108,17 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/menu/top_app.xml" value="0.18645833333333334" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/menu/top_app_bar.xml" value="0.22" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/menu/top_app_bar_two.xml" value="0.22" />
+        <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/activity_camera.xml" value="0.11775362318840579" />
         <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/activity_camera_cat.xml" value="0.14130434782608695" />
         <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/fragment_account.xml" value="0.22" />
         <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/fragment_add_cat.xml" value="0.17552083333333332" />
+        <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/fragment_email_bottom_sheet.xml" value="0.11775362318840579" />
         <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/fragment_message.xml" value="0.1" />
         <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/fragment_my_profile.xml" value="0.22" />
         <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/fragment_onboarding_one.xml" value="0.16666666666666666" />
         <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/fragment_password_bottom_sheet.xml" value="0.16666666666666666" />
+        <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/fragment_pedigree.xml" value="0.1" />
         <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/fragment_services.xml" value="0.22" />
         <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/item_comment.xml" value="0.14130434782608695" />
         <entry key="..\:/Perkuliahan/Bangkit/Capstonee/app/app/src/main/res/layout/item_message.xml" value="0.1" />
