@@ -95,6 +95,9 @@
         <action
             android:id="@+id/action_homeFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -245,4 +248,21 @@
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.account.PasswordBottomSheet"
         android:label="fragment_password_bottom_sheet"
         tools:layout="@layout/fragment_password_bottom_sheet" />
+    <fragment
+        android:id="@+id/servicesFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.services.ServicesFragment"
+        android:label="fragment_services"
+        tools:layout="@layout/fragment_services" >
+        <action
+            android:id="@+id/action_servicesFragment_to_veterinaryFragment"
+            app:destination="@id/veterinaryFragment" />
+        <action
+            android:id="@+id/action_servicesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/veterinaryFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.veterinary.VeterinaryFragment"
+        android:label="fragment_veterinary"
+        tools:layout="@layout/fragment_veterinary" />
 </navigation>
