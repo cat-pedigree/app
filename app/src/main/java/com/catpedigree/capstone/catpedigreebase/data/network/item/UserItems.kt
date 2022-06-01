@@ -7,8 +7,6 @@ data class UserItems(
     val phone_number: String? = null,
     val email: String? = null,
     val bio: String? = null,
-    val lat: Double? = null,
-    val lon: Double? = null,
     val profile_photo_path: String? = null,
     val token: String? = null,
     var isLoggedIn: Boolean? = null,
