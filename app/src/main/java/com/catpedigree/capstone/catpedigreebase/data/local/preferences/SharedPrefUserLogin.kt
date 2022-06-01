@@ -17,8 +17,6 @@ class SharedPrefUserLogin private constructor(private val dataStore: DataStore<P
                 email = preferences[EMAIL_KEY],
                 token = preferences[TOKEN_KEY],
                 bio = preferences[BIO_KEY],
-                lat = preferences[LAT_KEY],
-                lon = preferences[LON_KEY],
                 profile_photo_path = preferences[PROFILE_PHOTO_PATH_KEY],
                 isLoggedIn = preferences[STATE_KEY],
                 postsCount = preferences[POSTS_COUNT],
@@ -35,8 +33,6 @@ class SharedPrefUserLogin private constructor(private val dataStore: DataStore<P
             user.email?.let { preferences[EMAIL_KEY] = it }
             user.token?.let { preferences[TOKEN_KEY] = it }
             user.bio?.let { preferences[BIO_KEY] = it }
-            user.lat?.let { preferences[LAT_KEY] = it }
-            user.lon?.let { preferences[LON_KEY] = it }
             user.profile_photo_path?.let { preferences[PROFILE_PHOTO_PATH_KEY] = it }
             user.isLoggedIn?.let { preferences[STATE_KEY] = it }
             user.postsCount?.let { preferences[POSTS_COUNT] = it }
@@ -54,8 +50,6 @@ class SharedPrefUserLogin private constructor(private val dataStore: DataStore<P
         private val PHONE_NUMBER_KEY = stringPreferencesKey("phone_number")
         private val EMAIL_KEY = stringPreferencesKey("email")
         private val BIO_KEY = stringPreferencesKey("bio")
-        private val LAT_KEY = doublePreferencesKey("lat")
-        private val LON_KEY = doublePreferencesKey("lon")
         private val PROFILE_PHOTO_PATH_KEY = stringPreferencesKey("profile_photo_path")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val STATE_KEY = booleanPreferencesKey("state")

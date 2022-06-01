@@ -2,7 +2,7 @@ package com.catpedigree.capstone.catpedigreebase.data.network.response
 
 import com.google.gson.annotations.SerializedName
 
-data class UserResponse(
+data class VeterinaryResponse(
     @field:SerializedName("code")
     val code: Int? = null,
 
@@ -13,28 +13,25 @@ data class UserResponse(
     val message: String? = null,
 
     @field:SerializedName("data")
-    val data: List<DataUser>? = null,
+    val data: List<VeterinaryData>? = null,
 )
 
-data class DataUser(
+data class VeterinaryData(
     @field:SerializedName("id")
     val id: Int? = null,
 
     @field:SerializedName("name")
     val name: String? = null,
 
-    @field:SerializedName("username")
-    val username: String? = null,
+    @field:SerializedName("city")
+    val city: String? = null,
 
-    @field:SerializedName("bio")
-    val bio: String? = null,
+    @field:SerializedName("country")
+    val country: String? = null,
 
-    @field:SerializedName("profile_photo_path")
-    val profile_photo_path: String? = null,
+    @field:SerializedName("lat")
+    val lat: Double? = null,
 
-    @field: SerializedName("posts_count")
-    val posts_count: Int? = null,
-
-    @field: SerializedName("cats_count")
-    val cats_count: Int? = null,
+    @field:SerializedName("lon")
+    val lon: Double? = null,
 )

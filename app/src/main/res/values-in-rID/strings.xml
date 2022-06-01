@@ -220,6 +220,8 @@
     <string name="services">Services</string>
     <string name="services_all_breed">All Breed</string>
     <string name="services_desc">Lorem ipsum dolor sit amet</string>
+    <string name="services_desc_veterinary">Temukan dan kunjungi dokter hewan</string>
+    <string name="services_desc_breed">Lihat semua breed pada aplikasi ini</string>
     <string name="services_veterinary">Dokter Hewan</string>
     <string name="services_desc_ic_breed">This is the breed icon on the services page</string>
     <string name="services_desc_ic_veterinary">this is the veterinary icon on the services page</string>

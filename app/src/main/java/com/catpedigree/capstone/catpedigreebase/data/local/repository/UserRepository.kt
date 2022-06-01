@@ -39,8 +39,6 @@ open class UserRepository(
                         phone_number = it.user?.phone_number,
                         email = email,
                         bio = it.user?.bio,
-                        lat = it.user?.lat,
-                        lon = it.user?.lon,
                         profile_photo_path = it.user?.profile_photo_path,
                         token = it.token,
                         isLoggedIn = true,
@@ -81,8 +79,6 @@ open class UserRepository(
                     user.name,
                     user.username,
                     user.bio,
-                    user.lat,
-                    user.lon,
                     user.profile_photo_path,
                     user.posts_count,
                     user.cats_count
@@ -95,10 +91,6 @@ open class UserRepository(
         }
         val dataLocal: LiveData<Result<List<UserDataItems>>> = catDatabase.userDao().getSearch(name).map { Result.Success(it) }
         emitSource(dataLocal)
-    }
-
-    fun getUser(id: Int): LiveData<List<UserDataItems>>{
-        return catDatabase.userDao().getUser(id)
     }
 
     suspend fun change(
@@ -222,8 +214,6 @@ open class UserRepository(
                 phone_number = null,
                 email = null,
                 bio = null,
-                lat = null,
-                lon = null,
                 profile_photo_path = "",
                 postsCount = null,
                 catsCount = null

@@ -22,12 +22,6 @@ data class UserDataItems(
     @field:SerializedName("bio")
     val bio: String? = null,
 
-    @field:SerializedName("lat")
-    val lat: Double? = null,
-
-    @field:SerializedName("lon")
-    val lon: Double? = null,
-
     @field:SerializedName("profile_path")
     val profile_photo_path: String? = null,
 

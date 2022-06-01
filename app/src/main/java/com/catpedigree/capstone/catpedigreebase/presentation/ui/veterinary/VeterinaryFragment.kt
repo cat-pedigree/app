@@ -1,60 +1,100 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.veterinary
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.catpedigree.capstone.catpedigreebase.R
+import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
+import com.catpedigree.capstone.catpedigreebase.databinding.FragmentVeterinaryBinding
+import com.catpedigree.capstone.catpedigreebase.presentation.adapter.VeterinaryAdapter
+import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
+import com.catpedigree.capstone.catpedigreebase.utils.Result
+import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [VeterinaryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class VeterinaryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var _binding: FragmentVeterinaryBinding
+    private val binding get() = _binding
+    private lateinit var user: UserItems
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val viewModel: VeterinaryViewModel by viewModels {
+        ViewModelFactory.getInstance(requireContext())
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_veterinary, container, false)
+    ): View {
+        _binding = FragmentVeterinaryBinding.inflate(layoutInflater,container,false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment VeterinaryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            VeterinaryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupAction()
+        setupViewModel()
+    }
+
+    private fun setupAction(){
+        val veterinaryAdapter = VeterinaryAdapter(requireContext())
+
+        binding.apply {
+            viewModel.getVeterinary().observe(viewLifecycleOwner){result ->
+                if (result != null) {
+                    when (result) {
+                        is Result.Loading -> {
+                            progressBar.visibility = View.VISIBLE
+                        }
+                        is Result.Success -> {
+                            progressBar.visibility = View.GONE
+                            val veterinaryData = result.data
+                            veterinaryAdapter.submitList(veterinaryData)
+                        }
+                        is Result.Error -> {
+                            progressBar.visibility = View.GONE
+                            Toast.makeText(
+                                context,
+                                getString(R.string.result_error) + result.error,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                 }
             }
+
+            rvVeterinary.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+                isNestedScrollingEnabled = false
+                adapter = veterinaryAdapter
+            }
+        }
     }
+
+    private fun setupViewModel(){
+        viewModel.userItem.observe(viewLifecycleOwner) { userItems ->
+            if (userItems?.isLoggedIn == false) {
+                findNavController().navigateUp()
+            }
+            this.user = userItems
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { state ->
+            showLoading(state)
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            ToastUtils.showToast(requireContext(), message)
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
+    }
+
 }
