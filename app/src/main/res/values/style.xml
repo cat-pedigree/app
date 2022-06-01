@@ -77,4 +77,9 @@
         <item name="android:textSize">12sp</item>
         <item name="android:lineHeight">18dp</item>
     </style>
+    <style name="caption1">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:lineHeight">16dp</item>
+    </style>
 </resources>
