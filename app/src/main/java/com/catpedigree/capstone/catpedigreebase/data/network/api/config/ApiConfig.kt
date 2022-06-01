@@ -1,10 +1,7 @@
 package com.catpedigree.capstone.catpedigreebase.data.network.api.config
 
 import com.catpedigree.capstone.catpedigreebase.BuildConfig
-import com.catpedigree.capstone.catpedigreebase.data.network.api.service.CatInterface
-import com.catpedigree.capstone.catpedigreebase.data.network.api.service.CommentInterface
-import com.catpedigree.capstone.catpedigreebase.data.network.api.service.PostInterface
-import com.catpedigree.capstone.catpedigreebase.data.network.api.service.UserInterface
+import com.catpedigree.capstone.catpedigreebase.data.network.api.service.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -45,5 +42,9 @@ object ApiConfig {
 
     fun getCatApi(): CatInterface{
         return  retrofit.create(CatInterface::class.java)
+    }
+
+    fun getVeterinary(): VeterinaryInterface{
+        return retrofit.create(VeterinaryInterface::class.java)
     }
 }
