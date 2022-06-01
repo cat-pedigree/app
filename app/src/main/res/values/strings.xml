@@ -220,6 +220,8 @@
     <string name="services">Services</string>
     <string name="services_all_breed">All Breed</string>
     <string name="services_desc">Lorem ipsum dolor sit amet</string>
+    <string name="services_desc_veterinary">Find and visit the veterinary</string>
+    <string name="services_desc_breed">See all breeds in this app</string>
     <string name="services_veterinary">Veterinary</string>
     <string name="services_desc_ic_breed">This is the breed icon on the services page</string>
     <string name="services_desc_ic_veterinary">this is the veterinary icon on the services page</string>
