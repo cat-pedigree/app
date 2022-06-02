@@ -98,6 +98,9 @@
         <action
             android:id="@+id/action_homeFragment_to_servicesFragment"
             app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -265,4 +268,9 @@
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.veterinary.VeterinaryFragment"
         android:label="fragment_veterinary"
         tools:layout="@layout/fragment_veterinary" />
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.classification.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" />
 </navigation>
