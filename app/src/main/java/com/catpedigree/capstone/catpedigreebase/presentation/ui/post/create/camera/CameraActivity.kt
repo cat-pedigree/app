@@ -102,8 +102,7 @@ class CameraActivity : AppCompatActivity() {
                     this@CameraActivity,
                     getString(R.string.failed_to_start_camera),
                     Toast.LENGTH_SHORT
-                )
-                    .show()
+                ).show()
             }
         }, ContextCompat.getMainExecutor(this))
     }

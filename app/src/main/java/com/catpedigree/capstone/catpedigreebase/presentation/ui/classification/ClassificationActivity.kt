@@ -35,17 +35,18 @@ class ClassificationActivity : AppCompatActivity() {
         binding = ActivityClassificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.cameraCapture.setOnClickListener { takePhoto() }
-        binding.cameraRotate.setOnClickListener {
-            cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
-            else CameraSelector.DEFAULT_BACK_CAMERA
-            startCamera()
-        }
+        binding.apply {
+            cameraCapture.setOnClickListener { takePhoto() }
+            cameraRotate.setOnClickListener {
+                cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
+                else CameraSelector.DEFAULT_BACK_CAMERA
+                startCamera()
+            }
 
-        binding.cameraGallery.setOnClickListener {
-            startGallery()
+            cameraGallery.setOnClickListener {
+                startGallery()
+            }
         }
-
     }
 
     public override fun onResume() {
