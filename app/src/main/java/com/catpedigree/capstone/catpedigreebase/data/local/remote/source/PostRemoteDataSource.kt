@@ -9,7 +9,7 @@ class PostRemoteDataSource(private val postInterface: PostInterface) {
     suspend fun getPost(token: String) =
         postInterface.getPost("Bearer $token")
 
-    suspend fun getPostProfile(token:String, user_id: Int) =
+    suspend fun getPostProfile(token: String, user_id: Int) =
         postInterface.getPostProfile("Bearer $token", user_id)
 
     suspend fun postCreate(
@@ -17,7 +17,7 @@ class PostRemoteDataSource(private val postInterface: PostInterface) {
         photo: MultipartBody.Part,
         title: String,
         description: RequestBody,
-    ) = postInterface.postCreate("Bearer $token",photo, title, description)
+    ) = postInterface.postCreate("Bearer $token", photo, title, description)
 
     suspend fun loveCreate(
         token: String,
@@ -29,5 +29,5 @@ class PostRemoteDataSource(private val postInterface: PostInterface) {
         token: String,
         post_id: Int,
         user_id: Int
-    ) = postInterface.loveDelete("Bearer $token", post_id,user_id)
+    ) = postInterface.loveDelete("Bearer $token", post_id, user_id)
 }

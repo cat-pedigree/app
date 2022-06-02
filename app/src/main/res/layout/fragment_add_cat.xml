@@ -31,8 +31,8 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/ic_baseline_camera_alt_24"
         android:contentDescription="@string/desc_add_cat_photo"
-        app:civ_border_width="2dp"
         app:civ_border_color="@color/accent"
+        app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
@@ -116,11 +116,11 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edit_text_color"
-            app:endIconMode="clear_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/color"
@@ -146,21 +146,21 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edit_text_weight"
-            app:endIconMode="clear_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:endIconMode="clear_text"
             app:suffixText="@string/kilogram"
-            app:suffixTextColor="@color/accent"
-            android:layout_weight="1">
+            app:suffixTextColor="@color/accent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/weight"
                 style="@style/heading3"
-                android:inputType="numberDecimal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/weight"
+                android:inputType="numberDecimal"
                 android:textColor="@color/neutral_90" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -170,13 +170,13 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edit_text_age"
-            app:endIconMode="clear_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            app:suffixText="@string/month"
-            app:suffixTextColor="@color/accent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:endIconMode="clear_text"
+            app:suffixText="@string/month"
+            app:suffixTextColor="@color/accent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/age"
@@ -191,7 +191,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edit_text_story"
-        app:endIconMode="clear_text"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -199,6 +198,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:hint="@string/story"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_second">
@@ -228,7 +228,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <include layout="@layout/navigation_bottom"/>
+    <include layout="@layout/navigation_bottom" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

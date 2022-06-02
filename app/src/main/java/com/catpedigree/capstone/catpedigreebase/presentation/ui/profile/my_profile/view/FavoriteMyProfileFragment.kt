@@ -16,6 +16,7 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profi
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
 class FavoriteMyProfileFragment : Fragment() {
+
     private lateinit var _binding: FragmentFavoriteMyProfileBinding
     private val binding get() = _binding
 
@@ -29,7 +30,7 @@ class FavoriteMyProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFavoriteMyProfileBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentFavoriteMyProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -39,7 +40,7 @@ class FavoriteMyProfileFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val postAdapterFavorite = PostFavoriteProfileAdapter()
 
         viewModel.getPostFavorite().observe(viewLifecycleOwner) { postFavorite ->
@@ -48,14 +49,14 @@ class FavoriteMyProfileFragment : Fragment() {
         }
 
         binding.rvPost.apply {
-            layoutManager = GridLayoutManager(requireContext(),3)
+            layoutManager = GridLayoutManager(requireContext(), 3)
             setHasFixedSize(true)
             isNestedScrollingEnabled = false
             adapter = postAdapterFavorite
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -73,6 +74,8 @@ class FavoriteMyProfileFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        (if (isLoading) View.VISIBLE else View.INVISIBLE).also { binding.progressBar.visibility = it }
+        (if (isLoading) View.VISIBLE else View.INVISIBLE).also {
+            binding.progressBar.visibility = it
+        }
     }
 }

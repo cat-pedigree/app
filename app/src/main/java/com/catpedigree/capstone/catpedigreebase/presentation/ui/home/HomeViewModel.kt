@@ -29,28 +29,28 @@ class HomeViewModel(
     }
 
     fun search(name: String) = userItems.switchMap {
-        userRepository.search(it.token ?:"", name)
+        userRepository.search(it.token ?: "", name)
     }
 
-    fun savePost(post: PostItems){
+    fun savePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostBookmark(post, true)
         }
     }
 
-    fun deletePost(post: PostItems){
+    fun deletePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostBookmark(post, false)
         }
     }
 
-    fun createLovePost(post: PostItems){
+    fun createLovePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostLove(post, true)
         }
     }
 
-    fun deleteLovePost(post: PostItems){
+    fun deleteLovePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostLove(post, false)
         }

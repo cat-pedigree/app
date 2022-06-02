@@ -9,6 +9,7 @@ import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel(
+
     private val userRepository: UserRepository,
     private val postRepository: PostRepository,
 ) : ViewModel() {
@@ -28,25 +29,25 @@ class FavoriteViewModel(
 
     fun getPostFavoriteCount(): LiveData<Int> = postRepository.getPostFavoriteCount()
 
-    fun savePost(post: PostItems){
+    fun savePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostBookmark(post, true)
         }
     }
 
-    fun deletePost(post: PostItems){
+    fun deletePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostBookmark(post, false)
         }
     }
 
-    fun createLovePost(post: PostItems){
+    fun createLovePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostLove(post, true)
         }
     }
 
-    fun deleteLovePost(post: PostItems){
+    fun deleteLovePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostLove(post, false)
         }

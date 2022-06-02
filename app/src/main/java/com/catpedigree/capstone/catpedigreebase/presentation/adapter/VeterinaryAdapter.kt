@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.catpedigree.capstone.catpedigreebase.data.network.item.VeterinaryItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemVeterinaryBinding
 
-class VeterinaryAdapter(private val context: Context) : ListAdapter<VeterinaryItems, VeterinaryAdapter.ViewHolder>(DIFF_CALLBACK) {
+class VeterinaryAdapter(private val context: Context) :
+    ListAdapter<VeterinaryItems, VeterinaryAdapter.ViewHolder>(DIFF_CALLBACK) {
     class ViewHolder(val binding: ItemVeterinaryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(veterinary: VeterinaryItems) {
-
 
             binding.apply {
                 nameClinic.text = veterinary.name
@@ -56,10 +56,16 @@ class VeterinaryAdapter(private val context: Context) : ListAdapter<VeterinaryIt
     companion object {
         val DIFF_CALLBACK =
             object : DiffUtil.ItemCallback<VeterinaryItems>() {
-                override fun areItemsTheSame(oldItem: VeterinaryItems, newItem: VeterinaryItems): Boolean =
+                override fun areItemsTheSame(
+                    oldItem: VeterinaryItems,
+                    newItem: VeterinaryItems
+                ): Boolean =
                     oldItem.id == newItem.id
 
-                override fun areContentsTheSame(oldItem: VeterinaryItems, newItem: VeterinaryItems): Boolean =
+                override fun areContentsTheSame(
+                    oldItem: VeterinaryItems,
+                    newItem: VeterinaryItems
+                ): Boolean =
                     oldItem == newItem
             }
     }

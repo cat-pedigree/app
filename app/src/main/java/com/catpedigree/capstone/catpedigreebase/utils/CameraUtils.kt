@@ -15,7 +15,8 @@ import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
-object CameraUtils{
+object CameraUtils {
+
     private const val FILENAME_FORMAT = "dd-MMM-yyyy"
     private val timeStamp: String = SimpleDateFormat(
         FILENAME_FORMAT,

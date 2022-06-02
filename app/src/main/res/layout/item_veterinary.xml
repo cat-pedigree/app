@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/neutral_50"
-    android:layout_marginTop="15dp"
     android:layout_marginStart="10dp"
+    android:layout_marginTop="15dp"
     android:layout_marginEnd="10dp"
-    app:layout_constraintStart_toStartOf="parent"
+    android:background="@color/neutral_50"
+    android:orientation="vertical"
     app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
     tools:keep="@layout/item_post">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,37 +21,37 @@
             android:id="@+id/iv_veterinary"
             android:layout_width="59dp"
             android:layout_height="60dp"
-            android:src="@drawable/ic_baseline_local_hospital_24"
             android:layout_marginStart="6dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/veterinary_desc_img"
+            android:src="@drawable/ic_baseline_local_hospital_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:contentDescription="@string/veterinary_desc_img" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/name_clinic"
+            style="@style/heading2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/veterinary_name"
-            style="@style/heading2"
-            android:textColor="@color/neutral_100"
             android:layout_marginStart="25dp"
             android:layout_marginTop="19dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_veterinary"/>
+            android:text="@string/veterinary_name"
+            android:textColor="@color/neutral_100"
+            app:layout_constraintStart_toEndOf="@id/iv_veterinary"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/location_clinic"
+            style="@style/sub_headline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/veterinary_location"
-            style="@style/sub_headline2"
-            android:textColor="@color/neutral_80"
             android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/name_clinic"
-            app:layout_constraintStart_toEndOf="@id/iv_veterinary"/>
+            android:text="@string/veterinary_location"
+            android:textColor="@color/neutral_80"
+            app:layout_constraintStart_toEndOf="@id/iv_veterinary"
+            app:layout_constraintTop_toBottomOf="@id/name_clinic" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

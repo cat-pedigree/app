@@ -9,6 +9,7 @@ import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(
+
     private val userRepository: UserRepository,
     private val catRepository: CatRepository,
     private val postRepository: PostRepository
@@ -25,7 +26,7 @@ class ProfileViewModel(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    fun getCat(user_id:Int) = userItems.switchMap {
+    fun getCat(user_id: Int) = userItems.switchMap {
         catRepository.getCat(
             it.token ?: "",
             user_id
@@ -39,25 +40,25 @@ class ProfileViewModel(
         )
     }
 
-    fun savePost(post: PostItems){
+    fun savePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostBookmark(post, true)
         }
     }
 
-    fun deletePost(post: PostItems){
+    fun deletePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostBookmark(post, false)
         }
     }
 
-    fun createLovePost(post: PostItems){
+    fun createLovePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostLove(post, true)
         }
     }
 
-    fun deleteLovePost(post: PostItems){
+    fun deleteLovePost(post: PostItems) {
         viewModelScope.launch {
             postRepository.setPostLove(post, false)
         }

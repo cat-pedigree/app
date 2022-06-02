@@ -4,8 +4,8 @@ import com.catpedigree.capstone.catpedigreebase.data.network.api.service.Comment
 
 class CommentRemoteDataSource(private val commentInterface: CommentInterface) {
 
-    suspend fun getComment(token: String,post_id: Int) =
-        commentInterface.getComment("Bearer $token",post_id)
+    suspend fun getComment(token: String, post_id: Int) =
+        commentInterface.getComment("Bearer $token", post_id)
 
     suspend fun postComment(
         token: String,

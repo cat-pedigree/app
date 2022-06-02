@@ -23,6 +23,7 @@ import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
 class CatUserFragment : Fragment() {
+
     private lateinit var _binding: FragmentCatUserBinding
     private val binding get() = _binding
 
@@ -38,7 +39,7 @@ class CatUserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCatUserBinding.inflate(layoutInflater, container,false)
+        _binding = FragmentCatUserBinding.inflate(layoutInflater, container, false)
 
         return binding.root
     }
@@ -49,7 +50,7 @@ class CatUserFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         val cat = args.cat
         val albumAdapter = AlbumAdapter()
         val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${cat.photo}"
@@ -67,7 +68,7 @@ class CatUserFragment : Fragment() {
             tvStoryCat.text = cat.story
             topAppBar.title = "${cat.name} Profile"
 
-            viewModel.getAlbum(cat.id!!).observe(viewLifecycleOwner){result ->
+            viewModel.getAlbum(cat.id!!).observe(viewLifecycleOwner) { result ->
                 if (result != null) {
                     when (result) {
                         is Result.Loading -> {
@@ -91,7 +92,7 @@ class CatUserFragment : Fragment() {
             }
 
             rvAlbum.apply {
-                layoutManager = GridLayoutManager(requireContext(),3)
+                layoutManager = GridLayoutManager(requireContext(), 3)
                 setHasFixedSize(true)
                 isNestedScrollingEnabled = false
                 adapter = albumAdapter
@@ -100,7 +101,7 @@ class CatUserFragment : Fragment() {
 
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItem.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()

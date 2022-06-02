@@ -13,12 +13,12 @@
         android:layout_marginStart="105dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="105dp"
+        android:contentDescription="@string/desc_content_img_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_iv_logo"
-        tools:src="@tools:sample/avatars"
-        android:contentDescription="@string/desc_content_img_login" />
+        tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tv_title_login"

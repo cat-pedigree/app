@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.splash.SplashScreenFragment"
-    android:background="@color/accent">
+    android:background="@color/accent"
+    tools:context=".presentation.ui.splash.SplashScreenFragment">
 
     <ImageView
         android:id="@+id/imageView"
@@ -13,11 +13,11 @@
         android:layout_height="230dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_iv_logo_white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"

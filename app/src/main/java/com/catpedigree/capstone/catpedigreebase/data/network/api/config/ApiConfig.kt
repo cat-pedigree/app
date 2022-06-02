@@ -36,15 +36,15 @@ object ApiConfig {
         return retrofit.create(PostInterface::class.java)
     }
 
-    fun getCommentApi(): CommentInterface{
+    fun getCommentApi(): CommentInterface {
         return retrofit.create(CommentInterface::class.java)
     }
 
-    fun getCatApi(): CatInterface{
-        return  retrofit.create(CatInterface::class.java)
+    fun getCatApi(): CatInterface {
+        return retrofit.create(CatInterface::class.java)
     }
 
-    fun getVeterinary(): VeterinaryInterface{
+    fun getVeterinary(): VeterinaryInterface {
         return retrofit.create(VeterinaryInterface::class.java)
     }
 }

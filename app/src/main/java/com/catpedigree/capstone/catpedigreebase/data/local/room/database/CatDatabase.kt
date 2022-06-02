@@ -7,15 +7,17 @@ import androidx.room.RoomDatabase
 import com.catpedigree.capstone.catpedigreebase.data.network.item.*
 import com.catpedigree.capstone.catpedigreebase.data.local.room.dao.*
 
-@Database(entities = [
-    PostItems::class,
-    CommentItems::class,
-    CatItems::class,
-    AlbumItems::class,
-    UserDataItems::class,
-    VeterinaryItems::class],
+@Database(
+    entities = [
+        PostItems::class,
+        CommentItems::class,
+        CatItems::class,
+        AlbumItems::class,
+        UserDataItems::class,
+        VeterinaryItems::class],
     version = 1,
-    exportSchema = false)
+    exportSchema = false
+)
 abstract class CatDatabase : RoomDatabase() {
     abstract fun postDao(): PostDao
     abstract fun commentDao(): CommentDao

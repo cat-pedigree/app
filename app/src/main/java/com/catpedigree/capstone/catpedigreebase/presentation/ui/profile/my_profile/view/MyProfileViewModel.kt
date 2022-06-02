@@ -6,6 +6,7 @@ import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostReposi
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 
 class MyProfileViewModel(
+
     userRepository: UserRepository,
     private val postRepository: PostRepository,
     private val catRepository: CatRepository

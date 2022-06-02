@@ -63,7 +63,7 @@ class EditProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentEditProfileBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentEditProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -73,12 +73,12 @@ class EditProfileFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
 
         binding.apply {
 
             bioEditText.editText?.doOnTextChanged { text, _, _, _ ->
-                when{
+                when {
                     text!!.length > 60 -> {
                         bioEditText.error = getString(R.string.bio_length)
                     }
@@ -93,21 +93,38 @@ class EditProfileFragment : Fragment() {
                 val username = usernameEditText.editText?.text.toString().trim()
                 val bio = bioEditText.editText?.text.toString().trim()
 
-                when{
+                when {
                     name.isEmpty() -> {
-                        Snackbar.make(binding.nameEditText,R.string.name_required, Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(
+                            binding.nameEditText,
+                            R.string.name_required,
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
-                    username.isEmpty() ->{
-                        Snackbar.make(binding.usernameEditText,R.string.username_required, Snackbar.LENGTH_LONG).show()
+                    username.isEmpty() -> {
+                        Snackbar.make(
+                            binding.usernameEditText,
+                            R.string.username_required,
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
                     bio.isEmpty() -> {
-                        Snackbar.make(binding.bioEditText,R.string.bio_required, Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(
+                            binding.bioEditText,
+                            R.string.bio_required,
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
                     bio.length > 60 -> {
-                        Snackbar.make(binding.bioEditText,R.string.bio_length, Snackbar.LENGTH_LONG).show()
-                    }else -> {
-                    viewModel.profile(user.token ?: "", name, username,bio)
-                }
+                        Snackbar.make(
+                            binding.bioEditText,
+                            R.string.bio_length,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                    else -> {
+                        viewModel.profile(user.token ?: "", name, username, bio)
+                    }
                 }
             }
         }
@@ -117,7 +134,8 @@ class EditProfileFragment : Fragment() {
         }
 
     }
-    private fun setupViewModel(){
+
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -140,7 +158,11 @@ class EditProfileFragment : Fragment() {
 
         viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                Snackbar.make(binding.btnEditProfile, R.string.profile_success, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    binding.btnEditProfile,
+                    R.string.profile_success,
+                    Snackbar.LENGTH_LONG
+                ).show()
                 findNavController().navigateUp()
             }
         }
@@ -168,24 +190,24 @@ class EditProfileFragment : Fragment() {
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        if(it.resultCode == MainActivity.CAMERA_X_RESULT) {
-                val myFile = it.data?.getSerializableExtra("picture") as File
-                val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
-                val result =
-                    CameraUtils.rotateBitmap(BitmapFactory.decodeFile(myFile.path), isBackCamera)
+        if (it.resultCode == MainActivity.CAMERA_X_RESULT) {
+            val myFile = it.data?.getSerializableExtra("picture") as File
+            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
+            val result =
+                CameraUtils.rotateBitmap(BitmapFactory.decodeFile(myFile.path), isBackCamera)
 
-                val os: OutputStream = BufferedOutputStream(FileOutputStream(myFile))
-                result.compress(Bitmap.CompressFormat.JPEG, 100, os)
-                os.close()
+            val os: OutputStream = BufferedOutputStream(FileOutputStream(myFile))
+            result.compress(Bitmap.CompressFormat.JPEG, 100, os)
+            os.close()
 
-                currentFile = myFile
+            currentFile = myFile
 
-                binding.ivProfile.setImageBitmap(result)
-            }else if(it.resultCode == AppCompatActivity.RESULT_OK){
-                val photoFile = it.data?.getSerializableExtra("photoFile") as File
-                currentFile = photoFile
-                binding.ivProfile.setImageURI(Uri.fromFile(photoFile))
-            }
+            binding.ivProfile.setImageBitmap(result)
+        } else if (it.resultCode == AppCompatActivity.RESULT_OK) {
+            val photoFile = it.data?.getSerializableExtra("photoFile") as File
+            currentFile = photoFile
+            binding.ivProfile.setImageURI(Uri.fromFile(photoFile))
+        }
         val file = CameraUtils.reduceFileImage(currentFile as File)
         val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
@@ -194,8 +216,8 @@ class EditProfileFragment : Fragment() {
             requestImageFile
         )
         val slug = "profile-photos/${file.nameWithoutExtension}.${file.extension}"
-        viewModel.change(user.token ?: "", imageMultipart,slug)
-        }
+        viewModel.change(user.token ?: "", imageMultipart, slug)
+    }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE

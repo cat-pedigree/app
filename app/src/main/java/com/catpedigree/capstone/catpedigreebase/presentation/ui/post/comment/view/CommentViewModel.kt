@@ -4,7 +4,10 @@ import androidx.lifecycle.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.CommentRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 
-class CommentViewModel(userRepository: UserRepository, private val commentRepository: CommentRepository) : ViewModel() {
+class CommentViewModel(
+    userRepository: UserRepository,
+    private val commentRepository: CommentRepository
+) : ViewModel() {
 
     val userItem = userRepository.userItems.asLiveData()
 

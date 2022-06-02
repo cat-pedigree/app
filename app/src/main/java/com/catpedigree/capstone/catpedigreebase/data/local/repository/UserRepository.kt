@@ -55,7 +55,13 @@ open class UserRepository(
         }
     }
 
-    suspend fun register(name: String, username: String, phone_number: String, email: String, password: String) {
+    suspend fun register(
+        name: String,
+        username: String,
+        phone_number: String,
+        email: String,
+        password: String
+    ) {
         try {
             val responses = userRemote.register(name, username, phone_number, email, password)
             if (!responses.isSuccessful) {
@@ -70,10 +76,10 @@ open class UserRepository(
 
     fun search(token: String, name: String): LiveData<Result<List<UserDataItems>>> = liveData {
         emit(Result.Loading)
-        try{
+        try {
             val response = userRemote.search(token, name)
             val users = response.body()?.data
-            val newUser = users?.map {user ->
+            val newUser = users?.map { user ->
                 UserDataItems(
                     user.id,
                     user.name,
@@ -86,10 +92,11 @@ open class UserRepository(
             }
             catDatabase.userDao().deleteAllUsers()
             catDatabase.userDao().insertUser(newUser!!)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }
-        val dataLocal: LiveData<Result<List<UserDataItems>>> = catDatabase.userDao().getSearch(name).map { Result.Success(it) }
+        val dataLocal: LiveData<Result<List<UserDataItems>>> =
+            catDatabase.userDao().getSearch(name).map { Result.Success(it) }
         emitSource(dataLocal)
     }
 
@@ -181,7 +188,7 @@ open class UserRepository(
         token: String,
         name: String,
         username: String,
-        bio:String
+        bio: String
     ) {
         withContext(Dispatchers.IO) {
             try {
@@ -205,19 +212,21 @@ open class UserRepository(
 
     suspend fun logout() {
         try {
-            prefs.updateUser(UserItems(
-                token = null,
-                isLoggedIn = false,
-                id = null,
-                name = null,
-                username = null,
-                phone_number = null,
-                email = null,
-                bio = null,
-                profile_photo_path = "",
-                postsCount = null,
-                catsCount = null
-            ))
+            prefs.updateUser(
+                UserItems(
+                    token = null,
+                    isLoggedIn = false,
+                    id = null,
+                    name = null,
+                    username = null,
+                    phone_number = null,
+                    email = null,
+                    bio = null,
+                    profile_photo_path = "",
+                    postsCount = null,
+                    catsCount = null
+                )
+            )
         } catch (e: Throwable) {
             throw AuthError(e.message.toString())
         }

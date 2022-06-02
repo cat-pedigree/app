@@ -45,7 +45,7 @@ class AddCatFragment : Fragment() {
     private lateinit var user: UserItems
     private var currentFile: File? = null
 
-    private var isGenderSelected:String? = null
+    private var isGenderSelected: String? = null
     private var isBreedSelected: String? = null
 
     private val viewModel: AddCatViewModel by viewModels {
@@ -67,7 +67,7 @@ class AddCatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAddCatBinding.inflate(inflater, container,false)
+        _binding = FragmentAddCatBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -76,26 +76,28 @@ class AddCatFragment : Fragment() {
         val breed = resources.getStringArray(R.array.item_breed)
         val adapterBreed = ArrayAdapter(requireContext(), R.layout.item_dropdown, breed)
         binding.breed.setAdapter(adapterBreed)
-        binding.breed.setText(getString(R.string.choose_breed),false)
+        binding.breed.setText(getString(R.string.choose_breed), false)
 
-        binding.breed.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
-            isBreedSelected = parent.getItemAtPosition(position).toString()
-        }
+        binding.breed.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+                isBreedSelected = parent.getItemAtPosition(position).toString()
+            }
 
         val gender = resources.getStringArray(R.array.item_gender)
         val adapterGender = ArrayAdapter(requireContext(), R.layout.item_dropdown, gender)
         binding.gender.setAdapter(adapterGender)
-        binding.gender.setText(getString(R.string.choose_gender),false)
+        binding.gender.setText(getString(R.string.choose_gender), false)
 
-        binding.gender.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
-            isGenderSelected = parent.getItemAtPosition(position).toString()
-        }
+        binding.gender.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+                isGenderSelected = parent.getItemAtPosition(position).toString()
+            }
 
         setupViewModel()
         setupAction()
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -119,12 +121,12 @@ class AddCatFragment : Fragment() {
         }
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.apply {
             ivPhoto.setOnClickListener {
                 startCameraX()
             }
-            btnConfirm.setOnClickListener { 
+            btnConfirm.setOnClickListener {
                 uploadCat()
             }
         }
@@ -139,33 +141,41 @@ class AddCatFragment : Fragment() {
             val weight = editTextWeight.editText?.text.toString()
             val age = editTextAge.editText?.text.toString()
             val story = editTextStory.editText?.text.toString()
-            when{
+            when {
                 name.isEmpty() -> {
-                    Snackbar.make(editTextCatName,R.string.title_required, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(editTextCatName, R.string.title_required, Snackbar.LENGTH_LONG)
+                        .show()
                     return
                 }
                 gender.isEmpty() -> {
-                    Snackbar.make(autoCompleteTextBreed,R.string.color_required, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(
+                        autoCompleteTextBreed,
+                        R.string.color_required,
+                        Snackbar.LENGTH_LONG
+                    ).show()
                     return
                 }
                 color.isEmpty() -> {
-                    Snackbar.make(editTextColor,R.string.color_required, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(editTextColor, R.string.color_required, Snackbar.LENGTH_LONG)
+                        .show()
                     return
                 }
                 weight.isEmpty() -> {
-                    Snackbar.make(editTextWeight,R.string.weight_required, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(editTextWeight, R.string.weight_required, Snackbar.LENGTH_LONG)
+                        .show()
                     return
                 }
                 age.isEmpty() -> {
-                    Snackbar.make(editTextAge,R.string.age_required, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(editTextAge, R.string.age_required, Snackbar.LENGTH_LONG).show()
                     return
                 }
                 story.isEmpty() -> {
-                    Snackbar.make(editTextStory,R.string.story_required, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(editTextStory, R.string.story_required, Snackbar.LENGTH_LONG)
+                        .show()
                     return
                 }
                 currentFile == null -> {
-                    Snackbar.make(ivPhoto,R.string.select_a_picture, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(ivPhoto, R.string.select_a_picture, Snackbar.LENGTH_LONG).show()
                     return
                 }
                 currentFile != null -> {
@@ -182,11 +192,26 @@ class AddCatFragment : Fragment() {
                         requestImageFile
                     )
                     if (userId != null) {
-                        viewModel.uploadCat(user.token ?: "", userId,nameCat,breedCat!!,genderCat!!,colorCat,weight.toDouble(),age.toInt(),storyCat, imageMultipart)
+                        viewModel.uploadCat(
+                            user.token ?: "",
+                            userId,
+                            nameCat,
+                            breedCat!!,
+                            genderCat!!,
+                            colorCat,
+                            weight.toDouble(),
+                            age.toInt(),
+                            storyCat,
+                            imageMultipart
+                        )
                     }
                 }
-            else -> {
-                    Snackbar.make(ivPhoto,getString(R.string.select_a_picture), Snackbar.LENGTH_LONG).show()
+                else -> {
+                    Snackbar.make(
+                        ivPhoto,
+                        getString(R.string.select_a_picture),
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 }
             }
         }
@@ -220,7 +245,7 @@ class AddCatFragment : Fragment() {
 
             binding.ivPhoto.setImageBitmap(result)
 
-        }else if(it.resultCode == AppCompatActivity.RESULT_OK){
+        } else if (it.resultCode == AppCompatActivity.RESULT_OK) {
             val photoFile = it.data?.getSerializableExtra("photoFile") as File
             currentFile = photoFile
             binding.ivPhoto.setImageURI(Uri.fromFile(photoFile))

@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/swipe_layout"
     tools:context=".presentation.ui.profile.user.ProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -32,10 +32,10 @@
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        tools:src="@tools:sample/avatars"
-        android:contentDescription="@string/avatar" />
+        tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -187,16 +187,16 @@
 
     <Button
         android:id="@+id/btn_message"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/btn_message_profile"
-        style="?attr/materialButtonOutlinedStyle"
-        app:strokeColor="@color/accent"
-        app:strokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_follower_count" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_follower_count"
+        app:strokeColor="@color/accent"
+        app:strokeWidth="2dp" />
 
     <TextView
         android:id="@+id/my_cats"
@@ -222,7 +222,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <include layout="@layout/navigation_bottom"/>-->
+    <!--    <include layout="@layout/navigation_bottom"/>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cats"

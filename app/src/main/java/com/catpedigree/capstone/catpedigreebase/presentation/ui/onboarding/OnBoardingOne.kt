@@ -24,7 +24,7 @@ class OnBoardingOne : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOnboardingOneBinding.inflate(inflater,container,false)
+        _binding = FragmentOnboardingOneBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -34,9 +34,9 @@ class OnBoardingOne : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.apply {
-            btnContinue.setOnClickListener{
+            btnContinue.setOnClickListener {
                 findNavController().navigate(R.id.action_onboardingOne_to_onboardingTwo2)
             }
             btnSkip.setOnClickListener {
@@ -45,7 +45,7 @@ class OnBoardingOne : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItem.observe(viewLifecycleOwner) { userModel ->
             if (userModel?.isLoggedIn == true) {
                 findNavController().navigate(R.id.action_onboardingOne_to_loginFragment)

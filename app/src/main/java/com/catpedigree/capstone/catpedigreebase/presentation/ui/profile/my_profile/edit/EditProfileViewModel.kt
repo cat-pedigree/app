@@ -27,7 +27,7 @@ class EditProfileViewModel(private val userRepository: UserRepository) : ViewMod
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                userRepository.change(token,profile_photo_path,slug)
+                userRepository.change(token, profile_photo_path, slug)
 
                 _isSuccess.value = true
             } catch (e: PostError) {
@@ -41,14 +41,14 @@ class EditProfileViewModel(private val userRepository: UserRepository) : ViewMod
 
     fun profile(
         token: String,
-        name:String,
+        name: String,
         username: String,
         bio: String,
     ) {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                userRepository.profile(token,name,username,bio)
+                userRepository.profile(token, name, username, bio)
                 _isSuccess.value = true
             } catch (e: PostError) {
                 _errorMessage.value = e.message

@@ -22,7 +22,7 @@ import com.catpedigree.capstone.catpedigreebase.utils.CameraUtils
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
-    private var imageCapture: ImageCapture?= null
+    private var imageCapture: ImageCapture? = null
     private var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +32,9 @@ class CameraActivity : AppCompatActivity() {
 
         binding.cameraCapture.setOnClickListener { takePhoto() }
         binding.cameraRotate.setOnClickListener {
-            cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
-            else CameraSelector.DEFAULT_BACK_CAMERA
+            cameraSelector =
+                if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
+                else CameraSelector.DEFAULT_BACK_CAMERA
             startCamera()
         }
 
@@ -126,7 +127,6 @@ class CameraActivity : AppCompatActivity() {
                 finish()
             }
         }
-
 
     private fun hideSystemUI() {
         @Suppress("DEPRECATION")

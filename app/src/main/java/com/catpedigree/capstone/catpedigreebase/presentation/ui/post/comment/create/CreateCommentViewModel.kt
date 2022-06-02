@@ -6,7 +6,10 @@ import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserReposi
 import com.catpedigree.capstone.catpedigreebase.utils.error.CommentError
 import kotlinx.coroutines.launch
 
-class CreateCommentViewModel(userRepository: UserRepository, private val commentRepository: CommentRepository) : ViewModel() {
+class CreateCommentViewModel(
+    userRepository: UserRepository,
+    private val commentRepository: CommentRepository
+) : ViewModel() {
 
     val userItem = userRepository.userItems.asLiveData()
 

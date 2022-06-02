@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class SharedPrefUserLogin private constructor(private val dataStore: DataStore<Preferences>) {
-        fun getUser(): Flow<UserItems> {
+    fun getUser(): Flow<UserItems> {
         return dataStore.data.map { preferences ->
             UserItems(
                 id = preferences[ID_KEY],

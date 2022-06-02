@@ -65,7 +65,7 @@ class CreatePostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCreatePostBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentCreatePostBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -75,7 +75,7 @@ class CreatePostFragment : Fragment() {
         setupAction()
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()
@@ -109,7 +109,7 @@ class CreatePostFragment : Fragment() {
         }
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.apply {
             btnPost.setOnClickListener {
                 uploadFile()
@@ -138,21 +138,23 @@ class CreatePostFragment : Fragment() {
             val title = titleEditText.editText?.text.toString().trim()
             val description = postEditText.editText?.text.toString().trim()
 
-            when{
+            when {
                 title.isEmpty() -> {
-                    Snackbar.make(titleEditText,R.string.title_required, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(titleEditText, R.string.title_required, Snackbar.LENGTH_LONG)
+                        .show()
                     return
                 }
-                title.length > 100 ->{
-                    Snackbar.make(postEditText,R.string.title_length, Snackbar.LENGTH_LONG).show()
+                title.length > 100 -> {
+                    Snackbar.make(postEditText, R.string.title_length, Snackbar.LENGTH_LONG).show()
                     return
                 }
                 description.isEmpty() -> {
-                    Snackbar.make(postEditText,R.string.description_required, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(postEditText, R.string.description_required, Snackbar.LENGTH_LONG)
+                        .show()
                     return
                 }
                 currentFile == null -> {
-                    Snackbar.make(ivPreview,R.string.select_a_picture, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(ivPreview, R.string.select_a_picture, Snackbar.LENGTH_LONG).show()
                     return
                 }
                 currentFile != null -> {
@@ -164,9 +166,14 @@ class CreatePostFragment : Fragment() {
                         file.name,
                         requestImageFile
                     )
-                    viewModel.uploadPost(user.token ?: "", imageMultipart,title, desc)
-                }else -> {
-                Snackbar.make(ivPreview,getString(R.string.select_a_picture), Snackbar.LENGTH_LONG).show()
+                    viewModel.uploadPost(user.token ?: "", imageMultipart, title, desc)
+                }
+                else -> {
+                    Snackbar.make(
+                        ivPreview,
+                        getString(R.string.select_a_picture),
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 }
             }
         }
@@ -221,7 +228,7 @@ class CreatePostFragment : Fragment() {
                 ivPreview.visibility = View.VISIBLE
                 ivPreview.setImageBitmap(result)
             }
-        }else if(it.resultCode == AppCompatActivity.RESULT_OK){
+        } else if (it.resultCode == AppCompatActivity.RESULT_OK) {
             val photoFile = it.data?.getSerializableExtra("photoFile") as File
             binding.apply {
                 ivPreview.visibility = View.VISIBLE

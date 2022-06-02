@@ -15,7 +15,7 @@ class VeterinaryRepository(
 
     fun getVeterinary(token: String): LiveData<Result<List<VeterinaryItems>>> = liveData {
         emit(Result.Loading)
-        try{
+        try {
             val response = veterinaryRemoteDataSource.getVeterinary(token)
             val veterinaries = response.body()?.data
             val newVeterinary = veterinaries?.map { veterinary ->
@@ -30,10 +30,11 @@ class VeterinaryRepository(
             }
             catDatabase.veterinaryDao().deleteAllVeterinary()
             catDatabase.veterinaryDao().insertVeterinary(newVeterinary!!)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }
-        val dataLocal: LiveData<Result<List<VeterinaryItems>>> = catDatabase.veterinaryDao().getVeterinary().map { Result.Success(it) }
+        val dataLocal: LiveData<Result<List<VeterinaryItems>>> =
+            catDatabase.veterinaryDao().getVeterinary().map { Result.Success(it) }
         emitSource(dataLocal)
     }
 }

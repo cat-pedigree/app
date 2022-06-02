@@ -37,14 +37,14 @@
 
     <TextView
         android:id="@+id/btn_edit_profile"
+        style="@style/heading2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:text="@string/btn_edt_photo_profile"
         android:textColor="@color/accent"
-        style="@style/heading2"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_profile" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -62,9 +62,9 @@
         app:layout_constraintTop_toBottomOf="@id/btn_edit_profile">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/heading3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/heading3"
             android:textColor="@color/neutral_100" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,10 +83,10 @@
         app:layout_constraintTop_toBottomOf="@id/name_edit_text">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/heading3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/heading3"
-            android:textColor="@color/neutral_100"/>
+            android:textColor="@color/neutral_100" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,11 +104,11 @@
         app:layout_constraintTop_toBottomOf="@id/username_edit_text">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/heading3"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            style="@style/heading3"
             android:gravity="top"
-            android:textColor="@color/neutral_90"/>
+            android:textColor="@color/neutral_90" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,10 +119,10 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/confirm"
         android:background="@drawable/background_modal"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/confirm"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bio_edit_text" />
 
     <ProgressBar
@@ -136,6 +136,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include layout="@layout/navigation_bottom"/>
+    <include layout="@layout/navigation_bottom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

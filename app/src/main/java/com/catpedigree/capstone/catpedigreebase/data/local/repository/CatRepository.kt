@@ -24,16 +24,16 @@ class CatRepository(
         breed: RequestBody,
         gender: RequestBody,
         color: RequestBody,
-        weight:Double,
+        weight: Double,
         age: Int,
-        story:RequestBody,
+        story: RequestBody,
         photo: MultipartBody.Part,
     ) {
         withContext(Dispatchers.IO) {
             try {
                 val response =
                     catRemoteDataSource.catCreate(
-                        token, user_id,name, breed, gender, color, weight, age, story, photo
+                        token, user_id, name, breed, gender, color, weight, age, story, photo
                     )
                 if (!response.isSuccessful) {
                     throw CatError(response.message())
@@ -46,8 +46,8 @@ class CatRepository(
 
     fun getCat(token: String, user_id: Int): LiveData<Result<List<CatItems>>> = liveData {
         emit(Result.Loading)
-        try{
-            val response = catRemoteDataSource.getCat(token,user_id)
+        try {
+            val response = catRemoteDataSource.getCat(token, user_id)
             val cats = response.body()?.data
             val newCat = cats?.map { cat ->
                 CatItems(
@@ -65,10 +65,11 @@ class CatRepository(
             }
 //            catDatabase.catDao().deleteAllCats()
             catDatabase.catDao().insertCat(newCat!!)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }
-        val dataLocal: LiveData<Result<List<CatItems>>> = catDatabase.catDao().getCats(user_id).map { Result.Success(it) }
+        val dataLocal: LiveData<Result<List<CatItems>>> =
+            catDatabase.catDao().getCats(user_id).map { Result.Success(it) }
         emitSource(dataLocal)
     }
 
@@ -82,7 +83,7 @@ class CatRepository(
             try {
                 val response =
                     catRemoteDataSource.catCreateAlbum(
-                        token, user_id,cat_id,photo
+                        token, user_id, cat_id, photo
                     )
                 if (!response.isSuccessful) {
                     throw CatError(response.message())
@@ -93,25 +94,27 @@ class CatRepository(
         }
     }
 
-    fun getAlbum(token: String, user_id: Int, cat_id: Int): LiveData<Result<List<AlbumItems>>> = liveData {
-        emit(Result.Loading)
-        try{
-            val response = catRemoteDataSource.getAlbum(token,user_id, cat_id)
-            val cats = response.body()?.data
-            val newCat = cats?.map { album ->
-                AlbumItems(
-                    album.id,
-                    album.user_id,
-                    album.cat_id,
-                    album.photo,
-                )
+    fun getAlbum(token: String, user_id: Int, cat_id: Int): LiveData<Result<List<AlbumItems>>> =
+        liveData {
+            emit(Result.Loading)
+            try {
+                val response = catRemoteDataSource.getAlbum(token, user_id, cat_id)
+                val cats = response.body()?.data
+                val newCat = cats?.map { album ->
+                    AlbumItems(
+                        album.id,
+                        album.user_id,
+                        album.cat_id,
+                        album.photo,
+                    )
+                }
+                catDatabase.catDao().deleteAllAlbums()
+                catDatabase.catDao().insertAlbum(newCat!!)
+            } catch (e: Exception) {
+                emit(Result.Error(e.message.toString()))
             }
-            catDatabase.catDao().deleteAllAlbums()
-            catDatabase.catDao().insertAlbum(newCat!!)
-        }catch (e: Exception){
-            emit(Result.Error(e.message.toString()))
+            val dataLocal: LiveData<Result<List<AlbumItems>>> =
+                catDatabase.catDao().getAlbums(user_id, cat_id).map { Result.Success(it) }
+            emitSource(dataLocal)
         }
-        val dataLocal: LiveData<Result<List<AlbumItems>>> = catDatabase.catDao().getAlbums(user_id, cat_id).map { Result.Success(it) }
-        emitSource(dataLocal)
-    }
 }

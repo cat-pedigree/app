@@ -30,7 +30,7 @@ class AccountFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAccountBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentAccountBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -40,7 +40,7 @@ class AccountFragment : Fragment() {
         setupViewModel()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.apply {
             menu1.setOnClickListener {
                 findNavController().navigate(R.id.action_accountFragment_to_emailBottomSheet)
@@ -57,7 +57,7 @@ class AccountFragment : Fragment() {
                         dialog.dismiss()
                     }
                     .setPositiveButton(resources.getString(R.string.account_delete)) { dialog, _ ->
-                        viewModel.userDelete(user.token ?:"", user.id!!)
+                        viewModel.userDelete(user.token ?: "", user.id!!)
                         dialog.dismiss()
                     }
                     .show()
@@ -65,7 +65,7 @@ class AccountFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
+    private fun setupViewModel() {
         viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
             if (userItems?.isLoggedIn == false) {
                 findNavController().navigateUp()

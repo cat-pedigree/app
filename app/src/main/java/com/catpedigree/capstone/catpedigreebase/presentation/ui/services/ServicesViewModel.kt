@@ -2,7 +2,6 @@ package com.catpedigree.capstone.catpedigreebase.presentation.ui.services
 
 import androidx.lifecycle.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.VeterinaryRepository
 
 class ServicesViewModel(userRepository: UserRepository) : ViewModel() {
 
