@@ -206,14 +206,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupNavigation() {
-        binding.bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.menu_service -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
-                    return@setOnItemSelectedListener false
+        binding.apply {
+            bottomNavigationView.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.menu_service -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
+                        return@setOnItemSelectedListener false
+                    }
                 }
+                return@setOnItemSelectedListener false
             }
-            return@setOnItemSelectedListener false
+            fab.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_resultFragment)
+            }
         }
     }
 
