@@ -17,7 +17,7 @@ dilute_calico
 dilute_tortoiseshell
 domestic_long_hair
 domestic_medium_hair
-domestic_short_hair
+Domestic Short Hair
 egyptian_mau
 exotic_shorthair
 extra_toes_cat_hemingway_polydactyl
