@@ -13,6 +13,7 @@
     <string name="btn_continue">Lanjutkan</string>
     <string name="btn_skip">Lewati</string>
     <string name="btn_start">Mulai</string>
+    <string name="btn_scan">Pindah Disini</string>
 
     <!-- TODO: String on Login -->
     <string name="btn_login">Masuk</string>
@@ -309,5 +310,10 @@
     <string name="desc">Hasil tidak 100% akurat. Ini berdasarkan prediksi</string>
     <string name="filter">Saring</string>
     <string name="desc_icon_filter">Ini adalah icon filter</string>
+    <string name="result_title">Nama Kucing</string>
+    <string name="result_description">Description</string>
+    <string name="result">Hasil</string>
+    <string name="btn_try_again">Coba Lagi</string>
+    <string name="btn_share">Share</string>
 
 </resources>

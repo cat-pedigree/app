@@ -6,13 +6,14 @@
     <string name="title_onboarding_two">Pedigree</string>
     <string name="title_onboarding_three">Social Media</string>
     <string name="title_onboarding_four">Dating</string>
-    <string name="desc_onboarding_one">Identify the type of cat by taking a photo, \nthe application will analyze the type of cat</string>
+    <string name="desc_onboarding_one">Identify type of cat by taking a photo, \nthe application will analyze the type of cat</string>
     <string name="desc_onboarding_two">Classify cat breeds and analyze \nclassification report for cross-breeds analysis.</string>
     <string name="desc_onboarding_three">Connect and socialize with \nall cat owners in the world</string>
     <string name="desc_onboarding_four">Find the perfect match \nfor your beloved cat</string>
     <string name="btn_continue">Continue</string>
     <string name="btn_skip">Skip</string>
     <string name="btn_start">Start</string>
+    <string name="btn_scan">Scan Here</string>
 
     <!-- TODO: String on Login -->
     <string name="btn_login">Login</string>
@@ -309,5 +310,10 @@
     <string name="desc">Results are not 100% accurate. This is based on prediction</string>
     <string name="filter">Filter</string>
     <string name="desc_icon_filter">This is the filter icon</string>
+    <string name="result_title">Cat Name</string>
+    <string name="result_description">Description</string>
+    <string name="result">Result</string>
+    <string name="btn_try_again">Try Again</string>
+    <string name="btn_share">Share</string>
 
 </resources>
