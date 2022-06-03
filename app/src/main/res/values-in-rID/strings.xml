@@ -293,7 +293,7 @@
     <string name="cat_gender">Jenis Kelamin</string>
     <string name="tab_story">Cerita</string>
     <string name="tab_album">Album</string>
-    <string name="btn_follow">Follow</string>
+    <string name="btn_follow">Mengikuti</string>
     <string name="btn_message_profile">Pesan</string>
     <string name="search_hint">Masukkan Nama</string>
     <string name="username">Username</string>
@@ -315,5 +315,8 @@
     <string name="result">Hasil</string>
     <string name="btn_try_again">Coba Lagi</string>
     <string name="btn_share">Share</string>
+    <string name="btn_unfollow">Berhenti Mengikuti</string>
+    <string name="no_post_data">Belum ada postingan</string>
+    <string name="no_data_search">Tidak ada hasil untuk "%s"</string>
 
 </resources>
