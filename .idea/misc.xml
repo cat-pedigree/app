@@ -119,10 +119,13 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/menu/top_app.xml" value="0.18645833333333334" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/menu/top_app_bar.xml" value="0.22" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/menu/top_app_bar_two.xml" value="0.22" />
+        <entry key="..\:/Perkuliahan/Bangkit/FixCapstone/app/app/src/main/res/layout/fragment_edit_profile.xml" value="0.22" />
+        <entry key="..\:/Perkuliahan/Bangkit/FixCapstone/app/app/src/main/res/layout/fragment_profile.xml" value="0.14130434782608695" />
+        <entry key="..\:/Perkuliahan/Bangkit/FixCapstone/app/app/src/main/res/layout/fragment_register.xml" value="0.16666666666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
