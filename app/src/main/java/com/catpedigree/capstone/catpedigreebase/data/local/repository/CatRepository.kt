@@ -73,6 +73,10 @@ class CatRepository(
         emitSource(dataLocal)
     }
 
+    fun checkCat(user_id: Int): LiveData<Int>{
+        return catDatabase.catDao().checkCat(user_id)
+    }
+
     suspend fun catCreateAlbum(
         token: String,
         user_id: Int,
