@@ -109,6 +109,8 @@ class MyProfileFragment : Fragment() {
                 tvName.text = user.name
                 tvBio.text = user.bio ?: "Bio"
                 tvPostCount.text = user.postsCount.toString()
+                tvFollowerCount.text = user.followersCount.toString()
+                tvFollowingCount.text = user.following.toString()
                 topAppBar.title = user.username
                 Glide.with(root)
                     .load(profilePhotoPath)
