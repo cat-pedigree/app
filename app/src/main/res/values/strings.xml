@@ -104,6 +104,9 @@
     <string name="bio">Bio</string>
     <string name="follow">Follow</string>
     <string name="message">Message</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_username">Enter username</string>
+    <string name="enter_bio">Enter bio</string>
 
     <!-- TODO: String on AddCat -->
     <string name="cat_name">Cat Name</string>
