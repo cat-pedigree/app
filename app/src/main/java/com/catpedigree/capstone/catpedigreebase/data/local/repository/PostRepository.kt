@@ -92,6 +92,10 @@ class PostRepository(
         return catDatabase.postDao().getPostFavoriteCount()
     }
 
+    fun checkPost(user_id: Int): LiveData<Int>{
+        return catDatabase.postDao().getCheckPost(user_id)
+    }
+
     suspend fun postCreate(
         token: String,
         file: MultipartBody.Part,

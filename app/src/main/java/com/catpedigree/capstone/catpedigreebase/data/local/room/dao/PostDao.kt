@@ -16,6 +16,9 @@ interface PostDao {
     @Query("SELECT * FROM post_items WHERE user_id = :user_id ORDER BY created_at DESC")
     fun getPostProfile(user_id: Int): LiveData<List<PostItems>>
 
+    @Query("SELECT count(*) FROM post_items WHERE user_id = :user_id")
+    fun getCheckPost(user_id: Int): LiveData<Int>
+
     @Query("SELECT * FROM post_items WHERE bookmarked = 1")
     fun getPostFavorite(): LiveData<List<PostItems>>
 
