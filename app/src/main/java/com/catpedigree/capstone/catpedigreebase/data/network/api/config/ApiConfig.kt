@@ -47,4 +47,8 @@ object ApiConfig {
     fun getVeterinary(): VeterinaryInterface {
         return retrofit.create(VeterinaryInterface::class.java)
     }
+
+    fun getFollow(): FollowInterface {
+        return retrofit.create(FollowInterface::class.java)
+    }
 }
