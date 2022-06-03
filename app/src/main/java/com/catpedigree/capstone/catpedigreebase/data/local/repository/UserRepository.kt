@@ -43,7 +43,9 @@ open class UserRepository(
                         token = it.token,
                         isLoggedIn = true,
                         postsCount = it.user?.posts_count,
-                        catsCount = it.user?.cats_count
+                        catsCount = it.user?.cats_count,
+                        followersCount = it.user?.followers_count,
+                        following = it.user?.following
                     )
                     prefs.updateUser(user)
                 }
@@ -87,7 +89,9 @@ open class UserRepository(
                     user.bio,
                     user.profile_photo_path,
                     user.posts_count,
-                    user.cats_count
+                    user.cats_count,
+                    user.followers_count,
+                    user.following
                 )
             }
             catDatabase.userDao().deleteAllUsers()
@@ -98,6 +102,20 @@ open class UserRepository(
         val dataLocal: LiveData<Result<List<UserDataItems>>> =
             catDatabase.userDao().getSearch(name).map { Result.Success(it) }
         emitSource(dataLocal)
+    }
+
+    suspend fun setFollowersCount(user: UserDataItems, state: Int) {
+        user.followersCount = user.followersCount?.plus(state)
+        catDatabase.userDao().updateUser(user)
+    }
+
+    suspend fun setFollowersCountDelete(user: UserDataItems, state: Int) {
+        user.followersCount = user.followersCount?.minus(state)
+        catDatabase.userDao().updateUser(user)
+    }
+
+    fun getFollowerCount(id: Int): LiveData<Int> {
+        return catDatabase.userDao().getFollowerCount(id)
     }
 
     suspend fun change(
@@ -224,7 +242,9 @@ open class UserRepository(
                     bio = null,
                     profile_photo_path = "",
                     postsCount = null,
-                    catsCount = null
+                    catsCount = null,
+                    followersCount = null,
+                    following = null
                 )
             )
         } catch (e: Throwable) {

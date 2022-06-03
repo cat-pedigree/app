@@ -12,4 +12,6 @@ data class UserItems(
     var isLoggedIn: Boolean? = null,
     val postsCount: Int? = null,
     val catsCount: Int? = null,
+    val followersCount: Int? = null,
+    val following: Int? = null,
 )

@@ -37,4 +37,10 @@ data class DataUser(
 
     @field: SerializedName("cats_count")
     val cats_count: Int? = null,
+
+    @field: SerializedName("followers_count")
+    val followers_count: Int? = null,
+
+    @field: SerializedName("following")
+    val following: Int? = null,
 )

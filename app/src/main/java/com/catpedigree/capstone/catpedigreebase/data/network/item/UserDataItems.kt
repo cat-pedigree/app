@@ -30,4 +30,10 @@ data class UserDataItems(
 
     @field:SerializedName("catsCount")
     val catsCount: Int? = null,
+
+    @field:SerializedName("followersCount")
+    var followersCount: Int? = null,
+
+    @field:SerializedName("following")
+    var following: Int? = null,
 ) : Parcelable
