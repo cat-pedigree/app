@@ -69,6 +69,12 @@ class HomeFragment : Fragment() {
         })
 
         binding.apply {
+            viewModel.checkPost().observe(viewLifecycleOwner){
+                if(it == 0){
+                    tvNoData.visibility = View.VISIBLE
+                }
+            }
+
             viewModel.getPosts().observe(viewLifecycleOwner) { result ->
                 if (result != null) {
                     when (result) {
