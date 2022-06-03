@@ -1,7 +1,6 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.classification
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -18,12 +17,8 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.databinding.ActivityClassificationBinding
-import com.catpedigree.capstone.catpedigreebase.ml.Model1
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.main.MainActivity
 import com.catpedigree.capstone.catpedigreebase.utils.CameraUtils
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 
 class ClassificationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityClassificationBinding
