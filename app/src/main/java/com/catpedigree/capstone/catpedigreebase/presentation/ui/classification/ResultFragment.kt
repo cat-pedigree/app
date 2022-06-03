@@ -15,9 +15,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentResultBinding
-import com.catpedigree.capstone.catpedigreebase.ml.Model1
+import com.catpedigree.capstone.catpedigreebase.ml.Model2
+import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.main.MainActivity
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.camera.CameraActivity
 import com.catpedigree.capstone.catpedigreebase.utils.CameraUtils
@@ -35,6 +38,12 @@ class ResultFragment : Fragment() {
     private lateinit var _binding: FragmentResultBinding
     private val binding get() = _binding
     private var currentFile: File? = null
+
+    private lateinit var user: UserItems
+
+    private val viewModel: ResultViewModel by viewModels {
+        ViewModelFactory.getInstance(requireContext())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +67,7 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
+        setupViewModel()
     }
 
     private fun setupAction(){
@@ -69,6 +79,15 @@ class ResultFragment : Fragment() {
             btnTryAgain.setOnClickListener {
                 showCard(true)
             }
+        }
+    }
+
+    private fun setupViewModel(){
+        viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
+            if (userItems?.isLoggedIn == false) {
+                findNavController().navigateUp()
+            }
+            this.user = userItems
         }
     }
 
@@ -111,7 +130,8 @@ class ResultFragment : Fragment() {
             result = result.copy(Bitmap.Config.ARGB_8888,true)
             binding.apply {
                 showCard(false)
-                ivPreview.setImageURI(Uri.fromFile(photoFile))
+//                ivPreview.setImageURI(Uri.fromFile(photoFile))
+                ivPreview.setImageBitmap(result)
                 ivPreviewCircle.setImageURI(Uri.fromFile(photoFile))
                 catClassification(result)
             }
@@ -121,7 +141,7 @@ class ResultFragment : Fragment() {
     private fun catClassification(result : Bitmap){
         val labels = activity?.application?.assets?.open("labels.txt")?.bufferedReader().use{it?.readText()}?.split("\n")
         val catImage = Bitmap.createScaledBitmap(result, 150,150,true)
-        val catModel = Model1.newInstance(requireContext())
+        val catModel = Model2.newInstance(requireContext())
         val inputFeature : TensorBuffer = TensorBuffer.createFixedSize(intArrayOf(1,150,150,3), DataType.FLOAT32)
         val imageFeature = TensorImage(DataType.FLOAT32)
 
@@ -134,25 +154,27 @@ class ResultFragment : Fragment() {
         val output = catModel.process(inputFeature)
         val outputFeature = output.outputFeature0AsTensorBuffer
 
-        catModel.close()
 
         val max = getMax(outputFeature.floatArray)
 
         binding.apply {
             tvTitle.text = labels!![max]
             tvTitleBottom.text = labels[max]
-            tvDescBottom.text = checkDescription(max)
+            tvDescBottom.text = labels[max]
             tvTitleBottom.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=${tvTitleBottom.text}"))
                 activity?.startActivity(intent)
             }
         }
+
+        catModel.close()
+
     }
 
     private fun getMax(arr:FloatArray) : Int{
         var min = 0.0f
         var max = 0
-        for(i in 0..54)
+        for(i in 0..19)
         {
             if(arr[i] > min)
             {
