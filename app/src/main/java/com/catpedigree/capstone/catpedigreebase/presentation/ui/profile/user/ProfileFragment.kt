@@ -1,11 +1,11 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
 import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
+import com.catpedigree.capstone.catpedigreebase.data.network.item.UserDataItems
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentProfileBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.adapter.CatProfileAdapter
@@ -24,7 +25,6 @@ import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
 class ProfileFragment : Fragment() {
-
     private lateinit var _binding: FragmentProfileBinding
     private val binding get() = _binding
     private val args: ProfileFragmentArgs by navArgs()
@@ -49,9 +49,9 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupAction() {
+        val user = args.user
         val catProfileAdapter = CatProfileAdapter()
         val postProfileAdapter = PostProfileUserAdapter()
-        val user = args.user
         val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${user.profile_photo_path}"
         binding.apply {
             Glide.with(root)
@@ -63,9 +63,36 @@ class ProfileFragment : Fragment() {
             tvName.text = user.name
             tvBio.text = user.bio
             tvPostCount.text = user.postsCount.toString()
+            viewModel.getFollowersCount(user.id!!).observe(viewLifecycleOwner){
+                binding.tvFollowerCount.text = it.toString()
+            }
+            tvFollowingCount.text = user.following.toString()
             topAppBar.title = user.username
 
-            viewModel.getCat(user.id!!).observe(viewLifecycleOwner) { result ->
+            ivFollowerCount.setOnClickListener {
+                findNavController().navigate(
+                    ProfileFragmentDirections.actionProfileFragmentToFollowerFragment(
+                        user
+                    )
+                )
+            }
+
+            ivFollowingCount.setOnClickListener {
+                findNavController().navigate(
+                    ProfileFragmentDirections.actionProfileFragmentToFollowingFragment(
+                        user
+                    )
+                )
+            }
+
+            viewModel.checkCat().observe(viewLifecycleOwner){
+                if(it == 0){
+                    myCats.visibility = View.GONE
+                    rvCats.visibility = View.GONE
+                }
+            }
+
+            viewModel.getCat(user.id).observe(viewLifecycleOwner) { result ->
                 if (result != null) {
                     when (result) {
                         is Result.Loading -> {
@@ -87,6 +114,7 @@ class ProfileFragment : Fragment() {
                     }
                 }
             }
+
             rvCats.apply {
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -94,6 +122,15 @@ class ProfileFragment : Fragment() {
                 isNestedScrollingEnabled = false
                 adapter = catProfileAdapter
             }
+
+            viewModel.checkPost().observe(viewLifecycleOwner){
+                if(it == 0){
+                    rvPostProfile.visibility = View.GONE
+                    ivNoData.visibility = View.VISIBLE
+                    tvNoData.visibility = View.VISIBLE
+                }
+            }
+
             viewModel.getPostProfile(user.id).observe(viewLifecycleOwner) { result ->
                 if (result != null) {
                     when (result) {
@@ -122,7 +159,11 @@ class ProfileFragment : Fragment() {
                 isNestedScrollingEnabled = false
                 adapter = postProfileAdapter
             }
+
+
         }
+
+        setupFollow(user)
     }
 
     private fun setupViewModel() {
@@ -142,7 +183,71 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    private fun setupFollow(userDataItems: UserDataItems){
+        val user = args.user
+        var isCheck = false
+        viewModel.checkFollow(user.id!!).observe(viewLifecycleOwner) {
+            if (it > 0) {
+                binding.btnFollow.isChecked = true
+                isCheck = true
+            }else{
+                binding.btnFollow.isChecked = false
+                isCheck = false
+            }
+        }
+
+        binding.btnFollow.setOnClickListener {
+            isCheck = !isCheck
+            if(isCheck){
+                viewModel.follow(users.token?:"", user.id,users.id!!)
+                viewModel.saveFollow(userDataItems)
+                viewModel.getFollowersCount(user.id).observe(viewLifecycleOwner){
+                    binding.tvFollowerCount.text = it.toString()
+                }
+                Toast.makeText(requireContext(),"Follow", Toast.LENGTH_LONG).show()
+            }else{
+                viewModel.followDelete(users.token?:"", user.id, users.id!!)
+                viewModel.deleteFollow(userDataItems)
+                viewModel.getFollowersCount(user.id).observe(viewLifecycleOwner){
+                    binding.tvFollowerCount.text = it.toString()
+                }
+                Toast.makeText(requireContext(),"Unfollow", Toast.LENGTH_LONG).show()
+            }
+            binding.btnFollow.isChecked = isCheck
+        }
+    }
+    
+//    private fun setupFollow(follower_id: Int, userDataItems: UserDataItems){
+//        binding.btnFollow.setOnCheckedChangeListener { _, isChecked ->
+//
+//            when(isChecked){
+//
+//                true -> {
+//                    viewModel.follow(users.token?:"", follower_id,users.id!!)
+//                    viewModel.saveFollow(userDataItems)
+//                    viewModel.getFollowersCount(follower_id).observe(viewLifecycleOwner){
+//                        binding.tvFollowerCount.text = it.toString()
+//                    }
+//                    Toast.makeText(requireContext(),"Follow", Toast.LENGTH_LONG).show()
+//                }
+//                else -> {
+//                    viewModel.followDelete(users.token?:"", follower_id, users.id!!)
+//                    viewModel.deleteFollow(userDataItems)
+//                    viewModel.getFollowersCount(follower_id).observe(viewLifecycleOwner){
+//                        binding.tvFollowerCount.text = it.toString()
+//                    }
+//                    Toast.makeText(requireContext(),"Unfollow", Toast.LENGTH_LONG).show()
+//                }
+//            }
+//        }
+//        viewModel.getCheckFollow(follower_id).observe(viewLifecycleOwner){
+//            binding.tvPostCount.text = "ada $it"
+//        }
+//    }
+
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
     }
+
+
 }
