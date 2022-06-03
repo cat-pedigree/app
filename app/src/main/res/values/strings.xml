@@ -36,7 +36,7 @@
     <string name="register_password">Password</string>
     <string name="register_account">Already have an account?</string>
     <string name="register_error">"Signup failed, try again!"</string>
-
+    <string name="register_confirm_password">Confirm Password</string>
 
     <string name="home">Home</string>
     <string name="add">Add</string>
