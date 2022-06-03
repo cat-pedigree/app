@@ -48,4 +48,10 @@ object Injection {
         return VeterinaryRepository(veterinaryRemoteDataSource, CatDatabase.getDatabase(context))
     }
 
+    fun provideFollowRepository(context: Context): FollowRepository{
+        val followApiInterface = ApiConfig.getFollow()
+        val followRemoteDataSource = FollowRemoteDataSource(followApiInterface)
+        return FollowRepository(followRemoteDataSource, CatDatabase.getDatabase(context))
+    }
+
 }
