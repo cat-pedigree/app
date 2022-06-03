@@ -208,6 +208,12 @@
         <action
             android:id="@+id/action_profileFragment_to_postDetailUserFragment"
             app:destination="@id/postDetailUserFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_followerFragment"
+            app:destination="@id/followerFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_followingFragment"
+            app:destination="@id/followingFragment" />
     </fragment>
     <fragment
         android:id="@+id/catUserFragment"
@@ -273,4 +279,22 @@
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.classification.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" />
+    <fragment
+        android:id="@+id/followerFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.FollowerFragment"
+        android:label="fragment_follower"
+        tools:layout="@layout/fragment_follower">
+        <argument
+            android:name="user"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.UserDataItems" />
+    </fragment>
+    <fragment
+        android:id="@+id/followingFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.FollowingFragment"
+        android:label="fragment_following"
+        tools:layout="@layout/fragment_following">
+        <argument
+            android:name="user"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.UserDataItems" />
+    </fragment>
 </navigation>
