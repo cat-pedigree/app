@@ -17,6 +17,9 @@ interface CatDao {
     @Query("SELECT * FROM cat_items WHERE user_id = :user_id")
     fun getCats(user_id: Int?): LiveData<List<CatItems>>
 
+    @Query("SELECT count(*) FROM cat_items WHERE user_id = :user_id")
+    fun checkCat(user_id: Int?): LiveData<Int>
+
     @Query("DELETE FROM cat_items")
     suspend fun deleteAllCats()
 
