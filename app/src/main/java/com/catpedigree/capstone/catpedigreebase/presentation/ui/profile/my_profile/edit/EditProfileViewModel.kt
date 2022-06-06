@@ -2,6 +2,7 @@ package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_prof
 
 import androidx.lifecycle.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
+import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
 import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
@@ -53,6 +54,19 @@ class EditProfileViewModel(private val userRepository: UserRepository) : ViewMod
             } catch (e: PostError) {
                 _errorMessage.value = e.message
                 _isSuccess.value = false
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                userRepository.logout()
+            } catch (e: AuthError) {
+                _errorMessage.value = e.message
             } finally {
                 _isLoading.value = false
             }

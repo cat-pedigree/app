@@ -14,4 +14,4 @@ data class UserItems(
     val catsCount: Int? = null,
     val followersCount: Int? = null,
     val following: Int? = null,
-)
+    )

@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentResultBinding
 import com.catpedigree.capstone.catpedigreebase.ml.Model2
@@ -25,13 +27,13 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.main.MainActivit
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.camera.CameraActivity
 import com.catpedigree.capstone.catpedigreebase.utils.CameraUtils
 import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 
 class ResultFragment : Fragment() {
@@ -68,6 +70,7 @@ class ResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
         setupViewModel()
+        setupMenu()
     }
 
     private fun setupAction(){
@@ -88,6 +91,36 @@ class ResultFragment : Fragment() {
                 findNavController().navigateUp()
             }
             this.user = userItems
+        }
+    }
+
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_resultFragment_to_myProfileFragment)
+                    return@setOnMenuItemClickListener true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_resultFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_resultFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
         }
     }
 
@@ -130,7 +163,6 @@ class ResultFragment : Fragment() {
             result = result.copy(Bitmap.Config.ARGB_8888,true)
             binding.apply {
                 showCard(false)
-//                ivPreview.setImageURI(Uri.fromFile(photoFile))
                 ivPreview.setImageBitmap(result)
                 ivPreviewCircle.setImageURI(Uri.fromFile(photoFile))
                 catClassification(result)
@@ -143,11 +175,7 @@ class ResultFragment : Fragment() {
         val catImage = Bitmap.createScaledBitmap(result, 150,150,true)
         val catModel = Model2.newInstance(requireContext())
         val inputFeature : TensorBuffer = TensorBuffer.createFixedSize(intArrayOf(1,150,150,3), DataType.FLOAT32)
-        val imageFeature = TensorImage(DataType.FLOAT32)
-
-        imageFeature.load(catImage)
-
-        val buffer: ByteBuffer = imageFeature.buffer
+        val buffer: ByteBuffer = convertBitmapToByteBuffer(catImage)
 
         inputFeature.loadBuffer(buffer)
 
@@ -160,7 +188,7 @@ class ResultFragment : Fragment() {
         binding.apply {
             tvTitle.text = labels!![max]
             tvTitleBottom.text = labels[max]
-            tvDescBottom.text = labels[max]
+            tvDescBottom.text = checkDescription(max)
             tvTitleBottom.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=${tvTitleBottom.text}"))
                 activity?.startActivity(intent)
@@ -169,6 +197,27 @@ class ResultFragment : Fragment() {
 
         catModel.close()
 
+    }
+
+    private fun convertBitmapToByteBuffer(result: Bitmap): ByteBuffer{
+        val imageByteBuffer = ByteBuffer.allocateDirect(4 * 150 * 150 * 3)
+        imageByteBuffer.order(ByteOrder.nativeOrder())
+
+        val pixels = IntArray(150 * 150)
+        result.getPixels(pixels, 0, result.width,0,0,result.width, result.height)
+
+        var pixel = 0
+        for(i in 0 until 150){
+            for(j in 0 until 150){
+                val pixelVal = pixels[pixel++]
+
+                imageByteBuffer.putFloat(((pixelVal shr 16 and 0xFF) - 127.5f) / 127.5f)
+                imageByteBuffer.putFloat(((pixelVal shr 8 and 0xFF) - 127.5f) / 127.5f)
+                imageByteBuffer.putFloat(((pixelVal and 0xFF) - 127.5f) / 127.5f)
+            }
+        }
+        result.recycle()
+        return imageByteBuffer
     }
 
     private fun getMax(arr:FloatArray) : Int{
@@ -200,11 +249,71 @@ class ResultFragment : Fragment() {
 
     private fun checkDescription(number: Int) : String{
         var description = ""
-        when (number) {
-            19 -> {
-                description = "Kucing domestik berbulu pendek adalah kucing keturunan campuran yang memiliki bulu berukuran pendek. Karena kucing keturunan campuran, maka kucing ini tidak diakui sebagai ras kucing. Di Britania Raya, kucing ini sering disebut sebagai mogi."
+        val menuDescription = resources.getStringArray(R.array.item_description)
+
+            when (number) {
+                0 -> {
+                    description = menuDescription[0]
+                }
+                1 -> {
+                    description = menuDescription[1]
+                }
+                2 -> {
+                    description = menuDescription[2]
+                }
+                3 -> {
+                    description = menuDescription[3]
+                }
+                4 -> {
+                    description = menuDescription[4]
+                }
+                5 -> {
+                    description = menuDescription[5]
+                }
+                6 -> {
+                    description = menuDescription[6]
+                }
+                7 -> {
+                    description = menuDescription[7]
+                }
+                8 -> {
+                    description = menuDescription[8]
+                }
+                9 -> {
+                    description = menuDescription[9]
+                }
+                10 -> {
+                    description = menuDescription[10]
+                }
+                11 -> {
+                    description = menuDescription[11]
+                }
+                12 -> {
+                    description = menuDescription[12]
+                }
+                13 -> {
+                    description = menuDescription[13]
+                }
+                14 -> {
+                    description = menuDescription[14]
+                }
+                15 -> {
+                    description = menuDescription[15]
+                }
+                16 -> {
+                    description = menuDescription[16]
+                }
+                17 -> {
+                    description = menuDescription[17]
+                }
+                18 -> {
+                    description = menuDescription[18]
+                }
+                19 -> {
+                    description = menuDescription[19]
+                }
+
             }
-        }
         return description
     }
 }

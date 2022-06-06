@@ -1,6 +1,8 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.create
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +41,7 @@ class CreateCommentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
         setupViewModel()
+        setupMenu()
     }
 
     private fun setupAction() {
@@ -91,6 +94,36 @@ class CreateCommentFragment : Fragment() {
                 Snackbar.make(binding.btnComment, R.string.comment_success, Snackbar.LENGTH_LONG)
                     .show()
                 findNavController().navigateUp()
+            }
+        }
+    }
+
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_createCommentFragment_to_myProfileFragment)
+                    return@setOnMenuItemClickListener true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_createCommentFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_createCommentFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
             }
         }
     }

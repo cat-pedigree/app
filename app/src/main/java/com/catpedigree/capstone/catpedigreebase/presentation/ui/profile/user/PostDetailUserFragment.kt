@@ -1,6 +1,8 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +14,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
-import com.catpedigree.capstone.catpedigreebase.databinding.FragmentPostDetailProfileBinding
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentPostDetailUserBinding
-import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PostProfileDetailAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PostUserDetailAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail.PostDetailProfileViewModel
 import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
@@ -45,6 +44,8 @@ class PostDetailUserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
         setupViewModel()
+        setupMenu()
+        setupNavigation()
     }
 
     private fun setupAction() {
@@ -111,6 +112,65 @@ class PostDetailUserFragment : Fragment() {
 
         viewModel.isLoading.observe(viewLifecycleOwner) { state ->
             showLoading(state)
+        }
+    }
+
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_postDetailUserFragment_to_myProfileFragment)
+                    return@setOnMenuItemClickListener true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_postDetailUserFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_postDetailUserFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+    }
+
+    private fun setupNavigation() {
+        binding.apply {
+            bottomNavigationView.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.menu_home -> {
+                        findNavController().navigate(R.id.action_postDetailUserFragment_to_homeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_service -> {
+                        findNavController().navigate(R.id.action_postDetailUserFragment_to_servicesFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_pedigree -> {
+                        findNavController().navigate(R.id.action_postDetailUserFragment_to_pedigreeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_dating -> {
+                        findNavController().navigate(R.id.action_postDetailUserFragment_to_datingFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                }
+                return@setOnItemSelectedListener false
+            }
+            fab.setOnClickListener {
+                findNavController().navigate(R.id.action_postDetailUserFragment_to_resultFragment)
+            }
         }
     }
 

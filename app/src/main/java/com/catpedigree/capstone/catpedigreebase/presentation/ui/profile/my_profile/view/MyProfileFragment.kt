@@ -1,6 +1,8 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,13 +57,65 @@ class MyProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
         setupViewModel()
+        setupMenu()
+        setupNavigation()
     }
 
     private fun setupAction() {
-        binding.btnEditProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_myProfileFragment_to_editProfileFragment)
+        binding.apply {
+            btnEditProfile.setOnClickListener {
+                findNavController().navigate(R.id.action_myProfileFragment_to_editProfileFragment)
+            }
+
+            ivFollowerCount.setOnClickListener {
+                findNavController().navigate(R.id.action_myProfileFragment_to_myFollowerFragment)
+            }
+
+            ivFollowingCount.setOnClickListener {
+                findNavController().navigate(R.id.action_myProfileFragment_to_myFollowingFragment)
+            }
         }
 
+        setupCatAdapter()
+    }
+
+    private fun setupViewModel() {
+        viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
+            if (userItems?.isLoggedIn == false) {
+                findNavController().navigateUp()
+            }
+            this.user = userItems
+            val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${user.profile_photo_path}"
+            binding.apply {
+                tvName.text = user.name
+                tvBio.text = user.bio ?: "Bio"
+                tvPostCount.text = user.postsCount.toString()
+                tvFollowerCount.text = user.followersCount.toString()
+                tvFollowingCount.text = user.following.toString()
+                topAppBar.title = user.username
+
+                Glide.with(root)
+                    .load(profilePhotoPath)
+                    .signature(ObjectKey(profilePhotoPath))
+                    .placeholder(R.drawable.ic_avatar)
+                    .circleCrop()
+                    .into(ivAvatar)
+                btnAddCat.setOnClickListener {
+                    findNavController().navigate(R.id.action_myProfileFragment_to_addCatFragment)
+                }
+            }
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { state ->
+            showLoading(state)
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            ToastUtils.showToast(requireContext(), message)
+        }
+    }
+
+    private fun setupCatAdapter(){
         val catAdapter = CatAdapter()
 
         binding.apply {
@@ -98,38 +152,58 @@ class MyProfileFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel() {
-        viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
-            if (userItems?.isLoggedIn == false) {
-                findNavController().navigateUp()
-            }
-            this.user = userItems
-            val profilePhotoPath = "${BuildConfig.BASE_API_PHOTO}${user.profile_photo_path}"
-            binding.apply {
-                tvName.text = user.name
-                tvBio.text = user.bio ?: "Bio"
-                tvPostCount.text = user.postsCount.toString()
-                tvFollowerCount.text = user.followersCount.toString()
-                tvFollowingCount.text = user.following.toString()
-                topAppBar.title = user.username
-                Glide.with(root)
-                    .load(profilePhotoPath)
-                    .signature(ObjectKey(profilePhotoPath))
-                    .placeholder(R.drawable.ic_avatar)
-                    .circleCrop()
-                    .into(ivAvatar)
-                btnAddCat.setOnClickListener {
-                    findNavController().navigate(R.id.action_myProfileFragment_to_addCatFragment)
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_myProfileFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_myProfileFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
                 }
             }
         }
+    }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) { state ->
-            showLoading(state)
-        }
-
-        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
-            ToastUtils.showToast(requireContext(), message)
+    private fun setupNavigation() {
+        binding.apply {
+            bottomNavigationView.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.menu_home -> {
+                        findNavController().navigate(R.id.action_myProfileFragment_to_homeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_service -> {
+                        findNavController().navigate(R.id.action_myProfileFragment_to_servicesFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_pedigree -> {
+                        findNavController().navigate(R.id.action_myProfileFragment_to_pedigreeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_dating -> {
+                        findNavController().navigate(R.id.action_myProfileFragment_to_datingFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                }
+                return@setOnItemSelectedListener false
+            }
+            fab.setOnClickListener {
+                findNavController().navigate(R.id.action_myProfileFragment_to_resultFragment)
+            }
         }
     }
 

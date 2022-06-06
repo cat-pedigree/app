@@ -1,6 +1,8 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +48,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
         setupViewModel()
+        setupMenu()
     }
 
     private fun setupAction() {
@@ -85,7 +88,7 @@ class ProfileFragment : Fragment() {
                 )
             }
 
-            viewModel.checkCat().observe(viewLifecycleOwner){
+            viewModel.checkCat(user.id).observe(viewLifecycleOwner){
                 if(it == 0){
                     myCats.visibility = View.GONE
                     rvCats.visibility = View.GONE
@@ -123,7 +126,7 @@ class ProfileFragment : Fragment() {
                 adapter = catProfileAdapter
             }
 
-            viewModel.checkPost().observe(viewLifecycleOwner){
+            viewModel.checkPost(user.id).observe(viewLifecycleOwner){
                 if(it == 0){
                     rvPostProfile.visibility = View.GONE
                     ivNoData.visibility = View.VISIBLE
@@ -183,6 +186,36 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_profileFragment_to_myProfileFragment)
+                    return@setOnMenuItemClickListener true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_profileFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_profileFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+    }
+
     private fun setupFollow(userDataItems: UserDataItems){
         val user = args.user
         var isCheck = false
@@ -216,34 +249,6 @@ class ProfileFragment : Fragment() {
             binding.btnFollow.isChecked = isCheck
         }
     }
-    
-//    private fun setupFollow(follower_id: Int, userDataItems: UserDataItems){
-//        binding.btnFollow.setOnCheckedChangeListener { _, isChecked ->
-//
-//            when(isChecked){
-//
-//                true -> {
-//                    viewModel.follow(users.token?:"", follower_id,users.id!!)
-//                    viewModel.saveFollow(userDataItems)
-//                    viewModel.getFollowersCount(follower_id).observe(viewLifecycleOwner){
-//                        binding.tvFollowerCount.text = it.toString()
-//                    }
-//                    Toast.makeText(requireContext(),"Follow", Toast.LENGTH_LONG).show()
-//                }
-//                else -> {
-//                    viewModel.followDelete(users.token?:"", follower_id, users.id!!)
-//                    viewModel.deleteFollow(userDataItems)
-//                    viewModel.getFollowersCount(follower_id).observe(viewLifecycleOwner){
-//                        binding.tvFollowerCount.text = it.toString()
-//                    }
-//                    Toast.makeText(requireContext(),"Unfollow", Toast.LENGTH_LONG).show()
-//                }
-//            }
-//        }
-//        viewModel.getCheckFollow(follower_id).observe(viewLifecycleOwner){
-//            binding.tvPostCount.text = "ada $it"
-//        }
-//    }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE

@@ -51,4 +51,8 @@ object ApiConfig {
     fun getFollow(): FollowInterface {
         return retrofit.create(FollowInterface::class.java)
     }
+
+    fun getMessage(): MessageInterface{
+        return retrofit.create(MessageInterface::class.java)
+    }
 }

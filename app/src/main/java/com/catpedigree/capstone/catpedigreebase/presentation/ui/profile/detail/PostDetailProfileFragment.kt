@@ -1,6 +1,8 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +42,8 @@ class PostDetailProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
         setupViewModel()
+        setupMenu()
+        setupNavigation()
     }
 
     private fun setupAction() {
@@ -105,6 +109,65 @@ class PostDetailProfileFragment : Fragment() {
 
         viewModel.isLoading.observe(viewLifecycleOwner) { state ->
             showLoading(state)
+        }
+    }
+
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_postDetailProfileFragment_to_myProfileFragment2)
+                    return@setOnMenuItemClickListener true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_postDetailProfileFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_postDetailProfileFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+    }
+
+    private fun setupNavigation() {
+        binding.apply {
+            bottomNavigationView.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.menu_home -> {
+                        findNavController().navigate(R.id.action_postDetailProfileFragment_to_homeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_service -> {
+                        findNavController().navigate(R.id.action_postDetailProfileFragment_to_servicesFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_pedigree -> {
+                        findNavController().navigate(R.id.action_postDetailProfileFragment_to_pedigreeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_dating -> {
+                        findNavController().navigate(R.id.action_postDetailProfileFragment_to_datingFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                }
+                return@setOnItemSelectedListener false
+            }
+            fab.setOnClickListener {
+                findNavController().navigate(R.id.action_postDetailUserFragment_to_resultFragment)
+            }
         }
     }
 

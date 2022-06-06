@@ -101,6 +101,21 @@
         <action
             android:id="@+id/action_homeFragment_to_resultFragment"
             app:destination="@id/resultFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_pedigreeFragment"
+            app:destination="@id/pedigreeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_datingFragment"
+            app:destination="@id/datingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_accountFragment2"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_messageFragment"
+            app:destination="@id/messageFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -113,6 +128,15 @@
         <action
             android:id="@+id/action_commentFragment_to_createCommentFragment"
             app:destination="@id/createCommentFragment" />
+        <action
+            android:id="@+id/action_commentFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_commentFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_commentFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
     </fragment>
     <fragment
         android:id="@+id/createCommentFragment"
@@ -122,12 +146,34 @@
         <argument
             android:name="post"
             app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems" />
+        <action
+            android:id="@+id/action_createCommentFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_createCommentFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_createCommentFragment_to_accountFragment2"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_createCommentFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/createPostFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.CreatePostFragment"
         android:label="fragment_create_post"
-        tools:layout="@layout/fragment_create_post" />
+        tools:layout="@layout/fragment_create_post" >
+        <action
+            android:id="@+id/action_createPostFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_createPostFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_createPostFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view.MyProfileFragment"
@@ -147,6 +193,36 @@
         <action
             android:id="@+id/action_myProfileFragment_to_catProfileFragment"
             app:destination="@id/catProfileFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_myFollowerFragment"
+            app:destination="@id/myFollowerFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_myFollowingFragment"
+            app:destination="@id/myFollowingFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_aboutFragment2"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_pedigreeFragment"
+            app:destination="@id/pedigreeFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_datingFragment"
+            app:destination="@id/datingFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
     </fragment>
     <fragment
         android:id="@+id/postDetailProfileFragment"
@@ -155,6 +231,33 @@
         <action
             android:id="@+id/action_postDetailProfileFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_postDetailProfileFragment_to_myProfileFragment2"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_postDetailProfileFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_postDetailProfileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_postDetailProfileFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+        <action
+            android:id="@+id/action_postDetailProfileFragment_to_pedigreeFragment"
+            app:destination="@id/pedigreeFragment" />
+        <action
+            android:id="@+id/action_postDetailProfileFragment_to_datingFragment"
+            app:destination="@id/datingFragment" />
+        <action
+            android:id="@+id/action_postDetailProfileFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_postDetailProfileFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_postDetailProfileFragment_to_myProfileFragment3"
+            app:destination="@id/myProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -166,6 +269,30 @@
         <action
             android:id="@+id/action_favoriteFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_pedigreeFragment"
+            app:destination="@id/pedigreeFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_datingFragment"
+            app:destination="@id/datingFragment" />
     </fragment>
     <fragment
         android:id="@+id/emptyFavoriteFragment"
@@ -179,12 +306,65 @@
         android:id="@+id/editProfileFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.edit.EditProfileFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_pedigreeFragment"
+            app:destination="@id/pedigreeFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_datingFragment"
+            app:destination="@id/datingFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addCatFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.add.AddCatFragment"
         android:label="AddCatFragment"
-        tools:layout="@layout/fragment_add_cat"/>
+        tools:layout="@layout/fragment_add_cat">
+        <action
+            android:id="@+id/action_addCatFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_addCatFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_addCatFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_addCatFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_addCatFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_addCatFragment_to_pedigreeFragment"
+            app:destination="@id/pedigreeFragment" />
+        <action
+            android:id="@+id/action_addCatFragment_to_datingFragment"
+            app:destination="@id/datingFragment" />
+        <action
+            android:id="@+id/action_addCatFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+        <action
+            android:id="@+id/action_addCatFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/catProfileFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.view.CatProfileFragment"
@@ -193,6 +373,15 @@
         <argument
             android:name="cat"
             app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems" />
+        <action
+            android:id="@+id/action_catProfileFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_catProfileFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_catProfileFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -214,6 +403,15 @@
         <action
             android:id="@+id/action_profileFragment_to_followingFragment"
             app:destination="@id/followingFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/catUserFragment"
@@ -223,6 +421,15 @@
         <argument
             android:name="cat"
             app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems" />
+        <action
+            android:id="@+id/action_catUserFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_catUserFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_catUserFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/postDetailUserFragment"
@@ -234,6 +441,30 @@
         <action
             android:id="@+id/action_postDetailUserFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_postDetailUserFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_postDetailUserFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_postDetailUserFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_postDetailUserFragment_to_datingFragment"
+            app:destination="@id/datingFragment" />
+        <action
+            android:id="@+id/action_postDetailUserFragment_to_pedigreeFragment"
+            app:destination="@id/pedigreeFragment" />
+        <action
+            android:id="@+id/action_postDetailUserFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_postDetailUserFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+        <action
+            android:id="@+id/action_postDetailUserFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -246,6 +477,27 @@
         <action
             android:id="@+id/action_accountFragment_to_passwordBottomSheet"
             app:destination="@id/passwordBottomSheet" />
+        <action
+            android:id="@+id/action_accountFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_datingFragment"
+            app:destination="@id/datingFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_pedigreeFragment"
+            app:destination="@id/pedigreeFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
     </fragment>
     <fragment
         android:id="@+id/emailBottomSheet"
@@ -268,6 +520,9 @@
         <action
             android:id="@+id/action_servicesFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_servicesFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/veterinaryFragment"
@@ -278,7 +533,17 @@
         android:id="@+id/resultFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.classification.ResultFragment"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" />
+        tools:layout="@layout/fragment_result" >
+        <action
+            android:id="@+id/action_resultFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
     <fragment
         android:id="@+id/followerFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.FollowerFragment"
@@ -287,6 +552,15 @@
         <argument
             android:name="user"
             app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.UserDataItems" />
+        <action
+            android:id="@+id/action_followerFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_followerFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_followerFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/followingFragment"
@@ -296,5 +570,102 @@
         <argument
             android:name="user"
             app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.UserDataItems" />
+        <action
+            android:id="@+id/action_followingFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_followingFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_followingFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/myFollowerFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view.MyFollowerFragment"
+        android:label="fragment_my_follower"
+        tools:layout="@layout/fragment_my_follower" >
+        <action
+            android:id="@+id/action_myFollowerFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_myFollowerFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_myFollowerFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_myFollowerFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myFollowingFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view.MyFollowingFragment"
+        android:label="fragment_my_following"
+        tools:layout="@layout/fragment_my_following" >
+        <action
+            android:id="@+id/action_myFollowingFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_myFollowingFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_myFollowingFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pedigreeFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree.PedigreeFragment"
+        android:label="fragment_pedigree"
+        tools:layout="@layout/fragment_pedigree" >
+        <action
+            android:id="@+id/action_pedigreeFragment_to_pedigreeFilterFragment"
+            app:destination="@id/pedigreeFilterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/datingFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.dating.DatingFragment"
+        android:label="fragment_dating"
+        tools:layout="@layout/fragment_dating" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.about.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsFragment"
+        android:label="MapsFragment">
+        <argument
+            android:name="action"
+            app:argType="integer"/>
+    </fragment>
+    <fragment
+        android:id="@+id/pedigreeFilterFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree.PedigreeFilterFragment"
+        android:label="fragment_pedigree_filter"
+        tools:layout="@layout/fragment_pedigree_filter">
+        <argument
+            android:name="cat"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems" />
+        <action
+            android:id="@+id/action_pedigreeFilterFragment_to_informationFragment"
+            app:destination="@id/informationFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/informationFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree.InformationFragment"
+        android:label="fragment_information"
+        tools:layout="@layout/fragment_information" >
+        <argument
+            android:name="cat"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems" />
+        <action
+            android:id="@+id/action_informationFragment_to_pedigreeFilterFragment"
+            app:destination="@id/pedigreeFilterFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/messageFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.message.MessageFragment"
+        android:label="MessageFragment" />
 </navigation>

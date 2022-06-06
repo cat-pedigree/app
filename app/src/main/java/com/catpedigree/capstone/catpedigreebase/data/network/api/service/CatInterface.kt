@@ -16,10 +16,14 @@ interface CatInterface {
         @Part("breed") breed: RequestBody,
         @Part("gender") gender: RequestBody,
         @Part("color") color: RequestBody,
+        @Part("eye_color") eye_color: RequestBody,
+        @Part("hair_color") hair_color: RequestBody,
+        @Part("ear_shape") ear_shape: RequestBody,
         @Part("weight") weight: Double,
         @Part("age") age: Int,
-        @Part("story") story: RequestBody,
         @Part photo: MultipartBody.Part,
+        @Part("lat") lat: Double? = null,
+        @Part("lon") lon: Double? = null,
     ): Response<CatCreateResponse>
 
     @GET("cat/all")
@@ -28,19 +32,18 @@ interface CatInterface {
         @Query("user_id") user_id: Int
     ): Response<CatResponse>
 
-    @Multipart
-    @POST("cat/album")
-    suspend fun catCreateAlbum(
+    @GET("cat/search")
+    suspend fun getCatFilter(
         @Header("Authorization") token: String,
-        @Part("user_id") user_id: Int,
-        @Part("cat_id") cat_id: Int,
-        @Part photo: MultipartBody.Part,
-    ): Response<CatCreateResponse>
+        @Query("breed") breed: String?= null,
+        @Query("color") color: String?= null,
+        @Query("eye_color") eye_color: String?= null,
+        @Query("hair_color") hair_color: String?= null,
+        @Query("ear_shape") ear_shape: String?= null,
+    ): Response<CatResponse>
 
-    @GET("cat/album")
-    suspend fun getCatAlbum(
-        @Header("Authorization") token: String,
-        @Query("user_id") user_id: Int,
-        @Query("cat_id") cat_id: Int
-    ): Response<AlbumResponse>
+    @GET("cat/all")
+    suspend fun getCatLocation(
+        @Header("Authorization") token: String
+    ): Response<CatResponse>
 }

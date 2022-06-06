@@ -54,4 +54,10 @@ object Injection {
         return FollowRepository(followRemoteDataSource, CatDatabase.getDatabase(context))
     }
 
+    fun provideMessageRepository(context: Context): MessageRepository{
+        val messageApiInterface = ApiConfig.getMessage()
+        val messageRemoteDataSource = MessageRemoteDataSource(messageApiInterface)
+        return MessageRepository(messageRemoteDataSource, CatDatabase.getDatabase(context))
+    }
+
 }

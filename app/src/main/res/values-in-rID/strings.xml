@@ -114,72 +114,22 @@
 
     <string-array name="item_breed">
         <item>Abyssinian</item>
-        <item>American Bobtail</item>
-        <item>American Curl</item>
-        <item>American Shorthair</item>
-        <item>American Wirehair</item>
-        <item>Applehead Siamese</item>
-        <item>Balinese</item>
         <item>Bengal</item>
         <item>Birman</item>
         <item>Bombay</item>
         <item>British Shorthair</item>
-        <item>Burmese</item>
-        <item>Burmilla</item>
         <item>Calico</item>
-        <item>Canadian Hairless</item>
-        <item>Chartreux</item>
-        <item>Chausie</item>
-        <item>Chinchilla</item>
-        <item>Cornish Rex</item>
-        <item>Cymric</item>
-        <item>Devon Rex</item>
-        <item>Dilute Calico</item>
-        <item>Dilute Tortoiseshell</item>
         <item>Domestic Long Hair</item>
-        <item>Domestic Medium Hair</item>
-        <item>Domestic Short Hair</item>
         <item>Egyptian Mau</item>
-        <item>Exotic Shorthair</item>
-        <item>Extra-Toes Cat - Hemingway Polydactyl</item>
-        <item>Havana</item>
         <item>Himalayan</item>
-        <item>Japanese Bobtail</item>
-        <item>Javanese</item>
-        <item>Korat</item>
-        <item>LaPerm</item>
         <item>Maine Coon</item>
-        <item>Manx</item>
-        <item>Munchkin</item>
-        <item>Nebelung</item>
-        <item>Norwegian Forest Cat</item>
-        <item>Ocicat</item>
-        <item>Oriental Long Hair</item>
-        <item>Oriental Short Hair</item>
-        <item>Oriental Tabby</item>
         <item>Persian</item>
-        <item>Pixiebob</item>
-        <item>Ragamuffin</item>
         <item>Ragdoll</item>
         <item>Russian Blue</item>
         <item>Scottish Fold</item>
-        <item>Selkirk Rex</item>
         <item>Siamese</item>
-        <item>Siberian</item>
-        <item>Silver</item>
-        <item>Singapura</item>
-        <item>Snowshoe</item>
-        <item>Somali</item>
-        <item>Sphynx - Hairless Cat</item>
-        <item>Tabby</item>
-        <item>Tiger</item>
-        <item>Tonkinese</item>
-        <item>Torbie</item>
-        <item>Tortoiseshell</item>
-        <item>Turkish Angora</item>
-        <item>Turkish Van</item>
+        <item>Sphynx</item>
         <item>Tuxedo</item>
-        <item>York Chocolate</item>
     </string-array>
 
     <string name="gender">Jenis Kelamin</string>
@@ -189,7 +139,33 @@
         <item>Jantan</item>
     </string-array>
 
+    <string-array name="item_description">
+        <item>Kucing abisinia adalah salah satu ras kucing berbulu pendek tertua yang pernah diketahui. Abisinia menyerupai lukisan dan patung yang berasal dari zaman Mesir Kuno. Perdagangan ras kucing ini dilarang oleh bangsa Mesir. Selain itu, bangsa Mesir juga mendirikan kuil khusus untuk memuja abisinia.</item>
+        <item>Kucing bengal adalah keturunan keempat dari hasil persilangan antara kucing american shorthair dengan kucing asian leopard. Kucing ini berasal dari California, Amerika Serikat. Meskipun tergolong kucing hutan, tetapi ras bengal termasuk hewan yang banyak digemari dan dijadikan hewan peliharaan.</item>
+        <item>Kucing birma adalah salah satu ras kucing alami yang berasal dari Prancis</item>
+        <item>Kucing bombay adalah salah satu ras kucing domestik yang merupakan hasil persilangan kucing bulu pendek amerika dengan kucing burma.</item>
+        <item>Kucing bulu pendek britania adalah salah satu ras kucing tertua yang nenek moyang dipercayai memiliki hubungan dengan bangsa Romawi yang pernah dahulu menguasai Inggris. Kucing ini adalah kucing berbadan sedang dengan bulu yang pendek. Selain itu, kucing ini juga banyak menjadi ikon.</item>
+        <item>Kucing belang tiga, kucing tiga warna, kucing telon, kucing kaliko atau kucing belacu adalah kucing domestik yang memiliki warna putih dengan warna belang dari dua warna lain, yaitu warna oranye dan hitam. Di luar Amerika Utara, pola ini lebih biasa disebut dengan sebutan Calico atau tempurung-kura-kura-dan-putih.</item>
+        <item>Kucing calico memiliki tiga warna; yaitu, mantel mereka terdiri dari tiga warna. Calicos memiliki warna putih sebagai warna primernya, dengan warna lain sebagai warna sekunder. Ini membedakan mereka dari kucing kulit penyu, yang hanya memiliki area putih kecil.Sebuah belacu normal ditandai dengan warna putih, hitam dan coklat atau merah. Namun, belacu encer persis seperti itu - diencerkan. Sebuah belacu encer biasanya memiliki lapisan abu-abu, perak, dan emas. Selain itu, warnanya mungkin juga tidak tampak sejelas calico biasa. Sebaliknya, mereka terkadang tampak bercampur dan tercoreng bersama. Mereka benar-benar kucing yang cantik.</item>
+        <item>Kucing domestik berbulu panjang adalah kucing domestik ras campuran yang memiliki bulu berukuran panjang.</item>
+        <item>Kucing domestik berbulu pendek adalah kucing keturunan campuran yang memiliki bulu berukuran pendek. Karena kucing keturunan campuran, maka kucing ini tidak diakui sebagai ras kucing. Di Britania Raya, kucing ini sering disebut sebagai mogi.</item>
+        <item>Mau mesir adalah salah satu ras kucing tertua yang pernah ada dan merupakan kucing ras alami. Ciri khas mau mesir adalah memiliki bulu dan kulit yang bercorak tutul. Ras ini dikenal sebagai kucing domestik yang dapat lari dengan cepat sekali, yaitu dengan kecepatan 36 mph.</item>
+        <item>Kucing himalaya atau kucing persia himalaya adalah salah satu ras kucing domestik yang merupakan hasil persilangan antara kucing persia dengan kucing siam. Persilangan tersebut bertujuan untuk mendapatkan ras kucing dengan tipe badan yang sama seperti kucing persia, tetapi dengan pola warna seperti kucing siam.</item>
+        <item>Maine coon adalah salah satu ras kucing tertua dan alami yang berasal dari Maine, Amerika Serikat. Ras ini dipercayai nenek moyangnya berasal dari ras anggora dan kucing hutan norwegia</item>
+        <item>Kucing persia adalah ras kucing domestik berbulu panjang dengan karakter wajah bulat dan moncong pendek. Namanya mengacu pada Persia, nama lama Iran, di mana kucing serupa ditemukan. Sejak akhir abad 19, kucing jenis ini dikembangkan di Britania Raya dan Amerika Serikat usai Perang Dunia II.</item>
+        <item>Ragdoll adalah salah satu ras kucing terbesar di dunia yang telah diakui oleh Guinness World Records. Ragdoll awalnya dikembangkan oleh Ann Baker dari Amerika Serikat.</item>
+        <item>Kucing biru rusia adalah salah satu ras kucing yang memiliki bulu berwarna perak biru. Kucing ini sangat cerdas dan lucu, tetapi cenderung pemalu di sekitar orang asing. Kucing biru rusia merupakan kucing yang memiliki ikatan yang erat dengan sahabatnya manusia</item>
+        <item>Kucing telinga lipat skotlandia adalah salah satu ras kucing alami yang berasal dari Skotlandia. Ciri khas dan keunikannya adalah terdapat pada telingnya yang melipat, sehingga ras ini disebut dengan kucing berwajah burung hantu atau kucing coupari.</item>
+        <item>Kucing siam adalah salah satu ras kucing pertama yang diakui jelas sebagai kucing berjenis oriental. Sesuai dengan namanya, kucing siam berasal dari negara Siam, sehingga ras kucing ini sangat mudah ditemukan di negara Thailand.</item>
+        <item>Kucing sphynx adalah salah satu ras kucing yang memiliki bulu sangat pendek dan sedikit sekali. Jika dilihat sekilas, kucing sphynx tampak tidak memiliki bulu sama sekali, tetapi jika diamati lebih </item>
+        <item>Anggora turki adalah salah satu ras kucing domestik alami tertua. Ras ini berasal dari Ankara, Turki. Kucing ini sangat populer dan terkenal di Indonesia. Secara sederhana, ras kucing ini juga dikenal sebagai anggora atau kucing ankara</item>
+        <item>Tuxedo cats bukan termasuk ras tertentu, tapi nama itu berasal dari dua warna bulu yang berbeda dan menyerupai tuksedo. Uniknya, tidak harus selalu hitam, tapi bisa juga abu-abu, perak, oren, dan juga tortoiseshell yang bersanding dengan warna bulu putih. Kombinasi warna bulu ini bisa dari berbagai ras seperti Maine Coon, Turkish Angora, American Shorthair, atau British Shorthairs.</item>
+    </string-array>
+
     <string name="color">Warna</string>
+    <string name="eye_color">Warna Mata</string>
+    <string name="hair_color">Warna Rambut</string>
+    <string name="ear_shape">Bentuk Telinga</string>
     <string name="weight">Berat Badan</string>
     <string name="age">Umur</string>
     <string name="story">Cerita</string>
@@ -262,7 +238,7 @@
     <string name="weight_required">Masukkan Berat Badan</string>
     <string name="age_required">Masukkan Umur</string>
     <string name="story_required">Masukkan Cerita</string>
-    <string name="choose_gender">Pilih Jenis Kelamin</string>
+    <string name="choose_gender">Pilih Salah Satu</string>
     <string name="choose_breed">Pilih Ras</string>
 
     <!-- TODO: String on the account page -->
@@ -321,5 +297,14 @@
     <string name="btn_unfollow">Berhenti Mengikuti</string>
     <string name="no_post_data">Belum ada postingan</string>
     <string name="no_data_search">Tidak ada hasil untuk "%s"</string>
-
+    <string name="location">Lokasi</string>
+    <string name="address">Alamat</string>
+    <string name="eye_color_required">Masukkan Warna Mata</string>
+    <string name="hair_color_required">Masukkan Warna Rambut</string>
+    <string name="ear_shape_required">Masukkan Bentuk Telinga</string>
+    <string name="services_map">Peta Kucing</string>
+    <string name="services_desc_map">Lihat beberapa kucing dipeta</string>
+    <string name="characteristic">Karakteristik</string>
+    <string name="choose_your_cat">Pilih salah satu kucing kamu</string>
+    <string name="information">Informasi</string>
 </resources>

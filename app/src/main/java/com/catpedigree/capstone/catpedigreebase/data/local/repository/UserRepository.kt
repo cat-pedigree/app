@@ -45,7 +45,7 @@ open class UserRepository(
                         postsCount = it.user?.posts_count,
                         catsCount = it.user?.cats_count,
                         followersCount = it.user?.followers_count,
-                        following = it.user?.following
+                        following = it.user?.following,
                     )
                     prefs.updateUser(user)
                 }
@@ -91,7 +91,7 @@ open class UserRepository(
                     user.posts_count,
                     user.cats_count,
                     user.followers_count,
-                    user.following
+                    user.following,
                 )
             }
             catDatabase.userDao().deleteAllUsers()
@@ -244,7 +244,7 @@ open class UserRepository(
                     postsCount = null,
                     catsCount = null,
                     followersCount = null,
-                    following = null
+                    following = null,
                 )
             )
         } catch (e: Throwable) {

@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,6 +74,7 @@ class CreatePostFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupAction()
+        setupMenu()
     }
 
     private fun setupViewModel() {
@@ -105,6 +107,36 @@ class CreatePostFragment : Fragment() {
             if (isSuccess) {
                 Snackbar.make(binding.btnPost, R.string.post_success, Snackbar.LENGTH_LONG).show()
                 findNavController().navigateUp()
+            }
+        }
+    }
+
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_createPostFragment_to_myProfileFragment)
+                    return@setOnMenuItemClickListener true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_createPostFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_createPostFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
             }
         }
     }

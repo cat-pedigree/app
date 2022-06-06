@@ -125,52 +125,61 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupMenu() {
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.addPost -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
-                    true
-                }
-                R.id.search -> {
-                    val searchManager =
-                        requireActivity().getSystemService(SEARCH_SERVICE) as SearchManager
-                    val searchView = menuItem.actionView as SearchView
+        binding.apply {
+            topAppBar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.message -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_messageFragment)
+                        true
+                    }
+                    R.id.search -> {
+                        val searchManager =
+                            requireActivity().getSystemService(SEARCH_SERVICE) as SearchManager
+                        val searchView = menuItem.actionView as SearchView
 
-                    searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
-                    searchView.queryHint = resources.getString(R.string.search_hint)
+                        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
+                        searchView.queryHint = resources.getString(R.string.search_hint)
 
-                    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                        override fun onQueryTextSubmit(query: String?): Boolean {
-                            setupSearch(query!!)
-                            searchView.clearFocus()
-                            return true
-                        }
+                        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                            override fun onQueryTextSubmit(query: String?): Boolean {
+                                setupSearch(query!!)
+                                searchView.clearFocus()
+                                return true
+                            }
 
-                        override fun onQueryTextChange(newText: String?): Boolean {
-                            return false
-                        }
-                    })
-                    true
+                            override fun onQueryTextChange(newText: String?): Boolean {
+                                return false
+                            }
+                        })
+                        true
+                    }
+                    R.id.profile -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_myProfileFragment)
+                        true
+                    }
+                    R.id.account -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_accountFragment)
+                        true
+                    }
+                    R.id.language -> {
+                        startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                        true
+                    }
+                    R.id.about -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_aboutFragment)
+                        true
+                    }
+                    R.id.logout -> {
+                        viewModel.logout()
+                        true
+                    }
+                    else -> {
+                        false
+                    }
                 }
-                R.id.profile -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_myProfileFragment)
-                    true
-                }
-                R.id.account -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_accountFragment)
-                    true
-                }
-                R.id.language -> {
-                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-                    true
-                }
-                R.id.logout -> {
-                    viewModel.logout()
-                    true
-                }
-                else -> {
-                    false
-                }
+            }
+            btnAddPost.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
             }
         }
     }
@@ -217,7 +226,15 @@ class HomeFragment : Fragment() {
                 when (item.itemId) {
                     R.id.menu_service -> {
                         findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
-                        return@setOnItemSelectedListener false
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_pedigree -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_pedigreeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_dating -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_datingFragment)
+                        return@setOnItemSelectedListener true
                     }
                 }
                 return@setOnItemSelectedListener false

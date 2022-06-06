@@ -13,10 +13,14 @@ class CatRemoteDataSource(private val catInterface: CatInterface) {
         breed: RequestBody,
         gender: RequestBody,
         color: RequestBody,
+        eye_color: RequestBody,
+        hair_color: RequestBody,
+        ear_shape: RequestBody,
         weight: Double,
         age: Int,
-        story: RequestBody,
         photo: MultipartBody.Part,
+        lat: Double? = null,
+        lon: Double? = null
     ) = catInterface.catCreate(
         "Bearer $token",
         user_id,
@@ -24,10 +28,14 @@ class CatRemoteDataSource(private val catInterface: CatInterface) {
         breed,
         gender,
         color,
+        eye_color,
+        hair_color,
+        ear_shape,
         weight,
         age,
-        story,
-        photo
+        photo,
+        lat,
+        lon
     )
 
     suspend fun getCat(
@@ -35,16 +43,16 @@ class CatRemoteDataSource(private val catInterface: CatInterface) {
         user_id: Int
     ) = catInterface.getCat("Bearer $token", user_id)
 
-    suspend fun catCreateAlbum(
+    suspend fun getCatFilter(
         token: String,
-        user_id: Int,
-        cat_id: Int,
-        photo: MultipartBody.Part
-    ) = catInterface.catCreateAlbum("Bearer $token", user_id, cat_id, photo)
+        breed:String,
+        color:String,
+        eye_color:String,
+        hair_color:String,
+        ear_shape:String,
+    ) = catInterface.getCatFilter("Bearer $token", breed,color,eye_color,hair_color,ear_shape)
 
-    suspend fun getAlbum(
-        token: String,
-        user_id: Int,
-        cat_id: Int
-    ) = catInterface.getCatAlbum("Bearer $token", user_id, cat_id)
+    suspend fun getCatLocation(
+        token: String
+    ) = catInterface.getCatLocation("Bearer $token")
 }

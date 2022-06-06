@@ -8,6 +8,7 @@ import com.catpedigree.capstone.catpedigreebase.data.local.room.database.CatData
 import com.catpedigree.capstone.catpedigreebase.data.network.item.*
 import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.error.CatError
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
@@ -24,17 +25,51 @@ class CatRepository(
         breed: RequestBody,
         gender: RequestBody,
         color: RequestBody,
+        eye_color: RequestBody,
+        hair_color: RequestBody,
+        ear_shape: RequestBody,
         weight: Double,
         age: Int,
-        story: RequestBody,
         photo: MultipartBody.Part,
+        latLng: LatLng?
     ) {
         withContext(Dispatchers.IO) {
             try {
                 val response =
-                    catRemoteDataSource.catCreate(
-                        token, user_id, name, breed, gender, color, weight, age, story, photo
-                    )
+                    if(latLng != null){
+                        catRemoteDataSource.catCreate(
+                            token,
+                            user_id,
+                            name,
+                            breed,
+                            gender,
+                            color,
+                            eye_color,
+                            hair_color,
+                            ear_shape,
+                            weight,
+                            age,
+                            photo,
+                            latLng.latitude,
+                            latLng.longitude
+                        )
+                    }else{
+                        catRemoteDataSource.catCreate(
+                            token,
+                            user_id,
+                            name,
+                            breed,
+                            gender,
+                            color,
+                            eye_color,
+                            hair_color,
+                            ear_shape,
+                            weight,
+                            age,
+                            photo,
+                        )
+                    }
+
                 if (!response.isSuccessful) {
                     throw CatError(response.message())
                 }
@@ -57,13 +92,17 @@ class CatRepository(
                     cat.breed,
                     cat.gender,
                     cat.color,
+                    cat.eye_color,
+                    cat.hair_color,
+                    cat.ear_shape,
                     cat.weight,
                     cat.age,
-                    cat.story,
                     cat.photo,
+                    cat.lat,
+                    cat.lon
                 )
             }
-//            catDatabase.catDao().deleteAllCats()
+            catDatabase.catDao().deleteAllCats()
             catDatabase.catDao().insertCat(newCat!!)
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
@@ -73,52 +112,80 @@ class CatRepository(
         emitSource(dataLocal)
     }
 
-    fun checkCat(user_id: Int): LiveData<Int>{
-        return catDatabase.catDao().checkCat(user_id)
+    fun getCatFilter(
+        token: String,
+        breed: String,
+        color:String,
+        eye_color:String,
+        hair_color:String,
+        ear_shape:String): LiveData<Result<List<CatItems>>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = catRemoteDataSource.getCatFilter(token,breed,color,eye_color,hair_color,ear_shape)
+            val cats = response.body()?.data
+            val newCat = cats?.map { cat ->
+                CatItems(
+                    cat.id,
+                    cat.user_id,
+                    cat.name,
+                    cat.breed,
+                    cat.gender,
+                    cat.color,
+                    cat.eye_color,
+                    cat.hair_color,
+                    cat.ear_shape,
+                    cat.weight,
+                    cat.age,
+                    cat.photo,
+                    cat.lat,
+                    cat.lon
+                )
+            }
+            catDatabase.catDao().deleteAllCats()
+            catDatabase.catDao().insertCat(newCat!!)
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+        val dataLocal: LiveData<Result<List<CatItems>>> =
+            catDatabase.catDao().allCats().map { Result.Success(it) }
+        emitSource(dataLocal)
     }
 
-    suspend fun catCreateAlbum(
-        token: String,
-        user_id: Int,
-        cat_id: Int,
-        photo: MultipartBody.Part,
-    ) {
-        withContext(Dispatchers.IO) {
+    suspend fun getCatLocation(token: String) :List<CatItems>{
+        val cats = mutableListOf<CatItems>()
+        withContext(Dispatchers.IO){
             try {
-                val response =
-                    catRemoteDataSource.catCreateAlbum(
-                        token, user_id, cat_id, photo
-                    )
-                if (!response.isSuccessful) {
-                    throw CatError(response.message())
+                val response = catRemoteDataSource.getCatLocation(token)
+                if (response.isSuccessful) {
+                    response.body()?.data?.forEach {
+                        cats.add(
+                            CatItems(
+                                id = it.id,
+                                user_id = it.user_id,
+                                name = it.name,
+                                breed = it.breed,
+                                gender = it.gender,
+                                color = it.color,
+                                eye_color = it.eye_color,
+                                hair_color = it.hair_color,
+                                ear_shape = it.ear_shape,
+                                weight = it.weight,
+                                age = it.age,
+                                photo = it.photo,
+                                lat = it.lat,
+                                lon = it.lon
+                            )
+                        )
+                    }
                 }
             } catch (e: Throwable) {
                 throw CatError(e.message.toString())
             }
         }
+        return cats
     }
 
-    fun getAlbum(token: String, user_id: Int, cat_id: Int): LiveData<Result<List<AlbumItems>>> =
-        liveData {
-            emit(Result.Loading)
-            try {
-                val response = catRemoteDataSource.getAlbum(token, user_id, cat_id)
-                val cats = response.body()?.data
-                val newCat = cats?.map { album ->
-                    AlbumItems(
-                        album.id,
-                        album.user_id,
-                        album.cat_id,
-                        album.photo,
-                    )
-                }
-                catDatabase.catDao().deleteAllAlbums()
-                catDatabase.catDao().insertAlbum(newCat!!)
-            } catch (e: Exception) {
-                emit(Result.Error(e.message.toString()))
-            }
-            val dataLocal: LiveData<Result<List<AlbumItems>>> =
-                catDatabase.catDao().getAlbums(user_id, cat_id).map { Result.Success(it) }
-            emitSource(dataLocal)
-        }
+    fun checkCat(user_id: Int): LiveData<Int>{
+        return catDatabase.catDao().checkCat(user_id)
+    }
 }

@@ -11,6 +11,7 @@ import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentServicesBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsFragment
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.veterinary.VeterinaryViewModel
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
@@ -44,6 +45,13 @@ class ServicesFragment : Fragment() {
         binding.apply {
             menuVeterinary.setOnClickListener {
                 findNavController().navigate(R.id.action_servicesFragment_to_veterinaryFragment)
+            }
+            menuMaps.setOnClickListener {
+                findNavController().navigate(
+                    ServicesFragmentDirections.actionServicesFragmentToMapsFragment(
+                        MapsFragment.ACTION_CATS
+                    )
+                )
             }
         }
     }

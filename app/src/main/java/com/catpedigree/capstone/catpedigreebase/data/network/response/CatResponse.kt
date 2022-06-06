@@ -35,15 +35,27 @@ data class CatData(
     @field:SerializedName("color")
     val color: String? = null,
 
+    @field:SerializedName("eye_color")
+    val eye_color: String? = null,
+
+    @field:SerializedName("hair_color")
+    val hair_color: String? = null,
+
+    @field:SerializedName("ear_shape")
+    val ear_shape: String? = null,
+
     @field:SerializedName("weight")
     val weight: Double? = null,
 
     @field:SerializedName("age")
     val age: Int? = null,
 
-    @field:SerializedName("story")
-    val story: String? = null,
-
     @field:SerializedName("photo")
     val photo: String? = null,
+
+    @field:SerializedName("lat")
+    val lat: Double? = null,
+
+    @field:SerializedName("lon")
+    val lon: Double? = null
 )

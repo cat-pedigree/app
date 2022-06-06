@@ -7,6 +7,7 @@ import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostReposi
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserDataItems
+import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
 import com.catpedigree.capstone.catpedigreebase.utils.error.FollowError
 import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
 import kotlinx.coroutines.launch
@@ -37,9 +38,7 @@ class ProfileViewModel(
         )
     }
 
-    fun checkCat() = userItems.switchMap {
-        catRepository.checkCat(it.id!!)
-    }
+    fun checkCat(user_id: Int) = catRepository.checkCat(user_id)
 
     fun getPostProfile(user_id: Int) = userItems.switchMap {
         postRepository.getPostsProfile(
@@ -48,9 +47,7 @@ class ProfileViewModel(
         )
     }
 
-    fun checkPost() = userItems.switchMap {
-        postRepository.checkPost(it.id!!)
-    }
+    fun checkPost(user_id: Int) = postRepository.checkPost(user_id)
 
     fun savePost(post: PostItems) {
         viewModelScope.launch {
@@ -176,6 +173,19 @@ class ProfileViewModel(
             } catch (e: PostError) {
                 _errorMessage.value = e.message
                 _isSuccess.value = false
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                userRepository.logout()
+            } catch (e: AuthError) {
+                _errorMessage.value = e.message
             } finally {
                 _isLoading.value = false
             }

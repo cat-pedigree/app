@@ -1,60 +1,133 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.catpedigree.capstone.catpedigreebase.R
+import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
+import com.catpedigree.capstone.catpedigreebase.databinding.FragmentPedigreeBinding
+import com.catpedigree.capstone.catpedigreebase.presentation.adapter.CatAdapter
+import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PedigreeAdapter
+import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
+import com.catpedigree.capstone.catpedigreebase.utils.Result
+import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PedigreeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PedigreeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private lateinit var _binding: FragmentPedigreeBinding
+    private val binding get() = _binding
+    private lateinit var user: UserItems
+
+    private val viewModel: PedigreeViewModel by viewModels {
+        ViewModelFactory.getInstance(requireContext())
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pedigree, container, false)
+    ): View {
+        _binding = FragmentPedigreeBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PedigreeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PedigreeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupAction()
+        setupViewModel()
+//        setupMenu()
+//        setupNavigation()
+    }
+
+    private fun setupAction() {
+        val catAdapter = PedigreeAdapter()
+
+        binding.apply {
+            viewModel.getCat().observe(viewLifecycleOwner) { result ->
+                if (result != null) {
+                    when (result) {
+                        is Result.Loading -> {
+                            progressBar.visibility = View.VISIBLE
+                        }
+                        is Result.Success -> {
+                            progressBar.visibility = View.GONE
+                            val catData = result.data
+                            catAdapter.submitList(catData)
+                        }
+                        is Result.Error -> {
+                            progressBar.visibility = View.GONE
+                            Toast.makeText(
+                                context,
+                                getString(R.string.result_error) + result.error,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                 }
             }
+
+            rvCats.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                setHasFixedSize(true)
+                isNestedScrollingEnabled = false
+                adapter = catAdapter
+            }
+        }
+    }
+
+    private fun setupViewModel() {
+        viewModel.userItems.observe(viewLifecycleOwner) { userItems ->
+            if (userItems?.isLoggedIn == false) {
+                findNavController().navigateUp()
+            }
+            this.user = userItems
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { state ->
+            showLoading(state)
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            ToastUtils.showToast(requireContext(), message)
+        }
+    }
+
+//    private fun setupMenu(){
+//        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+//            when(menuItem.itemId){
+//                R.id.account -> {
+//                    findNavController().navigate(R.id.action_myProfileFragment_to_accountFragment)
+//                    true
+//                }
+//                R.id.language -> {
+//                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+//                    true
+//                }
+//                R.id.about -> {
+//                    findNavController().navigate(R.id.action_myProfileFragment_to_aboutFragment)
+//                    true
+//                }
+//                R.id.logout -> {
+//                    viewModel.logout()
+//                    true
+//                }
+//                else -> {
+//                    false
+//                }
+//            }
+//        }
+//    }
+
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
     }
 }

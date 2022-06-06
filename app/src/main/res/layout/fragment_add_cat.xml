@@ -19,7 +19,7 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/top_app_bar"
+            app:menu="@menu/top_app"
             app:title="@string/add_cat" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:hint="@string/cat_name"
         app:endIconMode="clear_text"
@@ -58,31 +58,9 @@
             android:textColor="@color/neutral_90" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/auto_complete_text_breed"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:hint="@string/breed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_cat_name">
-
-        <AutoCompleteTextView
-            android:id="@+id/breed"
-            style="@style/heading3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            android:textColor="@color/neutral_90"
-            tools:ignore="LabelFor" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:id="@+id/ll_first"
+        android:id="@+id/ll_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -91,13 +69,35 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/auto_complete_text_breed">
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_cat_name">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/auto_complete_text_breed"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/breed"
+            android:layout_weight="1">
+
+            <AutoCompleteTextView
+                android:id="@+id/breed"
+                style="@style/heading3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:textColor="@color/neutral_90"
+                tools:ignore="LabelFor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="0dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/auto_complete_text_gender"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <AutoCompleteTextView
@@ -109,18 +109,28 @@
                 android:inputType="none"
                 android:textColor="@color/neutral_90" />
         </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
-        <View
-            android:layout_width="8dp"
-            android:layout_height="0dp" />
+    <LinearLayout
+        android:id="@+id/ll_first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_top">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edit_text_color"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            app:endIconMode="clear_text">
+            app:endIconMode="clear_text"
+            app:suffixTextColor="@color/accent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/color"
@@ -128,6 +138,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/color"
+                android:textColor="@color/neutral_90" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="0dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_text_eye_color"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eye_color"
+                style="@style/heading3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/eye_color"
                 android:textColor="@color/neutral_90" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -143,6 +174,58 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_first">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_text_hair_color"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:endIconMode="clear_text"
+            app:suffixTextColor="@color/accent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hair_color"
+                style="@style/heading3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hair_color" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="0dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_text_ear_shape"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:endIconMode="clear_text"
+            app:suffixTextColor="@color/accent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ear_shape"
+                style="@style/heading3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/ear_shape"
+                android:textColor="@color/neutral_90" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_third"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_second">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edit_text_weight"
@@ -189,36 +272,13 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_text_story"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:hint="@string/story"
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_second">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/story"
-            style="@style/heading3"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:gravity="top"
-            android:textColor="@color/neutral_90" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/confirm"
         android:text="@string/save"
         android:textColor="@color/white"
@@ -227,8 +287,6 @@
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <include layout="@layout/navigation_bottom" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -239,5 +297,49 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/location"
+        style="@style/heading1"
+        app:layout_constraintStart_toStartOf="@+id/ll_third"
+        app:layout_constraintTop_toBottomOf="@+id/ll_third" />
+
+    <TextView
+        android:id="@+id/tv_location_selected"
+        style="@style/heading3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_location_selected"
+        app:layout_constraintStart_toStartOf="@+id/tv_location"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+
+    <TextView
+        android:id="@+id/tv_address"
+        style="@style/heading3"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location_selected" />
+
+    <TextView
+        android:id="@+id/btn_change"
+        style="@style/heading3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/change"
+        android:textColor="@color/accent"
+        app:layout_constraintEnd_toEndOf="@+id/ll_third"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

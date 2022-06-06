@@ -1,17 +1,19 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.add
 
-import android.text.Editable
 import androidx.lifecycle.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
+import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
 import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
-class AddCatViewModel(userRepository: UserRepository, private val catRepository: CatRepository) :
-    ViewModel() {
+class AddCatViewModel(
+    private val userRepository: UserRepository,
+    private val catRepository: CatRepository
+    ) : ViewModel() {
 
     val userItems = userRepository.userItems.asLiveData()
 
@@ -31,10 +33,13 @@ class AddCatViewModel(userRepository: UserRepository, private val catRepository:
         breed: RequestBody,
         gender: RequestBody,
         color: RequestBody,
+        eye_color: RequestBody,
+        hair_color: RequestBody,
+        ear_shape: RequestBody,
         weight: Double,
         age: Int,
-        story: RequestBody,
         photo: MultipartBody.Part,
+        latLng: LatLng? = null
     ) {
         viewModelScope.launch {
             _isLoading.value = true
@@ -46,15 +51,31 @@ class AddCatViewModel(userRepository: UserRepository, private val catRepository:
                     breed,
                     gender,
                     color,
+                    eye_color,
+                    hair_color,
+                    ear_shape,
                     weight,
                     age,
-                    story,
-                    photo
+                    photo,
+                    latLng
                 )
                 _isSuccess.value = true
             } catch (e: PostError) {
                 _errorMessage.value = e.message
                 _isSuccess.value = false
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                userRepository.logout()
+            } catch (e: AuthError) {
+                _errorMessage.value = e.message
             } finally {
                 _isLoading.value = false
             }

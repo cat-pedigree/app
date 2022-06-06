@@ -53,12 +53,24 @@ class RegisterFragment : Fragment() {
                 }
             }
 
+            confirmPasswordEditText.editText?.doOnTextChanged { text, _, _, _ ->
+                when {
+                    text!!.length < 8 -> {
+                        confirmPasswordEditText.error = getString(R.string.password_required_length)
+                    }
+                    text.length >= 8 -> {
+                        confirmPasswordEditText.error = null
+                    }
+                }
+            }
+
             binding.btnRegister.setOnClickListener {
                 val name = binding.nameEditText.editText?.text.toString()
                 val username = binding.usernameEditText.editText?.text.toString()
                 val phoneNumber = binding.phoneNumberEditText.editText?.text.toString()
                 val email = binding.emailEditText.editText?.text.toString()
                 val password = binding.passwordEditText.editText?.text.toString()
+                val confirmPassword = binding.confirmPasswordEditText.editText?.text.toString()
 
                 when {
                     name.isEmpty() -> {
@@ -81,6 +93,15 @@ class RegisterFragment : Fragment() {
                     }
                     password.length < 8 -> {
                         passwordEditText.error = getString(R.string.password_required_length)
+                    }
+                    confirmPassword.isEmpty() -> {
+                        passwordEditText.error = getString(R.string.password_required)
+                    }
+                    confirmPassword.length < 8 -> {
+                        passwordEditText.error = getString(R.string.password_required_length)
+                    }
+                    password != confirmPassword -> {
+                        passwordEditText.error = getString(R.string.password_match)
                     }
                     else -> {
                         viewModel.register(name, username, phoneNumber, email, password)

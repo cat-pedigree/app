@@ -14,7 +14,9 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.classification.R
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.view.CommentViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.message.MessageViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnBoardingViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree.PedigreeViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.create.CreateCommentViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.CreatePostViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.favorite.FavoriteViewModel
@@ -32,7 +34,8 @@ class ViewModelFactory
     private val commentRepository: CommentRepository,
     private val catRepository: CatRepository,
     private val veterinaryRepository: VeterinaryRepository,
-    private val followRepository: FollowRepository
+    private val followRepository: FollowRepository,
+    private val messageRepository: MessageRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
@@ -48,7 +51,7 @@ class ViewModelFactory
                 RegisterViewModel(userRepository) as T
             }
             modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
-                MapsViewModel(userRepository) as T
+                MapsViewModel(userRepository, catRepository) as T
             }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(userRepository, postRepository) as T
@@ -66,7 +69,7 @@ class ViewModelFactory
                 ProfileViewModel(userRepository, catRepository, postRepository, followRepository) as T
             }
             modelClass.isAssignableFrom(MyProfileViewModel::class.java) -> {
-                MyProfileViewModel(userRepository, postRepository, catRepository) as T
+                MyProfileViewModel(userRepository, postRepository, catRepository,followRepository) as T
             }
             modelClass.isAssignableFrom(PostDetailProfileViewModel::class.java) -> {
                 PostDetailProfileViewModel(userRepository, postRepository) as T
@@ -95,6 +98,12 @@ class ViewModelFactory
             modelClass.isAssignableFrom(ResultViewModel::class.java) -> {
                 ResultViewModel(userRepository) as T
             }
+            modelClass.isAssignableFrom(PedigreeViewModel::class.java) -> {
+                PedigreeViewModel(userRepository,catRepository) as T
+            }
+            modelClass.isAssignableFrom(MessageViewModel::class.java) -> {
+                MessageViewModel(userRepository,messageRepository) as T
+            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }
@@ -110,7 +119,8 @@ class ViewModelFactory
                     Injection.provideCommentRepository(context),
                     Injection.provideCatRepository(context),
                     Injection.provideVeterinaryRepository(context),
-                    Injection.provideFollowRepository(context)
+                    Injection.provideFollowRepository(context),
+                    Injection.provideMessageRepository(context)
                 )
             }.also { instance = it }
     }

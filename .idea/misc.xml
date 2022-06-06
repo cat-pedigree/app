@@ -9,6 +9,7 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/background_bottom_sheet.xml" value="0.176" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/background_button.xml" value="0.113" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/background_button_white.xml" value="0.126" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/background_love_dating.xml" value="0.126" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/background_modal.xml" value="0.113" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/background_post_border.xml" value="0.1265" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/background_transparent.xml" value="0.176" />
@@ -35,6 +36,7 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_bookmark_white.xml" value="0.1855" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_broken_image.xml" value="0.1855" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_camera_classification.xml" value="0.176" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_cat_maps.xml" value="0.133" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_comment.xml" value="0.164" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_emoji.xml" value="0.122" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/ic_error.xml" value="0.1855" />
@@ -48,6 +50,8 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/photo.xml" value="0.11" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/rectangle_radius.xml" value="0.11" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/rectangle_white.xml" value="0.122" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/shape_rectangle.xml" value="0.133" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/drawable/shape_rectangle_blue.xml" value="0.133" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/font/poppins.xml" value="0.215625" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_camera.xml" value="0.2" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_camera2.xml" value="0.15625" />
@@ -59,18 +63,19 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/activity_result.xml" value="0.21" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/bottom_sheet.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_about.xml" value="0.17346014492753623" />
-        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_account.xml" value="0.33" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_account.xml" value="0.2" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_add_cat.xml" value="0.22" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_add_cat_fragment.xml" value="0.18541666666666667" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_add_cat_post.xml" value="0.2" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.17083333333333334" />
-        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_cat_profile.xml" value="0.22" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_breed.xml" value="0.18645833333333334" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_cat_profile.xml" value="0.2" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_cat_user.xml" value="0.21" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_comment.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_create.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_create_comment.xml" value="0.2" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_create_post.xml" value="0.22" />
-        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_dating.xml" value="0.17028985507246377" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_dating.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_edit_profile.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_email_bottom_sheet.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_empty_favorite.xml" value="0.16983695652173914" />
@@ -80,22 +85,30 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_follower.xml" value="0.19" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_following.xml" value="0.17028985507246377" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_information.xml" value="0.33" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_maps.xml" value="0.18645833333333334" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_message.xml" value="0.22" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_message_chat.xml" value="0.33" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_modal_bottom_sheet.xml" value="0.33" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_my_follower.xml" value="0.17028985507246377" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_my_following.xml" value="0.17028985507246377" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_my_profile.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_onboarding_four.xml" value="0.18" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_onboarding_one.xml" value="0.2" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_onboarding_three.xml" value="0.16077898550724637" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_onboarding_two.xml" value="0.18" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_password_bottom_sheet.xml" value="0.17346014492753623" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_pedigree.xml" value="0.1" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_pedigree_filter.xml" value="0.15" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_pedigree_result.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_post_detail.xml" value="0.22" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_post_detail_profile.xml" value="0.18645833333333334" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_post_detail_user.xml" value="0.17083333333333334" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_post_my_profile.xml" value="0.17083333333333334" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_post_profile.xml" value="0.17083333333333334" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_profile.xml" value="0.2707774798927614" />
-        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_register.xml" value="0.33" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_result.xml" value="0.22" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_services.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/fragment_splash_dating.xml" value="0.22" />
@@ -107,10 +120,13 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_comment.xml" value="0.18" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_dropdown.xml" value="0.1539855072463768" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_loading.xml" value="0.18645833333333334" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_mate.xml" value="0.22" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_message.xml" value="0.33" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_post.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_post_profile.xml" value="0.18541666666666667" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_user.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_veterinary.xml" value="0.25" />
+        <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/item_your_cats.xml" value="0.33" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/modal_bottom_sheet.xml" value="0.22" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/modal_choose_image.xml" value="0.25" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/layout/navigation_bottom.xml" value="0.22" />

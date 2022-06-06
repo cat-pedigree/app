@@ -3,9 +3,11 @@ package com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.vi
 import androidx.lifecycle.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.CommentRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
+import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
+import kotlinx.coroutines.launch
 
 class CommentViewModel(
-    userRepository: UserRepository,
+    private val userRepository: UserRepository,
     private val commentRepository: CommentRepository
 ) : ViewModel() {
 
@@ -25,5 +27,18 @@ class CommentViewModel(
             it.token ?: "",
             post_id
         )
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                userRepository.logout()
+            } catch (e: AuthError) {
+                _errorMessage.value = e.message
+            } finally {
+                _isLoading.value = false
+            }
+        }
     }
 }

@@ -26,10 +26,7 @@
         android:theme="@style/Theme.CatPedigreeBase"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ResultActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ClassificationActivity"
+            android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.classification.ClassificationActivity"
             android:exported="false" />
         <activity
             android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.camera.CameraCatActivity"

@@ -114,72 +114,22 @@
 
     <string-array name="item_breed">
         <item>Abyssinian</item>
-        <item>American Bobtail</item>
-        <item>American Curl</item>
-        <item>American Shorthair</item>
-        <item>American Wirehair</item>
-        <item>Applehead Siamese</item>
-        <item>Balinese</item>
         <item>Bengal</item>
         <item>Birman</item>
         <item>Bombay</item>
         <item>British Shorthair</item>
-        <item>Burmese</item>
-        <item>Burmilla</item>
         <item>Calico</item>
-        <item>Canadian Hairless</item>
-        <item>Chartreux</item>
-        <item>Chausie</item>
-        <item>Chinchilla</item>
-        <item>Cornish Rex</item>
-        <item>Cymric</item>
-        <item>Devon Rex</item>
-        <item>Dilute Calico</item>
-        <item>Dilute Tortoiseshell</item>
         <item>Domestic Long Hair</item>
-        <item>Domestic Medium Hair</item>
-        <item>Domestic Short Hair</item>
         <item>Egyptian Mau</item>
-        <item>Exotic Shorthair</item>
-        <item>Extra-Toes Cat - Hemingway Polydactyl</item>
-        <item>Havana</item>
         <item>Himalayan</item>
-        <item>Japanese Bobtail</item>
-        <item>Javanese</item>
-        <item>Korat</item>
-        <item>LaPerm</item>
         <item>Maine Coon</item>
-        <item>Manx</item>
-        <item>Munchkin</item>
-        <item>Nebelung</item>
-        <item>Norwegian Forest Cat</item>
-        <item>Ocicat</item>
-        <item>Oriental Long Hair</item>
-        <item>Oriental Short Hair</item>
-        <item>Oriental Tabby</item>
         <item>Persian</item>
-        <item>Pixiebob</item>
-        <item>Ragamuffin</item>
         <item>Ragdoll</item>
         <item>Russian Blue</item>
         <item>Scottish Fold</item>
-        <item>Selkirk Rex</item>
         <item>Siamese</item>
-        <item>Siberian</item>
-        <item>Silver</item>
-        <item>Singapura</item>
-        <item>Snowshoe</item>
-        <item>Somali</item>
-        <item>Sphynx - Hairless Cat</item>
-        <item>Tabby</item>
-        <item>Tiger</item>
-        <item>Tonkinese</item>
-        <item>Torbie</item>
-        <item>Tortoiseshell</item>
-        <item>Turkish Angora</item>
-        <item>Turkish Van</item>
+        <item>Sphynx</item>
         <item>Tuxedo</item>
-        <item>York Chocolate</item>
     </string-array>
 
     <string name="gender">Gender</string>
@@ -189,7 +139,33 @@
         <item>Male</item>
     </string-array>
 
+    <string-array name="item_description">
+        <item>The abyssinian cat is one of the oldest known short-haired cat breeds. Abyssinia resembles paintings and sculptures that date back to Ancient Egypt. The trade in this cat breed was banned by the Egyptians. In addition, the Egyptians also built special temples to worship the Abyssinians.</item>
+        <item>The Bengal cat is the fourth offspring of a cross between an American Shorthair cat and an Asian Leopard cat. This cat comes from California, United States. Although classified as a forest cat, the Bengal breed is one of the most popular animals and is used as a pet.</item>
+        <item>The Birman cat is one of the natural cat breeds originating from France</item>
+        <item>Bombay cat is one of the domestic cat breeds which is the result of crossing an American short-haired cat with a Burmese cat.</item>
+        <item>The British short-haired cat is one of the oldest cat breeds whose ancestors are believed to be related to the Romans who once ruled England. This cat is a medium-sized cat with short fur. In addition, this cat has also become an icon.</item>
+        <item>Three-striped cats, three-colored cats, telon cats, kaliko cats or calico cats are domestic cats that have a white color with stripes of two other colors, namely orange and black. Outside of North America, this pattern is more commonly referred to as Calico or turtle-shell-and-white.</item>
+        <item>The calico cat has three colors; that is, their coats are of three colors. Calicos has white as its primary color, with other colors as secondary colors. This distinguishes them from tortoiseshell cats, which only have small white areas. A normal calico is characterized by white, black and brown or red colors. However, diluted calico is exactly that - diluted. A runny calico usually has a gray, silver, and gold finish. Also, the color may not look as vivid as a regular calico. On the contrary, they sometimes appear to be mixed and smudged together. They are really beautiful cats.</item>
+        <item>The domestic long hair cat is a mixed breed domestic cat that has long fur.</item>
+        <item>The short-haired domestic cat is a mixed breed cat that has short fur. Because the cat is a mixed breed, this cat is not recognized as a cat breed. In the United Kingdom, this cat is often referred to as a mogi.</item>
+        <item>The Egyptian Mau is one of the oldest cat breeds ever to exist and is a natural breed cat. The hallmark of the Egyptian Mau is that it has spotted fur and skin. This breed is known as a domestic cat that can run very fast, namely at a speed of 36 mph.</item>
+        <item>The Himalayan cat or the Himalayan Persian cat is one of the domestic cat breeds which is the result of a cross between a Persian cat and a Siamese cat. This cross aims to get a cat breed with the same body type as the Persian cat, but with a color pattern like the Siamese cat.</item>
+        <item>The Maine Coon is one of the oldest and naturally occurring cat breeds originating from Maine, United States. This race is believed to have originated from the Angora race and the Norwegian forest cat</item>
+        <item>The Persian cat is a long-haired domestic cat breed with a round face and short muzzle. The name refers to Persian, the old name of Iran, where a similar cat was found. Since the late 19th century, this type of cat was developed in Great Britain and the United States after World War II.</item>
+        <item>The Ragdoll is one of the largest cat breeds in the world which has been recognized by the Guinness World Records. Ragdoll was originally developed by Ann Baker from the United States.</item>
+        <item>The Russian blue cat is a cat breed that has silver-blue fur. These cats are very intelligent and playful, but tend to be shy around strangers. The Russian blue cat is a cat that has a close bond with its human best friend</item>
+        <item>The Scottish Fold-Eared Cat is a natural cat breed that originated in Scotland. Its distinctive feature and uniqueness is found in its folded ears, so this breed is called an owl-faced cat or a coupari cat.</item>
+        <item>The Siamese cat was one of the first cat breeds to be clearly recognized as an oriental cat. As the name implies, the Siamese cat comes from the country of Siam, so this cat breed is very easy to find in Thailand.</item>
+        <item>The sphynx cat is one of the cat breeds that has very short and very little fur. At first glance, the sphynx cat appears to have no hair at all, but if you look closely</item>
+        <item>The Turkish Angora is one of the oldest natural domestic cat breeds. This breed comes from Ankara, Turkey. This cat is very popular and famous in Indonesia. In simple terms, this cat breed is also known as an angora or ankara cat</item>
+        <item>Tuxedo cats are not a specific breed, but the name comes from the two different coat colors and resembles a tuxedo. Uniquely, it doesn't always have to be black, but it can also be gray, silver, orange, and also a tortoiseshell paired with white fur. This coat color combination can be of various breeds such as Maine Coon, Turkish Angora, American Shorthair, or British Shorthairs.</item>
+    </string-array>
+
     <string name="color">Color</string>
+    <string name="eye_color">Eye Color</string>
+    <string name="hair_color">Hair Color</string>
+    <string name="ear_shape">Ear Shape</string>
     <string name="weight">Weight</string>
     <string name="age">Age</string>
     <string name="story">Story</string>
@@ -321,5 +297,15 @@
     <string name="btn_unfollow">Unfollow</string>
     <string name="no_post_data">Not Posts Yet</string>
     <string name="no_data_search">No results for "%s"</string>
+    <string name="location">Location</string>
+    <string name="address">Address</string>
+    <string name="eye_color_required">Enter Eye Color</string>
+    <string name="hair_color_required">Enter Hair Color</string>
+    <string name="ear_shape_required">Enter Ear Shape</string>
+    <string name="services_map">Cat Map</string>
+    <string name="services_desc_map">See some cats on the map</string>
+    <string name="characteristic">Characteristic</string>
+    <string name="choose_your_cat">Choose your cat</string>
+    <string name="information">Information</string>
 
 </resources>
