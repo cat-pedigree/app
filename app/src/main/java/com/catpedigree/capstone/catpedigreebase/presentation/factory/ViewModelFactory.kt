@@ -14,7 +14,6 @@ import com.catpedigree.capstone.catpedigreebase.presentation.ui.classification.R
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.view.CommentViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsViewModel
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.message.MessageViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnBoardingViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree.PedigreeViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.create.CreateCommentViewModel
@@ -35,8 +34,6 @@ class ViewModelFactory
     private val catRepository: CatRepository,
     private val veterinaryRepository: VeterinaryRepository,
     private val followRepository: FollowRepository,
-    private val roomMessageRepository: RoomMessageRepository,
-    private val messageRepository: MessageRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
@@ -67,7 +64,7 @@ class ViewModelFactory
                 CreatePostViewModel(userRepository, postRepository) as T
             }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
-                ProfileViewModel(userRepository, catRepository, postRepository, followRepository,roomMessageRepository) as T
+                ProfileViewModel(userRepository, catRepository, postRepository, followRepository) as T
             }
             modelClass.isAssignableFrom(MyProfileViewModel::class.java) -> {
                 MyProfileViewModel(userRepository, postRepository, catRepository,followRepository) as T
@@ -102,9 +99,6 @@ class ViewModelFactory
             modelClass.isAssignableFrom(PedigreeViewModel::class.java) -> {
                 PedigreeViewModel(userRepository,catRepository) as T
             }
-            modelClass.isAssignableFrom(MessageViewModel::class.java) -> {
-                MessageViewModel(userRepository,roomMessageRepository, messageRepository) as T
-            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }
@@ -121,8 +115,6 @@ class ViewModelFactory
                     Injection.provideCatRepository(context),
                     Injection.provideVeterinaryRepository(context),
                     Injection.provideFollowRepository(context),
-                    Injection.provideRoomRepository(context),
-                    Injection.provideMessageRepository(context)
                 )
             }.also { instance = it }
     }

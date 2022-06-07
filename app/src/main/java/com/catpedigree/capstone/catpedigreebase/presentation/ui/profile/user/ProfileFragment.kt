@@ -88,10 +88,6 @@ class ProfileFragment : Fragment() {
                 )
             }
 
-            btnMessage.setOnClickListener {
-                viewModel.postRoom(users.token?:"", user.id)
-            }
-
             viewModel.checkCat(user.id).observe(viewLifecycleOwner){
                 if(it == 0){
                     myCats.visibility = View.GONE

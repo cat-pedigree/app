@@ -3,11 +3,7 @@ package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_prof
 import androidx.lifecycle.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.*
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
-import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
-import com.catpedigree.capstone.catpedigreebase.utils.error.RoomError
 import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 
 class MyProfileViewModel(
 

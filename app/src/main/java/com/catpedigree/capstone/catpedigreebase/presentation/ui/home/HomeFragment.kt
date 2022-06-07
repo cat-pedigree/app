@@ -128,8 +128,8 @@ class HomeFragment : Fragment() {
         binding.apply {
             topAppBar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
-                    R.id.message -> {
-                        findNavController().navigate(R.id.action_homeFragment_to_messageFragment)
+                    R.id.add -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_createPostFragment)
                         true
                     }
                     R.id.search -> {

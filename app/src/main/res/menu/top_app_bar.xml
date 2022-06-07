@@ -9,9 +9,9 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|ifRoom" />
     <item
-        android:id="@+id/message"
-        android:icon="@drawable/ic_baseline_chat_24"
-        android:title="@string/message"
+        android:id="@+id/add"
+        android:icon="@drawable/ic_add"
+        android:title="@string/add_post"
         android:contentDescription="@string/add"
         app:showAsAction="ifRoom" />
     <item android:id="@+id/profile"

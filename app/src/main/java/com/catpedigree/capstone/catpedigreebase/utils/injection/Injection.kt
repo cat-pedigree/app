@@ -53,16 +53,4 @@ object Injection {
         val followRemoteDataSource = FollowRemoteDataSource(followApiInterface)
         return FollowRepository(followRemoteDataSource, CatDatabase.getDatabase(context))
     }
-
-    fun provideRoomRepository(context: Context): RoomMessageRepository{
-        val roomApiInterface = ApiConfig.getRoom()
-        val roomRemoteDataSource = RoomMessageRemoteDataSource(roomApiInterface)
-        return RoomMessageRepository(roomRemoteDataSource, CatDatabase.getDatabase(context))
-    }
-
-    fun provideMessageRepository(context: Context): MessageRepository{
-        val messageApiInterface = ApiConfig.getMessage()
-        val messageRemoteDataSource = MessageRemoteDataSource(messageApiInterface)
-        return MessageRepository(messageRemoteDataSource, CatDatabase.getDatabase(context))
-    }
 }

@@ -113,9 +113,6 @@
         <action
             android:id="@+id/action_homeFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_messageFragment"
-            app:destination="@id/messageFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -664,20 +661,4 @@
             android:id="@+id/action_informationFragment_to_pedigreeFilterFragment"
             app:destination="@id/pedigreeFilterFragment" />
     </dialog>
-    <fragment
-        android:id="@+id/messageFragment"
-        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.message.MessageFragment"
-        android:label="MessageFragment" >
-        <action
-            android:id="@+id/action_messageFragment_to_messageChatFragment"
-            app:destination="@id/messageChatFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/messageChatFragment"
-        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.message.MessageChatFragment"
-        android:label="MessageChatFragment">
-        <argument
-            android:name="room"
-            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.RoomMessageItems" />
-    </fragment>
 </navigation>

@@ -7,7 +7,6 @@ import com.catpedigree.capstone.catpedigreebase.data.network.item.UserDataItems
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
 import com.catpedigree.capstone.catpedigreebase.utils.error.FollowError
 import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
-import com.catpedigree.capstone.catpedigreebase.utils.error.RoomError
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(
@@ -16,7 +15,6 @@ class ProfileViewModel(
     private val catRepository: CatRepository,
     private val postRepository: PostRepository,
     private val followRepository: FollowRepository,
-    private val roomMessageRepository: RoomMessageRepository,
     ) : ViewModel() {
 
     val userItems = userRepository.userItems.asLiveData()
@@ -170,24 +168,6 @@ class ProfileViewModel(
                 followRepository.followDelete(token,user_id, follower_id)
                 _isSuccess.value = true
             } catch (e: PostError) {
-                _errorMessage.value = e.message
-                _isSuccess.value = false
-            } finally {
-                _isLoading.value = false
-            }
-        }
-    }
-
-    fun postRoom(
-        token: String,
-        receiver_user_id: Int
-    ) {
-        viewModelScope.launch {
-            _isLoading.value = true
-            try {
-                roomMessageRepository.postRoom(token, receiver_user_id)
-                _isSuccess.value = true
-            } catch (e: RoomError) {
                 _errorMessage.value = e.message
                 _isSuccess.value = false
             } finally {
