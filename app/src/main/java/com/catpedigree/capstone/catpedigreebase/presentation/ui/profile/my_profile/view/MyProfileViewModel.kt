@@ -1,25 +1,29 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view
 
 import androidx.lifecycle.*
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.FollowRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.*
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
+import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
+import com.catpedigree.capstone.catpedigreebase.utils.error.RoomError
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class MyProfileViewModel(
 
     private val userRepository: UserRepository,
     private val postRepository: PostRepository,
     private val catRepository: CatRepository,
-    private val followRepository: FollowRepository
+    private val followRepository: FollowRepository,
 ) : ViewModel() {
 
     val userItems = userRepository.userItems.asLiveData()
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _isSuccess = MutableLiveData<Boolean>()
+    val isSuccess: LiveData<Boolean> = _isSuccess
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage

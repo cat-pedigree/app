@@ -16,7 +16,8 @@ import com.catpedigree.capstone.catpedigreebase.data.local.room.dao.*
         VeterinaryItems::class,
         FollowItems::class,
         FollowingItems::class,
-        MessageRoomItems::class],
+        RoomMessageItems::class,
+        MessageItems::class],
     version = 1,
     exportSchema = false
 )
@@ -28,7 +29,8 @@ abstract class CatDatabase : RoomDatabase() {
     abstract fun veterinaryDao(): VeterinaryDao
     abstract fun followDao(): FollowDao
     abstract fun followingDao(): FollowingDao
-    abstract fun messageRoomDao(): MessageRoomDao
+    abstract fun messageRoomDao(): RoomMessageDao
+    abstract fun messageDao(): MessageDao
 
     companion object {
         @Volatile

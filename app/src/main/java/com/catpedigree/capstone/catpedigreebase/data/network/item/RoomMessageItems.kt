@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = "message_room_items")
-data class MessageRoomItems(
+data class RoomMessageItems(
 
     @PrimaryKey
     @field:SerializedName("id")

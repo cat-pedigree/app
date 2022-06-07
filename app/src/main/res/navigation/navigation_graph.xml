@@ -667,5 +667,17 @@
     <fragment
         android:id="@+id/messageFragment"
         android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.message.MessageFragment"
-        android:label="MessageFragment" />
+        android:label="MessageFragment" >
+        <action
+            android:id="@+id/action_messageFragment_to_messageChatFragment"
+            app:destination="@id/messageChatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/messageChatFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.message.MessageChatFragment"
+        android:label="MessageChatFragment">
+        <argument
+            android:name="room"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.RoomMessageItems" />
+    </fragment>
 </navigation>

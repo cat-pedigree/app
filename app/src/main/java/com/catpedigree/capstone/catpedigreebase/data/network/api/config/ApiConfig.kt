@@ -6,7 +6,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 object ApiConfig {
 
@@ -50,6 +49,10 @@ object ApiConfig {
 
     fun getFollow(): FollowInterface {
         return retrofit.create(FollowInterface::class.java)
+    }
+
+    fun getRoom(): RoomMessageInterface{
+        return retrofit.create(RoomMessageInterface::class.java)
     }
 
     fun getMessage(): MessageInterface{

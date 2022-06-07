@@ -5,7 +5,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.MessageRemoteDataSource
 import com.catpedigree.capstone.catpedigreebase.data.local.room.database.CatDatabase
-import com.catpedigree.capstone.catpedigreebase.data.network.item.MessageRoomItems
+import com.catpedigree.capstone.catpedigreebase.data.network.item.MessageItems
 import com.catpedigree.capstone.catpedigreebase.utils.Result
 
 class MessageRepository(
@@ -13,29 +13,29 @@ class MessageRepository(
     private val catDatabase: CatDatabase
 ) {
 
-    fun getMessageRoom(token: String, sender_user_id: Int): LiveData<Result<List<MessageRoomItems>>> = liveData {
+    fun getMessage(token: String, room_id: Int): LiveData<Result<List<MessageItems>>> = liveData {
         emit(Result.Loading)
         try {
-            val response = messageRemoteDataSource.getMessageRoom(token, sender_user_id)
-            val rooms = response.body()?.data
-            val newRoomMessage = rooms?.map {
-                MessageRoomItems(
+            val response = messageRemoteDataSource.getMessage(token, room_id)
+            val messages = response.body()?.data
+            val newMessage = messages?.map {
+                MessageItems(
                     it.id,
-                    it.receiver_user_id,
-                    it.sender_user_id,
+                    it.room_id,
+                    it.user_id,
                     it.messages,
                     it.user?.name,
                     it.user?.username,
                     it.user?.profile_photo_path
                 )
             }
-            catDatabase.messageRoomDao().deleteAllMessageRoom()
-            catDatabase.messageRoomDao().insertMessageRoom(newRoomMessage!!)
+            catDatabase.messageDao().deleteAllMessage()
+            catDatabase.messageDao().insertMessage(newMessage!!)
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }
-        val dataLocal: LiveData<Result<List<MessageRoomItems>>> =
-            catDatabase.messageRoomDao().getMessageRoom(sender_user_id).map { Result.Success(it) }
+        val dataLocal: LiveData<Result<List<MessageItems>>> =
+            catDatabase.messageDao().getMessage(room_id).map { Result.Success(it) }
         emitSource(dataLocal)
     }
 }

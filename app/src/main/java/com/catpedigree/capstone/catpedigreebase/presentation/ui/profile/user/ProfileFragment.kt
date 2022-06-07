@@ -88,6 +88,10 @@ class ProfileFragment : Fragment() {
                 )
             }
 
+            btnMessage.setOnClickListener {
+                viewModel.postRoom(users.token?:"", user.id)
+            }
+
             viewModel.checkCat(user.id).observe(viewLifecycleOwner){
                 if(it == 0){
                     myCats.visibility = View.GONE
@@ -183,6 +187,12 @@ class ProfileFragment : Fragment() {
 
         viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
             ToastUtils.showToast(requireContext(), message)
+        }
+
+        viewModel.isSuccess.observe(viewLifecycleOwner) { isSuccess ->
+            if (isSuccess) {
+                Toast.makeText(requireContext(), "Berhasil", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

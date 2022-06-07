@@ -35,6 +35,7 @@ class ViewModelFactory
     private val catRepository: CatRepository,
     private val veterinaryRepository: VeterinaryRepository,
     private val followRepository: FollowRepository,
+    private val roomMessageRepository: RoomMessageRepository,
     private val messageRepository: MessageRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
@@ -66,7 +67,7 @@ class ViewModelFactory
                 CreatePostViewModel(userRepository, postRepository) as T
             }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
-                ProfileViewModel(userRepository, catRepository, postRepository, followRepository) as T
+                ProfileViewModel(userRepository, catRepository, postRepository, followRepository,roomMessageRepository) as T
             }
             modelClass.isAssignableFrom(MyProfileViewModel::class.java) -> {
                 MyProfileViewModel(userRepository, postRepository, catRepository,followRepository) as T
@@ -102,7 +103,7 @@ class ViewModelFactory
                 PedigreeViewModel(userRepository,catRepository) as T
             }
             modelClass.isAssignableFrom(MessageViewModel::class.java) -> {
-                MessageViewModel(userRepository,messageRepository) as T
+                MessageViewModel(userRepository,roomMessageRepository, messageRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
@@ -120,6 +121,7 @@ class ViewModelFactory
                     Injection.provideCatRepository(context),
                     Injection.provideVeterinaryRepository(context),
                     Injection.provideFollowRepository(context),
+                    Injection.provideRoomRepository(context),
                     Injection.provideMessageRepository(context)
                 )
             }.also { instance = it }

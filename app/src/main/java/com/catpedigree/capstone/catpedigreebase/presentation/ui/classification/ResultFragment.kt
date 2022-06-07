@@ -199,26 +199,7 @@ class ResultFragment : Fragment() {
 
     }
 
-    private fun convertBitmapToByteBuffer(result: Bitmap): ByteBuffer{
-        val imageByteBuffer = ByteBuffer.allocateDirect(4 * 150 * 150 * 3)
-        imageByteBuffer.order(ByteOrder.nativeOrder())
 
-        val pixels = IntArray(150 * 150)
-        result.getPixels(pixels, 0, result.width,0,0,result.width, result.height)
-
-        var pixel = 0
-        for(i in 0 until 150){
-            for(j in 0 until 150){
-                val pixelVal = pixels[pixel++]
-
-                imageByteBuffer.putFloat(((pixelVal shr 16 and 0xFF) - 127.5f) / 127.5f)
-                imageByteBuffer.putFloat(((pixelVal shr 8 and 0xFF) - 127.5f) / 127.5f)
-                imageByteBuffer.putFloat(((pixelVal and 0xFF) - 127.5f) / 127.5f)
-            }
-        }
-        result.recycle()
-        return imageByteBuffer
-    }
 
     private fun getMax(arr:FloatArray) : Int{
         var min = 0.0f

@@ -2,7 +2,7 @@ package com.catpedigree.capstone.catpedigreebase.data.network.response
 
 import com.google.gson.annotations.SerializedName
 
-data class MessageRoomResponse(
+data class MessageResponse(
     @field:SerializedName("code")
     val code: Int? = null,
 
@@ -13,27 +13,27 @@ data class MessageRoomResponse(
     val message: String? = null,
 
     @field:SerializedName("data")
-    val data: List<MessageRoomData>? = null,
+    val data: List<MessageData>? = null,
 )
 
-data class MessageRoomData(
+data class MessageData(
     @field:SerializedName("id")
     val id: Int? = null,
 
-    @field:SerializedName("receiver_user_id")
-    val receiver_user_id: Int? = null,
+    @field:SerializedName("room_id")
+    val room_id: Int? = null,
 
-    @field:SerializedName("sender_user_id")
-    val sender_user_id: Int? = null,
+    @field:SerializedName("user_id")
+    val user_id: Int? = null,
 
     @field:SerializedName("messages")
     val messages: String? = null,
 
     @field:SerializedName("user")
-    val user: UserMessageRoomData? = null,
+    val user: UserMessageData? = null,
 )
 
-data class UserMessageRoomData(
+data class UserMessageData(
     @field:SerializedName("id")
     val id: Int? = null,
 

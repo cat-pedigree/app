@@ -2,11 +2,12 @@ package com.catpedigree.capstone.catpedigreebase.presentation.ui.message
 
 import androidx.lifecycle.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.MessageRepository
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.RoomMessageRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.VeterinaryRepository
 
 class MessageViewModel(
     private val userRepository: UserRepository,
+    private val roomRepository: RoomMessageRepository,
     private val messageRepository: MessageRepository
 ) : ViewModel() {
 
@@ -22,9 +23,16 @@ class MessageViewModel(
     val errorMessage: LiveData<String> = _errorMessage
 
     fun getMessageRoom() = userItems.switchMap {
-        messageRepository.getMessageRoom(
+        roomRepository.getMessageRoom(
             it.token ?: "",
             it.id!!
+        )
+    }
+    
+    fun getMessage(room_id:Int) = userItems.switchMap {
+        messageRepository.getMessage(
+            it.token ?: "",
+            room_id
         )
     }
 }
