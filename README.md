@@ -42,23 +42,23 @@
 # :notebook_with_decorative_cover: Table of Contents
 
 - [About the Project](#about)
-  * [User Interface](#user-interface)
+  * [User Interface](#camera-user-interface)
   * [Tech Stack](#space_invader-tech-stack)
   * [Download APK](#download-apk)
 - [Getting Started](#getting-started)
   * [Prerequisites](#bangbang-prerequisites)
   * [Installation](#gear-installation)
 - [Usage](#cat-pedigree-usage)
-- [Contributing](#contributing)
-- [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
+- [Contributing](#wave-contributing)
+- [Contact](#handshake-contact)
+- [Acknowledgements](#gem-acknowledgements)
 
 <!-- About the Project -->
 ## :star2: About the Project
 
 
 <!-- User Interface -->
-### User Interface
+### :camera: User Interface
 
 
 <!-- Tech Stack -->
@@ -102,14 +102,14 @@
 ### Download APK
 
 <!-- Contributing -->
-## Contributing
+## :wave: Contributing
 
 <a href="https://github.com/cat-pedigree/app/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=cat-pedigree/app" />
 </a>
 
 <!-- Contact -->
-## Contact
+## :handshake: Contact
 
 | ID         | Name                   | Contact |
 |------------|------------------------|---------|
@@ -117,7 +117,7 @@
 | A2152G1665 | Robby Ramadhan Anshory |<a href="https://www.linkedin.com/in/robby-ramadhan-anshory-99b338228/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> <a href="https://github.com/RobbyRamadhanAsnhory"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>          |
 
 <!-- Acknowledgments -->
-## Acknowledgements
+## :gem: Acknowledgements
 
 This section mentions useful resources and libraries that have been used in the project.
 
