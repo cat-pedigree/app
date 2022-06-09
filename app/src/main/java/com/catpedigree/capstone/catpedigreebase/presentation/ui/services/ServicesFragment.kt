@@ -1,10 +1,12 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.services
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.catpedigree.capstone.catpedigreebase.R
@@ -37,6 +39,7 @@ class ServicesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
         setupViewModel()
+        setupMenu()
         setupNavigation()
     }
 
@@ -73,17 +76,59 @@ class ServicesFragment : Fragment() {
         }
     }
 
-    private fun setupNavigation() {
-        binding.bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.menu_home -> {
-                    findNavController().navigate(R.id.action_servicesFragment_to_homeFragment)
-                    return@setOnItemSelectedListener false
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_servicesFragment_to_myProfileFragment)
+                    true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_servicesFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_servicesFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
                 }
             }
-            return@setOnItemSelectedListener false
         }
+    }
 
+    private fun setupNavigation() {
+        binding.apply {
+            bottomNavigationView.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.menu_home -> {
+                        findNavController().navigate(R.id.action_servicesFragment_to_homeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_pedigree -> {
+                        findNavController().navigate(R.id.action_servicesFragment_to_pedigreeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_dating -> {
+                        findNavController().navigate(R.id.action_servicesFragment_to_datingFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                }
+                return@setOnItemSelectedListener false
+            }
+            fab.setOnClickListener {
+                findNavController().navigate(R.id.action_servicesFragment_to_resultFragment)
+            }
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {
