@@ -44,7 +44,6 @@
 - [About the Project](#about)
   * [User Interface](#camera-user-interface)
   * [Tech Stack](#space_invader-tech-stack)
-  * [Download APK](#download-apk)
 - [Getting Started](#getting-started)
   * [Prerequisites](#bangbang-prerequisites)
   * [Installation](#gear-installation)
@@ -97,9 +96,6 @@
 - Download the APK
 - Install the APK
 - Create a new account
-
-<!-- Download APK -->
-### Download APK
 
 <!-- Contributing -->
 ## :wave: Contributing
