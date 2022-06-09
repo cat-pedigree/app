@@ -13,7 +13,6 @@ class SharedPrefUserLogin private constructor(private val dataStore: DataStore<P
                 id = preferences[ID_KEY],
                 name = preferences[NAME_KEY],
                 username = preferences[USERNAME_KEY],
-                phone_number = preferences[PHONE_NUMBER_KEY],
                 email = preferences[EMAIL_KEY],
                 token = preferences[TOKEN_KEY],
                 bio = preferences[BIO_KEY],
@@ -51,7 +50,6 @@ class SharedPrefUserLogin private constructor(private val dataStore: DataStore<P
         private val ID_KEY = intPreferencesKey("id")
         private val NAME_KEY = stringPreferencesKey("name")
         private val USERNAME_KEY = stringPreferencesKey("username")
-        private val PHONE_NUMBER_KEY = stringPreferencesKey("phone_number")
         private val EMAIL_KEY = stringPreferencesKey("email")
         private val BIO_KEY = stringPreferencesKey("bio")
         private val PROFILE_PHOTO_PATH_KEY = stringPreferencesKey("profile_photo_path")
