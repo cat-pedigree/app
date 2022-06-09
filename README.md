@@ -41,25 +41,68 @@
 <!-- Table of Contents -->
 # :notebook_with_decorative_cover: Table of Contents
 
-- [About the Project](#cat-pedigree-about)
-  * [User Interface](#cat-pedigree-user-interface)
-  * [Tech Stack](#cat-pedigree-tech-stack)
-  * [Resources](#cat-pedigree-resources)
-  * [Download APK](#cat-pedigree-apk)
-- [Getting Started](#cat-pedigree-getting-started)
-  * [Prerequisites](#cat-pedigree-prerequisites)
-  * [Installation](#cat-pedigree-installation)
-  * [Running Tests](#cat-pedigree-running-tests)
-  * [Run Locally](#cat-pedigree-run-locally)
-  * [Deployment](#cat-pedigree-deployment)
+- [About the Project](#about)
+  * [User Interface](#user-interface)
+  * [Tech Stack](#space_invader-tech-stack)
+  * [Download APK](#download-apk)
+- [Getting Started](#getting-started)
+  * [Prerequisites](#bangbang-prerequisites)
+  * [Installation](#gear-installation)
 - [Usage](#cat-pedigree-usage)
 - [Contributing](#contributing)
-- [FAQ](#cat-pedigree-faq)
 - [Contact](#contact)
-- [Acknowledgements](#cat-pedigree-acknowledgements)
+- [Acknowledgements](#acknowledgements)
+
+<!-- About the Project -->
+## :star2: About the Project
+
+
+<!-- User Interface -->
+### User Interface
+
+
+<!-- Tech Stack -->
+### :space_invader: Tech Stack
+
+ - [Kotlin](#)
+ - [Tensorflow Lite](#)
+ - [Retrofit](#)
+ - [Room](#)
+ - [Room Paging](#)
+ - [Camerax](#)
+ - [Datastore](#)
+ - [Gson](#)
+ - [Glide](#)
+ - [Navigation Dynamic](#)
+ - [Viewmodel](#)
+ - [Live Data](#)
+ - [Navigation UI](#)
+ - [Constraint Layout](#)
+ - [Circle Image](#)
+
+<!-- Getting Started -->
+## 	:toolbox: Getting Started
+
+<!-- Prerequisites -->
+### :bangbang: Prerequisites
+
+- Android 9.0 (Pie) API 28
+- Internet Connection
+- Camera
+- GPS
+
+<!-- Installation -->
+### :gear: Installation
+
+- Download the APK
+- Install the APK
+- Create a new account
+
+<!-- Download APK -->
+### Download APK
 
 <!-- Contributing -->
-## Contributing 😉
+## Contributing
 
 <a href="https://github.com/cat-pedigree/app/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=cat-pedigree/app" />
@@ -72,3 +115,20 @@
 |------------|------------------------|---------|
 | A7314F2733 | Budi Setiawan          |<a href="https://www.linkedin.com/in/budi-setiawan15/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> <a href="https://github.com/budistwn15"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>         |
 | A2152G1665 | Robby Ramadhan Anshory |<a href="https://www.linkedin.com/in/robby-ramadhan-anshory-99b338228/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> <a href="https://github.com/RobbyRamadhanAsnhory"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>          |
+
+<!-- Acknowledgments -->
+## Acknowledgements
+
+This section mentions useful resources and libraries that have been used in the project.
+
+ - [Figma](https://www.figma.com/)
+ - [Android Studio](https://developer.android.com/studiohl=id&gclid=CjwKCAjwtIaVBhBkEiwAsr7c0muNv5iZXQPkbdA4XrY5ocVx01Vn6jRX4bPPYCkP7DKGSJcbYpecBoCtqYQAvD_BwE&gclsrc=aw.ds)
+ - [Tensorflow Lite](https://www.tensorflow.org/lite/android/quickstart)
+ - [Github](https://github.com/)
+ - [Google Fonts](https://fonts.google.com/)
+ - [Undraw](https://undraw.co/)
+ - [Story Set](https://storyset.com/)
+ - [Material IO](https://material.io/)
+ - [Flaticon](https://www.flaticon.com/)
+ - [Maze](https://maze.co/)
+
