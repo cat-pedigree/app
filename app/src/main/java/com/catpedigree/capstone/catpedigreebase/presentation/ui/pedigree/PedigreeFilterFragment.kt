@@ -227,9 +227,4 @@ class PedigreeFilterFragment : Fragment() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
     }
-
-    companion object {
-        var TAG: String = PedigreeFilterFragment::class.java.simpleName
-        var CAT_ONE_NAME = "cat_one_name"
-    }
 }
