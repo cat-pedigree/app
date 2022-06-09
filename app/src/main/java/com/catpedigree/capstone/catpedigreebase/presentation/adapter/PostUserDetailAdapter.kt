@@ -16,7 +16,6 @@ import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostBinding
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail.PostDetailProfileFragmentDirections
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.PostDetailUserFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 

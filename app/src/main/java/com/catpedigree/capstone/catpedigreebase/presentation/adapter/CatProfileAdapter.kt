@@ -12,7 +12,6 @@ import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemCatsBinding
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view.MyProfileFragmentDirections
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.ProfileFragmentDirections
 
 class CatProfileAdapter : ListAdapter<CatItems, CatProfileAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -29,7 +28,7 @@ class CatProfileAdapter : ListAdapter<CatItems, CatProfileAdapter.ViewHolder>(DI
                     .circleCrop()
                     .into(ivPhotoCat)
 
-                tvNameCat.text = cat.name.toString()
+                tvNameCat.text = cat.name
 
 
                 ivPhotoCat.setOnClickListener {

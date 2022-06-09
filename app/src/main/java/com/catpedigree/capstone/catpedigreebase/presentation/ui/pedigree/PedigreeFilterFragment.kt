@@ -1,6 +1,8 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -81,8 +83,7 @@ class PedigreeFilterFragment : Fragment() {
 
         setupAction()
         setupViewModel()
-//        setupMenu()
-//        setupNavigation()
+        setupMenu()
     }
 
     private fun setupAction() {
@@ -197,32 +198,35 @@ class PedigreeFilterFragment : Fragment() {
         }
     }
 
-//    private fun setupMenu(){
-//        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-//            when(menuItem.itemId){
-//                R.id.account -> {
-//                    findNavController().navigate(R.id.action_myProfileFragment_to_accountFragment)
-//                    true
-//                }
-//                R.id.language -> {
-//                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-//                    true
-//                }
-//                R.id.about -> {
-//                    findNavController().navigate(R.id.action_myProfileFragment_to_aboutFragment)
-//                    true
-//                }
-//                R.id.logout -> {
-//                    viewModel.logout()
-//                    true
-//                }
-//                else -> {
-//                    false
-//                }
-//            }
-//        }
-//    }
-
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_pedigreeFilterFragment_to_myProfileFragment)
+                    true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_pedigreeFilterFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_pedigreeFilterFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+    }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE

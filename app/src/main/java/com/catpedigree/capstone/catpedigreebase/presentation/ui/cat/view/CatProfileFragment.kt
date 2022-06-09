@@ -18,7 +18,6 @@ import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentCatProfileBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
-import com.google.android.material.snackbar.Snackbar
 
 class CatProfileFragment : Fragment() {
 
@@ -56,7 +55,7 @@ class CatProfileFragment : Fragment() {
             Glide.with(root)
                 .load(profilePhotoPath)
                 .signature(ObjectKey(profilePhotoPath))
-                .placeholder(R.drawable.ic_avatar)
+                .placeholder(R.drawable.ic_loading)
                 .into(ivProfileCat)
 
             tvCatName.text = cat.name

@@ -1,8 +1,8 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.main
 
 import android.Manifest
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.catpedigree.capstone.catpedigreebase.R
 
 class MainActivity : AppCompatActivity() {

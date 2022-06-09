@@ -1,6 +1,8 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.account
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +37,7 @@ class EmailBottomSheet : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
         setupViewModel()
+        setupMenu()
     }
 
     private fun setupAction() {
@@ -78,6 +81,36 @@ class EmailBottomSheet : Fragment() {
                 Snackbar.make(binding.btnConfirm, R.string.email_success, Snackbar.LENGTH_LONG)
                     .show()
                 viewModel.logout()
+            }
+        }
+    }
+
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_emailBottomSheet_to_myProfileFragment)
+                    true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_emailBottomSheet_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_emailBottomSheet_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
             }
         }
     }

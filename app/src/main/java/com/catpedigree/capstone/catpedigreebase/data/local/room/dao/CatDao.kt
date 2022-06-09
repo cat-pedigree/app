@@ -3,7 +3,6 @@ package com.catpedigree.capstone.catpedigreebase.data.local.room.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems
-import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 
 @Dao
 interface CatDao {

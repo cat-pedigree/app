@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
 import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
-import com.catpedigree.capstone.catpedigreebase.data.network.item.FollowItems
 import com.catpedigree.capstone.catpedigreebase.data.network.item.FollowingItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemUserBinding
 

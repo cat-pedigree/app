@@ -56,7 +56,7 @@ class CatUserFragment : Fragment() {
             Glide.with(root)
                 .load(profilePhotoPath)
                 .signature(ObjectKey(profilePhotoPath))
-                .placeholder(R.drawable.ic_avatar)
+                .placeholder(R.drawable.ic_loading)
                 .into(ivProfileCat)
 
             tvCatName.text = cat.name

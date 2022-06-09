@@ -1,6 +1,8 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.adapter
 
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
@@ -10,14 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
+import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeFragmentDirections
 import com.google.android.material.snackbar.Snackbar
-import android.os.Handler
-import android.os.Looper
-import com.catpedigree.capstone.catpedigreebase.BuildConfig
 
 class PostAdapter(
     private val onFavoriteClick: (PostItems) -> Unit,

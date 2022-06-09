@@ -5,8 +5,6 @@ import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserReposi
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
 import com.catpedigree.capstone.catpedigreebase.utils.error.PostError
 import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 
 class AccountViewModel(private val userRepository: UserRepository) : ViewModel() {
 

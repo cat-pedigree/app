@@ -12,7 +12,6 @@ import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemMateBinding
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree.PedigreeFilterFragmentArgs
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree.PedigreeFilterFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.CatRemoteDataSource
 import com.catpedigree.capstone.catpedigreebase.data.local.room.database.CatDatabase
-import com.catpedigree.capstone.catpedigreebase.data.network.item.*
+import com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems
 import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.error.CatError
 import com.google.android.gms.maps.model.LatLng

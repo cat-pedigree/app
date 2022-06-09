@@ -1,6 +1,7 @@
 package com.catpedigree.capstone.catpedigreebase.data.network.api.service
 
-import com.catpedigree.capstone.catpedigreebase.data.network.response.*
+import com.catpedigree.capstone.catpedigreebase.data.network.response.CatCreateResponse
+import com.catpedigree.capstone.catpedigreebase.data.network.response.CatResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response

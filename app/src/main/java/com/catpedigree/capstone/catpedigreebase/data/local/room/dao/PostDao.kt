@@ -34,8 +34,8 @@ interface PostDao {
     @Update
     suspend fun updatePost(post: PostItems)
 
-    @Query("SELECT EXISTS(SELECT * FROM post_items WHERE id = :id AND bookmarked = 1)")
-    suspend fun isPostsBookmarked(id: Int): Boolean
+    @Query("SELECT EXISTS(SELECT * FROM post_items WHERE id = :id AND user_id = :user_id AND bookmarked = 1)")
+    suspend fun isPostsBookmarked(id: Int, user_id: Int): Boolean
 
     @Query("SELECT EXISTS(SELECT * FROM post_items WHERE id = :id AND loved = 1)")
     suspend fun isPostsLoved(id: Int): Boolean

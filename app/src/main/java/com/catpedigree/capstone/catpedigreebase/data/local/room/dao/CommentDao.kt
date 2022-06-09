@@ -1,7 +1,6 @@
 package com.catpedigree.capstone.catpedigreebase.data.local.room.dao
 
 import androidx.lifecycle.LiveData
-import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy

@@ -27,8 +27,8 @@ class PedigreeAdapter : ListAdapter<CatItems, PedigreeAdapter.ViewHolder>(DIFF_C
                     .signature(ObjectKey(catPhotoPath))
                     .into(ivCat)
 
-                tvNameCat.text = cat.name.toString()
-                tvBreedCat.text = cat.breed.toString()
+                tvNameCat.text = cat.name
+                tvBreedCat.text = cat.breed
 
                 root.setOnClickListener {
                     Navigation.findNavController(root).navigate(

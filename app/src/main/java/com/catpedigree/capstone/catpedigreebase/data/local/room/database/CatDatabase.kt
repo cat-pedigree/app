@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.catpedigree.capstone.catpedigreebase.data.network.item.*
 import com.catpedigree.capstone.catpedigreebase.data.local.room.dao.*
+import com.catpedigree.capstone.catpedigreebase.data.network.item.*
 
 @Database(
     entities = [

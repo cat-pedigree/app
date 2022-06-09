@@ -3,18 +3,17 @@ package com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentPedigreeBinding
-import com.catpedigree.capstone.catpedigreebase.presentation.adapter.CatAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.adapter.PedigreeAdapter
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 import com.catpedigree.capstone.catpedigreebase.utils.Result
@@ -42,8 +41,8 @@ class PedigreeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
         setupViewModel()
-//        setupMenu()
-//        setupNavigation()
+        setupMenu()
+        setupNavigation()
     }
 
     private fun setupAction() {
@@ -80,6 +79,14 @@ class PedigreeFragment : Fragment() {
                 isNestedScrollingEnabled = false
                 adapter = catAdapter
             }
+
+            viewModel.checkCat().observe(viewLifecycleOwner){
+                if(it == 0){
+                    rvCats.visibility = View.GONE
+                    tvChoose.visibility = View.GONE
+                    tvNoData.visibility = View.VISIBLE
+                }
+            }
         }
     }
 
@@ -100,32 +107,60 @@ class PedigreeFragment : Fragment() {
         }
     }
 
-//    private fun setupMenu(){
-//        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-//            when(menuItem.itemId){
-//                R.id.account -> {
-//                    findNavController().navigate(R.id.action_myProfileFragment_to_accountFragment)
-//                    true
-//                }
-//                R.id.language -> {
-//                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-//                    true
-//                }
-//                R.id.about -> {
-//                    findNavController().navigate(R.id.action_myProfileFragment_to_aboutFragment)
-//                    true
-//                }
-//                R.id.logout -> {
-//                    viewModel.logout()
-//                    true
-//                }
-//                else -> {
-//                    false
-//                }
-//            }
-//        }
-//    }
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_pedigreeFragment_to_myProfileFragment)
+                    true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_pedigreeFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_pedigreeFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+    }
 
+    private fun setupNavigation() {
+        binding.apply {
+            bottomNavigationView.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.menu_home -> {
+                        findNavController().navigate(R.id.action_pedigreeFragment_to_homeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_service -> {
+                        findNavController().navigate(R.id.action_pedigreeFragment_to_servicesFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_dating -> {
+                        findNavController().navigate(R.id.action_pedigreeFragment_to_datingFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                }
+                return@setOnItemSelectedListener false
+            }
+            fab.setOnClickListener {
+                findNavController().navigate(R.id.action_pedigreeFragment_to_resultFragment)
+            }
+        }
+    }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE

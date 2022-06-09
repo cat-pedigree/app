@@ -4,9 +4,7 @@ import androidx.lifecycle.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
-import com.catpedigree.capstone.catpedigreebase.utils.error.CatError
 import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
 
 class CatProfileViewModel(
     private val userRepository: UserRepository,

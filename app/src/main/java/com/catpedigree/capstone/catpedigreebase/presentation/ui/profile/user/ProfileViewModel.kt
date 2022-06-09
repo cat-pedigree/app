@@ -1,7 +1,10 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user
 
 import androidx.lifecycle.*
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.*
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatRepository
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.FollowRepository
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.data.network.item.UserDataItems
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
@@ -152,10 +155,6 @@ class ProfileViewModel(
     }
 
     fun getFollowersCount(id: Int): LiveData<Int> = userRepository.getFollowerCount(id)
-
-    fun getCheckFollow(follower_id: Int): LiveData<Int> = userItems.switchMap {
-        followRepository.getCheckFollow(it.id!!, follower_id)
-    }
 
     fun followDelete(
         token: String,

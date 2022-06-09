@@ -24,7 +24,7 @@ class PostRepository(
             val response = postRemoteDataSource.getPost(token)
             val posts = response.body()?.data
             val newPost = posts?.map { post ->
-                val isBookmarked = catDatabase.postDao().isPostsBookmarked(post.id!!)
+                val isBookmarked = catDatabase.postDao().isPostsBookmarked(post.id!!, post.user?.id!!)
                 val isLoved = catDatabase.postDao().isPostsLoved(post.id)
                 PostItems(
                     post.id,
@@ -36,9 +36,9 @@ class PostRepository(
                     post.comments_count,
                     isBookmarked,
                     isLoved,
-                    post.user?.id,
-                    post.user?.name,
-                    post.user?.profile_photo_path,
+                    post.user.id,
+                    post.user.name,
+                    post.user.profile_photo_path,
                 )
             }
             catDatabase.postDao().deleteAllPosts()
@@ -57,7 +57,7 @@ class PostRepository(
             val response = postRemoteDataSource.getPostProfile(token, user_id)
             val posts = response.body()?.data
             val newPost = posts?.map { post ->
-                val isBookmarked = catDatabase.postDao().isPostsBookmarked(post.id!!)
+                val isBookmarked = catDatabase.postDao().isPostsBookmarked(post.id!!, user_id)
                 val isLoved = catDatabase.postDao().isPostsLoved(post.id)
                 PostItems(
                     post.id,

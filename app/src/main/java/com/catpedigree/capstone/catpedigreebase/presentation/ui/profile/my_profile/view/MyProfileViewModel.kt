@@ -1,7 +1,10 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view
 
 import androidx.lifecycle.*
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.*
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatRepository
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.FollowRepository
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
+import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
 import kotlinx.coroutines.launch
 

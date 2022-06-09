@@ -14,7 +14,6 @@ import com.catpedigree.capstone.catpedigreebase.BuildConfig
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemPostProfileBinding
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail.PostDetailProfileFragmentDirections
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.ProfileFragmentDirections
 
 class PostProfileUserAdapter :

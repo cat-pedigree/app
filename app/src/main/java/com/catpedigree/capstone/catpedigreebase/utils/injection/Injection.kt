@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import com.catpedigree.capstone.catpedigreebase.data.network.api.config.ApiConfig
-import com.catpedigree.capstone.catpedigreebase.data.local.room.database.CatDatabase
 import com.catpedigree.capstone.catpedigreebase.data.local.preferences.SharedPrefUserLogin
 import com.catpedigree.capstone.catpedigreebase.data.local.remote.source.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.*
+import com.catpedigree.capstone.catpedigreebase.data.local.room.database.CatDatabase
+import com.catpedigree.capstone.catpedigreebase.data.network.api.config.ApiConfig
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 

@@ -1,11 +1,13 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -44,11 +46,9 @@ class PedigreeResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupAction()
         setupViewModel()
-//        setupMenu()
-//        setupNavigation()
+        setupMenu()
     }
 
     @SuppressLint("SetTextI18n")
@@ -61,7 +61,6 @@ class PedigreeResultFragment : Fragment() {
         val catOneIsWhite = args.catOneIsWhite
         val catTwoName = args.catTwoName
         val catTwoPhoto = args.catTwoPhoto
-        val catTwoGender = args.catTwoGender
         var catTwoColor = args.catTwoColor
         val catTwoIsWhite = args.catTwoIsWhite
         val profilePhotoOne = "${BuildConfig.BASE_API_PHOTO}${catOnePhoto}"
@@ -201,36 +200,35 @@ class PedigreeResultFragment : Fragment() {
         }
     }
 
-//    private fun setupMenu(){
-//        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-//            when(menuItem.itemId){
-//                R.id.account -> {
-//                    findNavController().navigate(R.id.action_myProfileFragment_to_accountFragment)
-//                    true
-//                }
-//                R.id.language -> {
-//                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-//                    true
-//                }
-//                R.id.about -> {
-//                    findNavController().navigate(R.id.action_myProfileFragment_to_aboutFragment)
-//                    true
-//                }
-//                R.id.logout -> {
-//                    viewModel.logout()
-//                    true
-//                }
-//                else -> {
-//                    false
-//                }
-//            }
-//        }
-//    }
-
-//
-//    private fun showLoading(isLoading: Boolean) {
-//        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
-//    }
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_pedigreeFilterFragment_to_myProfileFragment)
+                    true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_pedigreeResultFragment_to_accountFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_pedigreeResultFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+    }
 
     private fun getMax(arr:FloatArray) : Int{
         var min = 0.0f

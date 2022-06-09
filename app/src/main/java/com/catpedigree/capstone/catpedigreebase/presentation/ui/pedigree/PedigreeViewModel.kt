@@ -2,11 +2,8 @@ package com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree
 
 import androidx.lifecycle.*
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.FollowRepository
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 import com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems
-import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
 import kotlinx.coroutines.launch
 
@@ -43,6 +40,12 @@ class PedigreeViewModel(
             color ?: "",
             gender ?: "",
             isWhite!!,
+        )
+    }
+
+    fun checkCat() = userItems.switchMap {
+        catRepository.checkCat(
+            it.id!!
         )
     }
 

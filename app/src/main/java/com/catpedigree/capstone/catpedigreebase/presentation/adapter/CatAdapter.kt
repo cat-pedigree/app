@@ -28,7 +28,7 @@ class CatAdapter : ListAdapter<CatItems, CatAdapter.ViewHolder>(DIFF_CALLBACK) {
                     .circleCrop()
                     .into(ivPhotoCat)
 
-                tvNameCat.text = cat.name.toString()
+                tvNameCat.text = cat.name
 
                 ivPhotoCat.setOnClickListener {
                     Navigation.findNavController(ivPhotoCat).navigate(
