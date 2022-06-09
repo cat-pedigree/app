@@ -306,7 +306,7 @@
     <string name="desc_img_your_cat">Ini adalah avatar kucingmu</string>
     <string name="desc_result_pedigree">Ini foto dari silsilah</string>
     <string name="pedigree_result">Hasil :</string>
-    <string name="pedigree_desc_result">Silsilah dari Abyssinian Cat dan Bobtail Cat Breed akan menghasilkan American Curl Cat Breed.</string>
+    <string name="pedigree_desc_result">Silsilah kucing Anda dan kucing yang Anda pilih akan menghasilkan warna</string>
     <string name="desc">Hasil tidak 100% akurat. Ini berdasarkan prediksi</string>
     <string name="filter">Saring</string>
     <string name="desc_icon_filter">Ini adalah icon filter</string>
@@ -331,4 +331,22 @@
     <string name="is_white">Apakah ada warna putih pada kulit kucing?</string>
     <string name="female">Perempuan</string>
     <string name="male">Laki-Laki</string>
+    <string name="your_matches">Jodoh kucingmu</string>
+    <string name="development">Masih Dalam Pengembangan</string>
+    <string name="general">Umum</string>
+    <string name="contact">Kontak</string>
+    <string name="contact_address">catpedigree.id@gmail.com</string>
+    <string name="app_version">Versi Aplikasi</string>
+    <string name="app_version_result">1.0.0</string>
+    <string name="contributor">Contributor</string>
+    <string name="bugi">Bugi Sulistiyo</string>
+    <string name="machine_learning">Machine Learning</string>
+    <string name="zahrizhal">Zahrizhal Ali</string>
+    <string name="wardah">Wardatun Sayyidah</string>
+    <string name="budi">Budi Setiawan</string>
+    <string name="android_developer">Android Developer</string>
+    <string name="robi">Robby Ramadhan Anshory</string>
+    <string name="fina">Fina Enno Rizki Oktavia</string>
+    <string name="cloud_computing">Cloud Computing</string>
+    <string name="no_post_cat">Anda tidak memiliki kucing</string>
 </resources>

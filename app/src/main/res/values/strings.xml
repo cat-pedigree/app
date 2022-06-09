@@ -306,7 +306,7 @@
     <string name="desc_img_your_cat">This is your cat avatar</string>
     <string name="desc_result_pedigree">This is a photo from pedigree</string>
     <string name="pedigree_result">Result :</string>
-    <string name="pedigree_desc_result">The pedigree of your cat and \nthe cat you choose will produce colors</string>
+    <string name="pedigree_desc_result">The pedigree of your cat and the cat you choose will produce colors</string>
     <string name="desc">Results are not 100% accurate. This is based on prediction</string>
     <string name="filter">Filter</string>
     <string name="desc_icon_filter">This is the filter icon</string>
@@ -331,5 +331,23 @@
     <string name="is_white">Is there a white color on the cats skin?</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
+    <string name="your_matches">Match your cat</string>
+    <string name="development">Still In Development</string>
+    <string name="general">General</string>
+    <string name="contact">Contact</string>
+    <string name="contact_address">catpedigree.id@gmail.com</string>
+    <string name="app_version">App Version</string>
+    <string name="app_version_result">1.0.0</string>
+    <string name="contributor">Contributor</string>
+    <string name="bugi">Bugi Sulistiyo</string>
+    <string name="machine_learning">Machine Learning</string>
+    <string name="zahrizhal">Zahrizhal Ali</string>
+    <string name="wardah">Wardatun Sayyidah</string>
+    <string name="budi">Budi Setiawan</string>
+    <string name="android_developer">Android Developer</string>
+    <string name="robi">Robby Ramadhan Anshory</string>
+    <string name="fina">Fina Enno Rizki Oktavia</string>
+    <string name="cloud_computing">Cloud Computing</string>
+    <string name="no_post_cat">You don\'t have a cat</string>
 
 </resources>
