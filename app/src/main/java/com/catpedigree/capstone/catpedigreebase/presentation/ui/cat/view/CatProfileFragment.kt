@@ -67,6 +67,7 @@ class CatProfileFragment : Fragment() {
             tvEyeColor.text = cat.eye_color
             tvHairColor.text = cat.hair_color
             tvEarShape.text = cat.ear_shape
+            tvStoryCat.text = cat.story
             topAppBar.title = cat.name
         }
 

@@ -19,8 +19,10 @@ class CatRemoteDataSource(private val catInterface: CatInterface) {
         weight: Double,
         age: Int,
         photo: MultipartBody.Part,
+        isWhite: Int,
+        story: RequestBody,
         lat: Double? = null,
-        lon: Double? = null
+        lon: Double? = null,
     ) = catInterface.catCreate(
         "Bearer $token",
         user_id,
@@ -34,8 +36,10 @@ class CatRemoteDataSource(private val catInterface: CatInterface) {
         weight,
         age,
         photo,
+        isWhite,
+        story,
         lat,
-        lon
+        lon,
     )
 
     suspend fun getCat(
@@ -47,10 +51,9 @@ class CatRemoteDataSource(private val catInterface: CatInterface) {
         token: String,
         breed:String,
         color:String,
-        eye_color:String,
-        hair_color:String,
-        ear_shape:String,
-    ) = catInterface.getCatFilter("Bearer $token", breed,color,eye_color,hair_color,ear_shape)
+        gender: String,
+        isWhite:Int,
+    ) = catInterface.getCatFilter("Bearer $token", breed,color,gender,isWhite)
 
     suspend fun getCatLocation(
         token: String

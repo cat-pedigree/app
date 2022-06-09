@@ -31,7 +31,9 @@ class CatRepository(
         weight: Double,
         age: Int,
         photo: MultipartBody.Part,
-        latLng: LatLng?
+        isWhite: Int,
+        story: RequestBody,
+        latLng: LatLng?,
     ) {
         withContext(Dispatchers.IO) {
             try {
@@ -50,6 +52,8 @@ class CatRepository(
                             weight,
                             age,
                             photo,
+                            isWhite,
+                            story,
                             latLng.latitude,
                             latLng.longitude
                         )
@@ -67,6 +71,8 @@ class CatRepository(
                             weight,
                             age,
                             photo,
+                            isWhite,
+                            story
                         )
                     }
 
@@ -85,6 +91,7 @@ class CatRepository(
             val response = catRemoteDataSource.getCat(token, user_id)
             val cats = response.body()?.data
             val newCat = cats?.map { cat ->
+                val isCatSelected = catDatabase.catDao().isCatSelected(cat.id!!)
                 CatItems(
                     cat.id,
                     cat.user_id,
@@ -98,6 +105,9 @@ class CatRepository(
                     cat.weight,
                     cat.age,
                     cat.photo,
+                    cat.isWhite,
+                    cat.story,
+                    isCatSelected,
                     cat.lat,
                     cat.lon
                 )
@@ -116,14 +126,15 @@ class CatRepository(
         token: String,
         breed: String,
         color:String,
-        eye_color:String,
-        hair_color:String,
-        ear_shape:String): LiveData<Result<List<CatItems>>> = liveData {
+        gender: String,
+        isWhite: Int
+    ): LiveData<Result<List<CatItems>>> = liveData {
         emit(Result.Loading)
         try {
-            val response = catRemoteDataSource.getCatFilter(token,breed,color,eye_color,hair_color,ear_shape)
+            val response = catRemoteDataSource.getCatFilter(token,breed,color,gender,isWhite)
             val cats = response.body()?.data
             val newCat = cats?.map { cat ->
+                val isCatSelected = catDatabase.catDao().isCatSelected(cat.id!!)
                 CatItems(
                     cat.id,
                     cat.user_id,
@@ -137,6 +148,9 @@ class CatRepository(
                     cat.weight,
                     cat.age,
                     cat.photo,
+                    cat.isWhite,
+                    cat.story,
+                    isCatSelected,
                     cat.lat,
                     cat.lon
                 )
@@ -149,6 +163,15 @@ class CatRepository(
         val dataLocal: LiveData<Result<List<CatItems>>> =
             catDatabase.catDao().allCats().map { Result.Success(it) }
         emitSource(dataLocal)
+    }
+
+    suspend fun setCatSelected(cat: CatItems, catSelected: Boolean) {
+        cat.isSelected = catSelected
+        catDatabase.catDao().updateCat(cat)
+    }
+
+    fun getCatSelected(): LiveData<CatItems> {
+        return catDatabase.catDao().getCatSelected()
     }
 
     suspend fun getCatLocation(token: String) :List<CatItems>{
@@ -172,6 +195,9 @@ class CatRepository(
                                 weight = it.weight,
                                 age = it.age,
                                 photo = it.photo,
+                                isWhite = it.isWhite,
+                                story = it.story,
+                                false,
                                 lat = it.lat,
                                 lon = it.lon
                             )

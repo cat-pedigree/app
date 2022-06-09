@@ -6,12 +6,10 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
 import com.catpedigree.capstone.catpedigreebase.BuildConfig
@@ -20,7 +18,6 @@ import com.catpedigree.capstone.catpedigreebase.data.network.item.UserItems
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentCatUserBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.view.CatProfileViewModel
-import com.catpedigree.capstone.catpedigreebase.utils.Result
 import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
 class CatUserFragment : Fragment() {
@@ -64,9 +61,14 @@ class CatUserFragment : Fragment() {
 
             tvCatName.text = cat.name
             tvBreed.text = cat.breed
+            tvMonth.text = cat.age.toString()
             tvColorName.text = cat.color
             tvGenderName.text = cat.gender
-            topAppBar.title = "${cat.name} Profile"
+            tvEyeColor.text = cat.eye_color
+            tvHairColor.text = cat.hair_color
+            tvEarShape.text = cat.ear_shape
+            tvStoryCat.text = cat.story
+            topAppBar.title = cat.name
         }
 
     }
