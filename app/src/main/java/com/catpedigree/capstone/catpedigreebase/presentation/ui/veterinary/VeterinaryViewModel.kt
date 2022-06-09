@@ -1,12 +1,13 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.veterinary
 
 import androidx.lifecycle.*
-import com.catpedigree.capstone.catpedigreebase.data.local.repository.CommentRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.VeterinaryRepository
+import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
+import kotlinx.coroutines.launch
 
 class VeterinaryViewModel(
-    userRepository: UserRepository,
+    private val userRepository: UserRepository,
     private val veterinaryRepository: VeterinaryRepository
 ) : ViewModel() {
 
@@ -25,5 +26,18 @@ class VeterinaryViewModel(
         veterinaryRepository.getVeterinary(
             it.token ?: "",
         )
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                userRepository.logout()
+            } catch (e: AuthError) {
+                _errorMessage.value = e.message
+            } finally {
+                _isLoading.value = false
+            }
+        }
     }
 }

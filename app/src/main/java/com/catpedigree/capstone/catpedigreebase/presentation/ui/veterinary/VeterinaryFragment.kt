@@ -1,6 +1,8 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.veterinary
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +41,8 @@ class VeterinaryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAction()
         setupViewModel()
+        setupMenu()
+        setupNavigation()
     }
 
     private fun setupAction() {
@@ -91,6 +95,65 @@ class VeterinaryFragment : Fragment() {
 
         viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
             ToastUtils.showToast(requireContext(), message)
+        }
+    }
+
+    private fun setupMenu(){
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.profile -> {
+                    findNavController().navigate(R.id.action_veterinaryFragment_to_myProfileFragment)
+                    true
+                }
+                R.id.language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                R.id.account -> {
+                    findNavController().navigate(R.id.action_veterinaryFragment_to_accountFragment)
+                    true
+                }
+                R.id.about -> {
+                    findNavController().navigate(R.id.action_veterinaryFragment_to_aboutFragment)
+                    true
+                }
+                R.id.logout -> {
+                    viewModel.logout()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+    }
+
+    private fun setupNavigation() {
+        binding.apply {
+            bottomNavigationView.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.menu_home -> {
+                        findNavController().navigate(R.id.action_veterinaryFragment_to_homeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_service -> {
+                        findNavController().navigate(R.id.action_veterinaryFragment_to_servicesFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_pedigree -> {
+                        findNavController().navigate(R.id.action_veterinaryFragment_to_pedigreeFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                    R.id.menu_dating -> {
+                        findNavController().navigate(R.id.action_veterinaryFragment_to_datingFragment)
+                        return@setOnItemSelectedListener true
+                    }
+                }
+                return@setOnItemSelectedListener false
+            }
+            fab.setOnClickListener {
+                findNavController().navigate(R.id.action_veterinaryFragment_to_resultFragment)
+            }
         }
     }
 
