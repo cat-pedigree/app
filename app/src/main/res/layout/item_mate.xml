@@ -20,14 +20,14 @@
         <ImageView
             android:id="@+id/iv_cat"
             android:layout_width="0dp"
-            android:layout_height="300dp"
+            android:layout_height="0dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginBottom="16dp"
             android:scaleType="centerCrop"
             android:src="@color/accent"
             app:layout_constraintBottom_toTopOf="@+id/tv_name_cat"
-            app:layout_constraintDimensionRatio=""
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="ContentDescription" />
@@ -63,7 +63,7 @@
             tools:text="@string/breed" />
 
         <ImageView
-            android:id="@+id/iv_information"
+            android:id="@+id/iv_selected"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="8dp"
@@ -73,6 +73,32 @@
             android:src="@drawable/circle_white"
             app:layout_constraintEnd_toEndOf="@+id/iv_cat"
             app:layout_constraintTop_toTopOf="@+id/iv_cat" />
+
+        <ToggleButton
+            android:id="@+id/toggle_selected"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/selected_toggle"
+            android:backgroundTintMode="src_in"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintBottom_toBottomOf="@+id/iv_selected"
+            app:layout_constraintEnd_toEndOf="@+id/iv_selected"
+            app:layout_constraintStart_toStartOf="@id/iv_selected"
+            app:layout_constraintTop_toTopOf="@id/iv_selected" />
+
+        <ImageView
+            android:id="@+id/iv_information"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:alpha="0.6"
+            android:contentDescription="@string/information"
+            android:src="@drawable/circle_white"
+            app:layout_constraintEnd_toEndOf="@+id/iv_selected"
+            app:layout_constraintTop_toBottomOf="@+id/iv_selected" />
 
         <ImageView
             android:id="@+id/iv_information_icon"
