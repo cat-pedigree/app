@@ -24,162 +24,120 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/blur"
+        android:contentDescription="@string/dating"
+        app:layout_constraintBottom_toBottomOf="@+id/coordinatorLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:orientation="vertical"
         app:cardCornerRadius="20dp"
-        app:cardElevation="4dp"
-        app:cardMaxElevation="4dp"
+        app:cardElevation="8dp"
+        app:cardMaxElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-        tools:keep="@layout/item_post_profile">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:keep="@layout/item_post">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/iv_avatar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:padding="20dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/preview2"
+                android:src="@drawable/ic_baseline_lock_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="ContentDescription" />
-
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/dating" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/card_view"
-        app:layout_constraintTop_toBottomOf="@+id/card_view" />
+    <!--    <TextView-->
+<!--        android:id="@+id/tvMatchYourCat"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:text="@string/your_matches"-->
+<!--        style="@style/title3"-->
+<!--        android:textColor="@color/neutral_100"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />-->
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/tv_story"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/card_view"
-        app:layout_constraintEnd_toEndOf="@+id/card_view"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:src="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/toggle_loves_bg"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="8dp"
-        android:alpha="0.6"
-        android:contentDescription="@string/loves"
-        android:src="@drawable/circle_red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_story" />
-
-    <ImageView
-        android:id="@+id/toggle_loves"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_love_white"
-        android:contentDescription="@string/loves"
-        app:layout_constraintBottom_toBottomOf="@+id/toggle_loves_bg"
-        app:layout_constraintEnd_toEndOf="@+id/toggle_loves_bg"
-        app:layout_constraintStart_toStartOf="@id/toggle_loves_bg"
-        app:layout_constraintTop_toTopOf="@id/toggle_loves_bg" />
-
-    <ImageView
-        android:id="@+id/toggle_close_bg"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="64dp"
-        android:alpha="0.6"
-        android:contentDescription="@string/loves"
-        android:src="@drawable/circle_grey"
-        app:layout_constraintEnd_toStartOf="@+id/toggle_loves_bg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_story" />
-
-    <ImageView
-        android:id="@+id/toggle_close"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_cross"
-        android:contentDescription="@string/loves"
-        app:layout_constraintBottom_toBottomOf="@+id/toggle_close_bg"
-        app:layout_constraintEnd_toEndOf="@+id/toggle_close_bg"
-        app:layout_constraintStart_toStartOf="@id/toggle_close_bg"
-        app:layout_constraintTop_toTopOf="@id/toggle_close_bg" />
-
-<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-<!--        android:id="@+id/coordinatorLayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
 <!--        app:layout_constraintBottom_toBottomOf="parent"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent">-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvMatchYourCat"-->
+<!--        tools:listitem="@layout/item_dating" />-->
 
-<!--        <com.google.android.material.bottomappbar.BottomAppBar-->
-<!--            android:id="@+id/bottomAppBar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="bottom"-->
-<!--            app:fabCradleMargin="8dp"-->
-<!--            app:fabCradleRoundedCornerRadius="10dp"-->
-<!--            app:fabCradleVerticalOffset="10dp">-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-<!--            <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--                android:id="@+id/bottomNavigationView"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:background="@drawable/background_transparent"-->
-<!--                app:labelVisibilityMode="labeled"-->
-<!--                app:menu="@menu/bottom_navigation_menu" />-->
-<!--        </com.google.android.material.bottomappbar.BottomAppBar>-->
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:fabCradleMargin="8dp"
+            app:fabCradleRoundedCornerRadius="10dp"
+            app:fabCradleVerticalOffset="10dp">
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/fab"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:contentDescription="@string/camera_classification"-->
-<!--            android:src="@drawable/ic_camera_classification"-->
-<!--            app:backgroundTint="@color/accent"-->
-<!--            app:layout_anchor="@+id/bottomAppBar"-->
-<!--            app:layout_anchorGravity="top|center"-->
-<!--            app:tint="@color/white" />-->
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_transparent"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/bottom_navigation_menu" />
+        </com.google.android.material.bottomappbar.BottomAppBar>
 
-<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/camera_classification"
+            android:src="@drawable/ic_camera_classification"
+            app:backgroundTint="@color/accent"
+            app:layout_anchor="@+id/bottomAppBar"
+            app:layout_anchorGravity="top|center"
+            app:tint="@color/white" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
