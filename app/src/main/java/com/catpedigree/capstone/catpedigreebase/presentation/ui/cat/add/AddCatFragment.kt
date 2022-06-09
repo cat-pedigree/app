@@ -55,6 +55,8 @@ class AddCatFragment : Fragment() {
 
     private var isGenderSelected: String? = null
     private var isBreedSelected: String? = null
+    private var isColorSelected: String? = null
+    private var isQuestionWhiteSelected: String? = null
 
     private var latLng: LatLng? = null
 
@@ -95,21 +97,53 @@ class AddCatFragment : Fragment() {
         val adapterBreed = ArrayAdapter(requireContext(), R.layout.item_dropdown, breed)
         val gender = resources.getStringArray(R.array.item_gender)
         val adapterGender = ArrayAdapter(requireContext(), R.layout.item_dropdown, gender)
+        val questionWhite = resources.getStringArray(R.array.item_question_white)
+        val adapterQuestionWhite = ArrayAdapter(requireContext(),R.layout.item_dropdown, questionWhite)
 
         binding.breed.setAdapter(adapterBreed)
-        binding.breed.setText(getString(R.string.choose_breed), false)
 
         binding.breed.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 isBreedSelected = parent.getItemAtPosition(position).toString()
             }
         binding.gender.setAdapter(adapterGender)
-        binding.gender.setText(getString(R.string.choose_gender), false)
 
         binding.gender.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 isGenderSelected = parent.getItemAtPosition(position).toString()
+               when(position){
+                   0 -> {
+                       val colorFemale = resources.getStringArray(R.array.item_color_female)
+                       val adapterColorFemale = ArrayAdapter(requireContext(), R.layout.item_dropdown, colorFemale)
+                       binding.color.setAdapter(adapterColorFemale)
+
+                       binding.color.onItemClickListener =
+                           AdapterView.OnItemClickListener { child, _, pos, _ ->
+                               isColorSelected = child.getItemAtPosition(pos).toString()
+                           }
+                       binding.color.setAdapter(adapterColorFemale)
+                   }
+                   1 -> {
+                       val colorMale = resources.getStringArray(R.array.item_color_male)
+                       val adapterColorMale = ArrayAdapter(requireContext(), R.layout.item_dropdown, colorMale)
+                       binding.color.setAdapter(adapterColorMale)
+                       binding.color.onItemClickListener =
+                           AdapterView.OnItemClickListener { child, _, pos, _ ->
+                               isColorSelected = child.getItemAtPosition(pos).toString()
+                           }
+                       binding.color.setAdapter(adapterColorMale)
+                   }
+               }
             }
+
+
+
+        binding.isWhite.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+                isQuestionWhiteSelected = parent.getItemAtPosition(position).toString()
+            }
+        binding.isWhite.setAdapter(adapterQuestionWhite)
+
         setupViewModel()
         setupAction()
         setupMenu()
@@ -214,6 +248,7 @@ class AddCatFragment : Fragment() {
             val earShape = editTextEarShape.editText?.text.toString()
             val weight = editTextWeight.editText?.text.toString()
             val age = editTextAge.editText?.text.toString()
+            val story = editTextCatStory.editText?.text.toString()
             when {
                 name.isEmpty() -> {
                     Snackbar.make(editTextCatName, R.string.title_required, Snackbar.LENGTH_LONG)
@@ -257,6 +292,10 @@ class AddCatFragment : Fragment() {
                     Snackbar.make(editTextAge, R.string.age_required, Snackbar.LENGTH_LONG).show()
                     return
                 }
+                story.isEmpty() -> {
+                    Snackbar.make(editTextCatStory,R.string.story_required, Snackbar.LENGTH_LONG).show()
+                    return
+                }
                 currentFile == null -> {
                     Snackbar.make(ivPhoto, R.string.select_a_picture, Snackbar.LENGTH_LONG).show()
                     return
@@ -266,7 +305,7 @@ class AddCatFragment : Fragment() {
                     val nameCat = name.toRequestBody("text/plain".toMediaType())
                     val breedCat = isBreedSelected?.toRequestBody("text/plain".toMediaType())
                     val genderCat = isGenderSelected?.toRequestBody("text/plain".toMediaType())
-                    val colorCat = color.toRequestBody("text/plain".toMediaType())
+                    val colorCat = isColorSelected?.toRequestBody("text/plain".toMediaType())
                     val eyeColorCat = eyeColor.toRequestBody("text/plain".toMediaType())
                     val hairColorCat = hairColor.toRequestBody("text/plain".toMediaType())
                     val earShapeCat = earShape.toRequestBody("text/plain".toMediaType())
@@ -276,6 +315,12 @@ class AddCatFragment : Fragment() {
                         file.name,
                         requestImageFile
                     )
+                    val storyCat = story.toRequestBody("text/plain".toMediaType())
+                    val isWhiteCat = if(isQuestionWhiteSelected == "Yes" || isQuestionWhiteSelected == "Iya"){
+                        1
+                    }else{
+                        0
+                    }
                     if (userId != null) {
                         viewModel.uploadCat(
                             user.token ?: "",
@@ -283,13 +328,15 @@ class AddCatFragment : Fragment() {
                             nameCat,
                             breedCat!!,
                             genderCat!!,
-                            colorCat,
+                            colorCat!!,
                             eyeColorCat,
                             hairColorCat,
                             earShapeCat,
                             weight.toDouble(),
                             age.toInt(),
                             imageMultipart,
+                            isWhiteCat,
+                            storyCat,
                             latLng
                         )
                     }
