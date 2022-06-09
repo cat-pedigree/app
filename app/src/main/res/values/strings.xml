@@ -139,6 +139,27 @@
         <item>Male</item>
     </string-array>
 
+    <string-array name="item_color_female">
+        <item>Black</item>
+        <item>Grey</item>
+        <item>Orange</item>
+        <item>Silver</item>
+        <item>Black Tortie</item>
+        <item>Grey Tortie</item>
+    </string-array>
+
+    <string-array name="item_color_male">
+        <item>Black</item>
+        <item>Grey</item>
+        <item>Orange</item>
+        <item>Silver</item>
+    </string-array>
+
+    <string-array name="item_question_white">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
     <string-array name="item_description">
         <item>The abyssinian cat is one of the oldest known short-haired cat breeds. Abyssinia resembles paintings and sculptures that date back to Ancient Egypt. The trade in this cat breed was banned by the Egyptians. In addition, the Egyptians also built special temples to worship the Abyssinians.</item>
         <item>The Bengal cat is the fourth offspring of a cross between an American Shorthair cat and an Asian Leopard cat. This cat comes from California, United States. Although classified as a forest cat, the Bengal breed is one of the most popular animals and is used as a pet.</item>
@@ -285,7 +306,7 @@
     <string name="desc_img_your_cat">This is your cat avatar</string>
     <string name="desc_result_pedigree">This is a photo from pedigree</string>
     <string name="pedigree_result">Result :</string>
-    <string name="pedigree_desc_result">The pedigree of the Abyssinian Cat and Bobtail Cat Breed will produce American Curl Cat Breed.</string>
+    <string name="pedigree_desc_result">The pedigree of your cat and \nthe cat you choose will produce colors</string>
     <string name="desc">Results are not 100% accurate. This is based on prediction</string>
     <string name="filter">Filter</string>
     <string name="desc_icon_filter">This is the filter icon</string>
@@ -307,5 +328,8 @@
     <string name="characteristic">Characteristic</string>
     <string name="choose_your_cat">Choose your cat</string>
     <string name="information">Information</string>
+    <string name="is_white">Is there a white color on the cats skin?</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
 
 </resources>

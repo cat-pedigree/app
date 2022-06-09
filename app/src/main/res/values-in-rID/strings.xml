@@ -135,8 +135,29 @@
     <string name="gender">Jenis Kelamin</string>
 
     <string-array name="item_gender">
-        <item>Betina</item>
-        <item>Jantan</item>
+        <item>Perempuan</item>
+        <item>Laki-Laki</item>
+    </string-array>
+
+    <string-array name="item_color_female">
+        <item>Black</item>
+        <item>Grey</item>
+        <item>Orange</item>
+        <item>Silver</item>
+        <item>Black Tortie</item>
+        <item>Grey Tortie</item>
+    </string-array>
+
+    <string-array name="item_color_male">
+        <item>Black</item>
+        <item>Grey</item>
+        <item>Orange</item>
+        <item>Silver</item>
+    </string-array>
+
+    <string-array name="item_question_white">
+        <item>Iya</item>
+        <item>Tidak</item>
     </string-array>
 
     <string-array name="item_description">
@@ -307,4 +328,7 @@
     <string name="characteristic">Karakteristik</string>
     <string name="choose_your_cat">Pilih salah satu kucing kamu</string>
     <string name="information">Informasi</string>
+    <string name="is_white">Apakah ada warna putih pada kulit kucing?</string>
+    <string name="female">Perempuan</string>
+    <string name="male">Laki-Laki</string>
 </resources>
