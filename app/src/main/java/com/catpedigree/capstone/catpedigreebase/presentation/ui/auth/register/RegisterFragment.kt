@@ -1,17 +1,17 @@
 package com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.register
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.catpedigree.capstone.catpedigreebase.R
 import com.catpedigree.capstone.catpedigreebase.databinding.FragmentRegisterBinding
-import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 import com.catpedigree.capstone.catpedigreebase.presentation.factory.ViewModelFactory
+import com.catpedigree.capstone.catpedigreebase.utils.ToastUtils
 
 class RegisterFragment : Fragment() {
 
