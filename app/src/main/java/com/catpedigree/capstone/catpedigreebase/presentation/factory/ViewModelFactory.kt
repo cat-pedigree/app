@@ -4,27 +4,29 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.*
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.about.AboutViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.account.AccountViewModel
-import com.catpedigree.capstone.catpedigreebase.utils.injection.Injection
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.login.LoginViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.auth.register.RegisterViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.add.AddCatViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.cat.view.CatProfileViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.classification.ResultViewModel
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.view.CommentViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.dating.DatingViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.home.HomeViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.maps.MapsViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.onboarding.OnBoardingViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree.PedigreeViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.create.CreateCommentViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.comment.view.CommentViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.CreatePostViewModel
-import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.favorite.FavoriteViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.detail.PostDetailProfileViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.edit.EditProfileViewModel
+import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.favorite.FavoriteViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.my_profile.view.MyProfileViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.profile.user.ProfileViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.services.ServicesViewModel
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.veterinary.VeterinaryViewModel
+import com.catpedigree.capstone.catpedigreebase.utils.injection.Injection
 
 class ViewModelFactory
     (
@@ -98,6 +100,12 @@ class ViewModelFactory
             }
             modelClass.isAssignableFrom(PedigreeViewModel::class.java) -> {
                 PedigreeViewModel(userRepository,catRepository) as T
+            }
+            modelClass.isAssignableFrom(DatingViewModel::class.java) -> {
+                DatingViewModel(userRepository) as T
+            }
+            modelClass.isAssignableFrom(AboutViewModel::class.java) -> {
+                AboutViewModel(userRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
