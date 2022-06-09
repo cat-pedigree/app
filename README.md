@@ -28,7 +28,7 @@
 </p>
    
 <h4>
-    <a href="https://github.com/cat-pedigree/app/">View Demo</a>
+    <a href="https://github.com/cat-pedigree/app/">Download APK</a>
   <span> · </span>
     <a href="https://github.com/cat-pedigree/app/">Documentation</a>
   <span> · </span>
