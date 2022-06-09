@@ -43,7 +43,7 @@ android {
         freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
     }
     buildFeatures {
-        viewBinding = true
+        viewBinding true
     }
     buildFeatures{
         mlModelBinding true

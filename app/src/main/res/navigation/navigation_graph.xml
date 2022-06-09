@@ -648,6 +648,9 @@
         <action
             android:id="@+id/action_pedigreeFilterFragment_to_informationFragment"
             app:destination="@id/informationFragment" />
+        <action
+            android:id="@+id/action_pedigreeFilterFragment_to_pedigreeResultFragment"
+            app:destination="@id/pedigreeResultFragment" />
     </fragment>
     <dialog
         android:id="@+id/informationFragment"
@@ -661,4 +664,46 @@
             android:id="@+id/action_informationFragment_to_pedigreeFilterFragment"
             app:destination="@id/pedigreeFilterFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/pedigreeResultFragment"
+        android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree.PedigreeResultFragment"
+        android:label="fragment_pedigree_result"
+        tools:layout="@layout/fragment_pedigree_result">
+        <argument
+            android:name="catOneName"
+            app:argType="string"/>
+        <argument
+            android:name="catOnePhoto"
+            app:argType="string"/>
+        <argument
+            android:name="catOneGender"
+            app:argType="string"/>
+        <argument
+            android:name="catOneColor"
+            app:argType="string"/>
+        <argument
+            android:name="catOneIsWhite"
+            app:argType="integer"/>
+        <argument
+            android:name="catTwoName"
+            app:argType="string"/>
+        <argument
+            android:name="catTwoPhoto"
+            app:argType="string"/>
+        <argument
+            android:name="catTwoGender"
+            app:argType="string"/>
+        <argument
+            android:name="catTwoColor"
+            app:argType="string"/>
+        <argument
+            android:name="catTwoIsWhite"
+            app:argType="integer"/>
+        <argument
+            android:name="cat"
+            app:argType="com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems" />
+        <action
+            android:id="@+id/action_pedigreeResultFragment_to_pedigreeFragment"
+            app:destination="@id/pedigreeFragment" />
+    </fragment>
 </navigation>
