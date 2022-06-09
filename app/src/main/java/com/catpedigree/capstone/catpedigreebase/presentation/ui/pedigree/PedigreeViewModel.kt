@@ -5,6 +5,8 @@ import com.catpedigree.capstone.catpedigreebase.data.local.repository.CatReposit
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.FollowRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.PostRepository
 import com.catpedigree.capstone.catpedigreebase.data.local.repository.UserRepository
+import com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems
+import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 import com.catpedigree.capstone.catpedigreebase.utils.error.AuthError
 import kotlinx.coroutines.launch
 
@@ -32,18 +34,31 @@ class PedigreeViewModel(
     fun getCatFilter(
         breed: String?,
         color: String?,
-        eye_color: String?,
-        hair_color: String?,
-        ear_shape: String) = userItems.switchMap {
+        gender: String?,
+        isWhite: Int?
+    ) = userItems.switchMap {
         catRepository.getCatFilter(
             it.token ?: "",
             breed?: "",
             color ?: "",
-            eye_color ?: "",
-            hair_color ?: "",
-            ear_shape ?: ""
+            gender ?: "",
+            isWhite!!,
         )
     }
+
+    fun createSelectedCat(cat: CatItems) {
+        viewModelScope.launch {
+            catRepository.setCatSelected(cat, true)
+        }
+    }
+
+    fun deleteSelectedCat(cat: CatItems) {
+        viewModelScope.launch {
+            catRepository.setCatSelected(cat, false)
+        }
+    }
+
+    fun getCatSelected() = catRepository.getCatSelected()
 
     fun logout() {
         viewModelScope.launch {
