@@ -14,9 +14,10 @@ import com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems
 import com.catpedigree.capstone.catpedigreebase.databinding.ItemMateBinding
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree.PedigreeFilterFragmentArgs
 import com.catpedigree.capstone.catpedigreebase.presentation.ui.pedigree.PedigreeFilterFragmentDirections
+import com.google.android.material.snackbar.Snackbar
 
-class FilterAdapter : ListAdapter<CatItems, FilterAdapter.ViewHolder>(DIFF_CALLBACK) {
-    class ViewHolder(private var binding: ItemMateBinding) :
+class FilterAdapter(private val onCatSelected: (CatItems) -> Unit) : ListAdapter<CatItems, FilterAdapter.ViewHolder>(DIFF_CALLBACK) {
+    class ViewHolder(val binding: ItemMateBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(cat: CatItems) {
             val catPhotoPath = "${BuildConfig.BASE_API_PHOTO}${cat.photo}"
@@ -28,7 +29,7 @@ class FilterAdapter : ListAdapter<CatItems, FilterAdapter.ViewHolder>(DIFF_CALLB
                     .signature(ObjectKey(catPhotoPath))
                     .into(ivCat)
 
-                tvNameCat.text = cat.name.toString()
+                tvNameCat.text = cat.name
                 tvBreedCat.text = cat.breed.toString()
 
                 ivInformation.setOnClickListener {
@@ -37,6 +38,10 @@ class FilterAdapter : ListAdapter<CatItems, FilterAdapter.ViewHolder>(DIFF_CALLB
                             cat
                         )
                     )
+                }
+
+                root.setOnClickListener {
+
                 }
 
 //                root.setOnClickListener {
@@ -60,8 +65,26 @@ class FilterAdapter : ListAdapter<CatItems, FilterAdapter.ViewHolder>(DIFF_CALLB
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.binding.root.context
         val cat = getItem(position)
         holder.bind(cat)
+
+        holder.binding.apply {
+            val toggleSelected = toggleSelected
+            toggleSelected.isChecked = cat.isSelected
+            toggleSelected.setOnClickListener {
+                if(cat.isSelected){
+                    onCatSelected(cat)
+                    Snackbar.make(toggleSelected, "Remove From Selected", Snackbar.LENGTH_LONG)
+                        .show()
+                }else{
+                    onCatSelected(cat)
+                    Snackbar.make(toggleSelected, "Add to selected", Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            }
+        }
+
     }
 
     companion object {
