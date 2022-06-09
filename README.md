@@ -55,12 +55,20 @@
 - [Usage](#cat-pedigree-usage)
 - [Contributing](#contributing)
 - [FAQ](#cat-pedigree-faq)
-- [Contact](#cat-pedigree-contact)
+- [Contact](#contact)
 - [Acknowledgements](#cat-pedigree-acknowledgements)
 
 <!-- Contributing -->
-## Contributing
+## Contributing 😉
 
 <a href="https://github.com/cat-pedigree/app/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=cat-pedigree/app" />
 </a>
+
+<!-- Contact -->
+## Contact
+
+| ID         | Name                   | Contact |
+|------------|------------------------|---------|
+| A7314F2733 | Budi Setiawan          |<a href="https://www.linkedin.com/in/budi-setiawan15/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> <a href="https://github.com/budistwn15"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>         |
+| A2152G1665 | Robby Ramadhan Anshory |<a href="https://www.linkedin.com/in/robby-ramadhan-anshory-99b338228/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> <a href="https://github.com/RobbyRamadhanAsnhory"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>          |
