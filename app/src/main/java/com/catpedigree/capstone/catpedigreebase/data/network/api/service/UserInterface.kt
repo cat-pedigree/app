@@ -11,7 +11,6 @@ interface UserInterface {
     suspend fun register(
         @Field("name") name: String,
         @Field("username") username: String,
-        @Field("phone_number") phone_number: String,
         @Field("email") email: String,
         @Field("password") password: String,
     ): Response<RegisterResponse>

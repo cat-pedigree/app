@@ -37,9 +37,6 @@ data class UserData(
     @field:SerializedName("email")
     val email: String? = null,
 
-    @field:SerializedName("phone_number")
-    val phone_number: String? = null,
-
     @field:SerializedName("bio")
     val bio: String? = null,
 

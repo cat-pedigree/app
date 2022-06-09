@@ -7,7 +7,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".presentation.ui.profile.user.CatUserFragment">
+        tools:context=".presentation.ui.profile.user.CatUserFragment"
+        tools:keep="@layout/fragment_cat_user">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -31,47 +32,77 @@
             android:id="@+id/iv_profile_cat"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:contentDescription="@string/desc_avatar_profile_cat"
+            android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             tools:src="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/iv_identity"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/cat_month"
+            android:src="@drawable/shape_rectangle"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile_cat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_cat_name"
             style="@style/title4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:text="@string/cat_name"
             android:textColor="@color/neutral_100"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_profile_cat" />
+            app:layout_constraintEnd_toEndOf="@+id/iv_identity"
+            app:layout_constraintStart_toStartOf="@+id/iv_identity"
+            app:layout_constraintTop_toTopOf="@+id/iv_identity" />
 
         <TextView
             android:id="@+id/tv_breed"
             style="@style/heading3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:text="@string/breed"
             android:textColor="@color/neutral_80"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_identity"
+            app:layout_constraintStart_toStartOf="@+id/iv_identity"
             app:layout_constraintTop_toBottomOf="@+id/tv_cat_name" />
+
+        <TextView
+            android:id="@+id/tv_characteristic"
+            style="@style/title4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/characteristic"
+            android:textColor="@color/neutral_100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile_cat" />
 
         <ImageView
             android:id="@+id/iv_month"
             android:layout_width="115dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:alpha="0.6"
             android:contentDescription="@string/cat_month"
-            android:src="@drawable/rectangle_white"
+            android:src="@drawable/shape_rectangle_blue"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_breed" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_characteristic" />
 
         <TextView
             android:id="@+id/tv_month"
@@ -81,7 +112,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/cat_month"
             android:textAlignment="center"
-            android:textColor="@color/neutral_100"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/iv_month"
             app:layout_constraintStart_toStartOf="@+id/iv_month"
             app:layout_constraintTop_toTopOf="@+id/iv_month" />
@@ -93,6 +124,7 @@
             android:layout_height="wrap_content"
             android:text="@string/cat_age"
             android:textAlignment="center"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/iv_month"
             app:layout_constraintStart_toStartOf="@+id/iv_month"
             app:layout_constraintTop_toBottomOf="@+id/tv_month" />
@@ -101,14 +133,13 @@
             android:id="@+id/iv_color"
             android:layout_width="115dp"
             android:layout_height="60dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
             android:alpha="0.6"
             android:contentDescription="@string/cat_color"
-            android:src="@drawable/rectangle_white"
+            android:src="@drawable/shape_rectangle_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_breed" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_characteristic" />
 
         <TextView
             android:id="@+id/tv_color_name"
@@ -118,7 +149,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/color_name"
             android:textAlignment="center"
-            android:textColor="@color/neutral_100"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/iv_color"
             app:layout_constraintStart_toStartOf="@+id/iv_color"
             app:layout_constraintTop_toTopOf="@+id/iv_color" />
@@ -128,8 +159,9 @@
             style="@style/body3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/follower"
+            android:text="@string/color"
             android:textAlignment="center"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/iv_color"
             app:layout_constraintStart_toStartOf="@+id/iv_color"
             app:layout_constraintTop_toBottomOf="@+id/tv_color_name" />
@@ -138,13 +170,13 @@
             android:id="@+id/iv_gender"
             android:layout_width="115dp"
             android:layout_height="60dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:alpha="0.6"
             android:contentDescription="@string/cat_gender"
-            android:src="@drawable/rectangle_white"
+            android:src="@drawable/shape_rectangle_blue"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_breed" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_characteristic" />
 
         <TextView
             android:id="@+id/tv_gender_name"
@@ -152,10 +184,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
             android:text="@string/cat_gender"
             android:textAlignment="center"
-            android:textColor="@color/neutral_100"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/iv_gender"
             app:layout_constraintStart_toStartOf="@+id/iv_gender"
             app:layout_constraintTop_toTopOf="@+id/iv_gender" />
@@ -165,12 +196,123 @@
             style="@style/body3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:text="@string/cat_gender"
             android:textAlignment="center"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/iv_gender"
             app:layout_constraintStart_toStartOf="@+id/iv_gender"
             app:layout_constraintTop_toBottomOf="@+id/tv_gender_name" />
+
+        <ImageView
+            android:id="@+id/iv_eye_color"
+            android:layout_width="115dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0.6"
+            android:contentDescription="@string/cat_month"
+            android:src="@drawable/shape_rectangle_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_month" />
+
+        <TextView
+            android:id="@+id/tv_eye_color"
+            style="@style/heading1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/eye_color"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/iv_eye_color"
+            app:layout_constraintStart_toStartOf="@+id/iv_eye_color"
+            app:layout_constraintTop_toTopOf="@+id/iv_eye_color" />
+
+        <TextView
+            android:id="@+id/tv_eye"
+            style="@style/body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eye_color"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/iv_eye_color"
+            app:layout_constraintStart_toStartOf="@+id/iv_eye_color"
+            app:layout_constraintTop_toBottomOf="@+id/tv_eye_color" />
+
+        <ImageView
+            android:id="@+id/iv_hair_color"
+            android:layout_width="115dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0.6"
+            android:contentDescription="@string/cat_color"
+            android:src="@drawable/shape_rectangle_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_color" />
+
+        <TextView
+            android:id="@+id/tv_hair_color"
+            style="@style/heading1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/hair_color"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/iv_hair_color"
+            app:layout_constraintStart_toStartOf="@+id/iv_hair_color"
+            app:layout_constraintTop_toTopOf="@+id/iv_hair_color" />
+
+        <TextView
+            android:id="@+id/tv_hair"
+            style="@style/body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hair_color"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/iv_hair_color"
+            app:layout_constraintStart_toStartOf="@+id/iv_hair_color"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hair_color" />
+
+        <ImageView
+            android:id="@+id/iv_ear_shape"
+            android:layout_width="115dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:alpha="0.6"
+            android:contentDescription="@string/cat_gender"
+            android:src="@drawable/shape_rectangle_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_gender" />
+
+        <TextView
+            android:id="@+id/tv_ear_shape"
+            style="@style/heading1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/ear_shape"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/iv_ear_shape"
+            app:layout_constraintStart_toStartOf="@+id/iv_ear_shape"
+            app:layout_constraintTop_toTopOf="@+id/iv_ear_shape" />
+
+        <TextView
+            android:id="@+id/tv_ear"
+            style="@style/body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ear_shape"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/iv_ear_shape"
+            app:layout_constraintStart_toStartOf="@+id/iv_ear_shape"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ear_shape" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -194,7 +336,7 @@
             android:textColor="@color/neutral_100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_month" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_eye_color" />
 
         <TextView
             android:id="@+id/tv_story_cat"
@@ -208,20 +350,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_story" />
-
-        <TextView
-            android:id="@+id/tv_album"
-            style="@style/title4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/album"
-            android:textColor="@color/neutral_100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_story_cat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

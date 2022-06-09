@@ -1,127 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.ui.dating.DatingFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:keep="@layout/fragment_dating">
 
-        <ImageView
-            android:id="@+id/imageView2"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
-            android:layout_height="298dp"
-            android:contentDescription="@string/dating_desc_img"
-            android:src="@drawable/img_preview"
-            tools:ignore="MissingConstraints" />
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/top_app"
+            app:title="@string/dating" />
 
-        <LinearLayout
-            android:id="@+id/ll_first"
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:cardMaxElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        tools:keep="@layout/item_post_profile">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="255dp">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/cv_first"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/background_services"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/ib_cross"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_margin="18dp"
-                    android:contentDescription="@string/dating_desc_ic_cross"
-                    android:src="@drawable/ic_cross" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/cv_second"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                android:layout_marginStart="80dp"
-                android:background="@drawable/background_love_dating"
+            <ImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/preview2"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cv_first">
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="ContentDescription" />
 
-                <ImageView
-                    android:id="@+id/ib_love"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="22dp"
-                    android:contentDescription="@string/dating_desc_ic_love"
-                    android:src="@drawable/ic_love_white" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/card_view"
+        app:layout_constraintTop_toBottomOf="@+id/card_view" />
 
-        </LinearLayout>
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <TextView
-            android:id="@+id/tv_name_cat"
-            style="@style/title4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/dating_cat_name"
-            android:textColor="@color/neutral_100"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ll_first" />
+    <TextView
+        android:id="@+id/tv_story"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <TextView
-            android:id="@+id/tv_cat_breed"
-            style="@style/heading3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="@string/dating_cat_breed"
-            android:textColor="@color/neutral_80"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_name_cat" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/card_view"
+        app:layout_constraintEnd_toEndOf="@+id/card_view"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@tools:sample/avatars" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_cat_breed">
+    <ImageView
+        android:id="@+id/toggle_loves_bg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
+        android:alpha="0.6"
+        android:contentDescription="@string/loves"
+        android:src="@drawable/circle_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_story" />
 
-            <TextView
-                style="@style/title4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dating_cat_story"
-                android:textColor="@color/neutral_100" />
+    <ImageView
+        android:id="@+id/toggle_loves"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_love_white"
+        android:contentDescription="@string/loves"
+        app:layout_constraintBottom_toBottomOf="@+id/toggle_loves_bg"
+        app:layout_constraintEnd_toEndOf="@+id/toggle_loves_bg"
+        app:layout_constraintStart_toStartOf="@id/toggle_loves_bg"
+        app:layout_constraintTop_toTopOf="@id/toggle_loves_bg" />
 
-            <TextView
-                style="@style/body2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dating_desc_story"
-                android:textColor="@color/neutral_80" />
+    <ImageView
+        android:id="@+id/toggle_close_bg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="64dp"
+        android:alpha="0.6"
+        android:contentDescription="@string/loves"
+        android:src="@drawable/circle_grey"
+        app:layout_constraintEnd_toStartOf="@+id/toggle_loves_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_story" />
 
-        </LinearLayout>
+    <ImageView
+        android:id="@+id/toggle_close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_cross"
+        android:contentDescription="@string/loves"
+        app:layout_constraintBottom_toBottomOf="@+id/toggle_close_bg"
+        app:layout_constraintEnd_toEndOf="@+id/toggle_close_bg"
+        app:layout_constraintStart_toStartOf="@id/toggle_close_bg"
+        app:layout_constraintTop_toTopOf="@id/toggle_close_bg" />
 
-        <include layout="@layout/navigation_bottom" />
+<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--        android:id="@+id/coordinatorLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        <com.google.android.material.bottomappbar.BottomAppBar-->
+<!--            android:id="@+id/bottomAppBar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            app:fabCradleMargin="8dp"-->
+<!--            app:fabCradleRoundedCornerRadius="10dp"-->
+<!--            app:fabCradleVerticalOffset="10dp">-->
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+<!--            <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--                android:id="@+id/bottomNavigationView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:background="@drawable/background_transparent"-->
+<!--                app:labelVisibilityMode="labeled"-->
+<!--                app:menu="@menu/bottom_navigation_menu" />-->
+<!--        </com.google.android.material.bottomappbar.BottomAppBar>-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/fab"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:contentDescription="@string/camera_classification"-->
+<!--            android:src="@drawable/ic_camera_classification"-->
+<!--            app:backgroundTint="@color/accent"-->
+<!--            app:layout_anchor="@+id/bottomAppBar"-->
+<!--            app:layout_anchorGravity="top|center"-->
+<!--            app:tint="@color/white" />-->
+
+<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,7 +36,6 @@ open class UserRepository(
                         id = it.user?.id,
                         name = it.user?.name,
                         username = it.user?.username,
-                        phone_number = it.user?.phone_number,
                         email = email,
                         bio = it.user?.bio,
                         profile_photo_path = it.user?.profile_photo_path,
@@ -60,12 +59,11 @@ open class UserRepository(
     suspend fun register(
         name: String,
         username: String,
-        phone_number: String,
         email: String,
         password: String
     ) {
         try {
-            val responses = userRemote.register(name, username, phone_number, email, password)
+            val responses = userRemote.register(name, username, email, password)
             if (!responses.isSuccessful) {
                 throw AuthError(
                     responses.body()?.message ?: context.getString(R.string.register_error)
@@ -237,7 +235,6 @@ open class UserRepository(
                     id = null,
                     name = null,
                     username = null,
-                    phone_number = null,
                     email = null,
                     bio = null,
                     profile_photo_path = "",
