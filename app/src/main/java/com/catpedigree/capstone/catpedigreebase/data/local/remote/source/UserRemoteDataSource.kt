@@ -26,7 +26,6 @@ class UserRemoteDataSource(private val userInterface: UserInterface) {
         bio: String,
     ) = userInterface.profile("Bearer $token", name, username, bio)
 
-
     suspend fun change(
         token: String,
         profile_photo_path: MultipartBody.Part,
