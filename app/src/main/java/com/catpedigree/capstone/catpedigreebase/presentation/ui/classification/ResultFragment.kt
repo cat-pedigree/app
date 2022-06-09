@@ -92,6 +92,9 @@ class ResultFragment : Fragment() {
             }
             this.user = userItems
         }
+        viewModel.isLoading.observe(viewLifecycleOwner) { state ->
+            showLoading(state)
+        }
     }
 
     private fun setupMenu(){
@@ -166,6 +169,7 @@ class ResultFragment : Fragment() {
                 ivPreview.setImageBitmap(result)
                 ivPreviewCircle.setImageURI(Uri.fromFile(photoFile))
                 catClassification(result)
+                catClassification(result)
             }
         }
     }
@@ -176,12 +180,10 @@ class ResultFragment : Fragment() {
         val catModel = Model2.newInstance(requireContext())
         val inputFeature : TensorBuffer = TensorBuffer.createFixedSize(intArrayOf(1,150,150,3), DataType.FLOAT32)
         val buffer: ByteBuffer = convertBitmapToByteBuffer(catImage)
-
         inputFeature.loadBuffer(buffer)
 
         val output = catModel.process(inputFeature)
         val outputFeature = output.outputFeature0AsTensorBuffer
-
 
         val max = getMax(outputFeature.floatArray)
 
@@ -194,12 +196,31 @@ class ResultFragment : Fragment() {
                 activity?.startActivity(intent)
             }
         }
-
         catModel.close()
-
     }
 
+    private fun convertBitmapToByteBuffer(result: Bitmap): ByteBuffer{
+        val imageByteBuffer = ByteBuffer.allocateDirect(getModelSize())
+        imageByteBuffer.order(ByteOrder.nativeOrder())
 
+        val pixels = IntArray(IMAGE_WIDTH * IMAGE_HEIGHT)
+        result.getPixels(pixels, 0, result.width,0,0,result.width, result.height)
+
+        var pixel = 0
+        for(i in 0 until IMAGE_WIDTH){
+            for(j in 0 until IMAGE_HEIGHT){
+                val pixelVal = pixels[pixel++]
+
+                imageByteBuffer.putFloat(((pixelVal shr 16 and 0xFF) - 127.5f) / 127.5f)
+                imageByteBuffer.putFloat(((pixelVal shr 8 and 0xFF) - 127.5f) / 127.5f)
+                imageByteBuffer.putFloat(((pixelVal and 0xFF) - 127.5f) / 127.5f)
+            }
+        }
+        result.recycle()
+        return imageByteBuffer
+    }
+
+    private fun getModelSize(): Int = FLOAT_SIZE * IMAGE_WIDTH * IMAGE_HEIGHT * CHANNEL_SIZE
 
     private fun getMax(arr:FloatArray) : Int{
         var min = 0.0f
@@ -296,5 +317,18 @@ class ResultFragment : Fragment() {
 
             }
         return description
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        (if (isLoading) View.VISIBLE else View.INVISIBLE).also {
+            binding.progressBar.visibility = it
+        }
+    }
+
+    companion object{
+        private const val FLOAT_SIZE = 4
+        private const val IMAGE_WIDTH = 150
+        private const val IMAGE_HEIGHT = 150
+        private const val CHANNEL_SIZE = 3
     }
 }
