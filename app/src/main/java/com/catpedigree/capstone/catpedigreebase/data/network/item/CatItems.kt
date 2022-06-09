@@ -17,16 +17,16 @@ data class CatItems(
     val user_id: Int? = null,
 
     @field:SerializedName("name")
-    val name: String? = null,
+    val name: String,
 
     @field:SerializedName("breed")
     val breed: String? = null,
 
     @field:SerializedName("gender")
-    val gender: String? = null,
+    val gender: String,
 
     @field:SerializedName("color")
-    val color: String? = null,
+    val color: String,
 
     @field:SerializedName("eye_color")
     val eye_color: String? = null,
@@ -44,12 +44,21 @@ data class CatItems(
     val age: Int? = null,
 
     @field:SerializedName("photo")
-    val photo: String? = null,
+    val photo: String,
+
+    @field:SerializedName("isWhite")
+    val isWhite: Int,
+
+    @field:SerializedName("story")
+    val story: String? = null,
+
+    @field:SerializedName("isSelected")
+    var isSelected: Boolean,
 
     @field:SerializedName("lat")
     val lat: Double? = null,
 
     @field:SerializedName("lon")
-    val lon: Double? = null
+    val lon: Double? = null,
 ) : Parcelable
 

@@ -22,6 +22,8 @@ interface CatInterface {
         @Part("weight") weight: Double,
         @Part("age") age: Int,
         @Part photo: MultipartBody.Part,
+        @Part("isWhite") isWhite: Int,
+        @Part("story") story: RequestBody,
         @Part("lat") lat: Double? = null,
         @Part("lon") lon: Double? = null,
     ): Response<CatCreateResponse>
@@ -37,9 +39,8 @@ interface CatInterface {
         @Header("Authorization") token: String,
         @Query("breed") breed: String?= null,
         @Query("color") color: String?= null,
-        @Query("eye_color") eye_color: String?= null,
-        @Query("hair_color") hair_color: String?= null,
-        @Query("ear_shape") ear_shape: String?= null,
+        @Query("gender") gender: String?= null,
+        @Query("isWhite") isWhite: Int?= null,
     ): Response<CatResponse>
 
     @GET("cat/all")

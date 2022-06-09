@@ -1,11 +1,9 @@
 package com.catpedigree.capstone.catpedigreebase.data.local.room.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.catpedigree.capstone.catpedigreebase.data.network.item.CatItems
+import com.catpedigree.capstone.catpedigreebase.data.network.item.PostItems
 
 @Dao
 interface CatDao {
@@ -21,6 +19,15 @@ interface CatDao {
 
     @Query("SELECT count(*) FROM cat_items WHERE user_id = :user_id")
     fun checkCat(user_id: Int?): LiveData<Int>
+
+    @Query("SELECT * FROM cat_items WHERE isSelected = 1")
+    fun getCatSelected(): LiveData<CatItems>
+
+    @Update
+    suspend fun updateCat(cat: CatItems)
+
+    @Query("SELECT EXISTS(SELECT * FROM cat_items WHERE id = :id AND isSelected = 1)")
+    suspend fun isCatSelected(id: Int): Boolean
 
     @Query("DELETE FROM cat_items")
     suspend fun deleteAllCats()
