@@ -67,7 +67,6 @@ class RegisterFragment : Fragment() {
             binding.btnRegister.setOnClickListener {
                 val name = binding.nameEditText.editText?.text.toString()
                 val username = binding.usernameEditText.editText?.text.toString()
-                val phoneNumber = binding.phoneNumberEditText.editText?.text.toString()
                 val email = binding.emailEditText.editText?.text.toString()
                 val password = binding.passwordEditText.editText?.text.toString()
                 val confirmPassword = binding.confirmPasswordEditText.editText?.text.toString()
@@ -78,9 +77,6 @@ class RegisterFragment : Fragment() {
                     }
                     username.isEmpty() -> {
                         usernameEditText.error = getString(R.string.username_required)
-                    }
-                    phoneNumber.isEmpty() -> {
-                        phoneNumberEditText.error = getString(R.string.phone_number_required)
                     }
                     email.isEmpty() -> {
                         emailEditText.error = getString(R.string.email_required)
@@ -104,7 +100,7 @@ class RegisterFragment : Fragment() {
                         passwordEditText.error = getString(R.string.password_match)
                     }
                     else -> {
-                        viewModel.register(name, username, phoneNumber, email, password)
+                        viewModel.register(name, username, email, password)
                     }
                 }
             }

@@ -21,14 +21,13 @@ class RegisterViewModel(private val userRepository: UserRepository) : ViewModel(
     fun register(
         name: String,
         username: String,
-        phone_number: String,
         email: String,
         password: String
     ) {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                userRepository.register(name, username, phone_number, email, password)
+                userRepository.register(name, username, email, password)
                 _isSuccess.value = true
             } catch (e: AuthError) {
                 _errorMessage.value = e.message
