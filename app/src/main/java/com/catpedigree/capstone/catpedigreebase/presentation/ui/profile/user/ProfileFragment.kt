@@ -88,13 +88,6 @@ class ProfileFragment : Fragment() {
                 )
             }
 
-            viewModel.checkCat(user.id).observe(viewLifecycleOwner){
-                if(it == 0){
-                    myCats.visibility = View.GONE
-                    rvCats.visibility = View.GONE
-                }
-            }
-
             viewModel.getCat(user.id).observe(viewLifecycleOwner) { result ->
                 if (result != null) {
                     when (result) {
