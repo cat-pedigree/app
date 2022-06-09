@@ -39,6 +39,8 @@ class AddCatViewModel(
         weight: Double,
         age: Int,
         photo: MultipartBody.Part,
+        isWhite: Int,
+        story: RequestBody,
         latLng: LatLng? = null
     ) {
         viewModelScope.launch {
@@ -57,6 +59,8 @@ class AddCatViewModel(
                     weight,
                     age,
                     photo,
+                    isWhite,
+                    story,
                     latLng
                 )
                 _isSuccess.value = true
