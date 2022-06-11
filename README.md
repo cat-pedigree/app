@@ -74,7 +74,7 @@ git clone https://github.com/cat-pedigree/app.git
 - Open In Android studio
 - Please wait gradle project synchronization
 
-#### How to Get Google Maps API key
+### How to Get Google Maps API key
 how to get Google Maps API key? Don't worry, Android Studio will provide a link that you can directly use to create a project in Google Console and get an API Key for Google Maps.
 - First, sign in to the Google Cloud Console and go to the Credentials tab.
 - Check and click AGREE AND CONTINUE to agree to the Terms of Service.
