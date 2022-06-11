@@ -17,8 +17,8 @@
 
     <!-- TODO: String on Login -->
     <string name="btn_login">Login</string>
-    <string name="title_login">Login</string>
-    <string name="desc_login">Please Enter details below to continue</string>
+    <string name="title_login">Let’s Sign In</string>
+    <string name="desc_login">Welcome back you\'ve been missed</string>
     <string name="title_register">Sign Up</string>
     <string name="desc_register">Let\'s a new create account</string>
     <string name="email">Email</string>

@@ -17,8 +17,8 @@
 
     <!-- TODO: String on Login -->
     <string name="btn_login">Masuk</string>
-    <string name="title_login">Masuk</string>
-    <string name="desc_login">Silakan Masukkan form detail di bawah ini untuk melanjutkan</string>
+    <string name="title_login">Ayo Masuk</string>
+    <string name="desc_login">Selamat datang kembali kamu telah dirindukan</string>
     <string name="title_register">Daftar</string>
     <string name="desc_register">Ayo buat akun baru</string>
     <string name="email">Email</string>
