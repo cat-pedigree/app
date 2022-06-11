@@ -44,6 +44,8 @@
 - [About the Project](#about)
   * [User Interface](#camera-user-interface)
   * [Tech Stack](#space_invader-tech-stack)
+  * [How To Clone This Project](#how-to-clone-this-project)
+  * [How to Get Google Maps API key](#how-to-get-google-maps-api-key)
 - [Getting Started](#getting-started)
   * [Prerequisites](#bangbang-prerequisites)
   * [Installation](#gear-installation)
@@ -58,7 +60,46 @@
 
 <!-- User Interface -->
 ### :camera: User Interface
+You can see all the user interface and user experience at the following link
 
+|  ![User Interface](https://github.com/cat-pedigree/.github/blob/main/assets/images/ui/1.png) | ![User Interface](https://github.com/cat-pedigree/.github/blob/main/assets/images/ui/2.png)  |
+|---|---|
+| ![User Interface](https://github.com/cat-pedigree/.github/blob/main/assets/images/ui/3.png)  | ![User Interface](https://github.com/cat-pedigree/.github/blob/main/assets/images/ui/4.png)  |
+
+### How to clone this project
+- You can clone the Cat Pedigree App repository to download the zip file from this repository, or by running the git command on android studio:
+```bash
+git clone https://github.com/cat-pedigree/app.git
+```
+- Open In Android studio
+- Please wait gradle project synchronization
+
+### How to Get Google Maps API key
+how to get Google Maps API key? Don't worry, Android Studio will provide a link that you can directly use to create a project in Google Console and get an API Key for Google Maps.
+- First, sign in to the Google Cloud Console and go to the Credentials tab.
+- Check and click AGREE AND CONTINUE to agree to the Terms of Service.
+- Then go to the side menu and select API & Services → Credentials.
+- Create a new project by clicking CREATE PROJECT and changing the project name to your liking. Click CREATE to continue.
+- Next, activate the Google Maps feature by selecting Enabled APIs & Services on the side menu and clicking the + ENABLED APIS AND SERVICES button.
+- Various features will appear that you can use in the Google Cloud Console. Select Maps SDK for Android and click Enable.
+- Then select the Credentials menu on the side menu and click the CREATE CREDENTIALS → API key button to create a new credential.
+- At this point, you have got a key that usually starts with the word “AIza…”. Actually you can already use this API key, but this key is still not secure because any project can use it. To be more secure, click the Edit API key link.
+- Select the Android apps checkbox under Application restrictions and add new data by clicking ADD AN ITEM. Then fill in the package name of your application and SHA-1 of the device used.
+Notes:
+Each device has a different SHA certificate. To get SHA-1, you can run the command gradlew signingreport on Terminal
+- When finished, click SAVE and copy the key with the prefix "AIza ..." that has been obtained to the meta-data in the following AndroidManifest.
+```xml
+  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.catpedigree.capstone.catpedigreebase">
+    <application
+      ...
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY" />
+    </application>
+    ...
+</manifest>
+```
 
 <!-- Tech Stack -->
 ### :space_invader: Tech Stack
