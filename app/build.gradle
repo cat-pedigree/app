@@ -17,6 +17,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = [ GOOGLE_MAPS_KEY:"AIzaSyDl---5AKuGQNWsHEKzaW6SV2Yaf5U3MgQ"]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,6 +32,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_API_URL", "\"http://34.124.123.31/api/\""
             buildConfigField "String", "BASE_API_PHOTO", "\"https://storage.googleapis.com/cat-pedigree-trial/\""
+            resValue "string", "GOOGLE_MAPS_API", "AIzaSyDl---5AKuGQNWsHEKzaW6SV2Yaf5U3MgQ"
         }
     }
     compileOptions {

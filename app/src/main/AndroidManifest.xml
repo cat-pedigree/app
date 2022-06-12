@@ -37,7 +37,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDl---5AKuGQNWsHEKzaW6SV2Yaf5U3MgQ" />
+            android:value= "@string/google_maps_key" />
 
         <activity
             android:name="com.catpedigree.capstone.catpedigreebase.presentation.ui.post.create.camera.CameraActivity"
