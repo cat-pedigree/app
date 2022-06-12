@@ -66,13 +66,22 @@ You can see all the user interface and user experience at the following link
 |---|---|
 | ![User Interface](https://github.com/cat-pedigree/.github/blob/main/assets/images/ui/3.png)  | ![User Interface](https://github.com/cat-pedigree/.github/blob/main/assets/images/ui/4.png)  |
 
-### How to clone this project
-- You can clone the Cat Pedigree App repository to download the zip file from this repository, or by running the git command on android studio:
+### How to clone this project### Clone Manual
+- You can clone the `Cat Pedigree App` repository or download the zip file from the app repository by:
 ```bash
 git clone https://github.com/cat-pedigree/app.git
 ```
-- Open In Android studio
+- Open In `Android studio`
 - Please wait gradle project synchronization
+- End
+
+### Clone project in android studio
+
+- Open the android studio
+- Click menu `file` -> `new` -> `project from version control`
+- Enter the cat pedigree app repository link `https://github.com/cat-pedigree/app.git`
+- Please wait gradle project synchronization
+- End
 
 ### How to Get Google Maps API key
 how to get Google Maps API key? Don't worry, Android Studio will provide a link that you can directly use to create a project in Google Console and get an API Key for Google Maps.
@@ -148,10 +157,22 @@ Each device has a different SHA certificate. To get SHA-1, you can run the comma
 <!-- Contact -->
 ## :handshake: Contact
 
-| ID         | Name                   | Contact |
-|------------|------------------------|---------|
-| A7314F2733 | Budi Setiawan          |<a href="https://www.linkedin.com/in/budi-setiawan15/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> <a href="https://github.com/budistwn15"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>         |
-| A2152G1665 | Robby Ramadhan Anshory |<a href="https://www.linkedin.com/in/robby-ramadhan-anshory-99b338228/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> <a href="https://github.com/RobbyRamadhanAsnhory"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>          |
+| Team ID | C22-PS083                         |
+|---------|-----------------------------------|
+| Theme   | Human Healthcare & Animal Welfare |
+
+
+ ![Cat Pedigree Teams](https://github.com/cat-pedigree/.github/blob/main/assets/images/team/team.png)
+
+| ID         | NAME                    | PATH               | University                          | CONTACT |
+|------------|-------------------------|--------------------|-------------------------------------|---------|
+| M7269J2321 | Bugi Sulistiyo          | Machine Learning   | Universitas Mulawarman              |  <a href="https://www.linkedin.com/in/bugi-sulistiyo/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> <a href="https://github.com/Bugi-Sulistiyo"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>        |
+| M2272J2364 | Zahrizhal Ali           | Machine Learning   | Universitas Muslim Indonesia        |  <a href="https://www.linkedin.com/in/zahrizhal-ali/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> <a href="https://github.com/ZahrizhalAli"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>       |
+| M2208K1922 | Wardatun Sayyidah       | Machine Learning   | Universitas Hasanuddin              | <a href="https://www.linkedin.com/in/wardatun-sayyidah/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> <a href="https://github.com/wardatunsayyidah"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>          |
+| A2152G1665 | Robby Ramadhan Anshory  | Mobile Development | Sekolah Tinggi Teknologi Bandung    | <a href="https://www.linkedin.com/in/robby-ramadhan-anshory-99b338228/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> <a href="https://github.com/RobbyRamadhanAsnhory"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>        |
+| A7314F2733 | Budi Setiawan           | Mobile Development | Universitas Singaperbangsa Karawang | <a href="https://www.linkedin.com/in/budi-setiawan15/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a><a href="https://github.com/budistwn15"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>         |
+| C7312F2682 | Fina Enno Rizki Oktavia | Cloud Computing    | Universitas Sebelas Maret           |  <a href="https://www.linkedin.com/in/finaenno/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a><a href="https://github.com/finaenno"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>        |
+
 
 <!-- Acknowledgments -->
 ## :gem: Acknowledgements
