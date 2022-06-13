@@ -135,8 +135,8 @@
     <string name="gender">Jenis Kelamin</string>
 
     <string-array name="item_gender">
-        <item>Perempuan</item>
-        <item>Laki-Laki</item>
+        <item>Female</item>
+        <item>Male</item>
     </string-array>
 
     <string-array name="item_color_female">

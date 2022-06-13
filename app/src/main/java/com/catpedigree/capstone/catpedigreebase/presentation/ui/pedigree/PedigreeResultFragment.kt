@@ -57,6 +57,7 @@ class PedigreeResultFragment : Fragment() {
         val catOneName = args.catOneName
         val catOnePhoto = args.catOnePhoto
         val catOneGender = args.catOneGender
+        val catTwoGender = args.catTwoGender
         var catOneColor = args.catOneColor
         val catOneIsWhite = args.catOneIsWhite
         val catTwoName = args.catTwoName
@@ -110,7 +111,7 @@ class PedigreeResultFragment : Fragment() {
 
         val inputPedigree = intArrayOf(catOneColor.toInt(), catOneIsWhite, catTwoColor.toInt(), catTwoIsWhite)
 
-        if(catOneGender == "male" && catOneGender == "Laki-Laki"){
+        if(catOneGender == "Male"){
             binding.apply {
                 Glide.with(root)
                     .load(profilePhotoOne)
@@ -129,17 +130,17 @@ class PedigreeResultFragment : Fragment() {
             }
             predictColorFemale(inputPedigree)
             predictColorMale(inputPedigree)
-        }else if(catOneGender == "female" && catOneGender == "Perempuan"){
+        }else if(catOneGender == "Female"){
             binding.apply {
                 Glide.with(root)
-                    .load(catOnePhoto)
-                    .signature(ObjectKey(catOnePhoto))
+                    .load(profilePhotoOne)
+                    .signature(ObjectKey(profilePhotoOne))
                     .placeholder(R.drawable.ic_loading)
                     .into(imgAvatarCatOne)
 
                 Glide.with(root)
-                    .load(catTwoPhoto)
-                    .signature(ObjectKey(catTwoPhoto))
+                    .load(profilePhotoTwo)
+                    .signature(ObjectKey(profilePhotoTwo))
                     .placeholder(R.drawable.ic_loading)
                     .into(imgAvatarCatTwo)
 
