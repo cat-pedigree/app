@@ -32,7 +32,7 @@
   <span> · </span>
     <a href="https://github.com/cat-pedigree/app/">Documentation</a>
   <span> · </span>
-    <a href="https://github.com/cat-pedigree/app/">User Interface and User Experience</a>
+    <a href="https://www.behance.net/gallery/145755683/Cat-Pedigree-App">User Interface and User Experience</a>
   </h4>
 </div>
 
