@@ -66,7 +66,7 @@
 
         <TextView
             android:id="@+id/tv_item_title"
-            style="@style/heading1"
+            style="@style/title3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -82,16 +82,18 @@
 
         <TextView
             android:id="@+id/tv_item_description"
-            style="@style/body2"
+            style="@style/heading1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="16dp"
             android:ellipsize="end"
             android:gravity="start"
-            android:textColor="@color/neutral_90"
+            android:lineHeight="25dp"
+            android:textColor="@color/neutral_100"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="@string/post_description" />
 

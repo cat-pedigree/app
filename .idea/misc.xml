@@ -156,11 +156,33 @@
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/menu/top_app.xml" value="0.18645833333333334" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/menu/top_app_bar.xml" value="0.22" />
         <entry key="..\:/Bangkit/capstone/android/CatPedigreeBase/app/src/main/res/menu/top_app_bar_two.xml" value="0.22" />
-        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_login.xml" value="0.16666666666666666" />
-        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_onboarding_four.xml" value="0.18645833333333334" />
-        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_onboarding_one.xml" value="0.16666666666666666" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_add_cat.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_cat_profile.xml" value="0.25" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_cat_user.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_comment.xml" value="0.2" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_create_comment.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_follower.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_my_profile.xml" value="0.25" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_onboarding_four.xml" value="0.1" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_onboarding_one.xml" value="0.2" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_onboarding_three.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_onboarding_two.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_pedigree_filter.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_post_my_profile.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_register.xml" value="0.16666666666666666" />
         <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_result.xml" value="0.22" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/fragment_services.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/item_cats.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/item_comment.xml" value="0.25" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/item_dating.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/item_dropdown.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/item_mate.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/item_post.xml" value="0.2" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/item_post_profile.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/item_user.xml" value="0.16485507246376813" />
+        <entry key="..\:/Dicoding/app/app/src/main/res/layout/item_your_cats.xml" value="0.25" />
       </map>
     </option>
   </component>

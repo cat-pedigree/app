@@ -17,7 +17,12 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-        manifestPlaceholders = [ GOOGLE_MAPS_KEY:"AIzaSyDl---5AKuGQNWsHEKzaW6SV2Yaf5U3MgQ"]
+        // Load credentials.
+        def properties = new Properties()
+        properties.load(new FileInputStream(rootProject.file("local.properties")))
+
+        // Share the key with your `AndroidManifest.xml`
+        manifestPlaceholders = [ googleMapsApiKey: properties.getProperty("google.maps_api_key")]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

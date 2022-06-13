@@ -77,26 +77,32 @@
     <TextView
         android:id="@+id/tv_post_count"
         style="@style/heading1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/count_post"
         android:textAlignment="center"
         android:textColor="@color/neutral_100"
+        app:layout_constraintBottom_toTopOf="@+id/tv_count_post"
         app:layout_constraintEnd_toEndOf="@+id/iv_post_count"
         app:layout_constraintStart_toStartOf="@+id/iv_post_count"
         app:layout_constraintTop_toTopOf="@+id/iv_post_count" />
 
     <TextView
         android:id="@+id/tv_count_post"
-        style="@style/body3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/post"
         android:textAlignment="center"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_post_count"
         app:layout_constraintEnd_toEndOf="@+id/iv_post_count"
-        app:layout_constraintStart_toStartOf="@+id/iv_post_count"
-        app:layout_constraintTop_toBottomOf="@+id/tv_post_count" />
+        app:layout_constraintStart_toStartOf="@+id/iv_post_count" />
 
     <ImageView
         android:id="@+id/iv_follower_count"
@@ -113,26 +119,32 @@
     <TextView
         android:id="@+id/tv_follower_count"
         style="@style/heading1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/count_follower"
         android:textAlignment="center"
         android:textColor="@color/neutral_100"
+        app:layout_constraintBottom_toTopOf="@+id/tv_follower"
         app:layout_constraintEnd_toEndOf="@+id/iv_follower_count"
         app:layout_constraintStart_toStartOf="@+id/iv_follower_count"
         app:layout_constraintTop_toTopOf="@+id/iv_follower_count" />
 
     <TextView
         android:id="@+id/tv_follower"
-        style="@style/body3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/follower"
         android:textAlignment="center"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_follower_count"
         app:layout_constraintEnd_toEndOf="@+id/iv_follower_count"
-        app:layout_constraintStart_toStartOf="@+id/iv_follower_count"
-        app:layout_constraintTop_toBottomOf="@+id/tv_follower_count" />
+        app:layout_constraintStart_toStartOf="@+id/iv_follower_count" />
 
     <ImageView
         android:id="@+id/iv_following_count"
@@ -149,28 +161,32 @@
     <TextView
         android:id="@+id/tv_following_count"
         style="@style/heading1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/count_following"
         android:textAlignment="center"
         android:textColor="@color/neutral_100"
+        app:layout_constraintBottom_toTopOf="@+id/tv_following"
         app:layout_constraintEnd_toEndOf="@+id/iv_following_count"
         app:layout_constraintStart_toStartOf="@+id/iv_following_count"
         app:layout_constraintTop_toTopOf="@+id/iv_following_count" />
 
     <TextView
         android:id="@+id/tv_following"
-        style="@style/body3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/following"
         android:textAlignment="center"
+        android:textColor="@color/neutral_100"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_following_count"
         app:layout_constraintEnd_toEndOf="@+id/iv_following_count"
-        app:layout_constraintStart_toStartOf="@+id/iv_following_count"
-        app:layout_constraintTop_toBottomOf="@+id/tv_following_count" />
+        app:layout_constraintStart_toStartOf="@+id/iv_following_count" />
 
     <TextView
         android:id="@+id/my_cats"

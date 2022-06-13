@@ -6,7 +6,7 @@
     <string name="title_onboarding_two">Pedigree</string>
     <string name="title_onboarding_three">Social Media</string>
     <string name="title_onboarding_four">Dating</string>
-    <string name="desc_onboarding_one">Identify type of cat by taking a photo, \nthe application will analyze the type of cat</string>
+    <string name="desc_onboarding_one">Identify type of cat by taking a photo, the application will analyze the type of cat</string>
     <string name="desc_onboarding_two">Classify cat breeds and analyze \nclassification report for cross-breeds analysis.</string>
     <string name="desc_onboarding_three">Connect and socialize with \nall cat owners in the world</string>
     <string name="desc_onboarding_four">Find the perfect match \nfor your beloved cat</string>

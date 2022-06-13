@@ -6,14 +6,14 @@
     <string name="title_onboarding_two">Pedigree</string>
     <string name="title_onboarding_three">Social Media</string>
     <string name="title_onboarding_four">Dating</string>
-    <string name="desc_onboarding_one">Identifikasi jenis kucing dengan mengambil foto, \naplikasi akan menganalisis jenis kucing</string>
-    <string name="desc_onboarding_two">Klasifikasi ras kucing dan analisis \nlaporan klasifikasi untuk analisis ras silang.</string>
-    <string name="desc_onboarding_three">Terhubung dan bersosialisasi dengan \nsemua pemilik kucing di dunia</string>
-    <string name="desc_onboarding_four">Temukan pasangan yang cocok \nuntuk kucing kesayangan Anda</string>
+    <string name="desc_onboarding_one">Identifikasi jenis kucing dengan mengambil foto, aplikasi akan menganalisis jenis kucing</string>
+    <string name="desc_onboarding_two">Klasifikasi ras kucing dan analisis laporan klasifikasi untuk analisis ras silang.</string>
+    <string name="desc_onboarding_three">Terhubung dan bersosialisasi dengan semua pemilik kucing di dunia</string>
+    <string name="desc_onboarding_four">Temukan pasangan yang cocok untuk kucing kesayangan Anda</string>
     <string name="btn_continue">Lanjutkan</string>
     <string name="btn_skip">Lewati</string>
     <string name="btn_start">Mulai</string>
-    <string name="btn_scan">Pindah Disini</string>
+    <string name="btn_scan">Pindai Disini</string>
 
     <!-- TODO: String on Login -->
     <string name="btn_login">Masuk</string>
@@ -96,7 +96,7 @@
     <string name="desc_profilee">Lorem Ipsum is simply dummy text of the printing</string>
     <string name="btn_edt_profile">Ubah Profil</string>
     <string name="my_cats">Kucing Saya</string>
-    <string name="add_cat">Tambah Kucing</string>
+    <string name="add_cat">Tambah</string>
     <string name="desc_avatar_profile">ini adalah avatar di profil</string>
     <string name="desc_btn_fav_profile">Ini adalah tombol favorit di halaman profil</string>
     <string name="btn_edt_photo_profile">Ubah Photo Profil</string>
@@ -233,7 +233,7 @@
     <string name="veterinary_location">Lokasi</string>
     <string name="veterinary_desc_img">this is a photo on the veterinary page</string>
     <string name="title_favorite">Belum ada Favorit</string>
-    <string name="desc_favorite">Click the \'Actions\' button on any \npage to add a favorite</string>
+    <string name="desc_favorite">Click the \'Actions\' button on any page to add a favorite</string>
     <string name="bio_required">Masukkan Bio</string>
     <string name="text_validation_success">Sukses</string>
     <string name="text_validation_error_empty_field">Empty Field</string>

@@ -110,7 +110,7 @@ class PedigreeResultFragment : Fragment() {
 
         val inputPedigree = intArrayOf(catOneColor.toInt(), catOneIsWhite, catTwoColor.toInt(), catTwoIsWhite)
 
-        if(catOneGender == "male"){
+        if(catOneGender == "male" && catOneGender == "Laki-Laki"){
             binding.apply {
                 Glide.with(root)
                     .load(profilePhotoOne)
@@ -129,7 +129,7 @@ class PedigreeResultFragment : Fragment() {
             }
             predictColorFemale(inputPedigree)
             predictColorMale(inputPedigree)
-        }else if(catOneGender == "female"){
+        }else if(catOneGender == "female" && catOneGender == "Perempuan"){
             binding.apply {
                 Glide.with(root)
                     .load(catOnePhoto)

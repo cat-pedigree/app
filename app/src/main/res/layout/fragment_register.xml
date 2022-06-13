@@ -166,6 +166,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/neutral_100"
             android:text="@string/register_account"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
